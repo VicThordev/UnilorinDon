@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.CheckLevelActivity">
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/rectangle_5_shape"
+        android:layout_marginTop="20dp"
+        android:elevation="20dp"
+        app:circularflow_defaultRadius="50dp"
+        app:layout_constraintCircleRadius="20dp"
+        app:circularflow_radiusInDP="20dp"
+        android:id="@+id/level1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:elevation="20dp"
+        android:id="@+id/level2"
+        android:background="@drawable/rectangle_5_shape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/level1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/level1"
+        android:elevation="30dp"
+        app:layout_constraintStart_toStartOf="@id/level1"
+        app:layout_constraintEnd_toEndOf="@id/level1"
+        app:layout_constraintBottom_toBottomOf="@id/level1"
+        android:text="@string/_100l"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="30dp"
+        app:layout_constraintStart_toStartOf="@id/level2"
+        app:layout_constraintEnd_toEndOf="@id/level2"
+        app:layout_constraintBottom_toBottomOf="@id/level2"
+        app:layout_constraintTop_toTopOf="@id/level2"
+        android:text="@string/_200l"
+        android:textSize="40sp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

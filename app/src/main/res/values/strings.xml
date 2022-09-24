@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">UnilorinApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ek_img_content">ExportKit Image</string>
+
+    <string name="cbt_practice_string">CBT Practice</string>
+
+    <string name="quiz_game_string">Quiz Game</string>
+
+    <string name="unilorin_updates_string">Unilorin Updates</string>
+
+    <string name="study_past_questions_string">Study Past Questions</string>
+
+    <string name="frequently_asked_questions_string">FrequentlyAsked Questions</string>
+
+    <string name="see_answers_to_questions_other_users_have_asked_string">See answers to questions otherusers have asked</string>
+    <string name="checking_in">Checking in</string>
+    <string name="log_out">Log out</string>
+    <string name="view">View your profile</string>
+    <string name="my_profile">My Profile</string>
+    <string name="view_your">View your performance thus far</string>
+    <string name="work_flow">Work Flow</string>
+    <string name="preferences">Preferences</string>
+    <string name="get_updated">Get updated with the latest messages</string>
+    <string name="share">Share the app among your friends</string>
+    <string name="share_app">Share App</string>
+    <string name="rate">Rate Us</string>
+    <string name="rating">Give us a nice rating on play Store</string>
+    <string name="the_developer">About the developer</string>
+    <string name="about_the_developer">Get to know more about the developer</string>
+    <string name="communicate">Communicate</string>
+    <string name="help">Help</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="enter_pin">Enter a 12 digits activation pin to unlock all the years and amazing features in this app. Activation lasts for one academic year.</string>
+    <string name="activation">Activation unlocks all subjects/Novels and opens ALL years</string>
+    <string name="pin">Pin</string>
+    <string name="number">16 Digits Numbers</string>
+    <string name="activate">Activate</string>
+    <string name="activation_pin">Don\'t have an activation pin? Get one payment</string>
+    <string name="choose">CHOOSE A PAYMENT METHOD</string>
+    <string name="pay">Pay #1000</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_pay_online">Pay Online</string>
+    <string name="paystack">Pay using PayStack</string>
+    <string name="bank">Bank Deposit or Transfer</string>
+    <string name="bank_deposit">Go down to the nearest banking site around you either a real bank or POS operator and make a deposit of #1000 into any of the account below</string>
+    <string name="after_payment">***After payment, send a whatsapp message containing payment details to: +2349039412648 using the format below</string>
+    <string name="account_name">1. Account name (belonging to the account owner or POS agent):</string>
+    <string name="email">Your Email Address:</string>
+    <string name="bank_paid_to">3. Bank paid to</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="go_to">GO TO</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="check">Check for the correct answer and pick</string>
+    <string name="which">Which of the following is correct?</string>
+    <string name="option_a">Option A</string>
+    <string name="option_b">Option B</string>
+    <string name="option_c">Option C</string>
+    <string name="option_d">Option D</string>
+    <string name="question_1_of_30">Question 1 of 30</string>
+    <string name="_200l">200l</string>
+    <string name="_100l">100l</string>
+</resources>

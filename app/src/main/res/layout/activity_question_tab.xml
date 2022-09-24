@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.QuestionTab">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="5dp"
+        android:onClick="open"
+        android:elevation="10dp"
+        android:id="@+id/mCardViewNoBank"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHM 101, MTH 111, CHM 115, PHY 115"
+            android:layout_marginStart="10dp"
+            android:onClick="openQuestion"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_arrow_down"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/relativeNoAcctG"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bank_deposit1"
+                android:text="@string/bank_deposit"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/after_payment1"
+                android:layout_below="@id/bank_deposit1"
+                android:text="@string/after_payment"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/acctName1"
+                android:layout_below="@id/after_payment1"
+                android:layout_marginTop="10dp"
+                android:text="@string/account_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/acctName1"
+                android:layout_marginTop="10dp"
+                android:id="@+id/emailAdd1"
+                android:text="@string/email"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emailAdd1"
+                android:layout_marginTop="10dp"
+                android:text="@string/bank_paid_to"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="open"
+        app:cardCornerRadius="5dp"
+        android:elevation="10dp"
+        android:id="@+id/mCardViewNo"
+        app:layout_constraintTop_toBottomOf="@id/mCardViewNoBank"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHM 101, MTH 111, CHM 115, PHY 115"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/relativeNoAcct1"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bank_deposit11"
+                android:text="@string/bank_deposit"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/after_payment11"
+                android:layout_below="@id/bank_deposit11"
+                android:text="@string/after_payment"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/acctName11"
+                android:layout_below="@id/after_payment11"
+                android:layout_marginTop="10dp"
+                android:text="@string/account_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/acctName11"
+                android:layout_marginTop="10dp"
+                android:id="@+id/emailAdd11"
+                android:text="@string/email"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emailAdd11"
+                android:layout_marginTop="10dp"
+                android:text="@string/bank_paid_to"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="5dp"
+        android:elevation="10dp"
+        android:id="@+id/mCardViewNoOpen"
+        app:layout_constraintTop_toBottomOf="@id/mCardViewNo"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHM 101, MTH 111, CHM 115, PHY 115"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/relativeNoAcct2"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bank_deposit12"
+                android:text="@string/bank_deposit"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/after_payment12"
+                android:layout_below="@id/bank_deposit12"
+                android:text="@string/after_payment"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/acctName12"
+                android:layout_below="@id/after_payment12"
+                android:layout_marginTop="10dp"
+                android:text="@string/account_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/acctName12"
+                android:layout_marginTop="10dp"
+                android:id="@+id/emailAdd12"
+                android:text="@string/email"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emailAdd12"
+                android:layout_marginTop="10dp"
+                android:text="@string/bank_paid_to"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
