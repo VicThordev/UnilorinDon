@@ -15,36 +15,18 @@
             android:layout_margin="10dp"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Your name:"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:id="@+id/txtName"
-                    android:layout_marginStart="20dp"
-                    android:text="Your name:"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="20dp"
-                    android:layout_below="@id/txtName"
-                    android:layout_marginStart="20dp"
-                    android:text="Your Info"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imgDashBoard"
-                    android:layout_marginEnd="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_person_add_60"/>
-            </RelativeLayout>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgDashBoard"
+                android:layout_marginStart="200dp"
+                android:src="@drawable/ic_person_add_60"/>
         </LinearLayout>
     </RelativeLayout>
 
@@ -59,10 +41,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
-            android:onClick="openQuestionTab"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             app:cardElevation="10dp"
             android:layout_height="wrap_content">
 
@@ -89,8 +70,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
-            android:onClick="openLevelActivity"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"
@@ -119,8 +99,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
-            android:onClick="login"
+            android:layout_margin="5dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"
@@ -149,8 +128,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
-            android:onClick="openQuestionPage"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"
@@ -180,7 +158,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"
@@ -202,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="15dp"
                     android:text="Get to know \n more friends"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -210,7 +188,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"

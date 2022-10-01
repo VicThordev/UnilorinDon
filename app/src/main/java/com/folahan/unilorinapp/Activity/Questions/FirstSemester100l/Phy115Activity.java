@@ -1,4 +1,4 @@
-package com.folahan.unilorinapp.Activity;
+package com.folahan.unilorinapp.Activity.Questions.FirstSemester100l;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class QuestionActivity extends AppCompatActivity {
+public class Phy115Activity extends AppCompatActivity {
 
     private List<Question> questionList;
     private Random random;
@@ -36,7 +36,7 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_phy115);
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
@@ -74,7 +74,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         rbOption1.setOnClickListener(view -> {
             if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-            .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
+                    .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
         });

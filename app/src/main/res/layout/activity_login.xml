@@ -6,16 +6,16 @@
     tools:context=".Activity.LoginActivity"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="273dp"
+        android:background="@drawable/blue_bg" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="273dp"
-            android:background="@drawable/blue_bg"/>
+        android:layout_marginTop="320dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,26 +26,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
+                android:drawablePadding="10dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:drawableStart="@drawable/ic_mail"
                 android:id="@+id/emailText"
                 android:background="@drawable/custom_input"
                 android:layout_marginEnd="60dp"
-                android:hint="Email:"
+                android:hint="Email"
                 android:layout_marginStart="60dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:drawablePadding="10dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:layout_marginTop="40dp"
+                android:drawableStart="@drawable/ic_lock"
                 android:layout_marginEnd="60dp"
                 android:background="@drawable/custom_input"
                 android:id="@+id/passwordText"
-                android:hint="Password:"
+                android:hint="Password"
                 android:layout_marginStart="60dp"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:id="@+id/btnLogin"
                 android:background="@drawable/custom_input"
                 android:layout_marginEnd="60dp"
                 android:text="Log in"
@@ -82,36 +91,34 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:background="#1A4ED1"
+            android:background="#0A3FC8"
             android:layout_marginStart="120dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/yellow_fb"/>
+                android:src="@drawable/yellow_fb" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/yellow_linkedin"/>
+                android:layout_centerInParent="true"
+                android:layout_marginStart="50dp"
+                android:src="@drawable/yellow_linkedin" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="100dp"
                 android:src="@drawable/yellow_twitter"/>
 
-        </LinearLayout>
-
-
-
+        </RelativeLayout>
 
     </LinearLayout>
 

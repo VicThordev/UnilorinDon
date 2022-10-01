@@ -74,4 +74,9 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) {
         startActivity(new Intent(this, LoginActivity.class));
     }
+
+
+    public void openQuestionPage(View view) {
+        startActivity(new Intent(this, QuestionPage.class));
+    }
 }

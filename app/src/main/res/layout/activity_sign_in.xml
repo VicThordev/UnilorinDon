@@ -27,6 +27,7 @@
                     android:drawablePadding="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:id="@+id/txtSurname"
                     android:background="@drawable/custom_input"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
@@ -34,9 +35,20 @@
                     android:drawableStart="@drawable/ic_account"
                     android:layerType="software" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtSurnameText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Surname cannot be blank"
+                    android:textColor="#F80101"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:id="@+id/txtFirstName"
                     android:drawablePadding="12dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
@@ -47,9 +59,20 @@
                     android:drawableStart="@drawable/ic_account"
                     android:hint="First Name" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtFirstNameText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Firstname cannot be blank"
+                    android:textColor="#F80101"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:id="@+id/Username"
                     android:drawablePadding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
@@ -60,9 +83,20 @@
                     android:paddingEnd="12dp"
                     android:hint="Pick a username" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtUsernameText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Username cannot be blank"
+                    android:textColor="#F80101"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:id="@+id/txtMobile"
                     android:background="@drawable/custom_input"
                     android:drawablePadding="10dp"
                     android:layout_marginStart="20dp"
@@ -75,9 +109,20 @@
 
                     android:inputType="number" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtMobileText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Mobile cannot be blank"
+                    android:textColor="#F80101"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:id="@+id/txtEmail"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:layout_marginStart="20dp"
@@ -89,9 +134,20 @@
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtEmailText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Field is required"
+                    android:textColor="#F80101"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:id="@+id/txtPassword"
                     android:hint="Password"
                     android:background="@drawable/custom_input"
                     android:drawablePadding="10dp"
@@ -103,9 +159,20 @@
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtPasswordText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Surname cannot be blank"
+                    android:textColor="#F80101"/>
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:id="@+id/confirmPassword"
                     android:layout_marginTop="10dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
@@ -117,10 +184,22 @@
                     android:hint="Confirm Password"
                     android:inputType="textPassword" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtConfirmPasswordText"
+                    android:layout_marginStart="21dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:text="Surname cannot be blank"
+                    android:textColor="#F80101"/>
+
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="REGISTER"
+                    android:onClick="register"
+                    android:id="@+id/btnRegister"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/custom_input"
                     android:layout_marginStart="20dp"
@@ -130,6 +209,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -173,7 +253,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        />
+        android:layout_height="300dp" />
 
 </RelativeLayout>

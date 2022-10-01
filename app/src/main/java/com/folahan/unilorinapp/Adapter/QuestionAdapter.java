@@ -65,9 +65,9 @@ public class QuestionAdapter extends ListAdapter<QuestionList, QuestionAdapter.Q
     }
 
     public class QuestionHolder extends RecyclerView.ViewHolder {
-        private TextView mName;
-        private TextView mUniqueId;
-        private TextView mQuestion;
+        private final TextView mName;
+        private final TextView mUniqueId;
+        private final TextView mQuestion;
         private EditText mAnswer;
         private TextView mLike;
         private TextView mComment;
@@ -80,6 +80,17 @@ public class QuestionAdapter extends ListAdapter<QuestionList, QuestionAdapter.Q
             mAnswer = itemView.findViewById(R.id.edtAnswer);
             mLike = itemView.findViewById(R.id.likeNo);
             mComment = itemView.findViewById(R.id.commentNo);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position !=
+                            RecyclerView.NO_POSITION) {
+                        listener.onItemClick(getItem(position));
+                    }
+                }
+            });
         }
     }
     public interface onItemClickListener {

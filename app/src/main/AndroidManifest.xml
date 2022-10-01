@@ -10,6 +10,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnilorinApp">
         <activity
+            android:name=".Activity.Questions.FirstSemester100l.Phy191Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Sta124Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Phy125Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Phy115Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Gns111Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Mth113Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Mth111Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Chm115Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Chm101Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.FirstSemesterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.CommentActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SignInActivity"
             android:exported="false" />
         <activity

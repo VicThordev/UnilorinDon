@@ -26,6 +26,7 @@ public class QuestionPage extends AppCompatActivity {
     private QuestionAdapter adapter;
     private RecyclerView mRecyclerView;
     private static int Add_Post_Request = 1;
+    private static int Edit_Note_Request = 2;
     private QuestionViewModel questionViewModel;
 
     @Override
@@ -56,6 +57,15 @@ public class QuestionPage extends AppCompatActivity {
             mQuestionList = new ArrayList<>(questionLists);
         });
 
+        adapter.setOnItemClickListener(new QuestionAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(QuestionList question) {
+                Intent data = new Intent(QuestionPage.this, CommentActivity.class);
+                //data.putExtra(CommentActivity.EXTRA_COMMENT, mQuestionList);
+
+                startActivityForResult(data, Edit_Note_Request);
+            }
+        });
     }
 
     @Override

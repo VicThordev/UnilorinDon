@@ -4,34 +4,54 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.folahan.unilorinapp.Activity.Questions.FirstSemester100l.FirstSemesterActivity;
+import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class QuestionTab extends AppCompatActivity {
-
-    private RelativeLayout rl, relative;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_tab);
 
-        rl = findViewById(R.id.relativeNoAcctG);
-        relative = findViewById(R.id.relativeNoAcct1);
     }
 
     public void open(View view) {
-        int visible = rl.getVisibility();
-        if (visible == View.VISIBLE) {
-            rl.setVisibility(View.GONE);
-        } else if (visible == View.GONE){
-            rl.setVisibility(View.VISIBLE);
-        }
+        showButton();
     }
 
     public void openQuestion(View view) {
         startActivity(new Intent(this, QuestionActivity.class));
+        finish();
+    }
+
+    protected void showButton() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.question_check_nav,
+                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+        Button scoreShow = bottomSheet.findViewById(R.id.btn100);
+        Button goHome = bottomSheet.findViewById(R.id.btn200);
+
+        scoreShow.setOnClickListener(view -> {
+            startActivity(new Intent(this, FirstSemesterActivity.class));
+        });
+
+        goHome.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
+            dialog.dismiss();
+            finish();
+        });
+        dialog.setCancelable(false);
+        dialog.setContentView(bottomSheet);
+        dialog.show();
     }
 }
