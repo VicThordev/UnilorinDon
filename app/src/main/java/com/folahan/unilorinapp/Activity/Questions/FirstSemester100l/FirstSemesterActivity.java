@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class FirstSemesterActivity extends AppCompatActivity {
 
     private Button mBtnMth111, mBtnChm101, mBtnChm115, mBtnMth113, mBtnGns111, mBtnPhy115,
-    mBtnPhy125, mBtnSta124, mBtnPhy191;
+    mBtnPhy125, mBtnSta124, mBtnPhy191, mBtnPlb101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,7 @@ public class FirstSemesterActivity extends AppCompatActivity {
         mBtnPhy125 = findViewById(R.id.btnPhy125);
         mBtnSta124 = findViewById(R.id.btnSta124);
         mBtnPhy191 = findViewById(R.id.btnPhy191);
+        mBtnPlb101 = findViewById(R.id.btnPlb101);
 
         mBtnChm101.setOnClickListener(view -> {
             startActivity(new Intent(this, Chm101Activity.class));
@@ -66,6 +67,10 @@ public class FirstSemesterActivity extends AppCompatActivity {
 
         mBtnPhy191.setOnClickListener(view -> {
             startActivity(new Intent(this, Phy191Activity.class));
+        });
+
+        mBtnPlb101.setOnClickListener(view -> {
+            startActivity(new Intent(this, Plb101Activity.class));
         });
     }
 

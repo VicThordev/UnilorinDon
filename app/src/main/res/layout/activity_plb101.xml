@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.Questions.FirstSemester100l.Gns111Activity"><com.google.android.material.appbar.AppBarLayout
+    tools:context=".Activity.Questions.FirstSemester100l.Plb101Activity"><com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/appBar"
@@ -189,6 +189,9 @@
         app:layout_constraintTop_toBottomOf="@id/materialCard"
         app:layout_constraintStart_toEndOf="@id/button_previous"
         android:text="@string/next"
-        />
+        /></androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

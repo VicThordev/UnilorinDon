@@ -10,6 +10,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnilorinApp">
         <activity
+            android:name=".Activity.Questions.SecondSemester100l.Mth116Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Gns114Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Phy192Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Phy152Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Sta124Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Phy142Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Gns112Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Chm116Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Mth114Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Chm112Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.Mth112Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.FirstSemester100l.Plb101Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Questions.SecondSemester100l.SecondSemesterActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Questions.FirstSemester100l.Phy191Activity"
             android:exported="false" />
         <activity

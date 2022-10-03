@@ -149,8 +149,8 @@ public class Chm101Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("Amphoteric elements are the elements which", "" +
-                " have similar physical properties with metals but similar chemical properties with non-metals",
+        questionList.add(new Question("Amphoteric elements are the elements which",
+                "have similar physical properties with metals but similar chemical properties with non-metals",
                 "possess acidic properties only", "possess neither acidic nor basic properties",
                 "possess basic properties",
                 "have similar physical properties with metals but similar chemical properties with non-metals"));
@@ -634,6 +634,41 @@ public class Chm101Activity extends AppCompatActivity {
                 "0.313 mole"));
 
 
+
+    }
+
+    private void getQuestionPhase3(List<Question> list) {
+
+        questionList.add(new Question("Which of these pairs of metal has variable valencies?",
+                "Iron and copper",
+                "Zinc and caesium",
+                "Iron and strontium",
+                "Barium and scandium",
+                "Iron and copper"));
+
+        questionList.add(new Question("J.J. Thomson’s model of the atom fell into disrepute and was replaced by one of the " +
+                "followings ",
+                "Dalton’s theory",
+                "Rutherford Nuclear model",
+                "Bohr model",
+                "Balmer series model",
+                "Rutherford Nuclear model"));
+
+        questionList.add(new Question("Phosphorous burns in oxygen according to the equation" +
+                "P4 + 5O2 P4O . How many litres of oxygen will be required at s.t.p. for complete oxidation " +
+                "of 12.4g of phosphorous? (P = 31, 0 = 16 and molar volume of a gas at s.t.p. = 22.4 litres) ",
+                "5.20 litre",
+                "11.20 litre",
+                "2.24 litre",
+                "20.20 litre ",
+                "11.20 litre"));
+
+        questionList.add(new Question("Which of these statements is not true when the cubes are added into the hot tea in a \n" +
+                "glass cup?",
+                "11.20 litre",
+                "2.24 litre",
+                "20.20 litre ",
+                "11.20 litre"));
 
     }
 }
