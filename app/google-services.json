@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "883027332124",
+    "project_id": "unilorin-don",
+    "storage_bucket": "unilorin-don.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883027332124:android:4da55f1338cd4f42ac23d9",
+        "android_client_info": {
+          "package_name": "com.folahan.unilorinapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883027332124-gaplfb3qlvtio8f42egf8ia3gc2ugr5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOH-h2lHVK82uxlORgeU3V0u-k0oyA_I0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883027332124-gaplfb3qlvtio8f42egf8ia3gc2ugr5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

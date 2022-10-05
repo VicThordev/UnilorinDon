@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnilorinApp">
         <activity
+            android:name=".Activity.Questions.SecondSemester100l.Chm132Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Questions.SecondSemester100l.Mth116Activity"
             android:exported="false" />
         <activity

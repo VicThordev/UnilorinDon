@@ -21,7 +21,7 @@ import com.folahan.unilorinapp.R;
 public class SecondSemesterActivity extends AppCompatActivity {
 
     private Button mBtnMth112, mBtnChm112, mBtnChm116, mBtnMth114, mBtnGns112, mBtnPhy152,
-            mBtnPhy142, mBtnSta124, mBtnPhy192, mBtnMth116, mBtnGns114;
+            mBtnPhy142, mBtnSta124, mBtnPhy192, mBtnMth116, mBtnGns114, mBtnChm132;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,8 @@ public class SecondSemesterActivity extends AppCompatActivity {
         mBtnPhy192 = findViewById(R.id.btnPhy192);
         mBtnMth116 = findViewById(R.id.btnMth116);
         mBtnGns114 = findViewById(R.id.btnGns114);
+        mBtnChm132 = findViewById(R.id.btnChm132);
+
 
         mBtnChm112.setOnClickListener(view -> {
             startActivity(new Intent(this, Chm112Activity.class));
