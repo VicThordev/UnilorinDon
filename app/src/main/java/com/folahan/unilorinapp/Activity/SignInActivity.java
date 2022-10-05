@@ -3,17 +3,25 @@ package com.folahan.unilorinapp.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.folahan.unilorinapp.MainActivity;
+import com.folahan.unilorinapp.Model.Constants;
+import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.R;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private PreferenceManager preferenceManager;
     private EditText edtSurname, edtFirstName, edtUsername, edtMobile, edtEmail, edtPassword,
     edtConfirmPassword;
 
@@ -44,6 +52,7 @@ public class SignInActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPasswordText);
         txtConfirmPassword = findViewById(R.id.txtConfirmPasswordText);
 
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
         signIn = findViewById(R.id.signInstead);
 
@@ -51,6 +60,33 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
+    }
+
+    private void addDataToFirestore() {
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        HashMap<String, Object> user = new HashMap<>();
+
+        user.put(Constants.KEY_SURNAME, edtSurname.getText().toString());
+        user.put(Constants.KEY_LASTNAME, edtFirstName.getText().toString());
+        user.put(Constants.KEY_USERNAME, edtUsername.getText().toString());
+        user.put(Constants.KEY_EMAIL, edtEmail.getText().toString());
+        user.put(Constants.KEY_PASSWORD, edtPassword.getText().toString());
+        user.put(Constants.KEY_MOBILE, edtMobile.getText().toString());
+
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .add(user)
+                .addOnSuccessListener(documentReference -> {
+                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,
+                            true);
+                    preferenceManager.putString(Constants.KEY_USER_ID,
+                            documentReference.getId());
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                })
+                .addOnFailureListener(exception -> {
+                    Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     public Boolean register(View view) {
@@ -96,7 +132,11 @@ public class SignInActivity extends AppCompatActivity {
             if (message4.trim().isEmpty()) {
                 txtEmail.setVisibility(View.VISIBLE);
                 return true;
-            } else {
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(message4)
+            .matches()) {
+                Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_SHORT).show();
+            }
+            else {
                 txtEmail.setVisibility(View.GONE);
                 checkTrue=true;
             }
@@ -128,6 +168,8 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this, "Password do not match", Toast.LENGTH_SHORT).show();
 
         }
+        addDataToFirestore();
         return false;
     }
+
 }
