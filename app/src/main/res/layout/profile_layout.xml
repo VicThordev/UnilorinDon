@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtNameProfile"
                 android:text="Username"
+                android:id="@+id/txtUsernameProfile"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold"
@@ -63,6 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:id="@+id/txtEmailProfile"
                         android:layout_marginTop="5dp"
                         android:layout_marginStart="10dp"
                         android:text="Email"/>

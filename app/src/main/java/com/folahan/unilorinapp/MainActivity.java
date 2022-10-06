@@ -5,20 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.folahan.unilorinapp.Activity.CheckLevelActivity;
 import com.folahan.unilorinapp.Activity.LoginActivity;
 import com.folahan.unilorinapp.Activity.QuestionTab;
 import com.folahan.unilorinapp.Activity.Questions.QuestionPage;
+import com.folahan.unilorinapp.Model.Constants;
+import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.fragmentActivity.AccountFragment;
 import com.folahan.unilorinapp.fragmentActivity.ActivateFragment;
 import com.folahan.unilorinapp.fragmentActivity.HomeFragment;
 import com.folahan.unilorinapp.fragmentActivity.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView txtName, txtUsername, txtEmail;
+    private View view;
+    private PreferenceManager preferenceManager;
     BottomNavigationView navigationView;
     AccountFragment fragment = new AccountFragment();
     ActivateFragment activateFragment = new ActivateFragment();
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.frameLayout, homeFragment).commit();
@@ -61,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     public void openQuestionTab(View view) {
         Intent intent = new Intent(this, QuestionTab.class);
