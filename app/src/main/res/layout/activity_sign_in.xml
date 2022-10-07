@@ -21,6 +21,40 @@
                 android:layout_marginBottom="40dp"
                 android:orientation="vertical">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:id="@+id/rlProfile"
+                        android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:id="@+id/imgSignUp"
+                            android:layout_centerInParent="true"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/backgroung_input"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add an image"
+                            android:id="@+id/txtSignUp"
+                            android:layout_centerInParent="true"
+                            android:textSize="12sp"/>
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"

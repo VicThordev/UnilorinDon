@@ -1,13 +1,23 @@
 package com.folahan.unilorinapp.Activity;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +27,9 @@ import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
@@ -24,13 +37,15 @@ public class SignInActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private EditText edtSurname, edtFirstName, edtUsername, edtMobile, edtEmail, edtPassword,
     edtConfirmPassword;
+    private RelativeLayout layout;
 
     private Boolean checkTrue;
 
-    private TextView signIn, txtSurname, txtFirstname, txtUsername, txtMobile, txtEmail, txtPassword,
+    private TextView signIn, mSignUp, txtSurname, txtFirstname, txtUsername, txtMobile, txtEmail, txtPassword,
     txtConfirmPassword;
 
-    private String message1, message2, message3, message4, message5, message6, message;
+    private String message1, message2, message3, message4, encodedImage, message5, message6, message;
+    private ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +59,10 @@ public class SignInActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.txtPassword);
         edtConfirmPassword = findViewById(R.id.confirmPassword);
 
+        layout = findViewById(R.id.rlProfile);
+
+        img = findViewById(R.id.imgSignUp);
+
         txtSurname = findViewById(R.id.txtSurnameText);
         txtFirstname = findViewById(R.id.txtFirstNameText);
         txtUsername = findViewById(R.id.txtUsernameText);
@@ -52,9 +71,17 @@ public class SignInActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPasswordText);
         txtConfirmPassword = findViewById(R.id.txtConfirmPasswordText);
 
+        mSignUp = findViewById(R.id.txtSignUp);
         preferenceManager = new PreferenceManager(getApplicationContext());
 
         signIn = findViewById(R.id.signInstead);
+
+        layout.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images
+            .Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            pickImage.launch(intent);
+        });
 
         signIn.setOnClickListener(view -> {
             startActivity(new Intent(this, LoginActivity.class));
@@ -70,6 +97,7 @@ public class SignInActivity extends AppCompatActivity {
         user.put(Constants.KEY_LASTNAME, edtFirstName.getText().toString());
         user.put(Constants.KEY_USERNAME, edtUsername.getText().toString());
         user.put(Constants.KEY_EMAIL, edtEmail.getText().toString());
+        user.put(Constants.KEY_IMAGE, encodedImage);
         user.put(Constants.KEY_PASSWORD, edtPassword.getText().toString());
         user.put(Constants.KEY_MOBILE, edtMobile.getText().toString());
 
@@ -101,6 +129,10 @@ public class SignInActivity extends AppCompatActivity {
                 checkTrue=true;
             }
 
+            if (encodedImage == null) {
+                Toast.makeText(this, "Select Profile Image", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             message1 = edtFirstName.getText().toString();
             if (message1.trim().isEmpty()) {
                 txtFirstname.setVisibility(View.VISIBLE);
@@ -171,5 +203,34 @@ public class SignInActivity extends AppCompatActivity {
         addDataToFirestore();
         return false;
     }
+
+    private String encodeImage(Bitmap bitmap) {
+        int previewWidth = 150;
+        int previewHeight = bitmap.getHeight() * previewWidth/bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth,
+                previewHeight, false);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+        byte [] bytes = stream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    Uri imageUri = result.getData().getData();
+                    try {
+                        InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        img.setImageBitmap(bitmap);
+                        mSignUp.setVisibility(View.GONE);
+                        encodedImage = encodeImage(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+    );
 
 }

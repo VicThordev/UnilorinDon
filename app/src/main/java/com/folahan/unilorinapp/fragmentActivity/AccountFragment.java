@@ -64,7 +64,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void loadUserProfile() {
-
+        
     }
 
     public void signOut() {
