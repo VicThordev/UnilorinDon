@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="4dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/backgroung_input"
+        android:id="@+id/imageProfileRecieved"
+        app:layout_constraintBottom_toBottomOf="@id/txtMessageReceived"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:riv_oval="true"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMessageReceived"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/background_recieved_message"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/imageProfileRecieved"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.75"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:id="@+id/textDateTimeReceived"
+        android:textColor="#6E7373"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/txtMessageReceived"
+        app:layout_constraintTop_toBottomOf="@id/txtMessageReceived"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

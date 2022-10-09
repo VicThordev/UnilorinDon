@@ -62,4 +62,5 @@
     <string name="question_1_of_30">Question 1 of 30</string>
     <string name="_200l">200l</string>
     <string name="_100l">100l</string>
+    <string name="type">Type a message</string>
 </resources>

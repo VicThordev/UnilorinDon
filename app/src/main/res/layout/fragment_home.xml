@@ -182,6 +182,7 @@
             app:cardCornerRadius="20dp"
             android:layout_margin="10dp"
             android:layout_columnWeight="1"
+            android:onClick="openFriendActivity"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"
             android:layout_height="wrap_content">
@@ -191,6 +192,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="15dp"
+                android:id="@+id/rlLinearLayout"
                 android:layout_height="match_parent">
 
                 <ImageView

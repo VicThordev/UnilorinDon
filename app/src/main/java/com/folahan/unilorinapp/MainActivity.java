@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.folahan.unilorinapp.Activity.CheckLevelActivity;
+import com.folahan.unilorinapp.Activity.FriendsActivity;
 import com.folahan.unilorinapp.Activity.LoginActivity;
 import com.folahan.unilorinapp.Activity.QuestionTab;
 import com.folahan.unilorinapp.Activity.Questions.QuestionPage;
@@ -89,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void openQuestionPage(View view) {
         startActivity(new Intent(this, QuestionPage.class));
+    }
+
+    public void openFriendActivity(View view) {
+        startActivity(new Intent(this, FriendsActivity.class));
     }
 }
