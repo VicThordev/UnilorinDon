@@ -1,7 +1,35 @@
 package com.folahan.unilorinapp.Model;
 
+import java.util.Date;
+
 public class ChatMessage {
     private String senderId, receiveId, message, dateTime;
+
+    public String conversionId, conversionName, conversionImage;
+
+    public String getConversionId() {
+        return conversionId;
+    }
+
+    public void setConversionId(String conversionId) {
+        this.conversionId = conversionId;
+    }
+
+    public String getConversionName() {
+        return conversionName;
+    }
+
+    public void setConversionName(String conversionName) {
+        this.conversionName = conversionName;
+    }
+
+    public String getConversionImage() {
+        return conversionImage;
+    }
+
+    public void setConversionImage(String conversionImage) {
+        this.conversionImage = conversionImage;
+    }
 
     public String getSenderId() {
         return senderId;
@@ -33,5 +61,15 @@ public class ChatMessage {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public Date dateObject;
+
+    public Date getDateObject() {
+        return dateObject;
+    }
+
+    public void setDateObject(Date dateObject) {
+        this.dateObject = dateObject;
     }
 }

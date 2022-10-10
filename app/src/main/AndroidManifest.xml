@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnilorinApp">
         <activity
+            android:name=".Activity.RecentChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Activity.FriendsActivity"
             android:exported="false" />

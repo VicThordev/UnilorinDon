@@ -44,6 +44,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_question_page.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_question_tab.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_reading.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_recent_chat.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_second_semester.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_sta124.xml" value="0.20416666666666666" />
@@ -54,6 +55,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/home_design.xml" value="0.1859375" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/item_container_recent_conversion.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/item_container_user.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/layout_received_messages.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/layout_sent_messages.xml" value="0.1" />
