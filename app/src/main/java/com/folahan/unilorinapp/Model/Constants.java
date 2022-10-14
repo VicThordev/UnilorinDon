@@ -16,6 +16,7 @@ public class Constants {
     public static final String KEY_USER = "user";
     public static final String KEY_COLLECTION_CHAT = "chat";
     public static final String KEY_SENDER_ID = "senderId";
+    public static final String KEY_POSTER_ID = "posterId";
     public static final String KEY_RECEIVER_ID = "receiverId";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_TIMESTAMP = "timestamp";
@@ -25,4 +26,18 @@ public class Constants {
     public static final String KEY_SENDER_IMAGE = "senderImage";
     public static final String KEY_RECEIVER_IMAGE = "receiverImage";
     public static final String KEY_LAST_MESSAGE = "lastMessage";
+    public static final String KEY_AVAILABILITY = "availability";
+    public static final String KEY_COLLECTION_COMMENT = "com.folahan.unilorin_don.extra_comment";
+    public static final String KEY_COMMENT_NO = "comments_no";
+    public static final String KEY_LAST_COMMENT = "lastComment";
+    public static final String KEY_COLLECTION_QUESTION = "questions";
+    public static final String KEY_LAST_QUESTION = "lastQuestion";
+    public static final String KEY_QUESTION = "question";
+    public static final String KEY_QUESTION_BOX = "questionBox";
+
+    public static final String KEY_LIKES = "likes";
+    public static final String KEY_COMMENTS = "comments";
+    public static final String KEY_LIKES_BOX = "likesBox";
+    public static final String KEY_COMMENTS_BOX = "commentsBox";
+
 }

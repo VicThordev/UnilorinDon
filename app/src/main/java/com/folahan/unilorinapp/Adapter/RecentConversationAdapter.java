@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.folahan.unilorinapp.Listeners.ConversionsListener;
 import com.folahan.unilorinapp.Model.ChatMessage;
+import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -20,9 +22,12 @@ import java.util.List;
 public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConversationAdapter.ConversionViewHolder> {
 
     private final List<ChatMessage> messages;
+    private final ConversionsListener listener;
 
-    public RecentConversationAdapter(List<ChatMessage> chatMessages) {
+    public RecentConversationAdapter(List<ChatMessage> chatMessages,
+                                     ConversionsListener conversionsListener) {
         this.messages = chatMessages;
+        this.listener = conversionsListener;
     }
 
     @NonNull
@@ -45,13 +50,11 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
     }
 
     class ConversionViewHolder extends RecyclerView.ViewHolder {
-        private final View view;
         private TextView mMessage, mDateTime;
         private RoundedImageView imageView;
 
         ConversionViewHolder(View view) {
             super(view);
-            this.view = view;
             mMessage = view.findViewById(R.id.txtMessageReceived);
             mDateTime = view.findViewById(R.id.textDateTimeReceived);
             imageView = view.findViewById(R.id.imageProfileRecieved);
@@ -61,6 +64,13 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
             mMessage.setText(message.getMessage());
             mDateTime.setText(message.getConversionName());
             imageView.setImageBitmap(getConversationImage(message.getConversionImage()));
+            itemView.setOnClickListener(view1 -> {
+                User user = new User();
+                user.setId(message.conversionId);
+                user.setUsername(message.conversionName);
+                user.setImage(message.conversionImage);
+                listener.onConversionClicked(user);
+            });
         }
     }
 

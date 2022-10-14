@@ -1,9 +1,20 @@
 package com.folahan.unilorinapp.Model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
     public String username, image, email, token, id;
+
+    public Date dateObject;
+
+    public Date getDateObject() {
+        return dateObject;
+    }
+
+    public void setDateObject(Date dateObject) {
+        this.dateObject = dateObject;
+    }
 
     public String getId() {
         return id;

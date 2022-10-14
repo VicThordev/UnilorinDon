@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity(tableName = "comment_class")
 public class CommentClass implements Serializable {
@@ -27,17 +28,43 @@ public class CommentClass implements Serializable {
         this.commentNos = commentNos;
     }
 
+
+
     private String name;
     private String comment;
     private String like;
     private String commentNo;
     private int commentNos;
+    public String image;
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public CommentClass(String name, String comment, String like, String commentNo) {
         this.name = name;
         this.comment = comment;
         this.like = like;
         this.commentNo = commentNo;
+    }
+
+    public CommentClass() {
+
     }
 
     public String getName() {

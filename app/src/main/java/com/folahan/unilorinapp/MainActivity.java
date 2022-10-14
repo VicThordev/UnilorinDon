@@ -11,7 +11,9 @@ import com.folahan.unilorinapp.Activity.CheckLevelActivity;
 import com.folahan.unilorinapp.Activity.FriendsActivity;
 import com.folahan.unilorinapp.Activity.LoginActivity;
 import com.folahan.unilorinapp.Activity.QuestionTab;
+import com.folahan.unilorinapp.Activity.Questions.CommentActivity;
 import com.folahan.unilorinapp.Activity.Questions.QuestionPage;
+import com.folahan.unilorinapp.Activity.RecentChatActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.fragmentActivity.AccountFragment;
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openQuestionTab(View view) {
-        Intent intent = new Intent(this, QuestionTab.class);
+        Intent intent = new Intent(this, RecentChatActivity.class);
         startActivity(intent);
     }
 

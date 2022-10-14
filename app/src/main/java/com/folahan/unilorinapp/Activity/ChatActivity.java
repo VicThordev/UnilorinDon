@@ -1,6 +1,6 @@
 package com.folahan.unilorinapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +22,7 @@ import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,11 +36,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 
     private EditText mEdtChat;
-    private TextView mTxtChat;
+    private TextView mTxtChat, mTxtAvailable;
     private RecyclerView mRecyclerView;
     private ProgressBar mBar;
     private AppCompatImageView mImageView;
@@ -50,17 +52,19 @@ public class ChatActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private String conversionId = null;
+    private Boolean isReceiverAvailable = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         mEdtChat = findViewById(R.id.inputMessage);
+        mTxtAvailable = findViewById(R.id.textAvailability);
         view = findViewById(R.id.layoutSend);
         mTxtChat = findViewById(R.id.txtNameChat);
         mBar = findViewById(R.id.progressBar);
         mRecyclerView = findViewById(R.id.chatRecyclerView);
         mImageView = findViewById(R.id.imageBack);
-//        AppCompatImageView mImageInfo = findViewById(R.id.imageInfo);
+
         loadReceiveDetails();
         setListeners();
         init();
@@ -79,14 +83,52 @@ public class ChatActivity extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
     }
 
-    private void sendMessage() {
+    private void sendMessage()  {
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
         message.put(Constants.KEY_MESSAGE, mEdtChat.getText().toString());
         message.put(Constants.KEY_TIMESTAMP, new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+        if (conversionId != null) {
+            updateConversion(mEdtChat.getText().toString());
+        } else {
+            HashMap<String, Object> conversion = new HashMap<>();
+            conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+            conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_USERNAME));
+            conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+            conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+            conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.getUsername());
+            conversion.put(Constants.KEY_IMAGE, receiverUser.getImage());
+            conversion.put(Constants.KEY_LAST_MESSAGE, mEdtChat.getText().toString());
+            conversion.put(Constants.KEY_TIMESTAMP, new Date());
+            addConversion(conversion);
+        }
         mEdtChat.setText(null);
+    }
+
+    private void listenAvailabilityOfReceiver() {
+        database.collection(Constants.KEY_COLLECTION_USERS).document(
+                receiverUser.getId()
+        ).addSnapshotListener(ChatActivity.this, (value, error) -> {
+            if (error != null) {
+                return;
+            }
+            if (value != null) {
+                if (value.getLong(Constants.KEY_AVAILABILITY)!= null) {
+                    int availability = Objects.requireNonNull(
+                            value.getLong(Constants.KEY_AVAILABILITY)
+                    ).intValue();
+                    isReceiverAvailable = availability == 1;
+                }
+                receiverUser.setToken(value.getString(Constants.KEY_FCM_TOKEN));
+            }
+            if (isReceiverAvailable) {
+                mTxtAvailable.setVisibility(View.VISIBLE);
+            } else {
+                mTxtAvailable.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void listenMessage() {
@@ -127,6 +169,9 @@ public class ChatActivity extends AppCompatActivity {
             mRecyclerView.setVisibility(View.VISIBLE);
         }
         mBar.setVisibility(View.GONE);
+        if (conversionId == null) {
+            checkForConversion();
+        }
     };
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
@@ -150,6 +195,36 @@ public class ChatActivity extends AppCompatActivity {
                 .format(date);
     }
 
+    private void addConversion(HashMap<String, Object> conversion) {
+        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                .add(conversion)
+                .addOnSuccessListener(documentReference ->
+                        conversionId = documentReference.getId());
+    }
+
+    private void updateConversion(String message) {
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                .document(conversionId);
+        documentReference.update(
+                Constants.KEY_LAST_MESSAGE, message,
+                Constants.KEY_TIMESTAMP, new Date()
+        );
+    }
+
+    private void checkForConversion() {
+        if (messages.size() != 0) {
+            checkForConversionRemotely(
+                    preferenceManager.getString(Constants.KEY_USER_ID),
+                    receiverUser.id
+            );
+            checkForConversionRemotely(
+                    receiverUser.id,
+                    preferenceManager.getString(Constants.KEY_USER_ID)
+            );
+        }
+    }
+
     private void checkForConversionRemotely(String senderId, String receiverId) {
         database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
                 .whereEqualTo(Constants.KEY_SENDER_ID, senderId)
@@ -166,4 +241,10 @@ public class ChatActivity extends AppCompatActivity {
             conversionId = documentSnapshot.getId();
         }
             };
+
+    @Override
+    protected void onResume()  {
+        super.onResume();
+        listenAvailabilityOfReceiver();
+    }
 }

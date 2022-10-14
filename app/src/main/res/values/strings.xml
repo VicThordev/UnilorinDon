@@ -63,4 +63,6 @@
     <string name="_200l">200l</string>
     <string name="_100l">100l</string>
     <string name="type">Type a message</string>
+    <string name="online">Online</string>
+    <string name="post_an_answer">Post an answer</string>
 </resources>

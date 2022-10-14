@@ -1,6 +1,5 @@
 package com.folahan.unilorinapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,16 +16,14 @@ import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.User;
 
 import com.folahan.unilorinapp.R;
-import com.folahan.unilorinapp.databinding.ActivityFriendsBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendsActivity extends AppCompatActivity implements UserListener {
+public class FriendsActivity extends BaseActivity implements UserListener {
 
-    ActivityFriendsBinding binding;
     private TextView mTxtError;
     private ProgressBar mBar;
     private PreferenceManager preferenceManager;

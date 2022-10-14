@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+
 @Entity(tableName = "QuestionList")
 public class QuestionList implements Serializable {
 
@@ -14,6 +15,7 @@ public class QuestionList implements Serializable {
     private String name;
     private String question;
     private int like;
+    private String dateTime;
 
     public QuestionList(String name, String id, String question, int comment, int like) {
         this.name = name;
@@ -23,11 +25,19 @@ public class QuestionList implements Serializable {
         this.like = like;
     }
 
+    //public Date dateObject;
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public  QuestionList() {
 
     }
-
-
     public String getName() {
         return name;
     }
