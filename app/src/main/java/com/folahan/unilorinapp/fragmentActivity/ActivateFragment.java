@@ -15,7 +15,7 @@ import com.folahan.unilorinapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ActivateFragment#newInstance} factory method to
+ * Use the {@link ActivateFragment#} factory method to
  * create an instance of this fragment.
  */
 public class ActivateFragment extends Fragment {
@@ -43,11 +43,11 @@ public class ActivateFragment extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_activate, container, false);
 
-        mcv = view.findViewById(R.id.mCardViewPaystack);
+        //mcv = view.findViewById(R.id.mCardViewPaystack);
         mcv2 = view.findViewById(R.id.mCardViewBank);
-        mcv3 = view.findViewById(R.id.mCardViewNoBank);
+        //mcv3 = view.findViewById(R.id.mCardViewNoBank);
 
-        rl = view.findViewById(R.id.relativeNoAcct);
+        //rl = view.findViewById(R.id.relativeNoAcct);
         relative = view.findViewById(R.id.rlTransfer);
 
         mcv2.setOnClickListener(view -> {
@@ -59,14 +59,7 @@ public class ActivateFragment extends Fragment {
             }
         });
 
-        mcv3.setOnClickListener(view -> {
-            int isVisible = rl.getVisibility();
-            if (isVisible==View.VISIBLE) {
-                rl.setVisibility(View.GONE);
-            } else if (isVisible==View.GONE) {
-                rl.setVisibility(View.VISIBLE);
-            }
-        });
+
 
 
         return view;

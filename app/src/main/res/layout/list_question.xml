@@ -13,7 +13,7 @@
     android:padding="5dp"
     app:cardCornerRadius="20dp">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxHeight="50dp"

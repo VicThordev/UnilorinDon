@@ -8,15 +8,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
 import com.folahan.unilorinapp.Adapter.QuestionAdapter;
-import com.folahan.unilorinapp.Model.ChatMessage;
+import com.folahan.unilorinapp.Listeners.QuestionListListener;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
-import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.Model.QuestionList;
 import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.PostQuestionDatabase.QuestionViewModel;
@@ -67,9 +69,12 @@ public class QuestionPage extends AppCompatActivity {
 
         list = new QuestionList();
 
+        loadReceiveDetails();
+
         preferenceManager = new PreferenceManager(getApplicationContext());
 
-        adapter = new QuestionAdapter();
+        adapter = new QuestionAdapter(mQuestionList, getBitmapFromEncodedString(user.image),
+                preferenceManager.getString(Constants.KEY_USER_ID), (QuestionListListener) this);
 
         //Creating the RecyclerView Layout Manager
         RecyclerView.LayoutManager layout = new LinearLayoutManager(getApplicationContext());
@@ -77,23 +82,22 @@ public class QuestionPage extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
 
-        questionViewModel = new ViewModelProvider(this)
+        /*questionViewModel = new ViewModelProvider(this)
                 .get(QuestionViewModel.class);
         questionViewModel.getAllQuestion().observe(this, questionLists -> {
             adapter.submitList(questionLists);
             mQuestionList = new ArrayList<>(questionLists);
-        });
+        });*/
 
         database = FirebaseFirestore.getInstance();
 
         listenMessage();
-        loadReceiveDetails();
-        adapter.setOnItemClickListener(question -> {
+        /*adapter.setOnItemClickListener(question -> {
             Intent data = new Intent(QuestionPage.this, CommentActivity.class);
             //data.putExtra(CommentActivity.EXTRA_COMMENT, mQuestionList);
 
             startActivityForResult(data, Edit_Note_Request);
-        });
+        });*/
     }
 
     @Override
@@ -110,13 +114,18 @@ public class QuestionPage extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private Bitmap getBitmapFromEncodedString(String encodedImage) {
+        byte [] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
     private void sendMessage()  {
         HashMap<String, Object> message = new HashMap<>();
-        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+        message.put(Constants.KEY_POSTER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVER_ID, user.id);
         message.put(Constants.KEY_MESSAGE, list.getQuestion());
         message.put(Constants.KEY_TIMESTAMP, new Date());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+        database.collection(Constants.KEY_COLLECTION_QUESTION).add(message);
         if (conversionId != null) {
             updateConversion(list.getQuestion());
         } else {
@@ -177,18 +186,18 @@ public class QuestionPage extends AppCompatActivity {
 
     private void listenMessage() {
         database.collection(Constants.KEY_COLLECTION_QUESTION)
-                .whereEqualTo(Constants.KEY_POSTER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
+                .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, user.id)
                 .addSnapshotListener(eventListener);
         database.collection(Constants.KEY_COLLECTION_QUESTION)
-                .whereEqualTo(Constants.KEY_POSTER_ID, user.id)
+                .whereEqualTo(Constants.KEY_SENDER_ID, user.id)
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .addSnapshotListener(eventListener);
     }
 
     private void loadReceiveDetails() {
         user = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
-        user.getUsername();
+//        user.getUsername();
     }
 
     private void checkForConversion() {

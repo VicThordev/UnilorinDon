@@ -1,104 +1,78 @@
 package com.folahan.unilorinapp.Adapter;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.AsyncDifferConfig;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.folahan.unilorinapp.Listeners.QuestionListListener;
+import com.folahan.unilorinapp.Listeners.UserListener;
 import com.folahan.unilorinapp.Model.QuestionList;
 import com.folahan.unilorinapp.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
-public class QuestionAdapter extends ListAdapter<QuestionList, QuestionAdapter.QuestionHolder> {
+import java.util.List;
 
-    private onItemClickListener listener;
+public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
 
-    protected QuestionAdapter(@NonNull DiffUtil.ItemCallback<QuestionList> diffCallback) {
-        super(diffCallback);
-    }
+    private final List<QuestionList> messages;
+    private final Bitmap receivedProfileImage;
+    private final String senderId;
+    private final QuestionListListener userListener;
 
-    protected QuestionAdapter(@NonNull AsyncDifferConfig<QuestionList> config) {
-        super(config);
-    }
+    public static final int VIEW_TYPE_SENT = 1;
+    public static final int VIEW_TYPE_RECEIVED = 2;
 
-    private static final DiffUtil.ItemCallback<QuestionList> DIFF_CALLBACK =
-            new DiffUtil.ItemCallback<QuestionList>() {
-                @Override
-                public boolean areItemsTheSame(@NonNull QuestionList oldItem, @NonNull QuestionList newItem) {
-                    return oldItem == newItem;
-                }
-
-                @Override
-                public boolean areContentsTheSame(@NonNull QuestionList oldItem, @NonNull QuestionList newItem) {
-                    return oldItem.getName().equals(newItem.getName()) && oldItem.getId().equals(newItem.getId()) &&
-                            oldItem.getQuestion().equals(newItem.getQuestion()) && oldItem.getComment() == (newItem.getComment());
-                }
-            };
-
-
-    public QuestionAdapter () {
-        super(DIFF_CALLBACK);
+    public QuestionAdapter(List<QuestionList> messages, Bitmap receivedProfileImage, String senderId, QuestionListListener users) {
+        super();
+        this.messages = messages;
+        this.receivedProfileImage = receivedProfileImage;
+        this.senderId = senderId;
+        this.userListener = users;
     }
 
     @NonNull
     @Override
-    public QuestionAdapter.QuestionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_question, parent, false);
-        return new QuestionHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuestionAdapter.QuestionHolder holder, int position) {
-        QuestionList question = getItem(position);
-        holder.mName.setText(question.getName());
-        holder.mUniqueId.setText(question.getId());
-        holder.mQuestion.setText(question.getQuestion());
-        //holder.mComment.setText(question.getComment());
-        //holder.mLike.setText(question.getLike());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.setUserData(messages.get(position), receivedProfileImage);
     }
 
-    public class QuestionHolder extends RecyclerView.ViewHolder {
-        private final TextView mName;
-        private final TextView mUniqueId;
-        private final TextView mQuestion;
-        private EditText mAnswer;
-        private TextView mLike;
-        private TextView mComment;
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
 
-        public QuestionHolder(@NonNull View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView mComment, mName, mUsername;
+        private RoundedImageView imageView;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mComment = itemView.findViewById(R.id.questionBox);
             mName = itemView.findViewById(R.id.name);
-            mUniqueId = itemView.findViewById(R.id.uniqueId);
-            mQuestion = itemView.findViewById(R.id.questionBox);
-            mAnswer = itemView.findViewById(R.id.edtAnswer);
-            mLike = itemView.findViewById(R.id.likeNo);
-            mComment = itemView.findViewById(R.id.commentNo);
+            mUsername = itemView.findViewById(R.id.uniqueId);
+            imageView = itemView.findViewById(R.id.imgQuestion);
+        }
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position !=
-                            RecyclerView.NO_POSITION) {
-                        listener.onItemClick(getItem(position));
-                    }
-                }
+        void setUserData(QuestionList list, Bitmap receivedImage) {
+            mComment.setText(list.getComment());
+            mName.setText(list.getName());
+            mUsername.setText(list.getId());
+            imageView.setImageBitmap(receivedImage);
+            itemView.setOnClickListener(view -> {
+                userListener.onQuestionClicked(list);
             });
         }
     }
-    public interface onItemClickListener {
-        void onItemClick(QuestionList question);
-    }
-
-    public void setOnItemClickListener(onItemClickListener listener) {
-        this.listener = listener;
-    }
-
 }
