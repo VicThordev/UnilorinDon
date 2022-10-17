@@ -36,13 +36,13 @@
                     android:layout_marginStart="20dp"
                     android:text="Your Info"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imgDashBoard"
-                    android:layout_marginEnd="20dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_person_add_60"/>
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/backgroung_input" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -52,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:rowCount="3"
+        android:id="@+id/gridLayout"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:layout_marginTop="140dp">
@@ -130,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:onClick="openUnilorinUpdate"
                 android:padding="15dp"
                 android:layout_height="match_parent">
 
@@ -142,7 +144,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="Unilorin Updates"/>
+                    android:id="@+id/txtUnilorinUpdate"
+                    android:text="@string/unilorin_updates"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

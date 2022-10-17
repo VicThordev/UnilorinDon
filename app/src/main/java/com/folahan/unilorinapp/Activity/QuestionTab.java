@@ -37,7 +37,7 @@ public class QuestionTab extends AppCompatActivity {
     protected void showButton() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.question_check_nav,
-                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+                findViewById(R.id.design_bottom_sheet));
         Button scoreShow = bottomSheet.findViewById(R.id.btn100);
         Button goHome = bottomSheet.findViewById(R.id.btn200);
 

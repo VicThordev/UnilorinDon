@@ -3,7 +3,9 @@ package com.folahan.unilorinapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        txtName = findViewById(R.id.txtUnilorinUpdate);
 
 
         getSupportFragmentManager().beginTransaction().
@@ -74,10 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     public void openQuestionTab(View view) {
-        Intent intent = new Intent(this, RecentChatActivity.class);
+        Intent intent = new Intent(this, QuestionTab.class);
         startActivity(intent);
     }
 
@@ -96,5 +97,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void openFriendActivity(View view) {
         startActivity(new Intent(this, FriendsActivity.class));
+    }
+
+    public void openUnilorinUpdate(View view) {
+        gotoUrl("https://www.uilugportal.unilorin.edu.ng");
+    }
+
+    private void gotoUrl(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }

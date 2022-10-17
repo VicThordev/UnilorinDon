@@ -30,7 +30,7 @@ public class Gns111Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=1, mTimeLeft = 300000, questionAnswered = 1;
+    int pos, pos2=0, mTimeLeft = 300000, questionAnswered = 1;
     Button btnNext, btnPrev;
     private boolean mTimerRunning;
     @Override
@@ -60,7 +60,7 @@ public class Gns111Activity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                mTimerRunning = true;
+                showButton();
             }
         }.start();
 
@@ -114,7 +114,7 @@ public class Gns111Activity extends AppCompatActivity {
         TextView scoreShow = bottomSheet.findViewById(R.id.score);
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 5");
+        scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -134,8 +134,8 @@ public class Gns111Activity extends AppCompatActivity {
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
 
-        questionNo.setText("Question "+questionAnswered+" of 5");
-        if (questionAnswered == 5) {
+        questionNo.setText("Question "+questionAnswered+" of 30");
+        if (questionAnswered == 30) {
             showButton();
         }
 

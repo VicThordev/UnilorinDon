@@ -30,7 +30,7 @@ public class Phy191Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=1, mTimeLeft = 300000, questionAnswered = 1;
+    int pos, pos2=1, mTimeLeft = 600000, questionAnswered = 1;
     Button btnNext, btnPrev;
     private boolean mTimerRunning;
     @Override
@@ -52,15 +52,15 @@ public class Phy191Activity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
-                int minutes = (int) (mTimeLeft/1000) / 60;
-                int secs = (int) (mTimeLeft/1000) % 60;
+                int minutes = mTimeLeft / 1000 / 60;
+                int secs = (mTimeLeft/1000) % 60;
                 String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, secs);
                 countDown.setText(timeLeftFormatted);
             }
 
             @Override
             public void onFinish() {
-                mTimerRunning = true;
+                showButton();
             }
         }.start();
 

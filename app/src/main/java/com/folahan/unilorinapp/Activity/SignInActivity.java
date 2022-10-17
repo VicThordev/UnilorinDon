@@ -1,12 +1,11 @@
 package com.folahan.unilorinapp.Activity;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -25,6 +24,7 @@ import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.R;
+import com.folahan.unilorinapp.fragmentActivity.AccountFragment;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -46,6 +46,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private String message1, message2, message3, message4, encodedImage, message5, message6, message;
     private ImageView img;
+    private AccountFragment mFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,15 @@ public class SignInActivity extends AppCompatActivity {
         layout = findViewById(R.id.rlProfile);
 
         img = findViewById(R.id.imgSignUp);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        mFragment = new AccountFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("Constants.KEY_USERNAME", edtUsername.getText().toString());
+        bundle.putString(Constants.KEY_EMAIL, edtEmail.getText().toString());
+        mFragment.setArguments(bundle);
+        transaction.show(mFragment).commit();
+
 
         txtSurname = findViewById(R.id.txtSurnameText);
         txtFirstname = findViewById(R.id.txtFirstNameText);

@@ -34,6 +34,7 @@ import java.util.Objects;
 public class AccountFragment extends Fragment {
     private TextView txtName, txtUsername, txtEmail;
     private View view;
+    private Bundle bundle;
     private PreferenceManager preferenceManager;
     private SharedPreferences prefs;
     public AccountFragment() {
@@ -51,11 +52,20 @@ public class AccountFragment extends Fragment {
 
         Context context= getActivity();
         prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        bundle = getArguments();
+
+        if (bundle != null) {
+            String message = bundle.getString("Constants.KEY_USERNAME");
+            txtName.setText(message);
+        } else {
+            Toast.makeText(context, "Not available", Toast.LENGTH_SHORT).show();
+        }
 
         //SharedPreferences pref1 = PreferenceManager.getDefaultSharedPreferences(context);
 
         preferenceManager =  new PreferenceManager(view.getContext().getApplicationContext());
-        txtName.setText(preferenceManager.getString(Constants.KEY_SURNAME + "pPp" + Constants.KEY_LASTNAME) + "po");
+
+        //txtName.setText(preferenceManager.getString(Constants.KEY_SURNAME + "pPp" + Constants.KEY_LASTNAME) + "po");
         txtUsername.setText(preferenceManager.getString(
                 Constants.KEY_USERNAME
         ));
