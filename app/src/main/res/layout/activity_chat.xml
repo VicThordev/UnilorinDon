@@ -18,7 +18,7 @@
     
     <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:id="@+id/headerBackground"
         android:layout_marginBottom="16dp"
         android:background="#212261"
@@ -153,8 +153,20 @@
         android:textColor="@color/white"
         android:textColorHint="#778181"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/layoutSend"
+        app:layout_constraintEnd_toStartOf="@id/insertImage"
         app:layout_constraintStart_toStartOf="parent"
         />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="30dp"
+        android:id="@+id/insertImage"
+        android:layout_height="30dp"
+        android:tint="@color/white"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@id/inputMessage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/layoutSend"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/ic_insert_image_white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

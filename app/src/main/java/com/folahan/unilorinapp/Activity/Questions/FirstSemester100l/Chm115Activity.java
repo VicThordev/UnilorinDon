@@ -1,6 +1,8 @@
 package com.folahan.unilorinapp.Activity.Questions.FirstSemester100l;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,8 +33,9 @@ public class Chm115Activity extends AppCompatActivity {
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
-    Button btnNext, btnPrev;
+    Button btnNext, btnPrev, btnEnd;
     private boolean mTimerRunning;
+    private AlertDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +43,16 @@ public class Chm115Activity extends AppCompatActivity {
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
-        rbOption1 = findViewById(R.id.radioA);
-        rbOption2 = findViewById(R.id.radioB);
-        rbOption3 = findViewById(R.id.radioC);
-        rbOption4 = findViewById(R.id.radioD);
+        rbOption1 = findViewById(R.id.radioA1);
+        btnEnd = findViewById(R.id.buttonGoto);
+        rbOption2 = findViewById(R.id.radioB1);
+        rbOption3 = findViewById(R.id.radioC1);
+        rbOption4 = findViewById(R.id.radioD1);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
         random = new Random();
+
+        setListeners();
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -72,6 +78,33 @@ public class Chm115Activity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
+    }
+
+    protected void showButton() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
+                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+        TextView scoreShow = bottomSheet.findViewById(R.id.score);
+        Button goHome = bottomSheet.findViewById(R.id.btnScore);
+
+        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+
+        goHome.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
+            dialog.dismiss();
+            finish();
+        });
+        dialog.setCancelable(false);
+        dialog.setContentView(bottomSheet);
+        dialog.show();
+    }
+
+    private void setListeners() {
         rbOption1.setOnClickListener(view -> {
             if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
@@ -105,25 +138,8 @@ public class Chm115Activity extends AppCompatActivity {
             pos = random.nextInt(questionList.size());
             setDataView(pos);
         });
-    }
 
-    protected void showButton() {
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
-        View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
-                (LinearLayout) findViewById(R.id.design_bottom_sheet));
-        TextView scoreShow = bottomSheet.findViewById(R.id.score);
-        Button goHome = bottomSheet.findViewById(R.id.btnScore);
-
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
-
-        goHome.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity.class));
-            dialog.dismiss();
-            finish();
-        });
-        dialog.setCancelable(false);
-        dialog.setContentView(bottomSheet);
-        dialog.show();
+        btnEnd.setOnClickListener(view -> dialogAlert());
     }
 
     private void setDataView(int position) {
@@ -139,6 +155,18 @@ public class Chm115Activity extends AppCompatActivity {
             showButton();
         }
 
+    }
+
+    private void dialogAlert() {
+        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
+                .setTitle("Confirm Submission")
+                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    showButton();
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                .setIcon(ContextCompat.getDrawable(getApplicationContext(),
+                        R.drawable.ic_login)).show();
     }
 
     @Override

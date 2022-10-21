@@ -1,6 +1,8 @@
 package com.folahan.unilorinapp.Activity.Questions.FirstSemester100l;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,9 +31,9 @@ public class Chm101Activity extends AppCompatActivity {
     private Random random;
     private TextView questionText, questionNo, countDown;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
-    private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
-    Button btnNext, btnPrev;
+    private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
+    private Button btnNext, btnPrev, btnEnd;
+    private AlertDialog dialog;
     private boolean mTimerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class Chm101Activity extends AppCompatActivity {
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
+        btnEnd = findViewById(R.id.buttonGoto);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
         rbOption3 = findViewById(R.id.radioC);
@@ -48,13 +51,13 @@ public class Chm101Activity extends AppCompatActivity {
         countDown = findViewById(R.id.timeText);
         random = new Random();
 
-        timer = new CountDownTimer(mTimeLeft,1000) {
+        CountDownTimer timer = new CountDownTimer(mTimeLeft, 1000) {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
                 int minutes = mTimeLeft / 1000 / 60;
-                int secs = (mTimeLeft/1000) % 60;
-                String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, secs);
+                int secs = (mTimeLeft / 1000) % 60;
+                String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, secs);
                 countDown.setText(timeLeftFormatted);
             }
 
@@ -72,6 +75,10 @@ public class Chm101Activity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
+        setListeners();
+    }
+
+    private void setListeners() {
         rbOption1.setOnClickListener(view -> {
             if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
@@ -105,6 +112,20 @@ public class Chm101Activity extends AppCompatActivity {
             pos = random.nextInt(questionList.size());
             setDataView(pos);
         });
+
+        btnEnd.setOnClickListener(view -> dialogAlert());
+    }
+
+    private void dialogAlert() {
+        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
+                .setTitle("Confirm Submission")
+                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    showButton();
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                .setIcon(ContextCompat.getDrawable(getApplicationContext(),
+                        R.drawable.ic_login)).show();
     }
 
     protected void showButton() {
@@ -192,13 +213,6 @@ public class Chm101Activity extends AppCompatActivity {
                 "Equilibrium shifts to the right.", "Equilibrium shifts to the right.",
                 "More Cu (OH)2 reacts.",
                 "Equilibrium shifts to the left.\n", "Equilibrium shifts to the right."));
-
-        questionList.add(new Question("The conflict within an individual is called",
-                "(a) Inter-personal conflict", "(b) Global conflict", "(c) Intra-personal conflict",
-                "(d) Conflict trap", "(c) Intra-personal conflict"));
-
-        questionList.add(new Question("In causes of conflict, _____cannot be categorized as resource\n",
-                "(a) Land", "(b) Sex", "(c) Money", "(d) Values", "(b) Sex"));
 
         questionList.add(new Question(" Identify the reducing agent in the following reaction <br /> 2 Al (s) + 3 Cu2+ aq &rarr; \n" +
                 "2Al2+ aq + 3Cu aq",

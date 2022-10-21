@@ -68,4 +68,11 @@
     <string name="university">University of Ilorin</string>
     <string name="better">Better By Far</string>
     <string name="unilorin_updates"><a href="https://www.twitter.com" />Unilorin Updates</string>
+    <string name="question_phase">Question Phase</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="faculty">Faculty</string>
+    <string name="department">Department</string>
+    <string name="message">Message</string>
+    <string name="submit">Submit</string>
 </resources>

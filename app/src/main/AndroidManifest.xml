@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnilorinApp">
         <activity
+            android:name=".Activity.IntoChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.RecentChatActivity"
             android:exported="false" />
         <activity

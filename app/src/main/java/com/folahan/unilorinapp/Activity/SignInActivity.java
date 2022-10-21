@@ -26,6 +26,7 @@ import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.R;
 import com.folahan.unilorinapp.fragmentActivity.AccountFragment;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -45,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
     txtConfirmPassword;
 
     private String message1, message2, message3, message4, encodedImage, message5, message6, message;
-    private ImageView img;
+    private RoundedImageView img;
     private AccountFragment mFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,6 +230,7 @@ public class SignInActivity extends AppCompatActivity {
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
+                    assert result.getData() != null;
                     Uri imageUri = result.getData().getData();
                     try {
                         InputStream inputStream = getContentResolver().openInputStream(imageUri);

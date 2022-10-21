@@ -1,12 +1,18 @@
 package com.folahan.unilorinapp.Activity;
 
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
@@ -27,7 +33,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,8 +61,10 @@ public class ChatActivity extends BaseActivity {
     private ChatAdapter adapter;
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
-    private String conversionId = null;
+    private String conversionId = null, encodedImage;
     private Boolean isReceiverAvailable = false;
+    private RoundedImageView imageView;
+    private Bitmap bitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +76,7 @@ public class ChatActivity extends BaseActivity {
         mBar = findViewById(R.id.progressBar);
         mRecyclerView = findViewById(R.id.chatRecyclerView);
         mImageView = findViewById(R.id.imageBack);
+        imageView = findViewById(R.id.insertImage);
 
         loadReceiveDetails();
         setListeners();
@@ -107,6 +120,74 @@ public class ChatActivity extends BaseActivity {
         mEdtChat.setText(null);
     }
 
+    private String encodeImage(Bitmap bitmap) {
+        int previewWidth = 150;
+        int previewHeight = bitmap.getHeight() * previewWidth/bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth,
+                previewHeight, false);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+        byte [] bytes = stream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    Uri imageUri = result.getData().getData();
+                    try {
+                        InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        encodedImage = encodeImage(bitmap);
+                        sendPhoto();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+    );
+
+    private void sendPhoto() {
+        HashMap<String, Object> message = new HashMap<>();
+        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+        message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+        message.put(Constants.KEY_MESSAGE, pickImage);
+        message.put(Constants.KEY_TIMESTAMP, new Date());
+        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+        if (conversionId != null) {
+            updateConversionPhoto(encodedImage);
+        } else {
+            HashMap<String, Object> conversion = new HashMap<>();
+            conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+            conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_USERNAME));
+            conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+            conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+            conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.getUsername());
+            conversion.put(Constants.KEY_IMAGE, receiverUser.getImage());
+            conversion.put(Constants.KEY_LAST_MESSAGE, pickImage);
+            conversion.put(Constants.KEY_TIMESTAMP, new Date());
+            addConversionPhoto(conversion);
+        }
+    }
+
+    private void updateConversionPhoto(String imageBitmap) {
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                        .document(conversionId);
+        documentReference.update(
+                Constants.KEY_LAST_MESSAGE, imageBitmap,
+                Constants.KEY_TIMESTAMP, new Date()
+        );
+    }
+
+    private void addConversionPhoto(HashMap<String, Object> conversion) {
+        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                .add(conversion)
+                .addOnSuccessListener(documentReference ->
+                        conversionId = documentReference.getId());
+    }
+
     private void listenAvailabilityOfReceiver() {
         database.collection(Constants.KEY_COLLECTION_USERS).document(
                 receiverUser.getId()
@@ -122,6 +203,13 @@ public class ChatActivity extends BaseActivity {
                     isReceiverAvailable = availability == 1;
                 }
                 receiverUser.setToken(value.getString(Constants.KEY_FCM_TOKEN));
+                if (receiverUser.getImage() == null) {
+                    receiverUser.setImage(value.getString(Constants.KEY_IMAGE));
+                    adapter.setReceivedProfileImage(getBitmapFromEncodedString(
+                            receiverUser.getImage()
+                    ));
+                    adapter.notifyItemRangeChanged(0, messages.size());
+                }
             }
             if (isReceiverAvailable) {
                 mTxtAvailable.setVisibility(View.VISIBLE);
@@ -175,8 +263,12 @@ public class ChatActivity extends BaseActivity {
     };
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
-        byte [] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        if (encodedImage != null) {
+            byte [] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        } else {
+            return null;
+        }
     }
 
     private void loadReceiveDetails() {
@@ -187,8 +279,15 @@ public class ChatActivity extends BaseActivity {
     private void setListeners() {
         mImageView.setOnClickListener(v -> onBackPressed());
         view.setOnClickListener(view1 -> sendMessage());
+        imageView.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images
+                    .Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            pickImage.launch(intent);
+        });
     }
 
+    @NonNull
     private String getReadableDateTime(Date date) {
         return new SimpleDateFormat(
                 "dd MMMM, yyyy - hh:mm a", Locale.getDefault())

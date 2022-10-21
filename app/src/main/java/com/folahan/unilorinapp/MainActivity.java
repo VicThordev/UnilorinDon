@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.folahan.unilorinapp.Activity.CheckLevelActivity;
 import com.folahan.unilorinapp.Activity.FriendsActivity;
+import com.folahan.unilorinapp.Activity.IntoChatActivity;
 import com.folahan.unilorinapp.Activity.LoginActivity;
 import com.folahan.unilorinapp.Activity.QuestionTab;
 import com.folahan.unilorinapp.Activity.Questions.CommentActivity;

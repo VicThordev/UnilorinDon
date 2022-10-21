@@ -73,6 +73,8 @@ public class QuestionPage extends AppCompatActivity {
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
+        user = new User();
+
         adapter = new QuestionAdapter(mQuestionList, getBitmapFromEncodedString(user.image),
                 preferenceManager.getString(Constants.KEY_USER_ID), (QuestionListListener) this);
 

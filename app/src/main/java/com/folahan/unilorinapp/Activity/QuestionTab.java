@@ -50,7 +50,7 @@ public class QuestionTab extends AppCompatActivity {
             dialog.dismiss();
             finish();
         });
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(bottomSheet);
         dialog.show();
     }
