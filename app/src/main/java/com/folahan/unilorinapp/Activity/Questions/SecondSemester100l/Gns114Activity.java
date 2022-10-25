@@ -20,6 +20,7 @@ import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -33,7 +34,7 @@ public class Gns114Activity extends AppCompatActivity {
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
-    Button btnNext, btnPrev, btnEnd;
+    Button btnNext, btnPrev, btnEnd, btnAnswer;
     private AlertDialog dialog;
     private boolean mTimerRunning;
 
@@ -44,6 +45,7 @@ public class Gns114Activity extends AppCompatActivity {
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
+        btnAnswer = findViewById(R.id.btnAnswer);
         btnEnd = findViewById(R.id.buttonGoto);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
@@ -73,13 +75,18 @@ public class Gns114Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        getQuestionPhase(questionList);
+        //getQuestionPhase(questionList);
+
+        chooseMethod();
 
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
+    }
 
-
+    private void chooseMethod() {
+        String [] arr = {getQuestionPhase(questionList), getQuestionPhase2(questionList)};
+        random.nextInt(arr.length);
     }
 
     private void setListeners() {
@@ -111,19 +118,19 @@ public class Gns114Activity extends AppCompatActivity {
             }
         });
 
-        btnNext.setOnClickListener(view -> {
+        /*btnNext.setOnClickListener(view -> {
             questionAnswered++;
             pos = random.nextInt(questionList.size());
             setDataView(pos);
-        });
+        });*/
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });
+        /**btnPrev.setOnClickListener(view -> {
+            questionAnswered--;
+        });*/
 
         btnEnd.setOnClickListener(view -> dialogAlert());
+
+        btnAnswer.setOnClickListener(view -> showOtherButton());
     }
 
     private void dialogAlert() {
@@ -177,246 +184,401 @@ public class Gns114Activity extends AppCompatActivity {
         Toast.makeText(this, "Pls finish the test", Toast.LENGTH_SHORT).show();
     }
 
-    private void getQuestionPhase(List<Question> list) {
+    private String getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
-                "A. 150.6cm",
-                "B. 138.9cm",
-                "C. 148.7cm",
-                "D. 165.3cm",
-                "B. 138.9cm"));
+        questionList.add(new Question("What is internet?",
+                "a) a single network",
+                "b) a vast collection of different network",
+                "c) interconnection of local area network",
+                "d) none of the mentioned",
+                "b) a vast collection of different network"));
 
-        questionList.add(new Question("2. At what distance would the repulsive force between two electrons have a magnitude of one newton?",
-                "A. 0.0152pm",
-                "B. 0.0142pm",
-                "C. 0.0132pm",
-                "D. 0.0122pm",
-                "A. 0.0152pm"));
+        questionList.add(new Question("To join the internet,the computer has to be connected to a",
+                "a) internet architecture board",
+                "b) internet society",
+                "c) internet service provider",
+                "d) none of the mentioned",
+                "c) internet service provider"));
 
-        questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
-                "A. 125 electrons ",
-                "B. 250 electrons",
-                "C. 625 electrons",
-                "D. 750 electrons",
-                "C. 625 electrons"));
+        questionList.add(new Question("Internet access by transmitting digital data over the wires of a local telephone" +
+                "network is provided by",
+                "a) leased line",
+                "b) digital subscriber line",
+                "c) digital signal line",
+                "d) none of the mentioned",
+                "b) digital subscriber line"));
 
-        questionList.add(new Question("4. What is the total positive charge in Coulombs, of all the protons in 1mol of Hydrogen atoms?",
-                "A. 96.35kC",
-                "B. 72.46kC",
-                "C. 83.48kC",
-                "D. 78.36kC",
-                "A. 96.35kC"));
+        questionList.add(new Question("ISP exchanges internet traffic between their networks by",
+                "a) internet exchange point",
+                "b) subscriber end point",
+                "c) ISP endpoint",
+                "d) none of the mentioned",
+                "a) internet exchange point"));
 
-        questionList.add(new Question("5. An α-particle is a nucleus of doubly-ionised helium. It has a mass of 6.69 x 10^-27kg and a charge of -2e. " +
-                "Compute the ratio of the force of electrostatic repulsion between two α-particles to the force of " +
-                "gravitational attraction between them",
-                "A. 6.2 x 10^35",
-                "B. 4.2 x 10^35",
-                "C. 3.1 x 10^35",
-                "D. 2.1 x 10^35",
-                "C. 3.1 x 10^35"));
+        questionList.add(new Question("Which of the following is a correct format of Email address?",
+                "a) name@website@info",
+                "b) name@website.info",
+                "c) www.nameofebsite.com",
+                "d) name.website.com",
+                "b) name@website.info"));
 
-        questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
-                "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
-                "(me = 9.1 x 10^-31kg, mp = 1.7 x 10^-27kg, e = 1.6 x 10^-19C)",
-                "A. 2.2 x 10^39",
-                "B. 1.1 x 10^39",
-                "C. 2.1 x 10^39" ,
-                "D. 1.2 x 10^39", "A. 2.2 x 10^39"));
+        questionList.add(new Question("HTML is used to create",
+                "a) machine language program",
+                "b) high level program",
+                "c) web page" ,
+                "d) web server", "c) web page"));
 
-        questionList.add(new Question("7. What is the magnitude of electrostatic force of attraction between an α-particle and an electron 10^-" +
-                "13m apart?",
-                "A. 2.3 x 10^-2N", "B. 2.6 x 10^-2N",
-                "C. 4.3 x 10^-2N", "D. 4.6 x 10^-2N",
-                "D. 4.6 x 10^-2N"));
+        questionList.add(new Question("The computer jargon - WWW,stands for",
+                "a) World Wide Web", "b) World Wide Wildlife",
+                "c) World Wide Women's", "d) World Wide Women's",
+                "a) World Wide Web"));
 
-        questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
-                "A. ½", "B. 2",
-                "C. -log2",
-                "D. -2",
-                "A. ½"));
+        questionList.add(new Question("The process of transferring files from a computer on the Internet to your" +
+                "computer is called",
+                "a) Uploading", "b) Forwarding",
+                "c) FTP",
+                "d) Downloading",
+                "d) Downloading"));
 
-        questionList.add(new Question("9. Two equal charges of equal magnitude exert an attractive force of 4.0 x 10^-4N on each other. If the " +
-                "magnitude of each charge is 2.0μC, how far apart are the charges?",
-                "A. 9.5m",
-                "B. 9.7m",
-                "C. 10.5m",
-                "D. 10.7m",
-                "A. 9.5m"));
+        questionList.add(new Question("In internet terminology IP means",
+                "a) Internet Provider",
+                "b) Internet Protocol",
+                "c) Internet Procedure",
+                "d) Internet Processor",
+                "b) Internet Protocol"));
 
-        questionList.add(new Question("10. What is the magnitude of a point charge whose electric field 50cm away has magnitude 2.0N/C?",
-                "A. 4.56 x 10^-11C",
-                "B. 4.66 x 10^-11C",
-                "C. 5.56 x 10^-11C ",
-                "D. 5.66 x 10^-11C", "C. 5.56 x 10^-11C "));
+        questionList.add(new Question("Which one of the following is not a search engine??",
+                "a) Bing",
+                "b) Google",
+                "c) Yahoo",
+                "d) Windows", "d) Windows"));
 
-        questionList.add(new Question("11. What is the magnitude of an electric field in which the force on an electron is equal in magnitude to " +
-                "the weight of an electron?",
-                "A. 4.58 x 10^-11N/C",
-                "B. 5.58 x 10^-11N/C" ,
-                "C. 6.58 x 10^-11N/C",
-                "D. 7.58 x 10-^11N/C",
-                "B. 5.58 x 10^-11N/C"));
+        questionList.add(new Question("Verification of a login name and password is known as" ,
+                "a) configuration",
+                "b) accessibility" ,
+                "c) authentication",
+                "d) logging in",
+                "c) authentication"));
 
-        questionList.add(new Question( "12. A small object carrying a charge of 5 x 10^-9" +
-                "C experiences a downward force of 20 x 10^-9N when" +
-                "placed at a certain point in an electric field. What's the electric field at the point?",
-                "A. 100 N/C",
-                "B. 40 N/C",
-                "C. 10 N/C",
-                "D. 4 N/C",
-                "D. 4 N/C"));
+        questionList.add(new Question( "Internet explorer falls under:",
+                "a) Operating System",
+                "b) Compiler",
+                "c) Browser",
+                "d) IP address",
+                "c) Browser"));
 
-        questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
-                "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
-                "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
-                "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
-                "D. 8.4 x 10^6N/C, 7.5 x 10^5N/C",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
+        questionList.add(new Question( "What is the full form of WWW in web address?",
+                "a) World Wide Web",
+                "b) World Wide Word",
+                "c) World Wide Wood",
+                "d) None of these",
+                "a) World Wide Web"));
 
-        questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
-                "B. 4.5 x 10^6N/C, 45N",
-                "C. 5.5 x 10^6N/C, 55N",
-                "D. 6.5 x 10^6N/C, 65N",
-                "B. 4.5 x 10^6N/C, 45N"));
+        questionList.add(new Question( "Full form of HTML is:",
+                "a) Hyper Text Markup Language",
+                "b) Hyper Text Manipulation Language",
+                "c) Hyper Text Managing Links",
+                "d) Hyper Text Manipulating Links",
+                "a) Hyper Text Markup Language"));
 
-        questionList.add(new Question( "15. The magnitude of electric field is 40kN/C. If an electron is placed in the same field, what force will be \n" +
-                "exerted on it?",
-                "A. 3.4 x 10^-15N",
-                "B. 4.4 x 10^-15N",
-                "C. 5.4 x 10^-15N",
-                "D. 6.4 x 10^-15N",
-                "D. 6.4 x 10^-15N"));
+        questionList.add(new Question( "Moving from one website to another is called:",
+                "a) Downloading",
+                "b) Browsing",
+                "c) Uploading",
+                "d) Attachment",
+                "b) Browsing"));
 
-        questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
-                "(B) clauses. ",
-                "(C) phrases. ",
-                "(D) morphemes",
-                "(C) phrases. "));
+        questionList.add(new Question( "A computer on internet are identified by:",
+                "a) e-mail address",
+                "b) street address",
+                "c) IP address",
+                "d) None of the above",
+                "c) IP address"));
 
-        questionList.add(new Question( "17. An important feature of language4 is its \n" +
-                "___________ ",
-                "(A) structure",
-                "(B) texture.",
-                "(C) strength.",
-                "(D) stature.",
-                "(A) structure"));
+        questionList.add(new Question( "________ programs are automatically loaded and operates as a part of browser.\n",
+                "a) Plug-ins",
+                "b) Add-ons",
+                "c) Utilities",
+                "d) Widgets",
+                "a) Plug-ins"));
 
-        questionList.add(new Question( "18. The English as a second \n" +
-                "language countries include all except ________.",
-                "(A) Ghana.",
-                "(B) India.",
-                "(C) Nigeria. ",
-                "(D) USA",
-                "(D) USA"));
+        questionList.add(new Question( "Computer that requests the resources or data from other computer is called as" +
+                "________computer.",
+                "a) Server",
+                "b) Client",
+                "c) Filter",
+                "d) Pusher",
+                "b) Client"));
 
-        questionList.add(new Question( "19. " +
-                "________ to come this weekend to listen to the broadcast of the football match?",
-                "(A) Do you like,",
-                "(B) " +
-                        "Would you like. ",
-                "(C) Are you like.",
-                "(D) Will you like.",
-                "(B) " +
-                        "Would you like. "));
+        questionList.add(new Question( "Software which allows user to view the webpage is called as__________.",
+                "a) Interpreter",
+                "b) Internet Browser",
+                "c) Website",
+                "d) OperatingSystem",
+                "b) Internet Browser"));
 
-        questionList.add(new Question( " 20. Factors affecting study skills include all \n" +
-                "except_________.",
-                "(A) hybridizing.",
-                "(B) the study time.",
-                "(C) the study venue",
-                "(D) reading aloud to " +
-                        "oneself.",
-                "(A) hybridizing."));
+        questionList.add(new Question( "___________programs automatically connect to websites and download " +
+                "documents and save them to local drive.",
+                "a) None of these",
+                "b) Web Downloading Utilities",
+                "c) Offline Browser",
+                "d) Web Server",
+                "c) Offline Browser"));
 
-        questionList.add(new Question( "21. Computers are now cheap_______ for nearly everyone to afford it.",
-                "(A) enough.",
-                "(B) " +
-                        "so. ",
-                "(C) too.",
-                "(D) quite. ",
-                "(A) enough."));
+        questionList.add(new Question( "Which of the following website will give you details of Local Shops",
+                "a) www.c4learn.com",
+                "b) www.justdial.com",
+                "c) www.google.com",
+                "d) None of these",
+                "c) www.google.com"));
 
-        questionList.add(new Question( "22. You’re looking __________ pretty today, Temy.",
-                "(A) very.",
-                "(B) " +
-                        "attractively. ",
-                "(C) beautifully.",
-                "(D) too. ",
-                "(A) very."));
+        return null;
+    }
 
-        questionList.add(new Question( "23. I promise to do my _________best.",
-                "(A) possible.",
-                "(B) " +
-                        "very.",
-                "(C) feasible.",
-                "(D) variable. ",
-                "(B) " +
-                        "very."));
+    private String getQuestionPhase2(List<Question> list) {
+        questionList.add(new Question( "30. Two devices are in network if",
+                "a) a process in one device is able to exchange information with a process in another device",
+                "b) a process is running on both devices",
+                "c) PIDs of the processes running of different devices are same",
+                "d) none of the mentioned",
+                "a) a process in one device is able to exchange information with a process in another device"));
 
-        questionList.add(new Question( "24. Water ________hydrogen and oxygen.",
-                "(A) Varies between.",
-                "(B) migrates.",
-                "(C) consists of.",
-                "(D) " +
-                        "corresponds to",
-                "(C) consists of."));
+        questionList.add(new Question( "What is a web browser?",
+                "a) a program that can display a webpage",
+                "b) a program used to view html documents",
+                "c) it enables user to access the resources of internet",
+                "d) all of the mentioned",
+                "d) all of the mentioned"));
 
-        questionList.add(new Question( "25. Agnes left the school very late, _____________________ ",
-                "(A) didn’t she?",
-                "(B) isn’t it?",
-                "(C) " +
-                        "hasn’t she? ",
-                "(D) hadn’t she? ",
-                "(A) didn’t she?"));
+        questionList.add(new Question( "URL stands for",
+                "a) unique reference label",
+                "b) uniform reference label",
+                "c) uniform resource locator",
+                "d) unique resource locator",
+                "c) uniform resource locator"));
 
-        questionList.add(new Question( "26. “Soyinka is good at play writing and Achebe is good at prose writing” Identify the sentence type.",
-                "(A) Complex.",
-                "(B) simple.",
-                "(C) compound.",
-                "(D) compound complex",
-                "(C) compound."));
+        questionList.add(new Question( "Internet is .............................",
+                "a) a network of networks",
+                "b) an ocean of resources waiting to be mined",
+                "c) a cooperative anarchy",
+                "d) all of the above",
+                "d) all of the above"));
 
-        questionList.add(new Question( "27. “ Mathematic _________compulsory for engineering students”.",
-                "(A) is",
-                "(B) as",
-                "(C) are",
-                "(D) " +
-                        "were",
-                "(A) is"));
+        questionList.add(new Question( "Which of the following protocol is used for e-mail services?",
+                "a) SMAP",
+                "b) SMTP",
+                "c) SMIP",
+                "d) SMOP",
+                "b) SMTP"));
 
-        questionList.add(new Question( "28. The boy and the girl _______gone home.",
-                "(A) has.",
-                "(B) have.",
-                "(C) had.",
-                "(D) is. ",
-                "(B) have."));
+        questionList.add(new Question( ".......................is a uniform naming scheme for locating resources on the web",
+                "a) URL",
+                "b) HTTP",
+                "c) WEBNAME",
+                "d) RESOURCENAME",
+                "a) URL"));
 
-        questionList.add(new Question( "29. Which of the following is not a quality of good English?",
-                "(A) coherence",
-                "(B) emphasis or " +
-                        "focus. ",
-                "(C) unity.",
-                "(D) none of the above. ",
-                "(D) none of the above. "));
+        questionList.add(new Question( "With regards to e-mail addresses",
+                "a) they must always contain an @ symbol",
+                "b) they can never contain spaces",
+                "c) they are case-insensitive",
+                "d) all of the above",
+                "d) all of the above"));
 
-        questionList.add(new Question( "30. Inspite of the seemingly scarcity of marriageable men today many a girl __________ to get \n" +
-                "married at the age of twenty-one.",
-                "(A) Intend.",
-                "(B) intended",
-                "(C) plans",
-                "(D) plan. ",
-                "(C) plans"));
+        questionList.add(new Question( "Which of the following website is used to search other website by typing a keyword?",
+                "a) Social Networks",
+                "b) None of these",
+                "c) Routers",
+                "d) Search Engine",
+                "d) Search Engine"));
+
+        questionList.add(new Question( "Google (www.google.com) is a",
+                "a) Number in Math",
+                "b) Search Engine",
+                "c) Chat service on the web",
+                "d) Directory of images",
+                "b) Search Engine"));
+
+        questionList.add(new Question( "At which of the following sites would you most probably buy books?",
+                "a) www.amazon.com",
+                "b) www.hotmail.com",
+                "c) www.sun.com",
+                "d) www.msn.com",
+                "a) www.amazon.com"));
+
+        questionList.add(new Question( "ISP stands for",
+                "a) Integrated Service Provider",
+                "b) Internet Service Provider",
+                "c) Internet Security Protocol",
+                "d) Internet Survey Period",
+                "b) Internet Service Provider"));
+
+        questionList.add(new Question( "Applets are written in______________programming language.",
+                "a) C++",
+                "b) Java",
+                "c) C",
+                "d) C#",
+                "b) Java"));
+
+        questionList.add(new Question( "HTML is used to",
+                "a) Author web page",
+                "b) Plot Complicated Graph",
+                "c) Solve equation",
+                "d) Transfer one language to another",
+                "a) Author web page"));
+
+        questionList.add(new Question( "Which term describes hardware or software that protects your computer or" +
+                "network from probing or malicious users?",
+                "a) Router",
+                "b) Firewall",
+                "c) Protocol",
+                "d) Spyware",
+                "b) Firewall"));
+
+        questionList.add(new Question( "Search engine are used to________\n",
+                "a) Search Videos",
+                "b) Search for information on the World Wide Web",
+                "c) All of these",
+                "d) Search Documents",
+                "c) All of these"));
+
+
+        questionList.add(new Question( "Which of the following is used to explore the Internet?",
+                "a) Browser",
+                "b) Spreadsheet",
+                "c) Clipboard",
+                "d) Draw",
+                "a) Browser"));
+
+        questionList.add(new Question( "What is Internet Explorer?",
+                "a) An Icon",
+                "b) A File Manager",
+                "c) A Browser",
+                "d) The Internet",
+                "c) A Browser"));
+
+        questionList.add(new Question( "What do I need to get on to the Internet?",
+                "a) Computer",
+                "b) Modem",
+                "c) Browser",
+                "d) All of the above",
+                "d) All of the above"));
+
+        questionList.add(new Question( "What is an ISP?",
+                "a) Internet System Protocol",
+                "b) Internal System Program",
+                "c) Internet Service Provider",
+                "d) None of the above",
+                "c) Internet Service Provider"));
+
+        questionList.add(new Question( "Which is not a domain name extensio",
+                "a) .mil",
+                "b) .org",
+                "c) .int",
+                "d) .com",
+                "c) .int"));
+
+        questionList.add(new Question( "What is a FTP program used for?",
+                "a) Transfer files to and from an Internet Server",
+                "b) Designing a website",
+                "c) Connecting to the internet",
+                "d) None of the above",
+                "a) Transfer files to and from an Internet Server"));
+
+        questionList.add(new Question( "TCP/IP is a:",
+                "a). Network Hardware",
+                "b) Network Software",
+                "c) Protocol",
+                "d) None of these",
+                "c) Protocol"));
+
+        questionList.add(new Question( "TCP/IP mainly used for:",
+                "a) File Transfer",
+                "b) Email",
+                "c) Remote Login Service",
+                "d) All of these",
+                "d) All of these"));
+
+        questionList.add(new Question( "Which protocol is used for browsing website?",
+                "a) TCP",
+                "b) HTTP",
+                "c) FTP",
+                "d) TFTP",
+                "b) HTTP"));
+
+        questionList.add(new Question( "Which is not the browser?",
+                "a) Internet Explorer",
+                "b) Opera",
+                "c) Mozilla",
+                "d) Google",
+                "d) Google"));
+
+        questionList.add(new Question( "Which is not the search engine:",
+                "a) Altavista.com",
+                "b) Google.com",
+                "c) Facebook.com",
+                "d) Yahoo.com",
+                "c) Facebook.com"));
+
+        questionList.add(new Question( "Email stands for:",
+                "a) Easy mail",
+                "b) Electronic mail",
+                "c) Electric mail",
+                "d) None of these",
+                "b) Electronic mail"));
+
+        questionList.add(new Question( "Which is the chatting application",
+                "a) Yahoo messenger",
+                "b) Google earth",
+                "c) Youtube",
+                "d) None of these",
+                "a) Yahoo messenger"));
+
+        questionList.add(new Question( "Which is not the application of internet:",
+                "a) Communication",
+                "b) Banking",
+                "c) Shopping",
+                "d) Surfing",
+                "d) Surfing"));
+
+        questionList.add(new Question( "Which is the advantage of e-business:",
+                "a) Better Service",
+                "b) Reduction of cost",
+                "c) Reduction of paperwork",
+                "d) All of these",
+                "d) All of these"));
+
+        questionList.add(new Question( "Which is the advantage of e-business:",
+                "a) Better Service",
+                "b) Reduction of cost",
+                "c) Reduction of paperwork",
+                "d) All of these",
+                "d) All of these"));
+
+        return null;
+    }
+
+    protected String showOtherButton() {
+        Question list = new Question();
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
+                (LinearLayout) findViewById(R.id.bottom_sheet_answer_dialog));
+        TextView scoreShow = bottomSheet.findViewById(R.id.question);
+        TextView answer = bottomSheet.findViewById(R.id.answertxt);
+        Button goHome = bottomSheet.findViewById(R.id.btnHome);
+
+        scoreShow.setText(list.getQuestion());
+        answer.setText(list.getAnswer());
+
+        goHome.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
+            dialog.dismiss();
+            finish();
+        });
+        dialog.setCancelable(false);
+        dialog.setContentView(bottomSheet);
+        dialog.show();
+        return null;
     }
 }

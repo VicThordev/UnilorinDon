@@ -45,6 +45,10 @@ public class SecondSemesterActivity extends AppCompatActivity {
             startActivity(new Intent(this, Chm112Activity.class));
         });
 
+        mBtnGns114.setOnClickListener(view -> {
+            startActivity(new Intent(this, Gns114Activity.class));
+        });
+
         mBtnChm116.setOnClickListener(view -> {
             startActivity(new Intent(this, Chm116Activity.class));
         });

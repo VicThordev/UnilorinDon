@@ -177,58 +177,51 @@ public class Mth114Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
-                "A. 150.6cm",
-                "B. 138.9cm",
-                "C. 148.7cm",
-                "D. 165.3cm",
-                "B. 138.9cm"));
+        questionList.add(new Question("Find the equation of the line through point (1,2) and parallel to 3x+5y=8",
+                "(a) 2x+6x=13",
+                "(b) 3x+5y = 13",
+                "(c) 2x-5y=31",
+                "(d) 8y+3-7x=13",
+                "(b) 3x+5y = 13"));
 
-        questionList.add(new Question("2. At what distance would the repulsive force between two electrons have a magnitude of one newton?",
-                "A. 0.0152pm",
-                "B. 0.0142pm",
-                "C. 0.0132pm",
-                "D. 0.0122pm",
-                "A. 0.0152pm"));
+        questionList.add(new Question("Find the inverse of the mapping: f(x) = 3x-5/2, x belonging to real no",
+                "(a) 2+5y/4 ",
+                "(b) 2y+5/3 ",
+                "(c) 3/2y-4 ",
+                "(d) 3y-2/5",
+                "(a) 2+5y/4 "));
 
-        questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
-                "A. 125 electrons ",
-                "B. 250 electrons",
-                "C. 625 electrons",
-                "D. 750 electrons",
-                "C. 625 electrons"));
+        questionList.add(new Question("Express sin(x+h) as a series of power of h and evaluate sin 30 correct to 5 decimal places",
+                "(a) 0.51504 ",
+                "(b) 0.6854",
+                "(c) 0.5754",
+                "(d) 1.0865",
+                "(a) 0.51504 "));
 
-        questionList.add(new Question("4. What is the total positive charge in Coulombs, of all the protons in 1mol of Hydrogen atoms?",
-                "A. 96.35kC",
-                "B. 72.46kC",
-                "C. 83.48kC",
-                "D. 78.36kC",
-                "A. 96.35kC"));
+        questionList.add(new Question("Find the equation of the line passing through the points (5,3) (-2,1)",
+                "(a) 5y+2x=7",
+                "(b) x-4y=8",
+                "(c) 7x-y=9",
+                "(d) 2x-7y=11",
+                "(d) 2x-7y=11"));
 
-        questionList.add(new Question("5. An α-particle is a nucleus of doubly-ionised helium. It has a mass of 6.69 x 10^-27kg and a charge of -2e. " +
-                "Compute the ratio of the force of electrostatic repulsion between two α-particles to the force of " +
-                "gravitational attraction between them",
-                "A. 6.2 x 10^35",
-                "B. 4.2 x 10^35",
-                "C. 3.1 x 10^35",
-                "D. 2.1 x 10^35",
-                "C. 3.1 x 10^35"));
+        questionList.add(new Question("a*b=a+b-1=b+a-1",
+                "(a) associative",
+                "(b) distributive",
+                "(c) commutative",
+                "(d) inverse",
+                "(c) commutative"));
 
-        questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
-                "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
-                "(me = 9.1 x 10^-31kg, mp = 1.7 x 10^-27kg, e = 1.6 x 10^-19C)",
-                "A. 2.2 x 10^39",
-                "B. 1.1 x 10^39",
-                "C. 2.1 x 10^39" ,
-                "D. 1.2 x 10^39", "A. 2.2 x 10^39"));
+        questionList.add(new Question("Find the gradient of the line passing through points (4,2) and (-6,10)",
+                "(a) -8/10",
+                "(b) -4/10",
+                "(c) 7/5" ,
+                "(d) -4/9", "(d) -4/9"));
 
-        questionList.add(new Question("7. What is the magnitude of electrostatic force of attraction between an α-particle and an electron 10^-" +
-                "13m apart?",
-                "A. 2.3 x 10^-2N", "B. 2.6 x 10^-2N",
-                "C. 4.3 x 10^-2N", "D. 4.6 x 10^-2N",
-                "D. 4.6 x 10^-2N"));
+        questionList.add(new Question("A car left a point A at an angle of 25 degree and covered a distance of 9km to another point C, then changes it direction to a bearing S20E and travel a distance of 11km until it get to a point B which is due east of its starting point (i) What is the distance of the car to its starting point (ii) What is the car’s bearing to the point?",
+                "(a)(i)7.2km (ii)340degree", "(b)(i)8km (ii)270 degree",
+                "(c)(i)8.5km (ii)340 degree", "(d)(i)6.7km (ii)220degree",
+                "(c)(i)8.5km (ii)340 degree"));
 
         questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
                 "A. ½", "B. 2",

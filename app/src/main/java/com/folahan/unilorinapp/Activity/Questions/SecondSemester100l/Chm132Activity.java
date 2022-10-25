@@ -177,243 +177,217 @@ public class Chm132Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
-                "A. 150.6cm",
-                "B. 138.9cm",
-                "C. 148.7cm",
-                "D. 165.3cm",
-                "B. 138.9cm"));
+        questionList.add(new Question("The ligands that donate more than one electron pairs is called",
+                "(a) Lewis acid",
+                "(b) Monodentate",
+                "(c) Multidentate",
+                "(d) Lewis base",
+                "(c) Multidentate"));
 
-        questionList.add(new Question("2. At what distance would the repulsive force between two electrons have a magnitude of one newton?",
-                "A. 0.0152pm",
-                "B. 0.0142pm",
-                "C. 0.0132pm",
-                "D. 0.0122pm",
-                "A. 0.0152pm"));
+        questionList.add(new Question("The number of bonds attached to the central metal atom is called…",
+                "(a) oxidation number",
+                "(b) electrovalent number",
+                "(c) atomic number",
+                "(d) Coordination number",
+                "(d) Coordination number"));
 
-        questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
-                "A. 125 electrons ",
-                "B. 250 electrons",
-                "C. 625 electrons",
-                "D. 750 electrons",
-                "C. 625 electrons"));
+        questionList.add(new Question("The following are examples of ligands except",
+                "(a) H2O",
+                "(b) Br",
+                "(c) Be",
+                "(d) Cl",
+                "(c) Be"));
 
-        questionList.add(new Question("4. What is the total positive charge in Coulombs, of all the protons in 1mol of Hydrogen atoms?",
-                "A. 96.35kC",
-                "B. 72.46kC",
-                "C. 83.48kC",
-                "D. 78.36kC",
-                "A. 96.35kC"));
+        questionList.add(new Question("Transition metals are paramagnetic because of",
+                "(a) Possession of paired electron",
+                "(b) Possession of unpaired electron",
+                "(c) They are coloured",
+                "(d) They are amphoteric",
+                "(b) Possession of unpaired electron"));
 
-        questionList.add(new Question("5. An α-particle is a nucleus of doubly-ionised helium. It has a mass of 6.69 x 10^-27kg and a charge of -2e. " +
-                "Compute the ratio of the force of electrostatic repulsion between two α-particles to the force of " +
-                "gravitational attraction between them",
-                "A. 6.2 x 10^35",
-                "B. 4.2 x 10^35",
-                "C. 3.1 x 10^35",
-                "D. 2.1 x 10^35",
-                "C. 3.1 x 10^35"));
+        questionList.add(new Question("Which of the following groups of physical properties increase from left to right " +
+                "of the periodic table? \n (1) Atomic energy (2) electronegativity (3) electron affinity (4) Atomic " +
+                "radius.",
+                "(a) 1 & 2",
+                "(b) 2 & 3 ",
+                "(c) 1, 2 & 3",
+                "(d) All of the above",
+                "(b) 2 & 3 "));
 
-        questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
-                "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
-                "(me = 9.1 x 10^-31kg, mp = 1.7 x 10^-27kg, e = 1.6 x 10^-19C)",
-                "A. 2.2 x 10^39",
-                "B. 1.1 x 10^39",
-                "C. 2.1 x 10^39" ,
-                "D. 1.2 x 10^39", "A. 2.2 x 10^39"));
+        questionList.add(new Question("State which elements in the series Na, Mg, Al, Si, S and Cl has the highest " +
+                "melting point?",
+                "(a) Na",
+                "(b) Mg",
+                "(c) S" ,
+                "(d) Cl", "(b) Mg"));
 
-        questionList.add(new Question("7. What is the magnitude of electrostatic force of attraction between an α-particle and an electron 10^-" +
-                "13m apart?",
-                "A. 2.3 x 10^-2N", "B. 2.6 x 10^-2N",
-                "C. 4.3 x 10^-2N", "D. 4.6 x 10^-2N",
-                "D. 4.6 x 10^-2N"));
+        questionList.add(new Question("Water molecules can be ligands especially when they are bonded to",
+                "(a) Transition metal", "(b) alkali metals",
+                "(c) alkaline metals", "(d) Group V elements.",
+                "(a) Transition metal"));
 
-        questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
-                "A. ½", "B. 2",
-                "C. -log2",
-                "D. -2",
-                "A. ½"));
+        questionList.add(new Question("The bond formed between lithium and fluorine is",
+                "(a) covalent", "(b) hydrogen bond",
+                "(c) ionic bond",
+                "(d) dative bond.",
+                "(c) ionic bond"));
 
-        questionList.add(new Question("9. Two equal charges of equal magnitude exert an attractive force of 4.0 x 10^-4N on each other. If the " +
-                "magnitude of each charge is 2.0μC, how far apart are the charges?",
-                "A. 9.5m",
-                "B. 9.7m",
-                "C. 10.5m",
-                "D. 10.7m",
-                "A. 9.5m"));
+        questionList.add(new Question("Group 1A metals are not formed in nature because they",
+                "(a) fluorite and ZnS",
+                "(b) Zinc blende & wurtzite",
+                "(c) ZnS & corundum",
+                "(d) all of the above",
+                "(b) Zinc blende & wurtzite"));
 
-        questionList.add(new Question("10. What is the magnitude of a point charge whose electric field 50cm away has magnitude 2.0N/C?",
-                "A. 4.56 x 10^-11C",
-                "B. 4.66 x 10^-11C",
-                "C. 5.56 x 10^-11C ",
-                "D. 5.66 x 10^-11C", "C. 5.56 x 10^-11C "));
+        questionList.add(new Question("Aluminium is trivalent element because",
+                "(a) it is a metal",
+                "(b) it is a non-metal",
+                "(c) its has a valency of three",
+                "(d) it is electropositive", "(c) its has a valency of three"));
 
-        questionList.add(new Question("11. What is the magnitude of an electric field in which the force on an electron is equal in magnitude to " +
-                "the weight of an electron?",
-                "A. 4.58 x 10^-11N/C",
-                "B. 5.58 x 10^-11N/C" ,
-                "C. 6.58 x 10^-11N/C",
-                "D. 7.58 x 10-^11N/C",
-                "B. 5.58 x 10^-11N/C"));
+        questionList.add(new Question("Silica exists in six different crystalline forms as",
+                "(a) quartz",
+                "(b) Rutile" ,
+                "(c) fluorite",
+                "(d) none of the above",
+                "(a) quartz"));
 
-        questionList.add(new Question( "12. A small object carrying a charge of 5 x 10^-9" +
-                "C experiences a downward force of 20 x 10^-9N when" +
-                "placed at a certain point in an electric field. What's the electric field at the point?",
-                "A. 100 N/C",
-                "B. 40 N/C",
-                "C. 10 N/C",
-                "D. 4 N/C",
-                "D. 4 N/C"));
+        questionList.add(new Question( "Cadmium chloride occur in which of this arrangement?",
+                "(a) ABABAB",
+                "(b) ACBACB",
+                "(c) ABCABC",
+                "(d) AABBCC",
+                "(c) ABCABC"));
 
-        questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
-                "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
-                "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
-                "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
-                "D. 8.4 x 10^6N/C, 7.5 x 10^5N/C",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
+        questionList.add(new Question( "It is possible to measure the interatomic distance between two different ion " +
+                "very accurately by.",
+                "(a) Mass spectroscopy",
+                "(b) Infrared spectroscopy",
+                "(c) X-ray crystallrgraphy",
+                "(d) all of the above.",
+                "(c) X-ray crystallrgraphy"));
 
-        questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
-                "B. 4.5 x 10^6N/C, 45N",
-                "C. 5.5 x 10^6N/C, 55N",
-                "D. 6.5 x 10^6N/C, 65N",
-                "B. 4.5 x 10^6N/C, 45N"));
+        questionList.add(new Question( "Calculate the dipole moment of a charge on an electron of 4.8 x 10-10 esu ",
+                "(a) 4.8 x 10-18 esu.cm",
+                "(b) 1.44 x 10-17 esu.cm",
+                "(c) 1.44 x 10-19 esu.cm ",
+                "(d) " +
+                        "4.8 x 10-19 esu.cm",
+                "(c) 1.44 x 10-19 esu.cm "));
 
-        questionList.add(new Question( "15. The magnitude of electric field is 40kN/C. If an electron is placed in the same field, what force will be \n" +
-                "exerted on it?",
-                "A. 3.4 x 10^-15N",
-                "B. 4.4 x 10^-15N",
-                "C. 5.4 x 10^-15N",
-                "D. 6.4 x 10^-15N",
-                "D. 6.4 x 10^-15N"));
+        questionList.add(new Question( "Antimony does not obey the octet because its valence electron is",
+                "(a) 5",
+                "(b) 6",
+                "(c) 8",
+                "(d) 7",
+                "(a) 5"));
 
-        questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
-                "(B) clauses. ",
-                "(C) phrases. ",
-                "(D) morphemes",
-                "(C) phrases. "));
+        questionList.add(new Question( "When the electronegative difference is large, the bonding is….",
+                "(a) ionic",
+                "(b) covalent",
+                "(c) dative",
+                "(d) Metallic",
+                "(a) ionic"));
 
-        questionList.add(new Question( "17. An important feature of language4 is its \n" +
-                "___________ ",
-                "(A) structure",
-                "(B) texture.",
-                "(C) strength.",
-                "(D) stature.",
-                "(A) structure"));
+        questionList.add(new Question( "Which of the following molecule does not exhibit resonance?",
+                "(a) N2O",
+                "(b) SO2",
+                "(c) HNO3",
+                "(d) NH3",
+                "(d) NH3"));
 
-        questionList.add(new Question( "18. The English as a second \n" +
-                "language countries include all except ________.",
-                "(A) Ghana.",
-                "(B) India.",
-                "(C) Nigeria. ",
-                "(D) USA",
-                "(D) USA"));
+        questionList.add(new Question( "Which of the following can not be used to determine bonding?",
+                "(a) electron affinity",
+                "(b) resonance",
+                "(c) electronegativity",
+                "(d) Ionization energy",
+                "(b) resonance"));
 
-        questionList.add(new Question( "19. " +
-                "________ to come this weekend to listen to the broadcast of the football match?",
-                "(A) Do you like,",
-                "(B) " +
-                        "Would you like. ",
-                "(C) Are you like.",
-                "(D) Will you like.",
-                "(B) " +
-                        "Would you like. "));
+        questionList.add(new Question( "Tetrahedral compounds differ from square planar in ",
+                "(a) bond angle",
+                "(b) coordination number",
+                "(c) quantum number",
+                "(d) oxidation number",
+                "(a) bond angle"));
 
-        questionList.add(new Question( " 20. Factors affecting study skills include all \n" +
-                "except_________.",
-                "(A) hybridizing.",
-                "(B) the study time.",
-                "(C) the study venue",
-                "(D) reading aloud to " +
-                        "oneself.",
-                "(A) hybridizing."));
+        questionList.add(new Question( "What is the coordination number of a square pyramid shape?",
+                "(a) 3",
+                "(b) 5",
+                "(c) 6",
+                "(d) 4",
+                "(b) 5"));
 
-        questionList.add(new Question( "21. Computers are now cheap_______ for nearly everyone to afford it.",
-                "(A) enough.",
-                "(B) " +
-                        "so. ",
-                "(C) too.",
-                "(D) quite. ",
-                "(A) enough."));
+        questionList.add(new Question( "The hybridization of a trigonal bipyramidal shape is",
+                "(a) SP2d",
+                "(b) SP3d",
+                "(c) SP2d2",
+                "(d) SP3d2",
+                "(c) SP2d2"));
 
-        questionList.add(new Question( "22. You’re looking __________ pretty today, Temy.",
-                "(A) very.",
-                "(B) " +
-                        "attractively. ",
-                "(C) beautifully.",
-                "(D) too. ",
-                "(A) very."));
+        questionList.add(new Question( "Both square planar and octahedral compounds will exhibit.",
+                "(a) Ionization",
+                "(b) oxidation",
+                "(c) Isomerism",
+                "(d) reduction",
+                "(c) Isomerism"));
 
-        questionList.add(new Question( "23. I promise to do my _________best.",
-                "(A) possible.",
-                "(B) " +
-                        "very.",
-                "(C) feasible.",
-                "(D) variable. ",
-                "(B) " +
-                        "very."));
+        questionList.add(new Question( "Valence bond theory fails to explain which of the following properties?",
+                "(a) magnetic",
+                "(b) electrical",
+                "(c) physical",
+                "(d) all of the above",
+                "(a) magnetic"));
 
-        questionList.add(new Question( "24. Water ________hydrogen and oxygen.",
-                "(A) Varies between.",
-                "(B) migrates.",
-                "(C) consists of.",
-                "(D) " +
-                        "corresponds to",
-                "(C) consists of."));
+        questionList.add(new Question( "The similarity between tetrahedral and square planar compound is that both " +
+                "have",
+                "(a) a coordination Number of 2",
+                "(b) a coordination number of 4",
+                "(c) a coordination Number of 6",
+                "(d) a coordination number of 3",
+                "(b) a coordination number of 4"));
 
-        questionList.add(new Question( "25. Agnes left the school very late, _____________________ ",
-                "(A) didn’t she?",
-                "(B) isn’t it?",
-                "(C) " +
-                        "hasn’t she? ",
-                "(D) hadn’t she? ",
-                "(A) didn’t she?"));
+        questionList.add(new Question( "The following are van der waals forces except",
+                "(a) Dipole-Dipole",
+                "(b) Dipole-induced dipole",
+                "(c) induced dipole – induced dipole",
+                "(d) ion - dipole",
+                "(d) ion - dipole"));
 
-        questionList.add(new Question( "26. “Soyinka is good at play writing and Achebe is good at prose writing” Identify the sentence type.",
-                "(A) Complex.",
-                "(B) simple.",
-                "(C) compound.",
-                "(D) compound complex",
-                "(C) compound."));
+        questionList.add(new Question( "In acetic acid, the bond connecting the atoms together is …..",
+                "(a) hydrogen bond",
+                "(b) dative bond",
+                "(c) metallic bond",
+                "(d) ionic bond",
+                "(a) hydrogen bond"));
 
-        questionList.add(new Question( "27. “ Mathematic _________compulsory for engineering students”.",
-                "(A) is",
-                "(B) as",
-                "(C) are",
-                "(D) " +
-                        "were",
-                "(A) is"));
+        questionList.add(new Question( "The bond in a complex can be",
+                "(a) ionic",
+                "(b) covalent",
+                "(c) dative",
+                "(d) metallic",
+                "(c) dative"));
 
-        questionList.add(new Question( "28. The boy and the girl _______gone home.",
-                "(A) has.",
-                "(B) have.",
-                "(C) had.",
-                "(D) is. ",
-                "(B) have."));
+        questionList.add(new Question( "The hybridization of carbon in ethylene is",
+                "(a) Sp3",
+                "(b) SP2",
+                "(c) SP",
+                "(d) SP2d",
+                "(b) SP2"));
 
-        questionList.add(new Question( "29. Which of the following is not a quality of good English?",
-                "(A) coherence",
-                "(B) emphasis or " +
-                        "focus. ",
-                "(C) unity.",
-                "(D) none of the above. ",
-                "(D) none of the above. "));
+        questionList.add(new Question( "What are the permitted values for the azimuthal quantum number (L) for an " +
+                "electron with a principal quantum number n 5?",
+                "(a) 0,1",
+                "(b) 2,3",
+                "(c) 4",
+                "(d) all of the above",
+                "(d) all of the above"));
 
-        questionList.add(new Question( "30. Inspite of the seemingly scarcity of marriageable men today many a girl __________ to get \n" +
-                "married at the age of twenty-one.",
-                "(A) Intend.",
-                "(B) intended",
-                "(C) plans",
-                "(D) plan. ",
-                "(C) plans"));
+        questionList.add(new Question( "Which of the following represents a reasonable set of quantum number for " +
+                "a 3d electrons?",
+                "(a) 3, 2, 1, ½",
+                "(b) 3, 0, 2, -1/2",
+                "(c) a & b",
+                "(d) Neither of these",
+                "(c) a & b"));
     }
 }

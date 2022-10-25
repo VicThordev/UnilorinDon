@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.folahan.unilorinapp.Activity.Questions.FirstSemester100l.FirstSemesterActivity;
+import com.folahan.unilorinapp.Activity.Questions.SecondSemester100l.SecondSemesterActivity;
 import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -46,7 +47,7 @@ public class QuestionTab extends AppCompatActivity {
         });
 
         goHome.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, SecondSemesterActivity.class));
             dialog.dismiss();
             finish();
         });

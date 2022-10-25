@@ -149,8 +149,8 @@ public class Phy142Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
+        questionList.add(new Question("1.\tWhat is the absolute configuration of 2/2 the molecule shown? \n" +
+                " \n",
                 "A. 150.6cm",
                 "B. 138.9cm",
                 "C. 148.7cm",

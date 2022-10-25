@@ -19,6 +19,7 @@ import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public class Chm101Activity extends AppCompatActivity {
     }
 
     private void dialogAlert() {
-        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
+        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.AlertDialog_AppCompat)
                 .setTitle("Confirm Submission")
                 .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
