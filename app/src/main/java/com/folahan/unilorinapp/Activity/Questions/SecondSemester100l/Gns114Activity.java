@@ -20,7 +20,6 @@ import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -61,8 +60,8 @@ public class Gns114Activity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
-                int minutes = (int) (mTimeLeft/1000) / 60;
-                int secs = (int) (mTimeLeft/1000) % 60;
+                int minutes = mTimeLeft / 1000 / 60;
+                int secs = (mTimeLeft/1000) % 60;
                 String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, secs);
                 countDown.setText(timeLeftFormatted);
             }
@@ -84,9 +83,9 @@ public class Gns114Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
     }
 
-    private void chooseMethod() {
-        String [] arr = {getQuestionPhase(questionList), getQuestionPhase2(questionList)};
-        random.nextInt(arr.length);
+    private String chooseMethod() {
+        String [] arr = {getQuestionPhase3(questionList), getQuestionPhase(questionList), getQuestionPhase2(questionList)};
+        return arr[random.nextInt(arr.length)];
     }
 
     private void setListeners() {
@@ -124,22 +123,20 @@ public class Gns114Activity extends AppCompatActivity {
             setDataView(pos);
         });*/
 
-        /**btnPrev.setOnClickListener(view -> {
+        /*btnPrev.setOnClickListener(view -> {
             questionAnswered--;
         });*/
 
         btnEnd.setOnClickListener(view -> dialogAlert());
 
-        btnAnswer.setOnClickListener(view -> showOtherButton());
+        //btnAnswer.setOnClickListener(view -> showOtherButton());
     }
 
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
                 .setTitle("Confirm Submission")
                 .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
-                .setPositiveButton("Yes", (dialog, which) -> {
-                    showButton();
-                })
+                .setPositiveButton("Yes", (dialog, which) -> showButton())
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .setIcon(ContextCompat.getDrawable(getApplicationContext(),
                         R.drawable.ic_login)).show();
@@ -514,6 +511,11 @@ public class Gns114Activity extends AppCompatActivity {
                 "d) Google",
                 "d) Google"));
 
+        return null;
+    }
+
+    private String getQuestionPhase3(List<Question> list) {
+
         questionList.add(new Question( "Which is not the search engine:",
                 "a) Altavista.com",
                 "b) Google.com",
@@ -555,15 +557,14 @@ public class Gns114Activity extends AppCompatActivity {
                 "c) Reduction of paperwork",
                 "d) All of these",
                 "d) All of these"));
-
         return null;
     }
 
-    protected String showOtherButton() {
+    protected void showOtherButton() {
         Question list = new Question();
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
-                (LinearLayout) findViewById(R.id.bottom_sheet_answer_dialog));
+                findViewById(R.id.bottom_sheet_answer_dialog));
         TextView scoreShow = bottomSheet.findViewById(R.id.question);
         TextView answer = bottomSheet.findViewById(R.id.answertxt);
         Button goHome = bottomSheet.findViewById(R.id.btnHome);
@@ -579,6 +580,5 @@ public class Gns114Activity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setContentView(bottomSheet);
         dialog.show();
-        return null;
     }
 }
