@@ -1,5 +1,6 @@
 package com.folahan.unilorinapp.Activity.Questions.SecondSemester100l;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -21,6 +22,8 @@ import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -34,7 +37,9 @@ public class Gns114Activity extends AppCompatActivity {
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
     Button btnNext, btnPrev, btnEnd, btnAnswer;
+    ArrayList<String> list = new ArrayList<>();
     private AlertDialog dialog;
+    String [] arr;
     private boolean mTimerRunning;
 
     @Override
@@ -76,16 +81,37 @@ public class Gns114Activity extends AppCompatActivity {
 
         //getQuestionPhase(questionList);
 
-        chooseMethod();
+        //chooseMethod();
+
+
+        //list.get(random.nextInt(list.size()));
+        //arr = new String[]{getQuestionPhase(questionList), getQuestionPhase2(questionList), getQuestionPhase3(questionList)};
+        //Collections.shuffle(Arrays.asList(arr));
+        //list.addAll(Arrays.asList(arr));
+        list.add(list.get(random.nextInt(list.size())));
+        list.add(getQuestionPhase(questionList));
+        list.add(getQuestionPhase2(questionList));
+        list.add(getQuestionPhase3(questionList));
 
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
     }
 
+    @Override
+    protected void onDestroy()  {
+        super.onDestroy();
+        Toast.makeText(this, "No way", Toast.LENGTH_SHORT).show();
+    }
+
     private String chooseMethod() {
-        String [] arr = {getQuestionPhase3(questionList), getQuestionPhase(questionList), getQuestionPhase2(questionList)};
-        return arr[random.nextInt(arr.length)];
+        ArrayList<String> list = new ArrayList<>();
+        list.add(getQuestionPhase(questionList));
+        list.add(getQuestionPhase2(questionList));
+        list.add(getQuestionPhase3(questionList));
+        return list.get(random.nextInt(list.size()));
+        //list = new String[]{getQuestionPhase3(questionList), getQuestionPhase(questionList), getQuestionPhase2(questionList)};
+        //List<String> strings = Arrays.asList(arr);
     }
 
     private void setListeners() {
@@ -127,7 +153,7 @@ public class Gns114Activity extends AppCompatActivity {
             questionAnswered--;
         });*/
 
-        btnEnd.setOnClickListener(view -> dialogAlert());
+        btnEnd.setOnClickListener(view -> Collections.shuffle(list));
 
         //btnAnswer.setOnClickListener(view -> showOtherButton());
     }
@@ -183,6 +209,26 @@ public class Gns114Activity extends AppCompatActivity {
 
     private String getQuestionPhase(List<Question> list) {
 
+        questionList.add(new Question( "Two devices are in network if",
+                "a) a process in one device is able to exchange information with a process in another device",
+                "b) a process is running on both devices",
+                "c) PIDs of the processes running of different devices are same",
+                "d) none of the mentioned",
+                "a) a process in one device is able to exchange information with a process in another device"));
+
+        questionList.add(new Question( "What is a web browser?",
+                "a) a program that can display a webpage",
+                "b) a program used to view html documents",
+                "c) it enables user to access the resources of internet",
+                "d) all of the mentioned",
+                "d) all of the mentioned"));
+
+        questionList.add(new Question( "URL stands for",
+                "a) unique reference label",
+                "b) uniform reference label",
+                "c) uniform resource locator",
+                "d) unique resource locator",
+                "c) uniform resource locator"));
 
         questionList.add(new Question("What is internet?",
                 "a) a single network",
@@ -190,28 +236,6 @@ public class Gns114Activity extends AppCompatActivity {
                 "c) interconnection of local area network",
                 "d) none of the mentioned",
                 "b) a vast collection of different network"));
-
-        questionList.add(new Question("To join the internet,the computer has to be connected to a",
-                "a) internet architecture board",
-                "b) internet society",
-                "c) internet service provider",
-                "d) none of the mentioned",
-                "c) internet service provider"));
-
-        questionList.add(new Question("Internet access by transmitting digital data over the wires of a local telephone" +
-                "network is provided by",
-                "a) leased line",
-                "b) digital subscriber line",
-                "c) digital signal line",
-                "d) none of the mentioned",
-                "b) digital subscriber line"));
-
-        questionList.add(new Question("ISP exchanges internet traffic between their networks by",
-                "a) internet exchange point",
-                "b) subscriber end point",
-                "c) ISP endpoint",
-                "d) none of the mentioned",
-                "a) internet exchange point"));
 
         questionList.add(new Question("Which of the following is a correct format of Email address?",
                 "a) name@website@info",
@@ -293,28 +317,6 @@ public class Gns114Activity extends AppCompatActivity {
                 "d) None of the above",
                 "c) IP address"));
 
-        questionList.add(new Question( "________ programs are automatically loaded and operates as a part of browser.\n",
-                "a) Plug-ins",
-                "b) Add-ons",
-                "c) Utilities",
-                "d) Widgets",
-                "a) Plug-ins"));
-
-        questionList.add(new Question( "Computer that requests the resources or data from other computer is called as" +
-                "________computer.",
-                "a) Server",
-                "b) Client",
-                "c) Filter",
-                "d) Pusher",
-                "b) Client"));
-
-        questionList.add(new Question( "Software which allows user to view the webpage is called as__________.",
-                "a) Interpreter",
-                "b) Internet Browser",
-                "c) Website",
-                "d) OperatingSystem",
-                "b) Internet Browser"));
-
         questionList.add(new Question( "___________programs automatically connect to websites and download " +
                 "documents and save them to local drive.",
                 "a) None of these",
@@ -334,26 +336,6 @@ public class Gns114Activity extends AppCompatActivity {
     }
 
     private String getQuestionPhase2(List<Question> list) {
-        questionList.add(new Question( "30. Two devices are in network if",
-                "a) a process in one device is able to exchange information with a process in another device",
-                "b) a process is running on both devices",
-                "c) PIDs of the processes running of different devices are same",
-                "d) none of the mentioned",
-                "a) a process in one device is able to exchange information with a process in another device"));
-
-        questionList.add(new Question( "What is a web browser?",
-                "a) a program that can display a webpage",
-                "b) a program used to view html documents",
-                "c) it enables user to access the resources of internet",
-                "d) all of the mentioned",
-                "d) all of the mentioned"));
-
-        questionList.add(new Question( "URL stands for",
-                "a) unique reference label",
-                "b) uniform reference label",
-                "c) uniform resource locator",
-                "d) unique resource locator",
-                "c) uniform resource locator"));
 
         questionList.add(new Question( "Internet is .............................",
                 "a) a network of networks",
@@ -375,6 +357,28 @@ public class Gns114Activity extends AppCompatActivity {
                 "c) WEBNAME",
                 "d) RESOURCENAME",
                 "a) URL"));
+
+        questionList.add(new Question( "________ programs are automatically loaded and operates as a part of browser.\n",
+                "a) Plug-ins",
+                "b) Add-ons",
+                "c) Utilities",
+                "d) Widgets",
+                "a) Plug-ins"));
+
+        questionList.add(new Question( "Computer that requests the resources or data from other computer is called as" +
+                "________computer.",
+                "a) Server",
+                "b) Client",
+                "c) Filter",
+                "d) Pusher",
+                "b) Client"));
+
+        questionList.add(new Question( "Software which allows user to view the webpage is called as__________.",
+                "a) Interpreter",
+                "b) Internet Browser",
+                "c) Website",
+                "d) OperatingSystem",
+                "b) Internet Browser"));
 
         questionList.add(new Question( "With regards to e-mail addresses",
                 "a) they must always contain an @ symbol",
@@ -514,7 +518,30 @@ public class Gns114Activity extends AppCompatActivity {
         return null;
     }
 
+    @Nullable
     private String getQuestionPhase3(List<Question> list) {
+
+        questionList.add(new Question("To join the internet,the computer has to be connected to a",
+                "a) internet architecture board",
+                "b) internet society",
+                "c) internet service provider",
+                "d) none of the mentioned",
+                "c) internet service provider"));
+
+        questionList.add(new Question("Internet access by transmitting digital data over the wires of a local telephone" +
+                "network is provided by",
+                "a) leased line",
+                "b) digital subscriber line",
+                "c) digital signal line",
+                "d) none of the mentioned",
+                "b) digital subscriber line"));
+
+        questionList.add(new Question("ISP exchanges internet traffic between their networks by",
+                "a) internet exchange point",
+                "b) subscriber end point",
+                "c) ISP endpoint",
+                "d) none of the mentioned",
+                "a) internet exchange point"));
 
         questionList.add(new Question( "Which is not the search engine:",
                 "a) Altavista.com",
