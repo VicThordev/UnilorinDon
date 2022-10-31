@@ -78,34 +78,6 @@ public class Mth111Activity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
-        rbOption1.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
-        rbOption2.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
-        rbOption3.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
-        rbOption4.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
         btnNext.setOnClickListener(view -> {
             questionAnswered++;
             pos = random.nextInt(questionList.size());
@@ -159,12 +131,6 @@ public class Mth111Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
-        });
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());

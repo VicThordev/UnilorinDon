@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -20,6 +25,9 @@ import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +38,7 @@ public class Chm112Activity extends AppCompatActivity {
     private List<Question> questionList;
     private Random random;
     private TextView questionText, questionNo, countDown;
+    private ImageView mImageView;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
@@ -44,6 +53,7 @@ public class Chm112Activity extends AppCompatActivity {
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
         btnEnd = findViewById(R.id.buttonGoto);
+        mImageView = findViewById(R.id.imageQuestion);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
         rbOption3 = findViewById(R.id.radioC);
@@ -83,6 +93,12 @@ public class Chm112Activity extends AppCompatActivity {
             pos = random.nextInt(questionList.size());
             setDataView(pos);
         });
+
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
     }
 
     private void setListeners() {
@@ -112,12 +128,6 @@ public class Chm112Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
-        });
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());
@@ -154,8 +164,20 @@ public class Chm112Activity extends AppCompatActivity {
         dialog.show();
     }
 
+    private String encodeImage(Bitmap bitmap) {
+        int previewWidth = 150;
+        int previewHeight = bitmap.getHeight() * previewWidth/bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth,
+                previewHeight, false);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+        byte [] bytes = stream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
     private void setDataView(int position) {
         questionText.setText(questionList.get(position).getQuestion());
+
 
         rbOption1.setText(questionList.get(position).getOption1());
         rbOption2.setText(questionList.get(position).getOption2());

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceFragment;
@@ -32,11 +34,10 @@ import java.util.Objects;
  * create an instance of this fragment.
  */
 public class AccountFragment extends Fragment {
-    private TextView txtName, txtUsername, txtEmail;
+    private TextView  txtUsername, txtEmail;
     private View view;
     private Bundle bundle;
     private PreferenceManager preferenceManager;
-    private SharedPreferences prefs;
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -45,36 +46,35 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        TextView txtName;
         view =  inflater.inflate(R.layout.profile_layout, container, false);
         txtName = view.findViewById(R.id.txtNameProfile);
         txtUsername = view.findViewById(R.id.txtUsernameProfile);
         txtEmail = view.findViewById(R.id.txtEmailProfile);
 
-        Context context= getActivity();
-        prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-        bundle = getArguments();
-
+        bundle = this.getArguments();
         if (bundle != null) {
-            String message = bundle.getString("Constants.KEY_USERNAME");
+            String message = bundle.getString("KEY_USERNAME");
             txtName.setText(message);
         } else {
-            Toast.makeText(context, "Not available", Toast.LENGTH_SHORT).show();
+            return null;
         }
+
+
 
         //SharedPreferences pref1 = PreferenceManager.getDefaultSharedPreferences(context);
 
         preferenceManager =  new PreferenceManager(view.getContext().getApplicationContext());
 
         //txtName.setText(preferenceManager.getString(Constants.KEY_SURNAME + "pPp" + Constants.KEY_LASTNAME) + "po");
-        txtUsername.setText(preferenceManager.getString(
-                Constants.KEY_USERNAME
-        ));
-        txtEmail.setText(preferenceManager.getString(Constants.KEY_EMAIL));
+
         return view;
     }
 
-    private void loadUserProfile() {
-        
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     public void signOut() {

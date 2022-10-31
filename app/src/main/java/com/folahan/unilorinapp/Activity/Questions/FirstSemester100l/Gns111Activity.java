@@ -83,6 +83,13 @@ public class Gns111Activity extends AppCompatActivity {
             pos = random.nextInt(questionList.size());
             setDataView(pos);
         });
+
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
+
     }
 
     protected void showButton() {
@@ -148,11 +155,6 @@ public class Gns111Activity extends AppCompatActivity {
             }
         });
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });
 
         btnEnd.setOnClickListener(view -> dialogAlert());
     }

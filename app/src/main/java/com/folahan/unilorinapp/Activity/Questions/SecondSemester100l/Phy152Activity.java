@@ -241,7 +241,7 @@ public class Phy152Activity extends AppCompatActivity {
 
         questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
                 "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
+                " respectively",
                 "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
                 "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
                 "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
@@ -249,10 +249,8 @@ public class Phy152Activity extends AppCompatActivity {
                 "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
 
         questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
+                "on a charge of 10μC, placed at that point?",
+                "A. 3.5 x 10^6N/C, 35N",
                 "B. 4.5 x 10^6N/C, 45N",
                 "C. 5.5 x 10^6N/C, 55N",
                 "D. 6.5 x 10^6N/C, 65N",

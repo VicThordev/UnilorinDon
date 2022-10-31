@@ -78,34 +78,6 @@ public class Mth112Activity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
-        rbOption1.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
-        rbOption2.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
-        rbOption3.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
-        rbOption4.setOnClickListener(view -> {
-            if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
-                    .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
-                pos2++;
-            }
-        });
-
         btnNext.setOnClickListener(view -> {
             questionAnswered++;
             pos = random.nextInt(questionList.size());
@@ -161,12 +133,6 @@ public class Mth112Activity extends AppCompatActivity {
             }
         });
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });
-
         btnEnd.setOnClickListener(view -> dialogAlert());
     }
 
@@ -205,44 +171,40 @@ public class Mth112Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
-                "A. 150.6cm",
-                "B. 138.9cm",
-                "C. 148.7cm",
-                "D. 165.3cm",
-                "B. 138.9cm"));
+        questionList.add(new Question("If y = (x-7)^6. Find the derivative of y",
+                "A. 7x(x-7)^5",
+                "B. 6(x-7)^5",
+                "C. 6x(x-7)^6",
+                "D. 7x(x-7)^6",
+                "B. 6(x-7)^5"));
 
-        questionList.add(new Question("2. At what distance would the repulsive force between two electrons have a magnitude of one newton?",
-                "A. 0.0152pm",
-                "B. 0.0142pm",
-                "C. 0.0132pm",
-                "D. 0.0122pm",
-                "A. 0.0152pm"));
+        questionList.add(new Question("Given that y = (2x^2 + sin x - 3x)^5. Find dy/dx",
+                "A. 5(2x^2 + sin x - 3x).(4x)",
+                "B. 4(2x^2 + sin x - 3x)^-4.(4x^2 + sin x + 3)",
+                "C. 5(2x^2 + sin x - 3x)^4.(4x + cos x - 3)",
+                "D. 3(2x^2 + sin x - 3x)^5.(2x + cos x - 3)",
+                "C. 5(2x^2 + sin x - 3x).(4x + cos x - 3)"));
 
-        questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
-                "A. 125 electrons ",
-                "B. 250 electrons",
-                "C. 625 electrons",
-                "D. 750 electrons",
-                "C. 625 electrons"));
+        questionList.add(new Question("What is the derivative of y = tan^3(4x - 6)",
+                "A. sec^2 (4x - 6)",
+                "B. 4sec^2 (4x - 6)",
+                "C. 4tan^2 (4x - 6)",
+                "D. 4sec^6 (4x - 6)",
+                "D. 4sec^6 (4x - 6)"));
 
-        questionList.add(new Question("4. What is the total positive charge in Coulombs, of all the protons in 1mol of Hydrogen atoms?",
-                "A. 96.35kC",
-                "B. 72.46kC",
-                "C. 83.48kC",
-                "D. 78.36kC",
-                "A. 96.35kC"));
+        questionList.add(new Question("Find the derivative of the equation y = e^(2x-3)",
+                "A. 2e^(2x-3)",
+                "B. e^(2x-3)",
+                "C. 2e^(2x+3)",
+                "D. 2e^(2x^2-3)",
+                "A. 2e^(2x-3)"));
 
-        questionList.add(new Question("5. An α-particle is a nucleus of doubly-ionised helium. It has a mass of 6.69 x 10^-27kg and a charge of -2e. " +
-                "Compute the ratio of the force of electrostatic repulsion between two α-particles to the force of " +
-                "gravitational attraction between them",
-                "A. 6.2 x 10^35",
-                "B. 4.2 x 10^35",
-                "C. 3.1 x 10^35",
-                "D. 2.1 x 10^35",
-                "C. 3.1 x 10^35"));
+        questionList.add(new Question("y = xe^(x^2)sin x find dy/dx",
+                "A. 2x^2e^(x^2)cosx",
+                "B. 2xe^(x^2)cosx",
+                "C. 2x^2e^(x^2)sin x",
+                "D. 2x^2e^(x^2)(-cosx)",
+                "A. 2x^2e^(x^2)cosx"));
 
         questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
                 "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
@@ -443,5 +405,100 @@ public class Mth112Activity extends AppCompatActivity {
                 "(C) plans",
                 "(D) plan. ",
                 "(C) plans"));
+    }
+
+    private void getQuestionPhase2(List<Question> list) {
+
+        questionList.add(new Question("If (1 - tan²67½)/(1 + tan²67½) = cos 135. Find tan 67½ in surd form.",
+                "A. √2 + 1",
+                "B. √2 - 1",
+                "C. √2 - ½",
+                "D. √2/2 + 1",
+                "A. √2 + 1"));
+
+        questionList.add(new Question("What is the relevance of sin(A+B)?",
+                "A. sin A cos B - cos A cos B",
+                "B. sin A cos B + cos A sin B",
+                "C.  cos A cos B − sin A sin B",
+                "D. sin A cos B − cos A sin B",
+                "B. sin A cos B + cos A sin B"));
+
+        questionList.add(new Question("Find the surd form of sin 75°",
+                "A. (√3 + 1)/2√2",
+                "B. (√4 + 2)/√2",
+                "C.  (1 - √3)/√2",
+                "D. (√3 - 6)/2√2",
+                "A. (√3 + 1)/2√2"));
+
+        questionList.add(new Question("Find the surd form of sin 15°",
+                "A. (√3 + 1)/2√2",
+                "B. (√4 + 2)/√2",
+                "C.  (1 - √3)/√2",
+                "D. (√3 - 1)/2√2",
+                "D. (√3 - 1)/2√2"));
+
+        questionList.add(new Question("Find the surd form of sin 105°",
+                "A. (√3 + 1)/2√2",
+                "B. (√4 + 2)/√2",
+                "C.  (1 - √3)/2√2",
+                "D. (√3 - 1)/2√2",
+                "C.  (1 - √3)/2√2"));
+
+        questionList.add(new Question("Simplify tan (A+B+C)",
+                "A. (tan 2A + tan 2B + tan 2C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
+                "B. (tan A + tan B + tan C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
+                "C. (tan A - tan B - tan C + tanAtanBtanC)/ 1 + tanAtanB + tanBtanC - tanAtanC",
+                "D. (tan² A + tan² B + tan² C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
+                "B. (tan A + tan B + tan C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC"));
+
+        questionList.add(new Question("Simplify sin 2A",
+                "A. sin²Acos²A",
+                "B. 2sin²Acos²A",
+                "C. 2sinAcosA",
+                "D. 2sec²A",
+                "C. 2sinAcosA"));
+
+        questionList.add(new Question("Simplify cos 2A",
+                "A. 1 - 2sin²A",
+                "B. 2 - 2sin²A",
+                "C. cosec²A",
+                "D. 2sec²A",
+                "A. 1 - 2sin²A"));
+
+        questionList.add(new Question("Express tan 45° in surd form",
+                "A. 2 −√3",
+                "B. 2 +4√3",
+                "C. 1 +√3",
+                "D. 2 +√3",
+                "A. 2 −√3"));
+
+        questionList.add(new Question("Evaluate sin(3π/2)",
+                "A. 1",
+                "B. -½",
+                "C. √5",
+                "D. ½",
+                "B. -½"));
+
+        questionList.add(new Question("Evaluate cos(−9π/4)",
+                "A. -√2/2",
+                "B. -½",
+                "C. √2/2",
+                "D. ½",
+                "C. √2/2"));
+
+        questionList.add(new Question("In a triangle ABC, Line AC = 7.2cm, Line AB = 8.9cm and angle BCA = 55°." +
+                "Find the distance between line BC",
+                "A. 12.1cm",
+                "B. 10.79cm",
+                "C. 11.09cm",
+                "D. 8.2cm",
+                "B. 10.79cm"));
+
+        questionList.add(new Question("Express cos(A + B)",
+                "A. 12.1cm",
+                "B. 10.79cm",
+                "C. 11.09cm",
+                "D. cosAcosB - sinAsinB",
+                "D. cosAcosB - sinAsinB"));
     }
 }

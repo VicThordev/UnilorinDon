@@ -2,6 +2,7 @@ package com.folahan.unilorinapp.Model;
 
 public class Question {
     private String Question;
+    private String image;
     private String option1;
     private String option2;
     private String option3;
@@ -13,6 +14,24 @@ public class Question {
     }
 
     public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Question(String question, String option1, String option2, String option3, String option4, String answer, String image) {
+        Question = question;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+        this.image = image;
         this.answer = answer;
     }
 

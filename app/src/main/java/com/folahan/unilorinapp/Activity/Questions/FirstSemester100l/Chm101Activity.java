@@ -77,6 +77,11 @@ public class Chm101Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         setListeners();
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
     }
 
     private void setListeners() {
@@ -106,12 +111,6 @@ public class Chm101Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
-        });
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());

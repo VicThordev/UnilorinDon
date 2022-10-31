@@ -83,12 +83,6 @@ public class Gns114Activity extends AppCompatActivity {
 
         //chooseMethod();
 
-
-        //list.get(random.nextInt(list.size()));
-        //arr = new String[]{getQuestionPhase(questionList), getQuestionPhase2(questionList), getQuestionPhase3(questionList)};
-        //Collections.shuffle(Arrays.asList(arr));
-        //list.addAll(Arrays.asList(arr));
-        list.add(list.get(random.nextInt(list.size())));
         list.add(getQuestionPhase(questionList));
         list.add(getQuestionPhase2(questionList));
         list.add(getQuestionPhase3(questionList));
@@ -96,12 +90,16 @@ public class Gns114Activity extends AppCompatActivity {
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
-    }
 
-    @Override
-    protected void onDestroy()  {
-        super.onDestroy();
-        Toast.makeText(this, "No way", Toast.LENGTH_SHORT).show();
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
+
+        btnPrev.setOnClickListener(view -> {
+            questionAnswered--;
+        });
     }
 
     private String chooseMethod() {
@@ -143,17 +141,7 @@ public class Gns114Activity extends AppCompatActivity {
             }
         });
 
-        /*btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });*/
-
-        /*btnPrev.setOnClickListener(view -> {
-            questionAnswered--;
-        });*/
-
-        btnEnd.setOnClickListener(view -> Collections.shuffle(list));
+        btnEnd.setOnClickListener(view -> getQuestionPhase2(questionList));
 
         //btnAnswer.setOnClickListener(view -> showOtherButton());
     }
@@ -207,6 +195,7 @@ public class Gns114Activity extends AppCompatActivity {
         Toast.makeText(this, "Pls finish the test", Toast.LENGTH_SHORT).show();
     }
 
+    @Nullable
     private String getQuestionPhase(List<Question> list) {
 
         questionList.add(new Question( "Two devices are in network if",
@@ -332,38 +321,89 @@ public class Gns114Activity extends AppCompatActivity {
                 "d) None of these",
                 "c) www.google.com"));
 
-        return null;
-    }
+        questionList.add(new Question( "An example of an Optical Storage device is:",
+                "a) Magnetic Tapes",
+                "b) USB Disk",
+                "c) Floppy Disk",
+                "d) DVD",
+                "d) DVD"));
 
-    private String getQuestionPhase2(List<Question> list) {
+        questionList.add(new Question( "What unit of storage is used to represent 1,073,741,824 bytes?",
+                "a) Kilobyte",
+                "b) Terabyte",
+                "c) Megabyte",
+                "d) Gigabyte",
+                "d) Gigabyte"));
 
-        questionList.add(new Question( "Internet is .............................",
-                "a) a network of networks",
-                "b) an ocean of resources waiting to be mined",
-                "c) a cooperative anarchy",
+        questionList.add(new Question( "What unit of storage is used to represent 1,024 bytes?",
+                "a) Kilobyte",
+                "b) Terabyte",
+                "c) Megabyte",
+                "d) Gigabyte",
+                "a) Kilobyte"));
+
+        questionList.add(new Question( "What unit of storage is used to represent 1,048,576 bytes",
+                "a) Kilobyte",
+                "b) Terabyte",
+                "c) Megabyte",
+                "d) Gigabyte",
+                "b) Terabyte"));
+
+        questionList.add(new Question( "Memory stores:",
+                "a) the operating system",
+                "b) application programs",
+                "c) the data being processed by the application programs",
                 "d) all of the above",
                 "d) all of the above"));
 
-        questionList.add(new Question( "Which of the following protocol is used for e-mail services?",
-                "a) SMAP",
-                "b) SMTP",
-                "c) SMIP",
-                "d) SMOP",
-                "b) SMTP"));
+        questionList.add(new Question( "Bit is short for:",
+                "a) Binary system",
+                "b) Digital byte",
+                "c) Binary unit",
+                "d) Binary digit",
+                "d) Binary digit"));
 
-        questionList.add(new Question( ".......................is a uniform naming scheme for locating resources on the web",
-                "a) URL",
-                "b) HTTP",
-                "c) WEBNAME",
-                "d) RESOURCENAME",
-                "a) URL"));
+        questionList.add(new Question( "___________is used to store frequently used data and instruction for faster " +
+                "access and processing.",
+                "a) Cache memory",
+                "b) Virtual memory",
+                "c) Flash memory",
+                "d) All of the above",
+                "a) Cache memory"));
 
-        questionList.add(new Question( "________ programs are automatically loaded and operates as a part of browser.\n",
-                "a) Plug-ins",
-                "b) Add-ons",
-                "c) Utilities",
-                "d) Widgets",
-                "a) Plug-ins"));
+        questionList.add(new Question( "The number of bits that can be uniquely addressed by the computer\n",
+                "a) byte",
+                "b) cycle",
+                "c) register",
+                "d) word",
+                "a) byte"));
+
+        questionList.add(new Question( "Input may be in the following",
+                "a) OCR, MICR and CPU",
+                "b) OMR, VDU and OCR",
+                "c) OCR, MICR and OMR",
+                "d) VDU, SVGA and XVGA",
+                "c) OCR, MICR and OMR"));
+
+        questionList.add(new Question( "Which of the following statements is true?",
+                "a) The digitizing tablet is an input device",
+                "b) The light pen is an input device",
+                "c) The mouse is an output device",
+                "d) The monitor is not an output device",
+                "b) The light pen is an input device"));
+
+        questionList.add(new Question( "The nature of data that determines the hybrid type of computer is/are",
+                "a) Analogue",
+                "b) Digital",
+                "c) Synchronous",
+                "d) Analogue and digital",
+                "d) Analogue and digital"));
+
+        return null;
+    }
+
+    @Nullable
+    private String getQuestionPhase2(List<Question> list) {
 
         questionList.add(new Question( "Computer that requests the resources or data from other computer is called as" +
                 "________computer.",
@@ -515,11 +555,103 @@ public class Gns114Activity extends AppCompatActivity {
                 "d) Google",
                 "d) Google"));
 
+        questionList.add(new Question( "Which of the following lists the different type of networks in ascending " +
+                "geographical area?",
+                "a) LAN, WAN, MAN",
+                "b) LAN, MAN, WAN",
+                "c) MAN, LAN, WAN",
+                "d) WAN, LAN, MAN",
+                "b) LAN, MAN, WAN"));
+
+        questionList.add(new Question( "All of the following are examples of computer input units EXCEPT:",
+                "a) Scanner",
+                "b) Speaker",
+                "c) Bar code reader",
+                "d) Keyboard",
+                "b) Speaker"));
+
+        questionList.add(new Question( "Which of the following units is the biggest capacity:",
+                "a) Byte",
+                "b) Kilobyte",
+                "c) Gigabyte",
+                "d) Megabyte",
+                "c) Gigabyte"));
+
+        questionList.add(new Question( "Which of the following devices can be used to directly input printed text",
+                "a) OCR",
+                "b) OMR\n",
+                "c) MICR\n",
+                "d) None of the above",
+                "a) OCR"));
+
+        questionList.add(new Question( "Which of the following does not represent on I/O device",
+                "a) speaker",
+                "b) joystick",
+                "c) plotter",
+                "d) ALU",
+                "d) ALU"));
+
+        questionList.add(new Question( "One thousand and twenty four bytes represent a",
+                "a) Megabyte",
+                "b) Gigabyte",
+                "c) Kilobyte",
+                "d) Terabyte",
+                "c) Kilobyte"));
+
+        questionList.add(new Question( "Third generation computers",
+                "a) Were the first to use built-in error detecting device\n",
+                "b) Used integrated circuit instead of vacuum tubes",
+                "c) Were the first to use neural network",
+                "d) used micro processor",
+                "b) Used integrated circuit instead of vacuum tubes"));
+
+        questionList.add(new Question( "Computer follows a simple principle called GIGO which means:",
+                "a) garbage input good output",
+                "b) garbage in garbage out",
+                "c) great instructions great output",
+                "d) good input good output",
+                "b) garbage in garbage out"));
+
+        questionList.add(new Question( "Multiple choice examination answer sheets can be evaluated automatically by",
+                "a) Optical Mark Reader",
+                "b) Optical Character Reader",
+                "c) Magnetic tape reader",
+                "d) Magnetic ink character reader.",
+                "a) Optical Mark Reader"));
+
         return null;
     }
 
     @Nullable
     private String getQuestionPhase3(List<Question> list) {
+
+        questionList.add(new Question( "Internet is .............................",
+                "a) a network of networks",
+                "b) an ocean of resources waiting to be mined",
+                "c) a cooperative anarchy",
+                "d) all of the above",
+                "d) all of the above"));
+
+        questionList.add(new Question( "________ programs are automatically loaded and operates as a part of browser.\n",
+                "a) Plug-ins",
+                "b) Add-ons",
+                "c) Utilities",
+                "d) Widgets",
+                "a) Plug-ins"));
+
+        questionList.add(new Question( "Which of the following protocol is used for e-mail services?",
+                "a) SMAP",
+                "b) SMTP",
+                "c) SMIP",
+                "d) SMOP",
+                "b) SMTP"));
+
+        questionList.add(new Question( ".......................is a uniform naming scheme for locating resources on the web",
+                "a) URL",
+                "b) HTTP",
+                "c) WEBNAME",
+                "d) RESOURCENAME",
+                "a) URL"));
 
         questionList.add(new Question("To join the internet,the computer has to be connected to a",
                 "a) internet architecture board",
@@ -584,6 +716,130 @@ public class Gns114Activity extends AppCompatActivity {
                 "c) Reduction of paperwork",
                 "d) All of these",
                 "d) All of these"));
+
+        questionList.add(new Question( "An operating system",
+                "a) is not required on large computers",
+                "b) is always supplied with the computer",
+                "c) is always supplied with the BASIC",
+                "d) is a system software",
+                "d) is a system software"));
+
+        questionList.add(new Question( "Which of the following would cause quickest access",
+                "a) direct access from a cache",
+                "b) direct access from a hard disk",
+                "c) direct access from a floppy disk",
+                "d) direct access from a memory",
+                "a) direct access from a cache"));
+
+        questionList.add(new Question( "The process of retaining data for future use is called",
+                "a) reading",
+                "b) writing",
+                "c) storing",
+                "d) coding",
+                "c) storing"));
+
+        questionList.add(new Question( "25. _________is a interconnection of computers that facilitates the sharing of "+
+                "information "+
+                "between computing devices",
+                "a) network",
+                "b) peripheral",
+                "c) expansion board",
+                "d) digital device",
+                "a) network"));
+
+        questionList.add(new Question( "Which of the following statements is true?",
+                "a) Mini computer works faster than Micro computer",
+                "b) Micro computer works faster than Mini computer",
+                "c) Speed of both the computers is the same",
+                "d) The speeds of both these computers cannot be compared with the speed " +
+                "of advanced",
+                "b) Micro computer works faster than Mini computer"));
+
+        questionList.add(new Question( "Where are data and programme stored when the processor uses them?",
+                "a) Main memory",
+                "b) Secondary memory",
+                "c) Disk memory",
+                "d) Programme memory",
+                "a) Main memory"));
+
+        questionList.add(new Question( "_______ represents raw facts, whereas________ is data made meaningful.",
+                "a) Information,reporting",
+                "b) Data,information",
+                "c) Information,bits",
+                "d) Records,bytes",
+                "b) Data,information"));
+
+        questionList.add(new Question( "Which device is required for the Internet connection?",
+                "a) Joystick",
+                "b) VDU",
+                "c) CDDrive",
+                "d) Distributor",
+                "d) Distributor"));
+
+        questionList.add(new Question( "What is a light pen?",
+                "a) Mechanical Input device",
+                "b) Optical input device",
+                "c) Electronic input device",
+                "d) Optical output device",
+                "b) Optical input device"));
+
+        questionList.add(new Question( "When you insert an Excel file into a Word document,the data are",
+                "a) Hyper linked",
+                "b) Placed in a word table",
+                "c) Linked",
+                "d) Embedded",
+                "b) Placed in a word table"));
+
+        questionList.add(new Question( "Each excel file is called a workbook because",
+                "a) It can contain text and data",
+                "b) It can be modified",
+                "c) It can contain many sheets including worksheets and chart sheets",
+                "d) You have to work hard to create it",
+                "c) It can contain many sheets including worksheets and chart sheets"));
+
+        questionList.add(new Question( "Which types of charts can excel produce?",
+                "a) Line graphs and pie charts only",
+                "b) Only line graphs",
+                "c) Bar charts, line graphs and pie charts",
+                "d) Bar charts and line graphs only",
+                "c) Bar charts, line graphs and pie charts"));
+
+        questionList.add(new Question( "How are data organized in a spreadsheet?",
+                "a) Lines and spaces",
+                "b) Layers and planes",
+                "c) Rows and columns",
+                "d) Height and width",
+                "c) Rows and columns"));
+
+        questionList.add(new Question( "You can print only an embedded chart by",
+                "a) Moving the chart to a chart sheet before you print",
+                "b) Formatting the chart before you print",
+                "c) Selecting the chart before you print",
+                "d) a and c",
+                "d) a and c"));
+
+        questionList.add(new Question( "How should you print a selected area of a worksheet, if you’ll want to print a "+
+                "different area next time?",
+                "a) On the file menu, point to print area, and then click set print area)",
+                "b) On the file menu, click print, and then click selection under print what",
+                "c) On the view menu, click custom views, then click add",
+                "d) All of above",
+                "b) On the file menu, click print, and then click selection under print what"));
+
+        questionList.add(new Question( "Which of the following methods cannot be used to enter data in a cell?",
+                "a) Pressing an arrow key",
+                "b) Pressing the tab key",
+                "c) Pressing the Esc key",
+                "d) Clicking the enter button to the formula bar",
+                "c) Pressing the Esc key"));
+
+        questionList.add(new Question( "Which of the following methods cannot be used to edit the content of cell?",
+                "a) Pressing the Alt key",
+                "b) Clicking the formula bar",
+                "c) Pressing F2",
+                "d) Double clicking the cell",
+                "a) Pressing the Alt key"));
+
         return null;
     }
 

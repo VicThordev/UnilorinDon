@@ -16,7 +16,7 @@ import com.folahan.unilorinapp.PostQuestionDatabase.QuestionDoa;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {CommentClass.class}, version =2, exportSchema = false)
+@Database(entities = {CommentClass.class}, version = 2, exportSchema = false)
 public abstract class CommentDatabase extends RoomDatabase {
 
     private static volatile CommentDatabase INSTANCE;

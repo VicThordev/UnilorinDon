@@ -133,12 +133,6 @@ public class Chm115Activity extends AppCompatActivity {
             }
         });
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });
-
         btnEnd.setOnClickListener(view -> dialogAlert());
     }
 

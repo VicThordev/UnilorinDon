@@ -99,12 +99,20 @@
                 android:padding="5dp"
                 android:text="@string/which"/>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageQuestion"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/questionText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/questionText"
+                app:layout_constraintTop_toBottomOf="@id/imageQuestion"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:id="@+id/rbGroup" >

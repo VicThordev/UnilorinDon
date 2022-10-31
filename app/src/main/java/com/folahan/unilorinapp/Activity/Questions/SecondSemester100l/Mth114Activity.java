@@ -77,6 +77,12 @@ public class Mth114Activity extends AppCompatActivity {
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
+
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
     }
 
     private void setListeners() {
@@ -106,18 +112,6 @@ public class Mth114Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
-        });
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());

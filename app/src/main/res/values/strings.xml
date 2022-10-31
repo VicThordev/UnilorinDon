@@ -76,4 +76,7 @@
     <string name="message">Message</string>
     <string name="submit">Submit</string>
     <string name="back_home">Back Home</string>
+    <string name="gns_114">GNS 114</string>
+    <string name="time">Time</string>
+    <string name="cbt">CBT</string>
 </resources>

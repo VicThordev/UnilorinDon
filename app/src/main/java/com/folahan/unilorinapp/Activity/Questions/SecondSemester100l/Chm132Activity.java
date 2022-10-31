@@ -83,6 +83,13 @@ public class Chm132Activity extends AppCompatActivity {
         });
 
         setListeners();
+
+        btnNext.setOnClickListener(view -> {
+            questionAnswered++;
+            pos = random.nextInt(questionList.size());
+            setDataView(pos);
+        });
+
     }
 
     private void setListeners() {
@@ -112,12 +119,6 @@ public class Chm132Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
-        });
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());

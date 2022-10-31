@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Preference">
+
+        <SwitchPreference
+            android:icon="@drawable/ic_vibration"
+            android:key="vibrate"
+            android:title="Enable vibration"
+            android:summary="Allow vibration for notifications"/>
+
+        <SwitchPreference
+            android:key="dark_mode"
+            android:icon="@drawable/ic_wb_sunny"
+            android:title="Dark Mode"
+            android:summary="Enable dark mode"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Communicate">
+        <Preference
+            android:key="share"
+            android:title="@string/share_app"
+            android:summary="Share the app among your friends"
+            android:icon="@drawable/ic_share"/>
+
+        <Preference
+            android:key="rate_us"
+            android:title="Rate Us"
+            android:summary="Give us a nice rating on Play Store"
+            android:icon="@drawable/ic_star_rate"/>
+
+        <Preference
+            android:title="Log out"
+            android:icon="@drawable/ic_login"
+            android:key="log_out"/>
+    </PreferenceCategory>
+</PreferenceScreen>
