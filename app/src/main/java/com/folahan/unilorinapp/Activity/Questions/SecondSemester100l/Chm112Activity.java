@@ -37,7 +37,7 @@ public class Chm112Activity extends AppCompatActivity {
 
     private List<Question> questionList;
     private Random random;
-    private TextView questionText, questionNo, countDown;
+    private TextView questionText, questionNo, countDown, answerText;
     private ImageView mImageView;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
@@ -54,6 +54,7 @@ public class Chm112Activity extends AppCompatActivity {
         questionText = findViewById(R.id.questionText);
         btnEnd = findViewById(R.id.buttonGoto);
         mImageView = findViewById(R.id.imageQuestion);
+        answerText = findViewById(R.id.txtAnswer);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
         rbOption3 = findViewById(R.id.radioC);
@@ -159,6 +160,7 @@ public class Chm112Activity extends AppCompatActivity {
                 findViewById(R.id.design_bottom_sheet));
         TextView scoreShow = bottomSheet.findViewById(R.id.score);
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
+        Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
         scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
@@ -166,6 +168,19 @@ public class Chm112Activity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             dialog.dismiss();
             finish();
+        });
+
+        showAnswer.setOnClickListener(view -> {
+            timer.cancel();
+            answerText.setVisibility(View.VISIBLE);
+            rbOption1.setVisibility(View.GONE);
+            rbOption2.setVisibility(View.GONE);
+            rbOption3.setVisibility(View.GONE);
+            rbOption4.setVisibility(View.GONE);
+            answerText.setText(R.string.log_out);
+            answerText.setText(questionList.get(pos).getAnswer());
+            rbOption1.setVisibility(View.GONE);
+            dialog.cancel();
         });
         dialog.setCancelable(false);
         dialog.setContentView(bottomSheet);

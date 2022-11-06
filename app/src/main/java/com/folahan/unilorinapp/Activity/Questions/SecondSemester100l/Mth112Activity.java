@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.Model.Question;
+import com.folahan.unilorinapp.Model.QuestionList;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -29,7 +30,7 @@ public class Mth112Activity extends AppCompatActivity {
 
     private List<Question> questionList;
     private Random random;
-    private TextView questionText, questionNo, countDown;
+    private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
@@ -43,6 +44,7 @@ public class Mth112Activity extends AppCompatActivity {
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
+        answerText = findViewById(R.id.txtAnswer);
         btnEnd = findViewById(R.id.buttonGoto);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
@@ -102,9 +104,10 @@ public class Mth112Activity extends AppCompatActivity {
     protected void showButton() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
-                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+                findViewById(R.id.design_bottom_sheet));
         TextView scoreShow = bottomSheet.findViewById(R.id.score);
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
+        Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
         scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
@@ -112,6 +115,19 @@ public class Mth112Activity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             dialog.dismiss();
             finish();
+        });
+
+        showAnswer.setOnClickListener(view -> {
+            timer.cancel();
+            answerText.setVisibility(View.VISIBLE);
+            rbOption1.setVisibility(View.GONE);
+            rbOption2.setVisibility(View.GONE);
+            rbOption3.setVisibility(View.GONE);
+            rbOption4.setVisibility(View.GONE);
+            answerText.setText(R.string.log_out);
+            answerText.setText(questionList.get(pos).getAnswer());
+            rbOption1.setVisibility(View.GONE);
+            dialog.cancel();
         });
         dialog.setCancelable(false);
         dialog.setContentView(bottomSheet);
@@ -213,212 +229,154 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. 2e^(2x^2-3)",
                 "A. 2e^(2x-3)"));
 
-        questionList.add(new Question("y = xe^(x^2)sin x find dy/dx",
+        questionList.add(new Question("y = xe^(x²)sin x find dy/dx",
                 "A. 2x^2e^(x^2)cosx",
                 "B. 2xe^(x^2)cosx",
                 "C. 2x^2e^(x^2)sin x",
                 "D. 2x^2e^(x^2)(-cosx)",
                 "A. 2x^2e^(x^2)cosx"));
 
-        questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
-                "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
-                "(me = 9.1 x 10^-31kg, mp = 1.7 x 10^-27kg, e = 1.6 x 10^-19C)",
-                "A. 2.2 x 10^39",
-                "B. 1.1 x 10^39",
-                "C. 2.1 x 10^39" ,
-                "D. 1.2 x 10^39", "A. 2.2 x 10^39"));
+        questionList.add(new Question("Find the equation of the tangent to the curve y = x² - x- 2" +
+                " at point (2,-2)",
+                "A. y = 2x + 6",
+                "B. y = 2x - 2",
+                "C. y = 3x - 8" ,
+                "D. y = 2x + 4", "C. y = 3x - 8"));
 
-        questionList.add(new Question("7. What is the magnitude of electrostatic force of attraction between an α-particle and an electron 10^-" +
-                "13m apart?",
-                "A. 2.3 x 10^-2N", "B. 2.6 x 10^-2N",
-                "C. 4.3 x 10^-2N", "D. 4.6 x 10^-2N",
-                "D. 4.6 x 10^-2N"));
+        questionList.add(new Question("Determine the equation of the normal to the curve y=x³/5 at point x = 1",
+                "A. (-25x + 28)/15", "B. (-2x - 14)/15",
+                "C. (5x + 28)/5", "D. (-25x + 14)/14",
+                "A. (-25x + 28)/15"));
 
-        questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
-                "A. ½", "B. 2",
-                "C. -log2",
-                "D. -2",
-                "A. ½"));
+        questionList.add(new Question("Determine the stationery point of the curve y = x³/3 + x² - 3x + 4",
+                "A. x = -1 or -3", "B. x = 3 or -4",
+                "C. x = 1 or -3",
+                "D. x = -3 or 4",
+                "C. x = 1 or -3"));
 
-        questionList.add(new Question("9. Two equal charges of equal magnitude exert an attractive force of 4.0 x 10^-4N on each other. If the " +
-                "magnitude of each charge is 2.0μC, how far apart are the charges?",
-                "A. 9.5m",
-                "B. 9.7m",
-                "C. 10.5m",
-                "D. 10.7m",
-                "A. 9.5m"));
+        questionList.add(new Question("A tank with a square base of the side x has a total surface area of 600m². " +
+                "Determine the maximum volume of the tank.",
+                "A. 950m³",
+                "B. 970m³",
+                "C. 1050m³",
+                "D. 1000m³",
+                "D. 1000m³"));
 
-        questionList.add(new Question("10. What is the magnitude of a point charge whose electric field 50cm away has magnitude 2.0N/C?",
-                "A. 4.56 x 10^-11C",
-                "B. 4.66 x 10^-11C",
-                "C. 5.56 x 10^-11C ",
-                "D. 5.66 x 10^-11C", "C. 5.56 x 10^-11C "));
+        questionList.add(new Question("What is the integral of sec²x?",
+                "A. tan x + c",
+                "B. cot x + c",
+                "C. sec x cot x + c",
+                "D. -sinxcosx + c", "A. tan x + c"));
 
-        questionList.add(new Question("11. What is the magnitude of an electric field in which the force on an electron is equal in magnitude to " +
-                "the weight of an electron?",
-                "A. 4.58 x 10^-11N/C",
-                "B. 5.58 x 10^-11N/C" ,
-                "C. 6.58 x 10^-11N/C",
-                "D. 7.58 x 10-^11N/C",
-                "B. 5.58 x 10^-11N/C"));
+        questionList.add(new Question("Integrate ∫cos3xdx",
+                "A. 1/3(sin3xcosx) + c",
+                "B. 1/3(-sin3x) + c" ,
+                "C. 1/3(sin3x) + c",
+                "D. 1/3(cos3x) + c",
+                "C. 1/3(sin3x) + c"));
 
-        questionList.add(new Question( "12. A small object carrying a charge of 5 x 10^-9" +
-                "C experiences a downward force of 20 x 10^-9N when" +
-                "placed at a certain point in an electric field. What's the electric field at the point?",
-                "A. 100 N/C",
-                "B. 40 N/C",
-                "C. 10 N/C",
-                "D. 4 N/C",
-                "D. 4 N/C"));
+        questionList.add(new Question( "Solve ∫x√(x+3)dx",
+                "A. 3/5(x-2)(x-3)^3/2 + c",
+                "B. 5/2(x+2)(x+3)^3/2 + c",
+                "C. 2/5(x+2)(x-3)^3/2 + c",
+                "D. 2/5(x-2)(x+3)^3/2 + c",
+                "D. 2/5(x-2)(x+3)^3/2 + c"));
 
-        questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
-                "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
-                "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
-                "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
-                "D. 8.4 x 10^6N/C, 7.5 x 10^5N/C",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
+        questionList.add(new Question( "Solve ∫(x²-2)/(x-1)dx",
+                "A. x²/2 + x - ln(x-1) + c",
+                "B. x/2 + x² - ln(x-1) + c",
+                "C. x³/2 + x² - ln(x-1) + c",
+                "D. x³/2 + x - ln(x+1) + c",
+                "A. x²/2 + x - ln(x-1) + c"));
 
-        questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
-                "B. 4.5 x 10^6N/C, 45N",
-                "C. 5.5 x 10^6N/C, 55N",
-                "D. 6.5 x 10^6N/C, 65N",
-                "B. 4.5 x 10^6N/C, 45N"));
+        questionList.add(new Question( "Obtain the maclurin series of e^x",
+                "A. 2.0001",
+                "B. 2.7182",
+                "C. 1.8789",
+                "D. 1.0911",
+                "B. 2.7182"));
 
-        questionList.add(new Question( "15. The magnitude of electric field is 40kN/C. If an electron is placed in the same field, what force will be \n" +
-                "exerted on it?",
-                "A. 3.4 x 10^-15N",
-                "B. 4.4 x 10^-15N",
-                "C. 5.4 x 10^-15N",
-                "D. 6.4 x 10^-15N",
-                "D. 6.4 x 10^-15N"));
+        questionList.add(new Question( "Obtain the maclurin of log(1+x)",
+                "A. x - x²/2 + x^4/4 - x^6/6 + x^8/8",
+                "B. x - x²/2 + x³/3 - x^4/4 + x^5/5",
+                "C. x - x/2 + x³/3 + x^4/4 + x^5/5",
+                "D. x + x²/2 - x³/3 + x^4/4 + x^5/5",
+                "B. x - x²/2 + x³/3 - x^4/4 + x^5/5"));
+    }
 
-        questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
-                "(B) clauses. ",
-                "(C) phrases. ",
-                "(D) morphemes",
-                "(C) phrases. "));
+    private void getQuestionPhase1(List<Question> list) {
 
-        questionList.add(new Question( "17. An important feature of language4 is its \n" +
-                "___________ ",
-                "(A) structure",
-                "(B) texture.",
-                "(C) strength.",
-                "(D) stature.",
-                "(A) structure"));
+        questionList.add(new Question("Find the limit of x where x = cos (3x - π/2)",
+                "A. 1",
+                "B. -1",
+                "C. -½",
+                "D. √2/2",
+                "B. -1"));
 
-        questionList.add(new Question( "18. The English as a second \n" +
-                "language countries include all except ________.",
-                "(A) Ghana.",
-                "(B) India.",
-                "(C) Nigeria. ",
-                "(D) USA",
-                "(D) USA"));
+        questionList.add(new Question("Obtain the limit of x in the equation x =  (e^x - 1)/x; x-> 0",
+                "A. 1",
+                "B. -1",
+                "C. -½",
+                "D. 2",
+                "A. 1"));
 
-        questionList.add(new Question( "19. " +
-                "________ to come this weekend to listen to the broadcast of the football match?",
-                "(A) Do you like,",
-                "(B) " +
-                        "Would you like. ",
-                "(C) Are you like.",
-                "(D) Will you like.",
-                "(B) " +
-                        "Would you like. "));
+        questionList.add(new Question("Find the derivative of y = 5x/(2x²+4)",
+                "A. 5(2-x²)/2(x²+2)²",
+                "B. 2(2+x²)/2(x+2)²",
+                "C. 5(2-x²)/2(x+2)",
+                "D. 5(2+x)/2(x²+2)²",
+                "A. 5(2-x²)/2(x²+2)²"));
 
-        questionList.add(new Question( " 20. Factors affecting study skills include all \n" +
-                "except_________.",
-                "(A) hybridizing.",
-                "(B) the study time.",
-                "(C) the study venue",
-                "(D) reading aloud to " +
-                        "oneself.",
-                "(A) hybridizing."));
+        questionList.add(new Question("Find the derivative of y = (3x²+2)^9",
+                "A. 54x(3x²+2)^9.(9x²)",
+                "B. 9x(3x²+2)^8.(3x²)",
+                "C. 54x(3x²+2)^8.(9x²)",
+                "D. 54x(3x²+2)^8",
+                "D. 54x(3x²+2)^8"));
 
-        questionList.add(new Question( "21. Computers are now cheap_______ for nearly everyone to afford it.",
-                "(A) enough.",
-                "(B) " +
-                        "so. ",
-                "(C) too.",
-                "(D) quite. ",
-                "(A) enough."));
+        questionList.add(new Question("Find the derivative of y = √(1-2x³)",
+                "A. -3x/√(1-2x²)",
+                "B. -3x/√(1+2x³)",
+                "C. -3x²/√(1-2x³)",
+                "D. -x²/√(1+2x²)",
+                "C. -3x²/√(1-2x³)"));
 
-        questionList.add(new Question( "22. You’re looking __________ pretty today, Temy.",
-                "(A) very.",
-                "(B) " +
-                        "attractively. ",
-                "(C) beautifully.",
-                "(D) too. ",
-                "(A) very."));
+        questionList.add(new Question("If the area of a circle is increasing at the rate of 4cm²/s. " +
+                "Find the rate of the change of the circumference when the radius is 6cm",
+                "A. 4/6 cm/s",
+                "B. 6/4 cm/s",
+                "C. 6 cm/s",
+                "D. 4 cm/s",
+                "A. 4/6 cm/s"));
 
-        questionList.add(new Question( "23. I promise to do my _________best.",
-                "(A) possible.",
-                "(B) " +
-                        "very.",
-                "(C) feasible.",
-                "(D) variable. ",
-                "(B) " +
-                        "very."));
+        questionList.add(new Question("The distance x covered by a car with time t is given by x =" +
+                " 3t³-2t²+4t-1. Find the velocity of the car at time t = 1 & acceleration respectively",
+                "A. 6m/s, 9m²/s",
+                "B. 14m/s, 9m²/s",
+                "C. 9m/s, 14m²/s",
+                "D. 9m/s, 6m²/s",
+                "A. 4/6 cm/s"));
 
-        questionList.add(new Question( "24. Water ________hydrogen and oxygen.",
-                "(A) Varies between.",
-                "(B) migrates.",
-                "(C) consists of.",
-                "(D) " +
-                        "corresponds to",
-                "(C) consists of."));
+        questionList.add(new Question("Find the derivative of y = sin(3x²+5)",
+                "A. 9xcos(3x+5)",
+                "B. 3xsin(3x²+5)",
+                "C. 3xcos(3x²+5)",
+                "D. 6xcos(3x²+5)",
+                "D. 6xcos(3x²+5)"));
 
-        questionList.add(new Question( "25. Agnes left the school very late, _____________________ ",
-                "(A) didn’t she?",
-                "(B) isn’t it?",
-                "(C) " +
-                        "hasn’t she? ",
-                "(D) hadn’t she? ",
-                "(A) didn’t she?"));
+        questionList.add(new Question("Find dy/dx of y = x^x",
+                "A. x^x(1+Log x)",
+                "B. x(1+Log x^x)",
+                "C. x(1+Log e)",
+                "D. x^x(1+Log x^x)",
+                "A. x^x(1+Log x)"));
 
-        questionList.add(new Question( "26. “Soyinka is good at play writing and Achebe is good at prose writing” Identify the sentence type.",
-                "(A) Complex.",
-                "(B) simple.",
-                "(C) compound.",
-                "(D) compound complex",
-                "(C) compound."));
-
-        questionList.add(new Question( "27. “ Mathematic _________compulsory for engineering students”.",
-                "(A) is",
-                "(B) as",
-                "(C) are",
-                "(D) " +
-                        "were",
-                "(A) is"));
-
-        questionList.add(new Question( "28. The boy and the girl _______gone home.",
-                "(A) has.",
-                "(B) have.",
-                "(C) had.",
-                "(D) is. ",
-                "(B) have."));
-
-        questionList.add(new Question( "29. Which of the following is not a quality of good English?",
-                "(A) coherence",
-                "(B) emphasis or " +
-                        "focus. ",
-                "(C) unity.",
-                "(D) none of the above. ",
-                "(D) none of the above. "));
-
-        questionList.add(new Question( "30. Inspite of the seemingly scarcity of marriageable men today many a girl __________ to get \n" +
-                "married at the age of twenty-one.",
-                "(A) Intend.",
-                "(B) intended",
-                "(C) plans",
-                "(D) plan. ",
-                "(C) plans"));
+        questionList.add(new Question("Obtain the taylor series of log(x+h)",
+                "A. log x + h/x - h²/2x² + h³/2x³ - h^4/4x^4",
+                "B. log x + h/x - h²/2x² + h³/2x³ - h^4/4x²",
+                "C. log x - h/x + h²/2x² + h³/2x³ - h^4/4x²",
+                "D. log x + h/x² + h²/2x² + h³/2x³ - h^4/4x²",
+                "A. log x + h/x - h²/2x² + h³/2x³ - h^4/4x^4"));
     }
 
     private void getQuestionPhase2(List<Question> list) {

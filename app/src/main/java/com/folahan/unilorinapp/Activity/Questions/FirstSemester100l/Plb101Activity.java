@@ -28,7 +28,7 @@ import java.util.Random;
 public class Plb101Activity extends AppCompatActivity {
     private List<Question> questionList;
     private Random random;
-    private TextView questionText, questionNo, countDown;
+    private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
@@ -42,6 +42,7 @@ public class Plb101Activity extends AppCompatActivity {
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
+        answerText = findViewById(R.id.txtAnswer);
         btnEnd = findViewById(R.id.buttonGoto);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
@@ -87,9 +88,10 @@ public class Plb101Activity extends AppCompatActivity {
     protected void showButton() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
-                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+                findViewById(R.id.design_bottom_sheet));
         TextView scoreShow = bottomSheet.findViewById(R.id.score);
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
+        Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
         scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
@@ -97,6 +99,19 @@ public class Plb101Activity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             dialog.dismiss();
             finish();
+        });
+
+        showAnswer.setOnClickListener(view -> {
+            timer.cancel();
+            answerText.setVisibility(View.VISIBLE);
+            rbOption1.setVisibility(View.GONE);
+            rbOption2.setVisibility(View.GONE);
+            rbOption3.setVisibility(View.GONE);
+            rbOption4.setVisibility(View.GONE);
+            answerText.setText(R.string.log_out);
+            answerText.setText(questionList.get(pos).getAnswer());
+            rbOption1.setVisibility(View.GONE);
+            dialog.cancel();
         });
         dialog.setCancelable(false);
         dialog.setContentView(bottomSheet);
