@@ -75,19 +75,26 @@ public class Chm132Activity extends AppCompatActivity {
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
-
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
-        });
-
         setListeners();
 
         btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+            if (questionAnswered == 50) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
+            }
+        });
+
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
+            }
         });
 
     }

@@ -77,9 +77,23 @@ public class Phy125Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+            if (questionAnswered == 11) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
+            }
+        });
+
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
+            }
         });
 
         setListeners();
@@ -229,5 +243,9 @@ public class Phy125Activity extends AppCompatActivity {
                 "(c) It takes violence for conflict to occur",
                 "(d) Conflict is competitive while violence is destructive",
                 "(d) Conflict is competitive while violence is destructive"));
+    }
+
+    private void getQuestionPhase2(List<Question> list) {
+
     }
 }

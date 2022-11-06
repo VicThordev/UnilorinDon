@@ -89,15 +89,23 @@ public class Chm112Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+            if (questionAnswered == 40) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
+            }
         });
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
+            }
         });
     }
 
@@ -148,7 +156,7 @@ public class Chm112Activity extends AppCompatActivity {
     protected void showButton() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
-                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+                findViewById(R.id.design_bottom_sheet));
         TextView scoreShow = bottomSheet.findViewById(R.id.score);
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
 
