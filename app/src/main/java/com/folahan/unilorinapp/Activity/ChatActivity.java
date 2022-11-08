@@ -4,9 +4,12 @@ package com.folahan.unilorinapp.Activity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,16 +30,24 @@ import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,6 +76,16 @@ public class ChatActivity extends BaseActivity {
     private Boolean isReceiverAvailable = false;
     private RoundedImageView imageView;
     private Bitmap bitmap;
+
+    private static final int CAMERA_REQUEST_CODE = 100;
+    private static final int STORAGE_REQUEST_CODE = 200;
+
+    private static final int IMAGE_PICK_CAMERA_CODE = 300;
+    private static final int IMAGE_PICK_GALLERY_CODE = 400;
+
+    String [] cameraPermissions;
+    String [] storagePermissions;
+    Uri imageUri = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +98,9 @@ public class ChatActivity extends BaseActivity {
         mRecyclerView = findViewById(R.id.chatRecyclerView);
         mImageView = findViewById(R.id.imageBack);
         imageView = findViewById(R.id.insertImage);
+
+        cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         loadReceiveDetails();
         setListeners();
@@ -118,6 +142,70 @@ public class ChatActivity extends BaseActivity {
             addConversion(conversion);
         }
         mEdtChat.setText(null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
+                assert data != null;
+                imageUri = data.getData();
+
+                try {
+                    sendImageMessage(imageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if (requestCode == IMAGE_PICK_CAMERA_CODE) {
+                try {
+                    sendImageMessage(imageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void sendImageMessage(Uri imageUri) throws IOException {
+        notify();
+
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Sending file....");
+        dialog.show();
+
+        String timeStamp = ""+System.currentTimeMillis();
+
+        String fileName$$Path = "ChatImages/"+"post_"+timeStamp;
+
+        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),
+                imageUri);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte [] data = baos.toByteArray();
+        StorageReference ref = FirebaseStorage.getInstance().getReference()
+                .child(fileName$$Path);
+        ref.putBytes(data)
+                .addOnSuccessListener(taskSnapshot -> {
+                    dialog.dismiss();
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isSuccessful());
+                    String downloadUri = uriTask.getResult().toString();
+
+                    if (uriTask.isSuccessful()) {
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+                        hashMap.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+                        hashMap.put(Constants.KEY_MESSAGE, downloadUri);
+                        hashMap.put(Constants.KEY_TIMESTAMP, new Date());
+                        hashMap.put(Constants.KEY_TYPE, "image");
+                        database.collection(Constants.KEY_COLLECTION_CHAT).add(hashMap);
+                    }
+                });
     }
 
     private String encodeImage(Bitmap bitmap) {

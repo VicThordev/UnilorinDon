@@ -377,6 +377,48 @@ public class Mth112Activity extends AppCompatActivity {
                 "C. log x - h/x + h²/2x² + h³/2x³ - h^4/4x²",
                 "D. log x + h/x² + h²/2x² + h³/2x³ - h^4/4x²",
                 "A. log x + h/x - h²/2x² + h³/2x³ - h^4/4x^4"));
+
+        questionList.add(new Question("Determine I = ∫4x²dx; Given that I = 25 when x = 3",
+                "A. -11",
+                "B. 11",
+                "C. -1",
+                "D. 1",
+                "B. 11"));
+
+        questionList.add(new Question("Determine I = ∫4x²dx; Given that I = 25 when x = 3",
+                "A. -11",
+                "B. 11",
+                "C. -1",
+                "D. 1",
+                "B. 11"));
+
+        questionList.add(new Question("What is derivative of tan x?",
+                "A. sec² x",
+                "B. cot x sec x",
+                "C. cosec² x",
+                "D. -cos x",
+                "A. sec² x"));
+
+        questionList.add(new Question("What is derivative of y³ + 2y² + y² - x?",
+                "A. (3y³ + 2y²)/(1 - 2x²)",
+                "B. (3y³ + 2y²)/(1 + 4x²)",
+                "C. (3y + 2y²)/(1 + 4x)",
+                "D. (3y² + 2y)/(1 - 4x)",
+                "D. (3y² + 2y)/(1 - 4x)"));
+
+        questionList.add(new Question("Integrate ∫cos3xdx",
+                "A. 1/3(-sin3x)+c",
+                "B. 1/3(sin3x)+c",
+                "C. 1/3(sin²3x)+c",
+                "D. 1/3(cos²3x)+c",
+                "B. 1/3(sin3x)+c"));
+
+        questionList.add(new Question("Find the maclurin series of f(x) = 1/(1-x)",
+                "A. 1+x+x²+x³+x^4+x^5",
+                "B. 1-x+x²-x³+x^4-x^5",
+                "C. 1+x+x²/2+x³/3+x^4/4+x^5/5",
+                "D. 1-x-x²-x³-x^4-x^5",
+                "A. 1+x+x²+x³+x^4+x^5"));
     }
 
     private void getQuestionPhase2(List<Question> list) {
@@ -474,3 +516,4 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. cosAcosB - sinAsinB"));
     }
 }
+

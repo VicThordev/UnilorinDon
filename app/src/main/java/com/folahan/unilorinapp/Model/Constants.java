@@ -39,5 +39,6 @@ public class Constants {
     public static final String KEY_COMMENTS = "comments";
     public static final String KEY_LIKES_BOX = "likesBox";
     public static final String KEY_COMMENTS_BOX = "commentsBox";
+    public static final String KEY_TYPE = "image";
 
 }
