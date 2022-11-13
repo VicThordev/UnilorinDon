@@ -32,9 +32,9 @@ public class Chm101Activity extends AppCompatActivity {
     private Random random;
     private TextView questionText, questionNo, countDown;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
-    private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
+    private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, questionDone = 0;
     private Button btnNext, btnPrev, btnEnd;
-    private AlertDialog dialog;
+    private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,15 +131,15 @@ public class Chm101Activity extends AppCompatActivity {
     }
 
     private void dialogAlert() {
-        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.AlertDialog_AppCompat)
-                .setTitle("Confirm Submission")
+        dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Confirm Submission")
                 .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .setIcon(ContextCompat.getDrawable(getApplicationContext(),
-                        R.drawable.ic_login)).show();
+                        R.drawable.ic_cancel)).show();
     }
 
     protected void showButton() {

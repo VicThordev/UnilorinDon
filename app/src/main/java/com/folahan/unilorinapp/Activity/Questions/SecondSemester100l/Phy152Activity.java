@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -34,7 +36,7 @@ public class Phy152Activity extends AppCompatActivity {
     private CountDownTimer timer;
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
     Button btnNext, btnPrev, btnEnd;
-    private AlertDialog dialog;
+    private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class Phy152Activity extends AppCompatActivity {
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
         random = new Random();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -135,15 +139,15 @@ public class Phy152Activity extends AppCompatActivity {
     }
 
     private void dialogAlert() {
-        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
-                .setTitle("Confirm Submission")
+        dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Confirm Submission")
                 .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .setIcon(ContextCompat.getDrawable(getApplicationContext(),
-                        R.drawable.ic_login)).show();
+                        R.drawable.ic_cancel)).show();
     }
 
     protected void showButton() {
@@ -218,7 +222,7 @@ public class Phy152Activity extends AppCompatActivity {
                 "A. 0.0152pm"));
 
         questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
+                "force of repulsion between the spheres is to be 10^-19N?",
                 "A. 125 electrons ",
                 "B. 250 electrons",
                 "C. 625 electrons",
@@ -419,7 +423,7 @@ public class Phy152Activity extends AppCompatActivity {
 
         questionList.add(new Question( "29. The fission of U-236 can produce the fragments of Ba-146 and Kr-90. These nuclei have a +56e and " +
                 "+36e respectively. Determine the Coulomb's force acting on each just after their formation, when their " +
-                "centers are separated by 1.6 x 10-14m",
+                "centers are separated by 1.6 x 10^-14m",
                 "A. 0.59kN",
                 "B. 0.78kN",
                 "C. 1.46kN",
@@ -602,5 +606,573 @@ public class Phy152Activity extends AppCompatActivity {
                 "D. 90nΩm",
                 "C. 80nΩm"));
 
+        questionList.add(new Question("21. A 20.0m length of wire 1.50mm in diameter has a resistance of 2.5Ω. What is the resistance of a " +
+                "35.0m length of wire 3.00mm in diameter made of the same material?",
+                "A. 0.55Ω",
+                "B. 1.10Ω",
+                "C. 2.20Ω",
+                "D. 3.30Ω",
+                "B. 1.10Ω"));
+
+        questionList.add(new Question("22. An electric fan draws 2.0A of current from a 220V source. Find the power rating of the fan",
+                "A. 0.22kW",
+                "B. 0.33kW",
+                "C. 0.44kW",
+                "D. 0.55kW",
+                "C. 0.44kW"));
+
+        questionList.add(new Question("23. A battery of emf 1.50V has a terminal p.d of 1.25V when a resistor of 25Ω is connected across it. " +
+                "Calculate the current flowing in the circuit",
+                "A. 0.05A",
+                "B. 0.10A",
+                "C. 0.15A",
+                "D. 0.20A",
+                "A. 0.05A"));
+
+        questionList.add(new Question("24. Three resistors (3.0Ω, 6.0Ω, 9.0Ω) are in parallel with a potential difference of 18V maintained across " +
+                "them. Find the current in each resistor respectively",
+                "A. 6.0A, 3.0A, 1.0A",
+                "B. 6.0A, 3.0A, 2.0A",
+                "C. 1.0A, 3.0A, 6.0A",
+                "D. 2.0A, 3.0A, 6.0A",
+                "B. 6.0A, 3.0A, 2.0A"));
+
+        questionList.add(new Question("25. A battery of emf 8V and internal resistance r is connected to a 10Ω resistor. Given that the terminal " +
+                "p.d across the resistor is 5V, calculate the value of internal resistance of the battery",
+                "A. 2Ω",
+                "B. 3Ω",
+                "C. 4Ω",
+                "D. 6Ω",
+                "D. 6Ω"));
+
+        questionList.add(new Question("26. A light bulb has a resistance of 60Ω when lit. How much current will flow through it when it is " +
+                "connected across 120V, its normal operating voltage?",
+                "A. 2A",
+                "B. 3A",
+                "C. 4A",
+                "D. 5A",
+                "A. 2A"));
+
+        questionList.add(new Question("27. A dry cell has an emf of 1.50V. Its terminal p.d drops to zero when a current of 10A passes through it. " +
+                "What is its internal resistance?",
+                "A. 0.10Ω",
+                "B. 0.15Ω",
+                "C. 0.20Ω",
+                "D. 0.25Ω",
+                "B. 0.15Ω"));
+
+        questionList.add(new Question("28. A metal rod is 2m long and 8mm in diameter. Calculate its resistivity if the resistance of the rod is 7 x " +
+                "10^-8Ω",
+                "A. 3.52pΩm",
+                "B. 2.34pΩm",
+                "C. 1.76pΩm",
+                "D. 1.17pΩm",
+                "C. 1.76pΩm"));
+
+        questionList.add(new Question("29. A wire that has a resistance of 5.0Ω is made into a new wire three times as long as the original. What " +
+                "is the new resistance?",
+                "A. 15Ω",
+                "B. 30Ω",
+                "C. 45Ω",
+                "D. 90Ω",
+                "C. 45Ω"));
+
+        questionList.add(new Question("30. How many electrons per second pass through a section of a conductor carrying a current of 0.70A?",
+                "A. 8.75 x 10^18 electrons",
+                "B. 5.83 x 10^18 electrons",
+                "C. 4.38 x 10^18 electrons",
+                "D. 2.91 x 10^18 electrons",
+                "C. 4.38 x 10^18 electrons"));
+
+    }
+
+    private void getQuestionPhase3(List<Question> list) {
+
+
+        questionList.add(new Question("1. Calculate the resistance that will be connected in series with a cell of 1.54V, 0.10Ω, given that the " +
+                "terminal p.d is 1.40V",
+                "A. 1.0Ω",
+                "B. 1.5Ω",
+                "C. 2.0Ω",
+                "D. 2.5Ω",
+                "A. 1.0Ω"));
+
+        questionList.add(new Question("2. Three 5Ω resistors connected in parallel have a potential difference of 60V applied across the " +
+                "combination. The current in each resistor is",
+                "A. 4A",
+                "B. 12A",
+                "C. 24A",
+                "D. 36A",
+                "B. 12A"));
+
+        questionList.add(new Question("3. Calculate the current drawn from a heater having 1600W at 240V",
+                "A. 2.23A",
+                "B. 3.34A",
+                "C. 4.45A",
+                "D. 6.67A",
+                "D. 6.67A"));
+
+        questionList.add(new Question("4. Calculate the resistance of a 60W/120V bulb",
+                "A. 120Ω",
+                "B. 240Ω",
+                "C. 320Ω",
+                "D. 480Ω",
+                "B. 240Ω"));
+
+        questionList.add(new Question("5. 90C charge is transferred in one minute when a current I flows through a conductor whose terminals " +
+                "are connected across a potential difference of 100V. Calculate the value of I and the power expended in " +
+                "heating the conductor if all the electrical energy is converted into heat",
+                "A. 1.5A, 100W",
+                "B. 1.5A, 150W",
+                "C. 2.0A, 200W",
+                "D. 2.0A, 250W",
+                "B. 1.5A, 150W"));
+
+        questionList.add(new Question("6. The magnitude of magnetic force F on a charge moving in a magnetic field depends on the following " +
+                "options except",
+                "A. the magnitude of the charge q",
+                "B. the magnitude of the magnetic field strength B",
+                "C. the magnitude of the velocity v, of the charge" ,
+                "D. cosθ, where θ is the angle between field lines and velocity v",
+                "D. cosθ, where θ is the angle between field lines and velocity v"));
+
+        questionList.add(new Question("7. Which of the following is incorrect about the magnetic field B at a point?",
+                "A. Its direction is that of the magnetic force F",
+                "B. Its direction is that of the magnetic field",
+                "C. It is also known as the magnetic induction strength",
+                "D. It is also known as the magnetic flux density",
+                "A. Its direction is that of the magnetic force F"));
+
+        questionList.add(new Question("8. A wire carries a 30A current; if the wire is 5cm long, what is the magnitude of the maximum force on " +
+                "the wire, if it is placed in a magnetic field of intensity B = 0.8T?",
+                "A. 0.8N", "B. 1.2N",
+                "C. 1.6N",
+                "D. 2.4N",
+                "B. 1.2N"));
+
+        questionList.add(new Question("9. A long straight wire carries a current of 20A. Determine the magnetic field due to the current at a" +
+                " distance of 4mm from the wire",
+                "A. 0.001T",
+                "B. 0.002T",
+                "C. 0.003T",
+                "D. 0.004T",
+                "A. 0.001T"));
+
+        questionList.add(new Question("10. Which of the following is not true of the magnetic force F on a charged particle moving in a magnetic " +
+                "field B?",
+                "A. The particle will experience a magnetic force F",
+                "B. F is perpendicular to the plane containing velocity v and B",
+                "C. F is always proportional to vsinθ; θ is the angle between the direction of B and v",
+                "D. F is maximum when velocity and field are in the same direction", "B. F is perpendicular to the plane containing velocity v and B"));
+
+        questionList.add(new Question("11. An electron with K.E of 3.0keV moves horizontally in a region of space in which there is downward-directed uniform electric field of magnitude 10kV/m. What is the magnitude of the smallest uniform " +
+                "magnetic field that will cause the electron to continue to move horizontally? Ignore the gravitational " +
+                "force",
+                "A. 0.15mT",
+                "B. 0.31mT" ,
+                "C. 0.60mT",
+                "D. 1.21mT",
+                "B. 0.31mT"));
+
+        questionList.add(new Question( "12. An electron with K.E of 1.50keV circles in a place perpendicular to a uniform magnetic field. The orbit \n" +
+                "radius is 30.0cm. Find the speed of the electron and the magnitude of the magnetic field B",
+                "A. 0.44mT",
+                "B. 0.88mT",
+                "C. 1.32mT",
+                "D. 1.76mT",
+                "A. 0.44mT"));
+
+        questionList.add(new Question( "13. A circular coil of wire of radius 2.00cm carrying a current of 35mA is placed in a magnetic field of " +
+                "45mT. What's its magnetic dipole moment if the coil has 250 turns?",
+                "A. 0.006Am²",
+                "B. 0.011Am²",
+                "C. 0.022Am²",
+                "D. 0.033Am²",
+                "B. 0.011Am²"));
+
+        questionList.add(new Question( "14. A long straight wire carries a current of 1.5A. An electron travels with a speed of 5 x 10^6 cm/s parallel " +
+                "to the wire 10cm from it and in the same direction as the current. What force does the magnetic field of " +
+                "the current exert on the moving electron?",
+                "A. 1.2 x 10^-20 N",
+                "B. 2.4 x 10^-20 N",
+                "C. 4.8 x 10^-20 N",
+                "D. 9.6 x 10^-20 N",
+                "B. 2.4 x 10^-20 N"));
+
+        questionList.add(new Question( "15. A coil carrying a current of 10A produces a magnetic field of 2π x 10^-5" +
+                "T at the center of the coil. Calculate the radius of the coil",
+                "A. 0.10m",
+                "B. 0.20m",
+                "C. 0.30m",
+                "D. 0.40m",
+                "A. 0.10m"));
+
+        questionList.add(new Question( "16. The orbit of an electron in a betatron is a circle of radius R. Suppose the electron is revolving " +
+                "tangentially in this orbit with velocity v. What flux density is required to maintain the electron in this " +
+                "orbit if the magnitude of its velocity is constant?",
+                "A. B=mωR",
+                "B. B=mv/qR",
+                "C. B=Fqv",
+                "D. B=mv²/r",
+                "B. B=mv/qR"));
+
+        questionList.add(new Question( "17. A rectangular 10-turn loop of wire 5cm by 2cm carries a current of 2A and is hinged at one side. " +
+                "What torque acts on the loop if it is mounted with its plane an angle of 60° to the direction of the " +
+                "uniform magnetic field of 0.1T?",
+                "A. 1 x 10^-3 Nm",
+                "B. 2 x 10^-3 Nm",
+                "C. 3 x 10^-3 Nm",
+                "D. 4 x 10^-3 Nm",
+                "A. 1 x 10^-3 Nm"));
+
+        questionList.add(new Question( "18. A rectangular coil of 50-turn loop of wire is suspended in a field of 0.6Wb/m². The plane of the coil is " +
+                "parallel to the direction of the field. The dimensions of the coil are 20cm perpendicular to the field line " +
+                "and 10cm parallel to them. What is the current in the coil if there is a torque of 5.4Nm acting on it?",
+                "A. 3A",
+                "B. 6A",
+                "C. 9A",
+                "D. 12A",
+                "C. 9A"));
+
+        questionList.add(new Question( "19. A particle of mass 1 x 10^-26kg with a negative charge of magnitude 5.0 x 10^-4 C moves at a speed of 1.0 " +
+                "x 10^3 m/s along the +x direction towards a perpendicularly inclined uniform magnetic field of 0.20T. " +
+                "Calculate the force on the particle just as it enters the magnetic field\n",
+                "A. 0.05N",
+                "B. 0.10N",
+                "C. 0.15N",
+                "D. 0.20N",
+                "B. 0.10N"));
+
+        questionList.add(new Question( "20. A bar magnet is divided in two pieces. Which of the following statements is/are correct?",
+                "A. The bar magnet is demagnetised",
+                "B. The magnetic poles are separated",
+                "C. The magnetic field of each separated piece becomes stronger",
+                "D. Two magnets are created",
+                "D. Two magnets are created"));
+
+        questionList.add(new Question( "21. Which two quantities are plotted on a hysteresis loop or B-H curve?",
+                "A. Reluctance and flux density",
+                "B. Coercivity and flux density",
+                "C. Magnetising force and reluctance",
+                "D. Flux density and magnetising force",
+                "D. Flux density and magnetising force"));
+
+        questionList.add(new Question( "22. What do you call the characteristic of a magnetic material whereby a change in magnetisation lags " +
+                "the application of a magnetising force?",
+                "A. Induction",
+                "B. Retentivity",
+                "C. Hysteresis",
+                "D. Coercivity",
+                "C. Hysteresis"));
+
+        questionList.add(new Question( "23. Consider the following quantities:\n (1) mass,\n (2) velocity," +
+                "\n (3) charge,\n (4) magnetic field strength. \n" +
+                "Upon which of these quantities is the force on a charged particle moving in a magnetic field dependent",
+                "A. 1 and 4 only",
+                "B. 2 and 3 only",
+                "C. 1, 3 and 4 only",
+                "D. 2, 3 and 4 only",
+                "D. 2, 3 and 4 only"));
+
+        questionList.add(new Question( "24. A charged particle is moving in a magnetic field. What is the direction of the force on the particle due " +
+                "to the magnetic field?",
+                "A. in the direction of the magnetic field",
+                "B. in the direction opposite to which the particle is moving",
+                "C. in the direction that is perpendicular to both the magnetic field and the velocity",
+                "D. in the same plane as the magnetic field and the velocity, but not in either of those two directions",
+                "C. in the direction that is perpendicular to both the magnetic field and the velocity"));
+
+        questionList.add(new Question( "25. Which of the following combinations of units is equivalent to the Tesla?",
+                "A. N/Am",
+                "B. NA/m",
+                "C. Js/Am",
+                "D. J/Cs",
+                "A. N/Am"));
+
+        questionList.add(new Question( "26. Which one of the following conditions is not a requirement for a particle to experience a magnetic " +
+                "force when placed in a magnetic field?",
+                "A. The particle must be moving",
+                "B. The particle must be charged",
+                "C. The particle must not be under the influence of any other forces",
+                "D. The velocity of the particle must have a component that is perpendicular to the direction of the magnetic field",
+                "C. The particle must not be under the influence of any other forces"));
+
+        questionList.add(new Question( "27. What is Right-Hand Rule used to determine?",
+                "A. Given the directions of the magnetic field and the velocity of a charged particle, it is used to find the direction of the magnetic force on the particle",
+                "B. Given the directions of the magnetic field and magnetic force on a charged particle, it is used to determine the magnitude and sign of charge on the particle",
+                "C. Given the magnitude and sign of the charge on a particle and the direction of the magnetic force, it is used to determine the net force on the particle",
+                "D. It is used to determine the direction of the “reaction force” when applying Newton's third law of motion to the particle",
+                "A. Given the directions of the magnetic field and the velocity of a charged particle, it is used to find the direction of the magnetic force on the particle"));
+
+        questionList.add(new Question( "28. Which one of the following is not used to determine the magnetic force on a current-carrying wire in " +
+                "a magnetic field?",
+                "A. length of the wire",
+                "B. radius of the wire",
+                "C. direction of the magnetic field with respect to the direction of the current",
+                "D. the strength of the magnetic field",
+                "B. radius of the wire"));
+
+        questionList.add(new Question( "29. Consider the following quantities:\n (1) current,\n (2) resistance,\n (3) coil area,\n (4) wire cross-sectional " +
+                "area, and (5) magnetic field. Upon which of the quantities is the magnetic dipole moment of a current " +
+                "carrying coil dependent?",
+                "A. 1 and 5 only",
+                "B. 1 and 2 only",
+                "C. 2 and 3 only",
+                "D. 1 and 3 only",
+                "D. 1 and 3 only"));
+
+        questionList.add(new Question( "30.  A 50-loop circular coil has a radius of 3cm. It is oriented so that the field lines of a magnetic field are " +
+                "normal to the area of the coil. If the magnetic field is varied so that B increased from 0.10T to 0.35T in 2 " +
+                "milliseconds, what is the average induced emf in the coil?",
+                "A. 17.7V",
+                "B. 18.7V",
+                "C. 19.7V",
+                "D. 20.7V",
+                "A. 17.7V"));
+    }
+
+    private void getQuestionPhase4(List<Question> list) {
+
+
+        questionList.add(new Question("1. A copper bar 30cm long is perpendicular to a field of flux density 0.8Wb/m² and moves at right " +
+                "angles to the field with a speed of 0.5m/s. Determine the emf induced in the bar",
+                "A. 0.06V",
+                "B. 0.12V",
+                "C. 0.24V",
+                "D. 0.48V",
+                "B. 0.12V"));
+
+        questionList.add(new Question("2. The magnetic field B is a function of magnetic flux Φ and cross-sectional area A as",
+                "A. B=ΦA",
+                "B. B=Φ/A²",
+                "C. B=Φ/A",
+                "D. B=Φ²/A",
+                "C. B=Φ/A"));
+
+        questionList.add(new Question("3. The induction B in the region between the pole faces of an electromagnet is 0.5Wb/m². Find the " +
+                "induced emf in a straight conductor 10cm long, perpendicular to B, and moving perpendicular both to B " +
+                "and its own length with a velocity of 1m/s",
+                "A. 0.02V",
+                "B. 0.05V",
+                "C. 0.10V",
+                "D. 0.20V",
+                "B. 0.05V"));
+
+        questionList.add(new Question("4. A rectangular coil of wire of dimension 30cm by 45cm rotates at a constant speed of 450rpm in a " +
+                "magnetic field 0.15T. The axis of rotation is perpendicular to the field. Find the maximum emf produced " +
+                "if the number of turns in the coil is 20",
+                "A. 16.1V",
+                "B. 17.1V",
+                "C. 18.1V",
+                "D. 19.1V",
+                "D. 19.1V"));
+
+        questionList.add(new Question("5. A circular turn of wire 4cm in radius rotates with an angular velocity of 1800rpm about a diameter " +
+                "which is perpendicular to a uniform magnetic field of 0.5T. What is the instantaneous induced emf in the " +
+                "turn when the plane of the turn makes angle 30° with the direction of the flux?",
+                "A. 0.201V",
+                "B. 0.274V",
+                "C. 0.411V",
+                "D. 0.548V",
+                "C. 0.411V"));
+
+        questionList.add(new Question("6. A coil of area 10cm² is in a uniform magnetic field of 0.1T. The field is reduced to zero in 1ms. " +
+                "Determine the value of the induced emf",
+                "A. 0.1V",
+                "B. 0.2V",
+                "C. 0.3V" ,
+                "D. 0.4V", "A. 0.1V"));
+
+        questionList.add(new Question("7. A Boeing 747 with a wingspan of 60m flies due south at a constant altitude in the northern " +
+                "hemisphere at 260m/s. If the vertical component of the Earth's magnetic field in that area was 40μT. " +
+                "Calculate the emf between the wing tips",
+                "A. 0.312V", "B. 0.624V",
+                "C. 0.936V", "D. 1.248V",
+                "B. 0.624V"));
+
+        questionList.add(new Question("8. A rectangular coil of wire having 10 turns with dimensions of 20cm x 30cm rotates at a constant " +
+                "speed of 600rev/min in a magnetic field of 0.10T. The axis of rotation is perpendicular to the field. Find " +
+                "the maximum emf produced",
+                "A. 1.89V", "B. 2.51V",
+                "C. 3.77V",
+                "D. 5.03V",
+                "C. 3.77V"));
+
+        questionList.add(new Question("9. A coil of area 250mm² is placed in a uniform magnetic field of strength 0.45T. The coil has 110 turns " +
+                "and a resistance of 6Ω. It is supplied with a current from a 9V cell. Calculate the maximum torque " +
+                "exerted on the coil",
+                "A. 0.0124Nm",
+                "B. 0.0186Nm",
+                "C. 0.0248Nm",
+                "D. 0.0372Nm",
+                "B. 0.0186Nm"));
+
+        questionList.add(new Question("10. A flat coil of area 10cm² and with 200 turns rotates about an axis in the plane of the coil which is at " +
+                "right angles to a uniform magnetic field of 0.05T. If the speed of rotation of the coil is 25rad/s, " +
+                "determine the maximum emf induced in the coil",
+                "A. 0.25V",
+                "B. 0.50V",
+                "C. 1.00V",
+                "D. 1.50V", "A. 0.25V"));
+
+        questionList.add(new Question("11. A coil of area 400mm² was placed in a uniform magnetic field B = 0.09T and the maximum torque in " +
+                "the coil is 0.12Nm. If the coil had 150 turns, what is the magnitude of the current supplied to the coil?",
+                "A. 11.11A",
+                "B. 22.22A" ,
+                "C. 33.33A",
+                "D. 44.44A",
+                "B. 22.22A"));
+
+        questionList.add(new Question( "12. A narrow coil of 10 turns and area 4 x 10-2m² is placed in a uniform magnetic field of flux density B " +
+                "of 10^-2 T so that the flux links the turns normally. Calculate the average induced emf in the coil if it is " +
+                "removed completely from the field in 0.5s",
+                "A. 2mV",
+                "B. 4mV",
+                "C. 6mV",
+                "D. 8mV",
+                "D. 8mV"));
+
+        questionList.add(new Question( "13. A flat coil of area 10cm² and with 200 turns rotates about an axis in the plane of the coil which is at " +
+                "right angles to a uniform magnetic field of 0.05T. If the speed of rotation of the coil is 25 rad/s, " +
+                "determine the instantaneous value of the emf when the coil is at an angle of 45° to the field",
+                "A. 0.089V",
+                "B. 0.118V",
+                "C. 0.177V",
+                "D. 0.236V",
+                "C. 0.177V"));
+
+        questionList.add(new Question( "14. A rectangular 10-turn loop of wire 5cm by 2cm carries a current of 2A and is hinged at one side. " +
+                "What torque acts on the loop if it is mounted with its plane at an angle of 60° to the direction of the " +
+                "uniform magnetic field of 0.1T?",
+                "A. 1 x 10^-3 Nm",
+                "B. 2 x 10^-3 Nm",
+                "C. 3 x 10^-3 Nm",
+                "D. 4 x 10^-3 Nm",
+                "A. 1 x 10^-3 Nm"));
+
+        questionList.add(new Question( "15. A DC motor with a resistance of 5.0Ω in its windings operates on 125V. It has a back emf of 100V " +
+                "when the motor reaches full speed. What is the armature current at operating speed under a normal load?",
+                "A. 5A",
+                "B. 10A",
+                "C. 15A",
+                "D. 25A",
+                "A. 5A"));
+
+        questionList.add(new Question( "16. The resistance of the armature in an electric motor is 3.5Ω. It draws a current of 1.50A when " +
+                "operating on 120V. Calculate the back emf produced",
+                "A. 120.50V",
+                "B. 118.20V",
+                "C. 116.50V",
+                "D. 114.75V",
+                "D. 114.75V"));
+
+        questionList.add(new Question( "17. A motor has a back emf of 120V and an armature current of 90A when running at 50Hz. Determine " +
+                "the power and the torque developed within the armature",
+                "A. 10.8kW, 32.4Nm",
+                "B. 10.8kW, 34.4Nm",
+                "C. 12.6kW, 32.4Nm",
+                "D. 12.6kW, 34.4Nm",
+                "B. 10.8kW, 34.4Nm"));
+
+        questionList.add(new Question( "18. Complete the following sentence: The phenomenon of producing an induced emf with the aid of a " +
+                "magnetic field is",
+                "A. called electromotive production",
+                "B. almost never observed",
+                "C. only produced by changing the magnetic field in the presence of a coil of wire",
+                "D. called electromagnetic induction",
+                "D. called electromagnetic induction"));
+
+        questionList.add(new Question( "19. Which of the following phrases best describe the term “magnetic flux”?",
+                "A. the direction of the magnetic field relative to a surface",
+                "B. the amount of magnetic field that passes through a surface",
+                "C. the number of magnetic dipoles moving through a wire",
+                "D. the flow of magnetons in space",
+                "B. the amount of magnetic field that passes through a surface"));
+
+        questionList.add(new Question( "20. Which of the following choices is the S.I unit for magnetic flux?",
+                "A. Gauss (G)",
+                "B. Tesla (T)",
+                "C. Weber (Wb)",
+                "D. Lumen (L)",
+                "C. Weber (Wb)"));
+
+        questionList.add(new Question( "21. Which of the following expressions equals magnetic flux?",
+                "A. BAcosθ",
+                "B. Bcos²θ/A",
+                "C. BAsin²θ",
+                "D. B/A",
+                "A. BAcosθ"));
+
+        questionList.add(new Question( "22. A coil of wire with N turns and area A is placed into a magnetic field of magnitude B. The angle of " +
+                "the normal to the plane of the coil is at angle θ with respect to the magnetic field. According to " +
+                "Faraday's law, which of the following changes will produce an emf in a coil of wire?",
+                "A. B is decreased",
+                "B. A is increased",
+                "C. θ is decreased",
+                "D. any of the above choices",
+                "D. any of the above choices"));
+
+        questionList.add(new Question( "23. Complete the following statement: Lenz's law indicates that the induced currents form to oppose",
+                "A. a change in the magnetic field direction",
+                "B. a change in the magnetic field",
+                "C. the magnetic flux",
+                "D. a change in the magnetic flux",
+                "D. a change in the magnetic flux"));
+
+        questionList.add(new Question( "24. Which of the following principles or laws allows one to determine the direction of an induced " +
+                "current in a conducting loop of wire due to a changing magnetic flux?",
+                "A. Lenz's law",
+                "B. Gauss' law",
+                "C. Equivalence principle",
+                "D. Faraday's law",
+                "A. Lenz's law"));
+
+        questionList.add(new Question( "25. Lenz's law is a consequence of what other physical law?",
+                "A. Newton's first law",
+                "B. Conservation of energy",
+                "C. Newton's third law",
+                "D. Conservation of momentum",
+                "B. Conservation of energy"));
+
+        questionList.add(new Question( "26. Complete the following statement: Faraday's law indicates that a changing magnetic field produces",
+                "A. an electric field",
+                "B. an induced magnetic field",
+                "C. light",
+                "D. global warming",
+                "B. an induced magnetic field"));
+
+        questionList.add(new Question( "27. An electric heater is labeled 220V AC, 1500W. What is the peak current in the heater when " +
+                "connected to a 220V AC supply?",
+                "A. 7.64A",
+                "B. 8.64A",
+                "C. 9.64A",
+                "D. 10.64A",
+                "C. 9.64A"));
+
+        questionList.add(new Question( "28. An inductor dissipates heat at a rate of 40W when an alternating current of 0.6A flows in it. If the " +
+                "reactance of the inductor at the frequency of the supply is 60Ω, what is its impedance?",
+                "A. 126.3Ω",
+                "B. 226.3Ω",
+                "C. 326.3Ω",
+                "D. 426.3Ω",
+                "A. 126.3Ω"));
+
+        questionList.add(new Question( "29. When an alternating current flows through a resistor of resistance 5Ω, heat is dissipated at a rate of " +
+                "20W. What is the rms value of the alternating current?",
+                "A. 2A",
+                "B. 5A",
+                "C. 10A",
+                "D. 20A",
+                "A. 2A"));
+
+        questionList.add(new Question( "30. If the peak current in a resistor of resistance R is given by I｡. What is the power dissipated from the resistor?",
+                "A. I｡²R/2",
+                "B. I｡²R/√2",
+                "C. E²/R",
+                "D. I｡R/√2",
+                "A. I｡²R/2"));
     }
 }
+
+
+

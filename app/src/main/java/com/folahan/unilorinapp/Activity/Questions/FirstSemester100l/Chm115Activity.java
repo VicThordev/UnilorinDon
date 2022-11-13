@@ -35,7 +35,7 @@ public class Chm115Activity extends AppCompatActivity {
     int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
     Button btnNext, btnPrev, btnEnd;
     private boolean mTimerRunning;
-    private AlertDialog dialog;
+    private AlertDialog.Builder dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,15 +167,15 @@ public class Chm115Activity extends AppCompatActivity {
     }
 
     private void dialogAlert() {
-        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
-                .setTitle("Confirm Submission")
+        dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Confirm Submission")
                 .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .setIcon(ContextCompat.getDrawable(getApplicationContext(),
-                        R.drawable.ic_login)).show();
+                        R.drawable.ic_cancel)).show();
     }
 
     @Override

@@ -34,12 +34,12 @@ public class Gns112Activity extends AppCompatActivity {
     private CountDownTimer timer;
     int pos, pos2=1, mTimeLeft = 600000, questionAnswered = 1;
     Button btnNext, btnPrev, btnEnd;
-    private AlertDialog dialog;
+    private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chm132);
+        setContentView(R.layout.activity_gns112);
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
@@ -135,15 +135,15 @@ public class Gns112Activity extends AppCompatActivity {
     }
 
     private void dialogAlert() {
-        dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
-                .setTitle("Confirm Submission")
+        dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Confirm Submission")
                 .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .setIcon(ContextCompat.getDrawable(getApplicationContext(),
-                        R.drawable.ic_login)).show();
+                        R.drawable.ic_cancel)).show();
     }
 
     protected void showButton() {
