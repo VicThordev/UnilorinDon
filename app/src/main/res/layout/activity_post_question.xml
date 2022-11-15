@@ -1,51 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.Questions.PostQuestion">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_account"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_account" />
 
     <EditText
+        android:id="@+id/edtPost"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:elevation="1dp"
-        android:id="@+id/edtPost"
-        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toEndOf="@id/txtAdd"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="20dp"/>
+        android:elevation="1dp"
+        android:gravity="top" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/imagePost"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edtPost"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnPost"
+        app:layout_constraintTop_toBottomOf="@id/edtPost"
+        android:layout_below="@id/imagePost"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="10dp"
         android:text="Post"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:layout_marginStart="20dp"
-        android:contentDescription="Add an image"
-        android:src="@drawable/ic_image_24"/>
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageQuestion"
+        android:id="@+id/imageAddPost"
+        android:contentDescription="@string/add"
+        android:src="@drawable/ic_image_24" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add an image"
+        android:text="@string/add"
+        android:id="@+id/txtAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageAddPost"
         android:textAlignment="center"
         android:maxWidth="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="5dp"
         />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

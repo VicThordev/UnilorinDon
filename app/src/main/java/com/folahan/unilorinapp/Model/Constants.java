@@ -28,11 +28,15 @@ public class Constants {
     public static final String KEY_LAST_MESSAGE = "lastMessage";
     public static final String KEY_AVAILABILITY = "availability";
     public static final String KEY_COLLECTION_COMMENT = "com.folahan.unilorin_don.extra_comment";
+    public static final String KEY_POSTER_NAME = "poster_name";
+    public static final String KEY_TIMESTAMP_POST = "timestamp";
+    public static final String KEY_IMAGE_POST = "image_post";
     public static final String KEY_COMMENT_NO = "comments_no";
     public static final String KEY_LAST_COMMENT = "lastComment";
     public static final String KEY_COLLECTION_QUESTION = "questions";
     public static final String KEY_LAST_QUESTION = "lastQuestion";
-    public static final String KEY_QUESTION = "question";
+    public static final String KEY_QUESTION_POST = "question";
+    public static final String KEY_COLLECTION_POST = "question";
     public static final String KEY_QUESTION_BOX = "questionBox";
 
     public static final String KEY_LIKES = "likes";
