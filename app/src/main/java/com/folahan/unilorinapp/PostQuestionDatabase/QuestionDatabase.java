@@ -46,9 +46,7 @@ public abstract class QuestionDatabase extends RoomDatabase {
                 QuestionDoa doa = INSTANCE.questionDoa();
                 doa.deleteAllNotes();
 
-                QuestionList list = new QuestionList("Folahan", "fola12",
-                        "What yo doing?", 2, 2);
-                doa.insert(list);
+
             });
         }
     };

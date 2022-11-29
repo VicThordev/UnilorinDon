@@ -4,9 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-    public String username, image, email, token, id;
+    public String username, surname, image, email, token, id;
 
     public Date dateObject;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
     public Date getDateObject() {
         return dateObject;

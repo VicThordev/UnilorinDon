@@ -1,5 +1,6 @@
 package com.folahan.unilorinapp.Activity.Questions;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -8,20 +9,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.folahan.unilorinapp.Activity.BaseActivity;
 import com.folahan.unilorinapp.Adapter.QuestionAdapter;
+import com.folahan.unilorinapp.Listeners.QuestionListListener;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.QuestionList;
 import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.R;
 import com.folahan.unilorinapp.databinding.ActivityQuestionPageBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class QuestionPage extends AppCompatActivity {
+public class QuestionPage extends BaseActivity implements QuestionListListener {
     private ArrayList<QuestionList> mQuestionList;
     private FloatingActionButton fab;
     private User user;
@@ -47,34 +57,67 @@ public class QuestionPage extends AppCompatActivity {
             Intent data = new Intent(this, PostQuestion.class);
             startActivityForResult(data, Add_Post_Request);
         });
-
+        user = new User();
         list = new QuestionList();
-
-
+        adapter = new QuestionAdapter(mQuestionList,  this);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
-        user = new User();
 
-        //Creating the RecyclerView Layout Manager
+
+        //Creating the RecyclerView Layout Manager-
         RecyclerView.LayoutManager layout = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layout);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
 
         database = FirebaseFirestore.getInstance();
+        showData();
     }
+
+    private void showData() {
+        database.collection(Constants.KEY_COLLECTION_POST)
+                .get()
+                .addOnCompleteListener(task ->  {
+                        String currentUserId = preferenceManager.getString(
+                                Constants.KEY_USER_ID);
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            List<QuestionList> list = new ArrayList<>();
+                            for (QueryDocumentSnapshot queryDocumentSnapshot :
+                                    task.getResult()) {
+                                if (currentUserId.equals(queryDocumentSnapshot.getId())) {
+                                    continue;
+                                }
+                                QuestionList mList = new QuestionList();
+                                mList.setName(queryDocumentSnapshot.getString(Constants.KEY_SURNAME));
+                                mList.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
+                                mList.setImage(queryDocumentSnapshot.getString(Constants.KEY_IMAGE));
+                                mList.setQuestion(queryDocumentSnapshot.getString(Constants.KEY_QUESTION_POST));
+                                mList.setQuestion(queryDocumentSnapshot.getString(Constants.KEY_COLLECTION_COMMENT));
+                                mList.setLike(queryDocumentSnapshot.getString(Constants.KEY_LIKES_BOX));
+                                mList.setId(queryDocumentSnapshot.getId());
+                                list.add(mList);
+                            }
+                            if (list.size() > 0 ){
+                                QuestionAdapter adapter = new QuestionAdapter(list, this);
+                                mRecyclerView.setAdapter(adapter);
+                                mRecyclerView.setVisibility(View.VISIBLE);
+                            } else {
+                                Toast.makeText(this, "No post available at the moment", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "No post available at the moment", Toast.LENGTH_SHORT).show();
+                        }
+                });
+
+    }
+
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == Add_Post_Request && resultCode ==RESULT_OK) {
-            assert data != null;
-            QuestionList list1 = (QuestionList) data.getSerializableExtra(PostQuestion.EXTRA_POST);
-            mQuestionList.add(list1);
-            //database.collection(Constants.KEY_COLLECTION_POST).add(list1);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onQuestionClicked(QuestionList list) {
+        Intent data = new Intent(getApplicationContext(), CommentActivity.class);
+        data.putExtra(Constants.KEY_USER, list);
+        startActivity(data);
+        finish();
     }
-
-
 }

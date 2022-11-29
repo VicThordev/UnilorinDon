@@ -40,7 +40,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText edtSurname, edtFirstName, edtUsername, edtMobile, edtEmail, edtPassword,
     edtConfirmPassword;
     private RelativeLayout layout;
-
+    private Intent intent;
     private Boolean checkTrue;
 
     private TextView signIn, mSignUp, txtSurname, txtFirstname, txtUsername, txtMobile, txtEmail, txtPassword,
@@ -60,6 +60,7 @@ public class SignInActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.txtEmail);
         edtPassword = findViewById(R.id.txtPassword);
         edtConfirmPassword = findViewById(R.id.confirmPassword);
+        intent = new Intent();
 
         layout = findViewById(R.id.rlProfile);
 
@@ -91,7 +92,6 @@ public class SignInActivity extends AppCompatActivity {
             finish();
         });
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         AccountFragment mFragment = new AccountFragment();
         Bundle bundle = new Bundle();
 
@@ -99,9 +99,8 @@ public class SignInActivity extends AppCompatActivity {
         bundle.putString("KEY_USERNAME", name);
         bundle.putString(Constants.KEY_EMAIL, edtEmail.getText().toString());
         mFragment.setArguments(bundle);
-        transaction.show(mFragment).commit();
-
     }
+
 
     private void addDataToFirestore() {
         FirebaseFirestore database = FirebaseFirestore.getInstance();

@@ -61,8 +61,8 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
         }
 
         void setData(ChatMessage message) {
-            mMessage.setText(message.getMessage());
             mDateTime.setText(message.getConversionName());
+            mMessage.setText(message.getMessage());
             imageView.setImageBitmap(getConversationImage(message.getConversionImage()));
             itemView.setOnClickListener(view1 -> {
                 User user = new User();

@@ -2,17 +2,9 @@ package com.folahan.unilorinapp.fragmentActivity;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceFragmentCompat;
-//import androidx.preference.PreferenceFragmentCompat;
-
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.folahan.unilorinapp.R;
 import com.folahan.unilorinapp.databinding.FragmentSettingsBinding;
@@ -31,7 +23,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate_the_layout_for_this_fragment
         view =  inflater.inflate(R.layout.fragment_settings, container, false);
         return view;
     }
@@ -46,10 +38,5 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.pref_xml, rootKey);
     }
-
-    /*@Override
-    public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-        setPreferencesFromResource(R.xml.pref_xml, rootKey);
-    }*/
 
 }

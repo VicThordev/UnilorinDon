@@ -69,7 +69,8 @@ public class FriendsActivity extends BaseActivity implements UserListener {
                                 continue;
                             }
                             User user = new User();
-                            user.username = queryDocumentSnapshot.getString(Constants.KEY_SURNAME);
+                            user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME + " "+ Constants.KEY_LASTNAME);
+                            user.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
                             user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
                             user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
                             user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
@@ -105,7 +106,7 @@ public class FriendsActivity extends BaseActivity implements UserListener {
 
     @Override
     public void onUserClicked(User user) {
-        Intent data = new Intent(getApplicationContext(), ChatActivity.class);
+        Intent data = new Intent(getApplicationContext(), IntoChatActivity.class);
         data.putExtra(Constants.KEY_USER, user);
         startActivity(data);
         finish();

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class Chm101Activity extends AppCompatActivity {
 
     private List<Question> questionList;
     private Random random;
+    private RadioGroup mGroup;
     private TextView questionText, questionNo, countDown;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, questionDone = 0;
@@ -43,6 +45,7 @@ public class Chm101Activity extends AppCompatActivity {
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
+        mGroup = findViewById(R.id.rbGroup);
         btnEnd = findViewById(R.id.buttonGoto);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
@@ -72,6 +75,8 @@ public class Chm101Activity extends AppCompatActivity {
 
         getQuestionPhase(questionList);
 
+        btnEnd.setOnClickListener(view -> dialogAlert());
+
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
@@ -99,7 +104,42 @@ public class Chm101Activity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        rbOption1.setOnClickListener(view -> {
+        mGroup.setOnCheckedChangeListener((radioGroup, i) -> {
+            switch (i) {
+                case R.id.radioA:
+                    if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
+                            .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
+                        pos2++;
+                    }
+                    break;
+                    //
+                case R.id.radioB:
+                    if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
+                            .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
+                        pos2++;
+                    }
+                    break;
+                    //
+                case R.id.radioC:
+                    if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
+                            .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
+                        pos2++;
+                    }
+                    break;
+                    //
+                case R.id.radioD:
+                    if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
+                            .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
+                        pos2++;
+                    }
+                    break;
+                    //
+                default:
+                    return;
+            }
+        });
+
+        /*rbOption1.setOnClickListener(view -> {
             if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
@@ -125,9 +165,7 @@ public class Chm101Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
-        });
-
-        btnEnd.setOnClickListener(view -> dialogAlert());
+        });*/
     }
 
     private void dialogAlert() {

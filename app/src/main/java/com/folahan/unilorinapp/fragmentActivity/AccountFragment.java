@@ -1,16 +1,13 @@
 
 package com.folahan.unilorinapp.fragmentActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +17,13 @@ import android.widget.Toast;
 import com.folahan.unilorinapp.Activity.SignInActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
+import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,8 +33,8 @@ import java.util.Objects;
 public class AccountFragment extends Fragment {
     private TextView  txtUsername, txtEmail;
     private View view;
-    private Bundle bundle;
     private PreferenceManager preferenceManager;
+    private TextView txtName;
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -46,23 +43,11 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        TextView txtName;
+
         view =  inflater.inflate(R.layout.profile_layout, container, false);
         txtName = view.findViewById(R.id.txtNameProfile);
         txtUsername = view.findViewById(R.id.txtUsernameProfile);
         txtEmail = view.findViewById(R.id.txtEmailProfile);
-
-        bundle = this.getArguments();
-        if (bundle != null) {
-            String message = bundle.getString("KEY_USERNAME");
-            txtName.setText(message);
-        } else {
-            return null;
-        }
-
-
-
-        //SharedPreferences pref1 = PreferenceManager.getDefaultSharedPreferences(context);
 
         preferenceManager =  new PreferenceManager(view.getContext().getApplicationContext());
 
@@ -75,6 +60,13 @@ public class AccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String name = requireArguments().getString("KEY_NAME");
+        String username = requireArguments().getString("KEY_USERNAME");
+        String email = requireArguments().getString("KEY_EMAIL");
+
+        txtName.setText(name);
+        txtUsername.setText(username);
+        txtEmail.setText(email);
     }
 
     public void signOut() {

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -16,10 +15,15 @@ import android.widget.Toast;
 
 import com.folahan.unilorinapp.Activity.CheckLevelActivity;
 import com.folahan.unilorinapp.Activity.FriendsActivity;
+import com.folahan.unilorinapp.Activity.IntoChatActivity;
 import com.folahan.unilorinapp.Activity.LoginActivity;
 import com.folahan.unilorinapp.Activity.QuestionTab;
 import com.folahan.unilorinapp.Activity.Questions.QuestionPage;
+import com.folahan.unilorinapp.Activity.RecentChatActivity;
+import com.folahan.unilorinapp.Activity.SignInActivity;
+import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
+import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.fragmentActivity.AccountFragment;
 import com.folahan.unilorinapp.fragmentActivity.ActivateFragment;
 import com.folahan.unilorinapp.fragmentActivity.HomeFragment;
@@ -35,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private final String COUNT_KEY = "count";
     private int noOfClicks = 3;
+    private User user;
     BottomNavigationView navigationView;
-    AccountFragment fragment = new AccountFragment();
     ActivateFragment activateFragment = new ActivateFragment();
     HomeFragment homeFragment = new HomeFragment();
     private AlertDialog.Builder dialog;
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtName = findViewById(R.id.txtUnilorinUpdate);
+        Intent data = getIntent();
 
 
         getSupportFragmentManager().beginTransaction().
@@ -57,22 +62,36 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
-                    getSupportFragmentManager().beginTransaction().
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true).
                             replace(R.id.frameLayout, homeFragment).commit();
                     return true;
                 //
                 case R.id.acct:
-                    getSupportFragmentManager().beginTransaction().
-                            replace(R.id.frameLayout, fragment).commit();
+                    Intent intent = getIntent();
+                    Bundle bundle = new Bundle();
+                    user = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
+                    String name = intent.getStringExtra(IntoChatActivity.EXTRA_NAME);
+                    String email = intent.getStringExtra(IntoChatActivity.EXTRA_USERNAME);
+                    String username = intent.getStringExtra(IntoChatActivity.EXTRA_EMAIL);
+//                    Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
+                    bundle.putString("KEY_NAME", name);
+                    bundle.putString("KEY_USERNAME", username);
+                    bundle.putString("KEY_EMAIL", email);
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.frameLayout, AccountFragment.class, bundle).commit();
                     return true;
                 //
                 case R.id.activate:
-                    getSupportFragmentManager().beginTransaction().
-                            replace(R.id.frameLayout, activateFragment).commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.frameLayout, activateFragment).commit();
                     return true;
                 //
                 case R.id.settings:
-                    getSupportFragmentManager().beginTransaction().
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true).
                             replace(R.id.frameLayout, settingsFragment).commit();
                     return true;
             }
@@ -149,5 +168,9 @@ public class MainActivity extends AppCompatActivity {
     private void gotoUrl() {
         Uri uri = Uri.parse("https://www.uilugportal.unilorin.edu.ng");
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
+
+    public void openRecentActivity(View view) {
+        startActivity(new Intent(this, RecentChatActivity.class));
     }
 }

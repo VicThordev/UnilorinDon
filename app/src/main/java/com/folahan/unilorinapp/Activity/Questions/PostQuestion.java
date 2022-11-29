@@ -23,24 +23,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.folahan.unilorinapp.Activity.BaseActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.QuestionList;
 import com.folahan.unilorinapp.R;
 import com.folahan.unilorinapp.databinding.ActivityPostQuestionBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
-public class PostQuestion extends AppCompatActivity {
+public class PostQuestion extends BaseActivity {
     private static final int CAMERA_REQUEST_CODE = 100;
     private static final int STORAGE_REQUEST_CODE = 200;
     private static final int IMAGE_PICK_CAMERA_CODE = 300;
@@ -49,6 +56,7 @@ public class PostQuestion extends AppCompatActivity {
 
     String [] cameraPermissions;
     String [] storagePermissions;
+    private List<QuestionList> realList;
     private FirebaseFirestore database;
     private String conversionId = null;
 
@@ -66,13 +74,14 @@ public class PostQuestion extends AppCompatActivity {
         setContentView(binding.getRoot());
         database = FirebaseFirestore.getInstance();
         manager = new PreferenceManager(getApplicationContext());
-        byte [] bytes = Base64.decode(manager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        /*byte [] bytes = Base64.decode(manager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        binding.imageQuestion.setImageBitmap(bitmap);
+        binding.imageQuestion.setImageBitmap(bitmap);*/
 
         cameraPermissions = new String[]{Manifest.permission.CAMERA,
         Manifest.permission.WRITE_EXTERNAL_STORAGE};
         dialog = new ProgressDialog(this);
+        realList = new ArrayList<>();
 
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -101,37 +110,53 @@ public class PostQuestion extends AppCompatActivity {
     private void uploadData(String post, String noImage) {
         dialog.setMessage("Publishing post...");
         dialog.show();
-        Intent intent = new Intent();
         list = new QuestionList();
         String poster = binding.edtPost.getText().toString();
+        String id = UUID.randomUUID().toString();
 
         String timeStamp = String.valueOf(System.currentTimeMillis());
         HashMap<Object, String> hashMap = new HashMap<>();
-        hashMap.put(Constants.KEY_POSTER_NAME, manager.getString(Constants.KEY_USER_ID));
+        hashMap.put(Constants.KEY_POSTER_NAME, manager.getString(Constants.KEY_USERNAME));
         hashMap.put(Constants.KEY_QUESTION_POST, poster);
+        hashMap.put(Constants.KEY_USER_ID, id);
         hashMap.put(Constants.KEY_TIMESTAMP_POST, timeStamp);
         hashMap.put(Constants.KEY_IMAGE_POST, noImage);
 
         database.collection(Constants.KEY_COLLECTION_POST)
                 .add(hashMap)
                 .addOnSuccessListener(documentReference -> {
+                    //dialog.dismiss();
                     conversionId = documentReference.getId();
-                    dialog.dismiss();
                     Toast.makeText(this, "Post Published", Toast.LENGTH_SHORT).show();
                 });
+        postConversion();
         if (!noImage.equals("noImage")) {
 
         }
-        list.setQuestion(poster);
-        list.setName(manager.getString(Constants.KEY_USER_ID));
-        list.setComment(0);
-        list.setDateTime(timeStamp);
-        list.setId("");
-        intent.putExtra(EXTRA_POST, list);
-        setResult(RESULT_OK, intent);
-        finish();
+
 
     }
+
+    private void postConversion() {
+        if (realList.size() != 0) {
+            checkForConversion(manager.getString(Constants.KEY_QUESTION_POST));
+        }
+    }
+
+    private void checkForConversion(String post) {
+        database.collection(Constants.KEY_COLLECTION_POST)
+                .whereEqualTo(Constants.KEY_QUESTION_POST, post)
+                .get()
+                .addOnCompleteListener(completeListener);
+    }
+
+    private final OnCompleteListener<QuerySnapshot> completeListener =
+            task -> {
+        if (task.isSuccessful() && task.getResult() != null) {
+            DocumentSnapshot snapshot = task.getResult().getDocuments().get(0);
+            conversionId = snapshot.getId();
+        }
+            };
 
     private void showImageDialog() {
         String [] options = {"Camera", "Gallery"};

@@ -13,11 +13,29 @@ public class QuestionList implements Serializable {
     private int comment;
     private String id;
     private String name;
+    private String username;
     private String question;
-    private int like;
+    private String like;
     private String dateTime;
+    private String image;
 
-    public QuestionList(String name, String id, String question, int comment, int like) {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public QuestionList(String name, String id, String question, int comment, String like) {
         this.name = name;
         this.id = id;
         this.question = question;
@@ -70,11 +88,11 @@ public class QuestionList implements Serializable {
         this.comment = comment;
     }
 
-    public int getLike() {
+    public String getLike() {
         return like;
     }
 
-    public void setLike(int like) {
+    public void setLike(String like) {
         this.like = like;
     }
 }

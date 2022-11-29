@@ -1,6 +1,8 @@
 package com.folahan.unilorinapp.Adapter;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +22,11 @@ import java.util.List;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
 
     private final List<QuestionList> messages;
-    private final Bitmap receivedProfileImage;
-    private final String senderId;
     private final QuestionListListener userListener;
 
-    public static final int VIEW_TYPE_SENT = 1;
-    public static final int VIEW_TYPE_RECEIVED = 2;
-
-    public QuestionAdapter(List<QuestionList> messages, Bitmap receivedProfileImage, String senderId, QuestionListListener users) {
+    public QuestionAdapter(List<QuestionList> messages, QuestionListListener users) {
         super();
         this.messages = messages;
-        this.receivedProfileImage = receivedProfileImage;
-        this.senderId = senderId;
         this.userListener = users;
     }
 
@@ -45,7 +40,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setUserData(messages.get(position), receivedProfileImage);
+        holder.setUserData(messages.get(position));
     }
 
     @Override
@@ -55,24 +50,31 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mComment, mName, mUsername;
+        private TextView mComment, mName, mUsername, mQuestion, mLike;
         private RoundedImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mComment = itemView.findViewById(R.id.questionBox);
+            mComment = itemView.findViewById(R.id.commentNo);
+            mLike = itemView.findViewById(R.id.likeNo);
             mName = itemView.findViewById(R.id.name);
-            mUsername = itemView.findViewById(R.id.uniqueId);
             imageView = itemView.findViewById(R.id.imgQuestion);
+            mUsername = itemView.findViewById(R.id.uniqueId);
+            mQuestion = itemView.findViewById(R.id.questionBox);
         }
 
-        void setUserData(QuestionList list, Bitmap receivedImage) {
+        void setUserData(QuestionList list) {
             mComment.setText(list.getComment());
             mName.setText(list.getName());
-            mUsername.setText(list.getId());
-            imageView.setImageBitmap(receivedImage);
-            itemView.setOnClickListener(view -> {
-                userListener.onQuestionClicked(list);
-            });
+            mUsername.setText(list.getUsername());
+            imageView.setImageBitmap(getUserImage(list.getImage()));
+            itemView.setOnClickListener(view ->
+                    userListener.onQuestionClicked(list));
+            mQuestion.setText(list.getQuestion());
+            mLike.setText(list.getLike());
         }
+    }
+    private Bitmap getUserImage(String encodedImage) {
+        byte [] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 }

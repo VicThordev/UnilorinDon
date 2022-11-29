@@ -4,41 +4,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.folahan.unilorinapp.Model.Constants;
-import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.User;
-import com.folahan.unilorinapp.R;
 import com.folahan.unilorinapp.databinding.ActivityIntoChatBinding;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class IntoChatActivity extends AppCompatActivity {
 
-    private TextView mName, mUsername, mFaculty, mDepartment;
     private ActivityIntoChatBinding chatBinding;
-    private Button mButton;
-    private PreferenceManager manager;
-    private QueryDocumentSnapshot queryDocumentSnapshot;
+    private User user;
+    public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_USERNAME = "user_name";
+    public static final String EXTRA_EMAIL = "email";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_into_chat);
-        mName = findViewById(R.id.name);
-        mUsername = findViewById(R.id.Username);
-        mFaculty = findViewById(R.id.faculty);
-        mDepartment = findViewById(R.id.department);
-        mButton = findViewById(R.id.button_chat);
-        manager = new PreferenceManager(getApplicationContext());
-        chatBinding.name.setText((manager.getString(Constants.KEY_EMAIL)));
+        chatBinding = ActivityIntoChatBinding.inflate(getLayoutInflater());
+        setContentView(chatBinding.getRoot());
 
-        mButton.setOnClickListener(view -> startActivity(new Intent(this, ChatActivity.class)));
         onClick();
+        chatBinding.buttonChat.setOnClickListener(view -> {
+            Intent data = new Intent(getApplicationContext(), ChatActivity.class);
+            data.putExtra(Constants.KEY_USER, user);
+            startActivity(data);
+            finish();
+        });
     }
 
     private void onClick() {
-        User user = new User();
-
+        Intent data = new Intent();
+        user = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
+        chatBinding.name.setText(user.getUsername());
+        chatBinding.Username.setText(user.getEmail());
+        data.putExtra(EXTRA_NAME, user.getSurname());
+        data.putExtra(EXTRA_USERNAME, user.getUsername());
+        data.putExtra(EXTRA_EMAIL, user.getEmail());
+        setResult(RESULT_OK, data);
     }
 }

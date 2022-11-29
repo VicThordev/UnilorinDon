@@ -3,7 +3,7 @@ package com.folahan.unilorinapp.Model;
 import java.util.Date;
 
 public class ChatMessage {
-    private String senderId, receiveId, message, dateTime, type;
+    public String senderId, receiveId, message, dateTime, type;
 
     public ChatMessage() {
 

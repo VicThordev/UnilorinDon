@@ -663,11 +663,9 @@ public class Gns111Activity extends AppCompatActivity {
 
     private void getQuestionPhase3(List<Question> list) {
 
-        questionList.add(new Question("1. Were I to eat the food my brother would have been sad." +
-                "",
+        questionList.add(new Question("1. Were I to eat the food my brother would have been sad.",
                 "(A) adverbial clause of condition",
-                "(B) " +
-                        "adverbial clause of manner",
+                "(B) adverbial clause of manner",
                 "(C) adjectival phrase",
                 "(D) adverbial clause of reason.",
                 "(A) adverbial clause of condition"));
@@ -688,7 +686,7 @@ public class Gns111Activity extends AppCompatActivity {
                 "(D) adverbial clause of time.",
                 "(B) adverbial clause of manner"));
 
-        questionList.add(new Question("4. He walked to the podium as though \n" +
+        questionList.add(new Question("4. He walked to the podium as though " +
                 "he were a king. ",
                 "(A) adverbial clause of condition",
                 "(B) adverbial clause of manner",
@@ -779,7 +777,7 @@ public class Gns111Activity extends AppCompatActivity {
                 "(D) taking the right decisions",
                 "(C) going from a bad to a worse situation"));
 
-        questionList.add(new Question("15. James and Martha live a \n" +
+        questionList.add(new Question("15. James and Martha live a " +
                 "cat-and-dog life",
                 "(A) a life devoted to the care of cats and dogs",
                 "(B) a happy life",
@@ -825,5 +823,142 @@ public class Gns111Activity extends AppCompatActivity {
                 "(D) be " +
                         "walking",
                 "(D) have discovered"));
+
+        questionList.add(new Question("21. I don’t know his name but I remember ________ him in London",
+                "(A) to meet",
+                "(B) to have met",
+                "(C) meeting",
+                "(D) to be meeting",
+                "(C) meeting"));
+
+        questionList.add(new Question("22. __________ by the teacher, John did not enter the classroom",
+                "(A) haven been punished ",
+                "(B) being punished ",
+                "(C) having been punished",
+                "(D) haven being punished",
+                "(C) having been punished"));
+
+        questionList.add(new Question("23. The children listened attentively to the stories of the _________ man",
+                "(A) grey-haired wise old",
+                "(B) wise grey-haired old",
+                "(C) old grey-haired wise",
+                "(D) wise old grey-haired",
+                "(D) wise old grey-haired"));
+
+        questionList.add(new Question("24. Toyin was pleased with the ______skirt her mother gave to her",
+                "(A) beautiful new pale yellow cotton",
+                "(B) pale yellow beautiful new cotton",
+                "(C) new beautiful yellow pale cotton",
+                "(D) beautiful yellow cotton new pale",
+                "(A) beautiful new pale yellow cotton"));
+
+        questionList.add(new Question("25. The woman said she saw the victims ______ from the roof",
+                "(A) to have fallen",
+                "(B) to be falling",
+                "(C) fall",
+                "(D) fell",
+                "(D) fell"));
+
+        questionList.add(new Question("26. He fell in love with the ______ graduate",
+                "(A) young intelligent British",
+                "(B) intelligent young British",
+                "(C) young British intelligent",
+                "(D) British young intelligent ",
+                "(B) intelligent young British"));
+
+        questionList.add(new Question("27. Julian prides herself _______ her cooking",
+                "(A) with",
+                "(B) about",
+                "(C) on",
+                "(D) for",
+                "(B) about"));
+
+        questionList.add(new Question("28. Peter accused his friend _____ taking his pencil",
+                "(A) of",
+                "(B) in",
+                "(C) for",
+                "(D) about",
+                "(A) of"));
+
+        questionList.add(new Question("29. Mrs. Thomas was advised not to submit _________her husband’s rough treatment",
+                "(A) In",
+                "(B) at",
+                "(C) to",
+                "(D) for",
+                "(C) to"));
+
+        questionList.add(new Question("30. The painter appears to be worthy _________ his wages.",
+                "(A) with",
+                "(B) for",
+                "(C) of",
+                "(D) to",
+                "(C) of"));
+
+
+
     }
+
+    private void getQuestionPhase4(List<Question> list) {
+
+        questionList.add(new Question("1. The baby was eating _____food.",
+                "(A) Its’",
+                "(B) it’s",
+                "(C) it’s own",
+                "(D) its",
+                "(D) its"));
+
+        questionList.add(new Question("2. The teacher collected his book and _________",
+                "(A) everyone’s else",
+                "(B) everyone else",
+                "(C) everyone’s else’s",
+                "(D) every persons",
+                "(B) everyone else"));
+
+        questionList.add(new Question("3. This is not your cup; it must be ________.",
+                "(A) of her’s",
+                "(B) hers",
+                "(C) for her",
+                "(D) her’s",
+                "(B) hers"));
+
+        questionList.add(new Question("4. You have now gotten _______ to complete the investigation.",
+                "(A) a sufficient information",
+                "(B) many informations",
+                "(C) sufficient information",
+                "(D) plenty of informations",
+                "(C) sufficient information"));
+
+        questionList.add(new Question("5. Have you heard ________ news about him since he left?",
+                "(A) plenty",
+                "(B) many",
+                "(C) several",
+                "(D) much",
+                "(D) much"));
+
+        questionList.add(new Question("6. They must have been blind not to have seen him, __________?",
+                "(A) didn’t they?",
+                "(B) musn’t they?",
+                "(C) weren’t they?",
+                "(D) wasn’t it?",
+                "(C) weren’t they?"));
+
+        questionList.add(new Question("7. John said that we could attend his birthday party, ________?",
+                "(A) couldn’t we?",
+                "(B) didn’t he?",
+                "(C) did he?",
+                "(D) won’t we?",
+                "(B) didn’t he?"));
+
+        questionList.add(new Question("8. Choose the word that is rightly stressed from the options",
+                "(A) Idea",
+                "(B) iDea ",
+                "(C) iDEA ",
+                "(D) won’t we?",
+                "(B) didn’t he?"));
+
+
+    }
+
+
+
 }
