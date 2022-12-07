@@ -199,15 +199,14 @@ public class Mth111Activity extends AppCompatActivity {
                 "(d) none of the above",
                 "(a) -2sin3xsinx"));
 
-        questionList.add(new Question("Express 30°" +
-                "in radian", "(a) π/6",
+        questionList.add(new Question("Express 30° in radian", "(a) π/6",
                 "(b) 6/π", "(c) π",
                 "(d) none of the above",
                 "(a) π/6"));
 
         questionList.add(new Question("Express π/2 in degree",
                 "(a) 80°",
-                        "(b) 90°",
+                "(b) 90°",
                 "(c) 135°", "(d) 45°",
                 "(b) 90°"));
 
@@ -263,7 +262,7 @@ public class Mth111Activity extends AppCompatActivity {
                 "(a) p = 5 + 2√5 or p = 5" +
                         "5 - 2√5"));
 
-        questionList.add(new Question("Find the value of K for which d roots of the equation is x2 – (4 + k)x + 9 = 0",
+        questionList.add(new Question("Find the value of K for which d roots of the equation is x^2 – (4 + k)x + 9 = 0",
                 "(a) K ≤ −10 or K ≥ 2", "(b) K ≤ 10 or K ≥ 2",
                 "(c) K ≤ 10 or K ≥ −2",
                 "(d) K ≤ −10 or K ≥ −2",

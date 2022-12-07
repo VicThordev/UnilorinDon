@@ -202,7 +202,7 @@ public class Gns114Activity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void setDataView(int position) {
+    private boolean setDataView(int position) {
         questionText.setText(questionList.get(position).getQuestion());
 
         rbOption1.setText(questionList.get(position).getOption1());
@@ -211,9 +211,7 @@ public class Gns114Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
+        return false;
 
     }
 
@@ -766,7 +764,7 @@ public class Gns114Activity extends AppCompatActivity {
                 "d) coding",
                 "c) storing"));
 
-        questionList.add(new Question( "25. _________is a interconnection of computers that facilitates the sharing of "+
+        questionList.add(new Question( "_________is a interconnection of computers that facilitates the sharing of "+
                 "information "+
                 "between computing devices",
                 "a) network",
@@ -869,6 +867,222 @@ public class Gns114Activity extends AppCompatActivity {
                 "a) Pressing the Alt key"));
 
         return null;
+    }
+
+    private void getQuestionPhase4(List<Question> list) {
+
+        questionList.add(new Question( "The Software which contains rows and columns is called______",
+                "a) Database",
+                "b) Drawing",
+                "c) Spreadsheet",
+                "d) Word processing",
+                "c) Spreadsheet"));
+
+        questionList.add(new Question( "Which of the following methods cannot be used to enter data in a cell?",
+                "a) Pressing a narrow key",
+                "b) Pressing the Tab key",
+                "c) Pressing the Esc key",
+                "d) Clicking on the formula bar",
+                "c) Pressing the Esc key"));
+
+        questionList.add(new Question( "Which of the following will not cut information?",
+                "a) Pressing Ctrl+C",
+                "b) Selecting Edit>Cut from the menu",
+                "c) Clicking the Cut button on the standard",
+                "d) Pressing Ctrl+X",
+                "a) Pressing Ctrl+C"));
+
+        questionList.add(new Question( "Which of the following is not a way to complete a cell entry?",
+                "a) Pressing enter",
+                "b) Pressing any arrow key on the keyboard",
+                "c) Clicking the Enter button on the Formula bar",
+                "d) Pressing space bar",
+                "d) Pressing space bar"));
+
+        questionList.add(new Question( "You can activate a cell by",
+                "a) Pressing the Tab key",
+                "b) Clicking the cell",
+                "c) Pressing an arrow key",
+                "d) All of the above",
+                "d) All of the above"));
+
+        questionList.add(new Question( "How do you insert a row?",
+                "a) Right-click the row heading where you want to insert the new row and select Insert from the shortcut menu",
+                "b) Select the row heading where you want to insert the new row and select Edit " +
+                "> Row from the menu",
+                "c) Select the row heading where you want to insert the new row and click the Insert" +
+                "Row button on the standard tool bar",
+                "d) All of the above",
+                "a) Right-click the row heading where you want to insert the new row and select Insert from the shortcut menu"));
+
+        questionList.add(new Question( "Which of the following is not a basic step in creating a worksheet?",
+                "a) Save workbook",
+                "b) Modify the worksheet",
+                "c) Enter text and data",
+                "d) Copy the worksheet",
+                "d) Copy the worksheet"));
+
+        questionList.add(new Question( "How do you select an entire column",
+                "a) Select Edit > Select > Column from the menu",
+                "b) Click the column heading letter",
+                "c) Hold down the shift key as you click anywhere in the column.",
+                "d) Hold down the Ctrl key as you click anywhere in the column",
+                "b) Click the column heading letter"));
+
+        questionList.add(new Question( "To create a formula, you first:",
+                "a) Select the cell you want to place the formula into",
+                "b) Type the equals sign (=) to tell Excel that you’re about to enter a formula",
+                "c) Enter the formula using any input values and the appropriate mathematical" +
+                " operators that make up your formula",
+                "d) Choose the new command from the file menu",
+                "a) Select the cell you want to place the formula into"));
+
+        questionList.add(new Question( "To center worksheet titles across a range of cells,you must",
+                "a) Select the cells containing the title text plus the range over which the title text is to be centered",
+                "b) Widen the columns",
+                "c) Select the cells containing the title text plus the range over which the title text is to be enfettered",
+                "d) Format the cells with the comma style",
+                "a) Select the cells containing the title text plus the range over which the title text is to be centered"));
+
+        questionList.add(new Question( "How do you delete a column?",
+                "a) Select the column heading you want to delete and select the Delete Row button on the standard toolbar",
+                "b) Select the column heading you want to delete and select Insert Delete from the menu",
+                "c) Select the row heading you want to delete and select Edit>Delete from the menu",
+                "d) Right click the column heading you want to delete and select delete from the shortcut menu",
+                "d) Right click the column heading you want to delete and select delete from the shortcut menu"));
+
+        questionList.add(new Question( "How can you find specific information in a list?",
+                "a) Select Tools>Finder from the menu",
+                "b) Click the Find button on the standard toolbar",
+                "c) Select Insert>Find from the menu",
+                "d) Select Data>Form from the menu to open the Data Form dialog box and click the Criteria button",
+                "d) Select Data>Form from the menu to open the Data Form dialog box and click the Criteria button"));
+
+        questionList.add(new Question( "When a label is too long to fit with in a worksheet cell, you typically must",
+                "a) Shorten the label",
+                "b) Increase the column width",
+                "c) Decrease the column width",
+                "d) Adjust the row height",
+                "b) Increase the column width"));
+
+        questionList.add(new Question( "You can use the horizontal and vertical scroll bars to",
+                "a) Split a worksheet in to two panes",
+                "b) View different rows and columns edit the contents of a cell ",
+                "c) Edit the contents of a cell",
+                "d) view different work sheets",
+                "b) View different rows and columns edit the contents of a cell "));
+
+        questionList.add(new Question( "What is the term used when you press and hold the left mouse key and more the mouse around the slide?",
+                "a) Highlighting",
+                "b) Dragging",
+                "c) Selecting",
+                "d) Moving",
+                "b) Dragging"));
+
+        questionList.add(new Question( "You can edit an embedded organization chart object by",
+                "a) Clicking edit object",
+                "b) Double clicking the organization chart object",
+                "c) Right clicking the chart object, then clicking edit MS-Organizaiton Chart object ",
+                "d) b and c both",
+                "d) b and c both"));
+
+        questionList.add(new Question( "Special effects used to introduce slides in a presentation are called",
+                "a) effects",
+                "b) custom animations",
+                "c) transitions",
+                "d) present animations",
+                "c) transitions"));
+
+        questionList.add(new Question( "You can create a new presentation by completing all of the following except",
+                "a) Clicking the new button on the standard toolbar",
+                "b) Clicking file, new",
+                "c) Clicking file open",
+                "d) Pressing ctrl+N",
+                "c) Clicking file open"));
+
+        questionList.add(new Question( "In order to edit a chart, you can ",
+                "a) Triple click the chart object",
+                "b) Click and drag the chart object",
+                "c) Double click the chart object",
+                "d) Click the chart object",
+                "c) Double click the chart object"));
+
+        questionList.add(new Question( "In which menu can you find features like Slide Design, Slide Layout etc)?",
+                "a) Insert Menu",
+                "b) Format Menu",
+                "c) Tools Menu",
+                "d) SlideShow Menu",
+                "b) Format Menu"));
+
+        questionList.add(new Question( "Which symbol must all formula begin with?",
+                "a) =",
+                "b) +",
+                "c) (",
+                "d) @",
+                "a) ="));
+
+        questionList.add(new Question( "Which of the following formulas is not entered correctly?",
+                "a) =10+50",
+                "b) =B7*B1",
+                "c) =B7+14",
+                "d) 10+50",
+                "d) 10+50"));
+
+        questionList.add(new Question( "Getting data from a cell located in a different sheet is called ......",
+                "a) Accessing",
+                "b) Referencing",
+                "c) Updating",
+                "d) Functioning",
+                "b) Referencing"));
+
+        questionList.add(new Question( "What is the intersection of a column and a row on a worksheet called?",
+                "a) Column",
+                "b) Value",
+                "c) Address",
+                "d) Cell",
+                "d) Cell"));
+
+        questionList.add(new Question( "To save a workbook, you:",
+                "a) Click the save button on the standard toolbar from the menu",
+                "b) Press Ctrl+F5",
+                "c) Click Save on the Windows Start button",
+                "d) Select Edit>Save",
+                "a) Click the save button on the standard toolbar from the menu"));
+
+        questionList.add(new Question( "To view a cell comment",
+                "a) click the edit comment command on the insert menu",
+                "b) click the display comment command on the window menu",
+                "c) position the mouse pointer over the cell",
+                "d) click the comment command on the view menu",
+                "c) position the mouse pointer over the cell"));
+
+        questionList.add(new Question( "You can select a single range of cells by",
+                "a) Clicking the upper-left cell in a group of cells and then pressing the Shiftkey while clicking the lower right cell in a group of cells",
+                "b) Pressing the Ctrl key while dragging over the desired cells",
+                "c) Pressing the Shift key and an arrow key",
+                "d) Dragging over the desired cells",
+                "d) Dragging over the desired cells"));
+
+        questionList.add(new Question( "You can use the drag and drop method to",
+                "a) Copy cell contents",
+                "b) Move cell contents",
+                "c) Add cell contents",
+                "d) a and b",
+                "d) a and b"));
+
+        questionList.add(new Question( "How can you delete a record?",
+                "a) Delete the column from the worksheet",
+                "b) Select Data>Form from the menu to open the Data Form dialog box, find the record and Click the Delete button",
+                "c) Select Data>Delete Record from the menu",
+                "d) Click the Delete button on the Standard toolbar",
+                "b) Select Data>Form from the menu to open the Data Form dialog box, find the record and Click the Delete button"));
+
+        questionList.add(new Question( "Right clicking something in Excel:",
+                "a) Deletes the object",
+                "b) Nothing the right mouse button is there for left handed people",
+                "c) Opens a shortcut menu listing everything you can do to the object",
+                "d) Selects the object",
+                "c) Opens a shortcut menu listing everything you can do to the object"));
     }
 
     protected void showOtherButton() {

@@ -32,7 +32,7 @@ public class Sta124Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
+    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     Button btnNext, btnPrev, btnEnd;
     private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
@@ -92,6 +92,7 @@ public class Sta124Activity extends AppCompatActivity {
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption2.setOnClickListener(view -> {
@@ -99,6 +100,7 @@ public class Sta124Activity extends AppCompatActivity {
                     .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption3.setOnClickListener(view -> {
@@ -106,6 +108,7 @@ public class Sta124Activity extends AppCompatActivity {
                     .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption4.setOnClickListener(view -> {
@@ -113,6 +116,7 @@ public class Sta124Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());
@@ -121,7 +125,7 @@ public class Sta124Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -186,61 +190,256 @@ public class Sta124Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("Amphoteric elements are the elements which", "" +
-                " have similar physical properties with metals but similar chemical properties with non-metals",
-                "possess acidic properties only", "possess neither acidic nor basic properties",
-                "possess basic properties",
-                "have similar physical properties with metals but similar chemical properties with non-metals"));
+        questionList.add(new Question("______ is the science dealing with the development of scientific procedures of " +
+                "collection, organization, and analysis and interpretation of a source of a statistical data.",
+                "a) Statistics",
+                "b) Information Analysis", "c) Project Research",
+                "d) Statistic",
+                "a) Statistics"));
 
-        questionList.add(new Question("Sodium and Potassium belong to the same group of the periodic table. This is because",
-                "both are metals",
-                "both are soft and lighter than water", "both form cations by loosing electrons",
-                "both have identical electronic configuration",
-                "both have identical electronic configuration"));
+        questionList.add(new Question("The kind of scale that has to do with identification is called _____",
+                "a) Ordinal Scale",
+                "b) Nominal Scale", "c) Ratio Scale",
+                "d) Variable",
+                "b) Nominal Scale"));
 
-        questionList.add(new Question("Metals are electropositive because", "they form positively charged ions",
-                "they are electron acceptors", "they form negatively charged ions",
-                "they form positively charged ions by losing electrons",
-                "they form positively charged ions by losing electrons"));
+        questionList.add(new Question("______ is a sampling method in which data are collected by chance",
+                "a) Systematic sampling",
+                "b) Stratified sampling",
+                "c) Clustered sampling",
+                "d) Random Sampling",
+                "d) Random Sampling"));
 
-        questionList.add(new Question("Given that 2R (g) &rarr; 2P (g) + Q(g) ?H = -x kJ Which of the <br /> following conditions\n" +
-                "has no effect on the equilibrium position?", "Reducing the pressure",
-                "Increasing the temperature", "adding more of Q", "Decreasing the temperature",
-                "Decreasing the temperature "));
+        questionList.add(new Question("A characteristic or attribute that can assume different values is called _____",
+                "a) Sample",
+                "b) Real Value", "c) Variable",
+                "d) Statistics",
+                "c) Variable"));
 
-        questionList.add(new Question(" Positive peace can be defined as:", "(a) Absence of war and destructions",
-                "(b) Tranquility in the society", "(c) Absence of violence and presence of social justice", "(d) Tolerance",
-                "(b) Tranquility in the society"));
+        questionList.add(new Question("The following are measures of shapes except",
+                "a) Normality",
+                "b) Skewness", "c) Median",
+                "d) Kurtosis",
+                "c) Median"));
 
-        questionList.add(new Question("Incompatibility of interests and competitive aspirations of party(ies) are called___\n",
-                "(a) Peace", "(b) Violent conflict",  "(c) Crisis" ,"(d) Conflict", "(d) Conflict"));
+        questionList.add(new Question("____ is a real value function whose values can be taken within a defined range.",
+                "a) Random Variable",
+                "b) Sample",
+                "c) Parameter",
+                "d) Statistics",
+                "a) Random Variable"));
 
-        questionList.add(new Question("_____is Not a stage in the levels/phases of conflict",
-                "(a) Latent", "(b) Protest", "(c) Escalation", "(d) Manifest",
-                "(b) Protest"));
+        questionList.add(new Question("Which of the following expression correctly defines Normality",
+                "a) Mean = Median = Mode",
+                "b) Mean > Median = Mode",
+                "c) Mode < Mean = Median",
+                "d) Mean < Median < Mode",
+                "a) Mean = Median = Mode"));
 
-        questionList.add(new Question("____is the stage in conflict when the parties involved no longer solve the\n" +
-                "` problem by themselves",
-                "(a) De-escalation stage", "(b) Latent stage", "(c) Escalation stage",
-                "(d) Formation stage", "(c) Escalation stage"));
+        questionList.add(new Question("____ is the number of times a certain value of class or group occur",
+                "a) Data occurence",
+                "b) Frequency",
+                "c) Class limit", "d) Sample",
+                "b) Frequency"));
 
-        questionList.add(new Question("The conflict within an individual is called",
-                "(a) Inter-personal conflict", "(b) Global conflict", "(c) Intra-personal conflict",
-                "(d) Conflict trap", "(c) Intra-personal conflict"));
+        questionList.add(new Question("____ is the data collected in the original form.",
+                "a) Frequency",
+                "b) Grouped Frequency",
+                "c) Raw Data", "d) Grouped Data",
+                "c) Raw Data"));
 
-        questionList.add(new Question("In causes of conflict, _____cannot be categorized as resource\n",
-                "(a) Land", "(b) Sex", "(c) Money", "(d) Values", "(b) Sex"));
+        questionList.add(new Question("1,3,2,4,3,1,2,2,3,2,6,4,3,4,1,2,3,1,1,1,2,4,5,4,3,2,2,3,4,2,1,1 \n " +
+                "Obtain the relative frequency of 1",
+                "a) 6/34", "b) 1/34",  "c) 8/34" ,
+                "d) 9/34", "c) 8/34"));
 
-        questionList.add(new Question("Nuclear Race and Terrorism can be categorized as;",
-                "(a) Inter-state conflict", "(b) War conflict" , "(c) Global conflict",
-                "(d) Intra-Group conflict",
-                "(c) Global conflict"));
+        questionList.add(new Question("1,3,2,4,3,1,2,2,3,2,6,4,3,4,1,2,3,1,1 \n " +
+                "This data is kind of ______",
+                "a) Ungrouped data", "c) Random data",
+                "c) Grouped Tally Data", "d) Managed data",
+                "a) Ungrouped data"));
 
-        questionList.add(new Question("What is the distinction between conflict and violence?",
-                "(a) They belong to the same family of destruction",
-                "(b) Conflict is negative and violence is destructive",
-                "(c) It takes violence for conflict to occur",
-                "(d) Conflict is competitive while violence is destructive",
-                "(d) Conflict is competitive while violence is destructive"));
+        questionList.add(new Question("_____ is the difference between the upper limit & lower limit",
+                "a) Class Boundary", "b) Class mark", "c) Class Width",
+                "d) Class name", "c) Class Width"));
+
+        questionList.add(new Question("Which of the following is not a measure of central tendency?",
+                "a) Mean", "b) Median", "c) Percentile",
+                "d) Harmonic Mean", "c) Percentile"));
+
+        questionList.add(new Question("Obtain the mean for the observation: 34,38,48,43,57",
+                "a) 54", "b) 36.67", "c) 55", "d) 44", "d) 44"));
+
+        questionList.add(new Question("The value with the highest frequency is called _______",
+                "a) Mean", "b) Harmonic mean" , "c) Mode",
+                "d) Median",
+                "c) Mode"));
+    }
+
+    private void getQuestionPhase2(List<Question> list) {
+
+        questionList.add(new Question("Which of the following is an exception to the possibilities of modes to have",
+                "a) Geometrical Modal",
+                "b) Uni-Modal",
+                "c) Bi-Modal",
+                "d) Multi-Modal",
+                "a) Geometrical Modal"));
+
+        questionList.add(new Question("_____ is a fractional part or a sub-group or subset of the entire population",
+                "a) Sample",
+                "b) Parameter",
+                "c) Statistic",
+                "d) Variable",
+                "a) Sample"));
+
+        questionList.add(new Question("The scale that has an additional property of no true zero is called ",
+                "a) Nominal Scale",
+                "b) Interval Scale",
+                "c) Ordinal Scale",
+                "d) Random Scale",
+                "b) Interval Scale"));
+
+        questionList.add(new Question("Characteristics of features obtained from population is called _____",
+                "a) Sample",
+                "b) Parameter",
+                "c) Statistic",
+                "d) Variable",
+                "b) Parameter"));
+
+        questionList.add(new Question("A frequency distribution in which the data is only nominal/ordinal data is ",
+                "a) Ungrouped",
+                "b) Categorical",
+                "c) Limited",
+                "d) Variance",
+                "b) Categorical"));
+
+        questionList.add(new Question("Suppose L1 = 14.5, Fo = 27, Fm = 25, C = 5 and C.F. = 73. " +
+                "Find the Median.",
+                "a) 16.4",
+                "b) 23.7",
+                "c) 12.6",
+                "d) 13.1",
+                "a) 16.4"));
+
+        questionList.add(new Question("Find the Geometric Mean of the data: 3,4,6,7,8",
+                "a) 5.8",
+                "b) 4.2",
+                "c) 5.3",
+                "d) 11.4",
+                "c) 5.3"));
+
+        questionList.add(new Question("The following are measures of Dispersion Spread except",
+                "a) Range",
+                "b) Variance",
+                "c) Standard Deviation",
+                "d) Mean",
+                "d) Mean"));
+
+        questionList.add(new Question("Find the Sample Variance of the data 3,6,8,10,12,15,18",
+                "a) 37.7",
+                "b) 32.1",
+                "c) 20.1",
+                "d) 42.4",
+                "a) 37.7"));
+
+        questionList.add(new Question("Find the Harmonic Mean of the data: 3,4,6,7,8",
+                "a) 8.3",
+                "b) 4.91",
+                "c) 5.3",
+                "d) 12.4",
+                "b) 4.91"));
+
+        questionList.add(new Question("____ is used for testing consistency/comparison",
+                "a) Standard Deviation",
+                "b) Class Range",
+                "c) Co-efficient of Variation",
+                "d) Class size",
+                "c) Co-efficient of Variation"));
+
+        questionList.add(new Question("The following options are methods of graphical representation of data except",
+                "a) Bar Chart",
+                "b) Standard Score",
+                "c) Pictogram",
+                "d) Pie Chart",
+                "b) Standard Score"));
+
+        questionList.add(new Question("Obtain the 70th percentile of the data: 3,4,6,8,9,9,10,11,11,12,13,14,15",
+                "a) 11",
+                "b) 14",
+                "c) 10",
+                "d) 9",
+                "a) 11"));
+
+        questionList.add(new Question("Which of the following is odd?",
+                "a) 50th Percentile",
+                "b) 2nd Quartile",
+                "c) 5th Decile",
+                "d) 90th Percentile",
+                "d) 90th Percentile"));
+
+        questionList.add(new Question("In a negatively skewed skewness, ",
+                "a) the mean is less than the median",
+                "b) the mean is greater than the median",
+                "c) the mean is equal to zero",
+                "d) the mean and median are equal",
+                "a) the mean is less than the median"));
+    }
+
+    private void getQuestionPhase3(List<Question> list) {
+
+        questionList.add(new Question("If PCS > zero, it implies that the",
+                "a) mean is greater than the median",
+                "b) median is greater than the mean",
+                "c) mean is equal to median",
+                "d) mean is equal to zero while median is greater than zero",
+                "a) Geometrical Modal"));
+
+        questionList.add(new Question("Obtain the value of PCS from the following observation 6,7,8,8,8,9,10,10,11,13",
+                "a) 0.5",
+                "b) 0.22",
+                "c) 0.73",
+                "d) 0.81",
+                "c) 0.73"));
+
+        questionList.add(new Question("Suppose x² = 91, y² = 487400, Ex = 21, Ey = 1560, Exy = 6520 and n = 6. " +
+                "Find the rank correlation",
+                "a) 0.55",
+                "b) 0.62",
+                "c) 0.93",
+                "d) 0.89",
+                "d) 0.89"));
+
+        questionList.add(new Question("Suppose the Standard Deviation of an obtained data is 5.9 and Mean = 11.5. " +
+                "Obtain the Co-efficient of Variation",
+                "a) 51.3%",
+                "b) 19.4%",
+                "c) 17.4%",
+                "d) 5.6%",
+                "a) 51.3%"));
+
+        questionList.add(new Question("____ is the degree of linear relationship between two varible.",
+                "a) Mesokurtic",
+                "b) Kurtosis",
+                "c) Correlation",
+                "d) Variable",
+                "c) Correlation"));
+
+        questionList.add(new Question("A kind of statistics that deals with generalising from samples to population " +
+                "using probability, performing hypothesis testing, determining relationships between variables and making predictions is _____",
+                "a) Preferential",
+                "b) Discrete",
+                "c) Categorical",
+                "d) Numerical",
+                "a) Preferential"));
+
+        questionList.add(new Question("Derive the range of the random data: 15,6,10,3,26,49,36",
+                "a) 3",
+                "b) 10",
+                "c) 52",
+                "d) 46",
+                "d) 46"));
     }
 }
+
+
+
