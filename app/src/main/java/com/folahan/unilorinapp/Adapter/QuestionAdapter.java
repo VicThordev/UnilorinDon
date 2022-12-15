@@ -77,4 +77,5 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         byte [] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
+
 }

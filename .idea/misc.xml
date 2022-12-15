@@ -12,9 +12,11 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/custom_design.xml" value="0.1695" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/custom_design_2.xml" value="0.1695" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/custom_input.xml" value="0.1675" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/custom_upload.xml" value="0.194" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/ic_round_mail.xml" value="0.161" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/ic_send_24.xml" value="0.1625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/ic_vibration.xml" value="0.165" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/drawable/ic_volume_up.xml" value="0.159" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_account_fragment.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_chat.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_check_level.xml" value="0.1" />
@@ -25,12 +27,12 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_chm132.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_comment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_first_semester.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_friends.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_friends.xml" value="0.18" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_gns111.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_gns112.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_gns114.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_into_chat.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_mth111.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/UnilorinApp/app/src/main/res/layout/activity_mth112.xml" value="0.20416666666666666" />

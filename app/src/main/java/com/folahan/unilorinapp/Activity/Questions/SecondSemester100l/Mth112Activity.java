@@ -215,7 +215,7 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. 3(2x^2 + sin x - 3x)^5.(2x + cos x - 3)",
                 "C. 5(2x^2 + sin x - 3x).(4x + cos x - 3)"));
 
-        questionList.add(new Question("What is the derivative of y = tan^3(4x - 6)",
+        questionList.add(new Question("What is the derivative of y = tan³(4x - 6)",
                 "A. sec^2 (4x - 6)",
                 "B. 4sec^2 (4x - 6)",
                 "C. 4tan^2 (4x - 6)",

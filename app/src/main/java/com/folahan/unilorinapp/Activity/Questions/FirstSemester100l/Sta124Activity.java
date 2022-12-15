@@ -28,7 +28,6 @@ import java.util.Random;
 public class Sta124Activity extends AppCompatActivity {
 
     private List<Question> questionList;
-    private Random random;
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
@@ -51,7 +50,6 @@ public class Sta124Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
-        random = new Random();
 
         setListeners();
 
@@ -80,9 +78,23 @@ public class Sta124Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+            if (questionAnswered == 15) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
+            }
+        });
+
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
+            }
         });
     }
 
@@ -119,7 +131,10 @@ public class Sta124Activity extends AppCompatActivity {
             clicked++;
         });
 
-        btnEnd.setOnClickListener(view -> dialogAlert());
+        btnEnd.setOnClickListener(view -> {
+            //setDataView(pos);
+            getQuestionPhase2(questionList);
+        });
     }
 
     private void dialogAlert() {

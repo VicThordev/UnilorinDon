@@ -3,10 +3,10 @@ package com.folahan.unilorinapp.Activity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -16,7 +16,6 @@ import android.util.Base64;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,8 +36,11 @@ import java.util.HashMap;
 public class SignInActivity extends AppCompatActivity {
 
     private PreferenceManager preferenceManager;
+    private SharedPreferences.Editor editor;
     private EditText edtSurname, edtFirstName, edtUsername, edtMobile, edtEmail, edtPassword,
     edtConfirmPassword;
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_SURNAME = "surname";
     private RelativeLayout layout;
     private Intent intent;
     private Boolean checkTrue;
@@ -132,6 +134,11 @@ public class SignInActivity extends AppCompatActivity {
 
     public Boolean register(View view) {
         checkTrue = false;
+        Intent intent = new Intent();
+        SharedPreferences mPreferences = getSharedPreferences(
+                "sharedPref", Context.MODE_PRIVATE);
+        editor
+                = mPreferences.edit();
         if (!checkTrue) {
             message = edtSurname.getText().toString();
             if (message.trim().isEmpty()) {
@@ -141,6 +148,8 @@ public class SignInActivity extends AppCompatActivity {
                 txtSurname.setVisibility(View.GONE);
                 checkTrue=true;
             }
+            editor.putString("Surname", message);
+            intent.putExtra(KEY_SURNAME, message);
 
             if (encodedImage == null) {
                 Toast.makeText(this, "Select Profile Image", Toast.LENGTH_SHORT).show();
@@ -154,6 +163,7 @@ public class SignInActivity extends AppCompatActivity {
                 txtFirstname.setVisibility(View.GONE);
                 checkTrue=true;
             }
+            editor.putString("Firstname", message1);
 
             message2 = edtUsername.getText().toString();
             if (message2.trim().isEmpty()) {
@@ -163,6 +173,8 @@ public class SignInActivity extends AppCompatActivity {
                 txtUsername.setVisibility(View.GONE);
                 checkTrue=true;
             }
+            editor.putString("Username", message2);
+            intent.putExtra(KEY_USERNAME, message2);
 
             message3 = edtMobile.getText().toString();
             if (message3.trim().isEmpty()) {
@@ -172,6 +184,7 @@ public class SignInActivity extends AppCompatActivity {
                 txtMobile.setVisibility(View.GONE);
                 checkTrue=true;
             }
+            editor.putString("MobileNo", message3);
 
             message4 = edtEmail.getText().toString();
             if (message4.trim().isEmpty()) {
@@ -185,6 +198,7 @@ public class SignInActivity extends AppCompatActivity {
                 txtEmail.setVisibility(View.GONE);
                 checkTrue=true;
             }
+            editor.putString("Email", message4);
 
             message5 = edtPassword.getText().toString();
             if (message5.trim().isEmpty()) {
@@ -194,6 +208,9 @@ public class SignInActivity extends AppCompatActivity {
                 txtPassword.setVisibility(View.GONE);
                 checkTrue=true;
             }
+            editor.putString("Password", message5);
+
+            editor.apply();
 
             message6 = edtConfirmPassword.getText().toString();
             if (message6.trim().isEmpty()) {

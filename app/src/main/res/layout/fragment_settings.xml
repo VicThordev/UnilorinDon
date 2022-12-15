@@ -6,11 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragmentActivity.SettingsFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preferences"
+        android:textColor="#07BE07"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="70dp"/>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/material_dark_mode"
+        android:layout_marginTop="50dp"
         android:layout_marginStart="2dp"
         android:onClick="click"
         android:layout_marginEnd="2dp"
@@ -21,38 +30,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:checked="true"
-            android:elevation="2dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="8dp"
-            android:text="G-mail"
-            android:textSize="20sp" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:checked="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="2dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="10dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            android:text="Product Key"
-            android:layout_marginStart="60dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                android:text="Dark Mode"
+                android:textSize="15sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgNext"
-            android:src="@drawable/ic_volume_up"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="10dp"
+                android:textSize="12sp"
+                android:text="Enable Dark Mode"
+                android:layout_marginStart="70dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgNext"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_wb_sunny"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
@@ -61,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="115dp"
         android:layout_marginStart="2dp"
         android:onClick="vibrate"
         android:layout_marginEnd="2dp"
@@ -72,40 +100,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch2"
-            android:layout_width="wrap_content"
-            android:checked="true"
-            android:elevation="2dp"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="147dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp"
-            tools:layout_editor_absoluteY="30dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="8dp"
-            android:text="Enable vibration"
-            android:textSize="20sp" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch2"
+                android:layout_width="wrap_content"
+                android:checked="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="30dp"
+                android:elevation="2dp"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="147dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="10dp"
+                tools:layout_editor_absoluteY="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            android:text="Vibrate"
-            android:layout_marginStart="60dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:text="Enable vibration"
+                android:textSize="15sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgNext1"
-            android:src="@drawable/ic_vibration"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="10dp"
+                android:text="Vibrate"
+                android:layout_marginStart="70dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgNext1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_vibration"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 
@@ -115,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="220dp"
         android:layout_marginStart="2dp"
         android:onClick="messages"
         android:layout_marginEnd="2dp"
@@ -126,62 +173,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch3"
-            android:layout_width="wrap_content"
-            android:checked="true"
-            android:elevation="2dp"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="147dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="10dp"
-            tools:layout_editor_absoluteY="30dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="8dp"
-            android:text="Enable message notifications"
-            android:textSize="17sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/get_updated"
-            android:layout_marginStart="60dp"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgNext2"
-            android:src="@drawable/ic_notifications"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"/>
-
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:onClick="share">
 
             <TextView
                 android:id="@+id/txtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
+                android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:text="@string/share_app"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/txtView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
                 android:layout_marginTop="35dp"
+                android:textSize="12sp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/share" />
 
@@ -197,7 +211,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="70dp"
             android:onClick="rate"
             android:layout_height="wrap_content">
 
@@ -207,14 +221,15 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/rate"
                 android:id="@+id/txtView2"
-                android:textSize="17sp"
-                android:layout_marginStart="80dp"/>
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginStart="70dp"/>
 
             <TextView
                 android:id="@+id/txtView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="70dp"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/rating" />
@@ -232,7 +247,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp">
+            android:id="@+id/material_log_out"
+            android:layout_marginTop="130dp">
 
             <TextView
                 android:id="@+id/txtView10"
@@ -256,6 +272,15 @@
         </com.google.android.material.card.MaterialCardView>
 
     </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Communicate"
+        android:layout_marginTop="190dp"
+        android:layout_marginStart="70dp"
+        android:textColor="#07BE07"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

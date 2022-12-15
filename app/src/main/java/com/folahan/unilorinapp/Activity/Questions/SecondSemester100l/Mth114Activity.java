@@ -200,236 +200,181 @@ public class Mth114Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("Find the equation of the line through point (1,2) and parallel to 3x+5y=8",
+        questionList.add(new Question("1. Find the equation of the line through point (1,2) and parallel to 3x+5y=8",
                 "(a) 2x+6x=13",
                 "(b) 3x+5y = 13",
                 "(c) 2x-5y=31",
                 "(d) 8y+3-7x=13",
                 "(b) 3x+5y = 13"));
 
-        questionList.add(new Question("Find the inverse of the mapping: f(x) = 3x-5/2, x belonging to real no",
+        questionList.add(new Question("2. Find the inverse of the mapping: f(x) = 3x-5/2, x belonging to real no",
                 "(a) 2+5y/4 ",
                 "(b) 2y+5/3 ",
                 "(c) 3/2y-4 ",
                 "(d) 3y-2/5",
                 "(a) 2+5y/4 "));
 
-        questionList.add(new Question("Express sin(x+h) as a series of power of h and evaluate sin 30 correct to 5 decimal places",
+        questionList.add(new Question("3. Express sin(x+h) as a series of power of h and evaluate sin 30 correct to 5 decimal places",
                 "(a) 0.51504 ",
                 "(b) 0.6854",
                 "(c) 0.5754",
                 "(d) 1.0865",
                 "(a) 0.51504 "));
 
-        questionList.add(new Question("Find the equation of the line passing through the points (5,3) (-2,1)",
+        questionList.add(new Question("4. Find the equation of the line passing through the points (5,3) (-2,1)",
                 "(a) 5y+2x=7",
                 "(b) x-4y=8",
                 "(c) 7x-y=9",
                 "(d) 2x-7y=11",
                 "(d) 2x-7y=11"));
 
-        questionList.add(new Question("a*b=a+b-1=b+a-1",
+        questionList.add(new Question("5. a*b=a+b-1=b+a-1",
                 "(a) associative",
                 "(b) distributive",
                 "(c) commutative",
                 "(d) inverse",
                 "(c) commutative"));
 
-        questionList.add(new Question("Find the gradient of the line passing through points (4,2) and (-6,10)",
+        questionList.add(new Question("6. Find the gradient of the line passing through points (4,2) and (-6,10)",
                 "(a) -8/10",
                 "(b) -4/10",
                 "(c) 7/5" ,
                 "(d) -4/9", "(d) -4/9"));
 
-        questionList.add(new Question("A car left a point A at an angle of 25 degree and covered a distance of 9km to another point C, then changes it direction to a bearing S20E and travel a distance of 11km until it get to a point B which is due east of its starting point (i) What is the distance of the car to its starting point (ii) What is the car’s bearing to the point?",
+        questionList.add(new Question("7. A car left a point A at an angle of 25 degree and covered a distance of 9km to another point C, then changes it direction to a bearing S20E and travel a distance of 11km until it get to a point B which is due east of its starting point (i) What is the distance of the car to its starting point (ii) What is the car’s bearing to the point?",
                 "(a)(i)7.2km (ii)340degree", "(b)(i)8km (ii)270 degree",
                 "(c)(i)8.5km (ii)340 degree", "(d)(i)6.7km (ii)220degree",
                 "(c)(i)8.5km (ii)340 degree"));
 
-        questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
-                "A. ½", "B. 2",
-                "C. -log2",
-                "D. -2",
-                "A. ½"));
+        questionList.add(new Question("8. Find x, if 9ˣ² = 3⁵ˣ-²",
+                "A. ½ or 2", "B. 2",
+                "C. -2 or 1",
+                "D. -2 or 2",
+                "A. ½ or 2"));
 
-        questionList.add(new Question("9. Two equal charges of equal magnitude exert an attractive force of 4.0 x 10^-4N on each other. If the " +
-                "magnitude of each charge is 2.0μC, how far apart are the charges?",
-                "A. 9.5m",
-                "B. 9.7m",
-                "C. 10.5m",
-                "D. 10.7m",
-                "A. 9.5m"));
+        questionList.add(new Question("9. Solve for x in the equation 5²ˣ - 5¹+ˣ + 6",
+                "A. log 5/log 3",
+                "B. 6 log 5",
+                "C. log 3/log 5",
+                "D. log 5x",
+                "C. log 3/log 5"));
 
-        questionList.add(new Question("10. What is the magnitude of a point charge whose electric field 50cm away has magnitude 2.0N/C?",
-                "A. 4.56 x 10^-11C",
-                "B. 4.66 x 10^-11C",
-                "C. 5.56 x 10^-11C ",
-                "D. 5.66 x 10^-11C", "C. 5.56 x 10^-11C "));
+        questionList.add(new Question("10. _____ is a square matrix in which all of its diagonal elements are zero.",
+                "A. Zero matrix",
+                "B. Null matrix",
+                "C. Diagonal matrix",
+                "D. Column matrix", "C. Diagonal matrix"));
 
-        questionList.add(new Question("11. What is the magnitude of an electric field in which the force on an electron is equal in magnitude to " +
-                "the weight of an electron?",
-                "A. 4.58 x 10^-11N/C",
-                "B. 5.58 x 10^-11N/C" ,
-                "C. 6.58 x 10^-11N/C",
-                "D. 7.58 x 10-^11N/C",
-                "B. 5.58 x 10^-11N/C"));
+        questionList.add(new Question("11. Determine the zero of the function defined by f(x) = 2x + 5",
+                "A. -2/5",
+                "B. 5/2" ,
+                "C. -5/2",
+                "D. 2/5",
+                "C. -5/2"));
 
-        questionList.add(new Question( "12. A small object carrying a charge of 5 x 10^-9" +
-                "C experiences a downward force of 20 x 10^-9N when" +
-                "placed at a certain point in an electric field. What's the electric field at the point?",
-                "A. 100 N/C",
-                "B. 40 N/C",
-                "C. 10 N/C",
-                "D. 4 N/C",
-                "D. 4 N/C"));
+        questionList.add(new Question( "12. a, h, g \n h, h, f \n g, f, c \n The matrix above represents",
+                "A. Skew Symmetric matrix",
+                "B. Symmetric matrix",
+                "C. Diagonal matrix",
+                "D. Straight Matrix",
+                "B. Symmetric matrix"));
 
-        questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
-                "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
-                "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
-                "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
-                "D. 8.4 x 10^6N/C, 7.5 x 10^5N/C",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
+        questionList.add(new Question( "13. x+3  2y+x \n z-1  4a-6 \n = 0  -7 \n 3  2a \n Find the values of x,y and z",
+                "A. x = -3, y = -2, z = 4",
+                "B. x = -2, y = -3, z = 2",
+                "C. x = -3, y = -2, z = 3",
+                "D. A. x = -4, y = -2, z = -2",
+                "A. x = -3, y = -2, z = 4"));
 
-        questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
-                "B. 4.5 x 10^6N/C, 45N",
-                "C. 5.5 x 10^6N/C, 55N",
-                "D. 6.5 x 10^6N/C, 65N",
-                "B. 4.5 x 10^6N/C, 45N"));
+        questionList.add(new Question( "14. Given that f: x² + px + q is a mapping defined on the set of real numbers. " +
+                "If f(1) is 2 & f(-1) = 6. Find the values of p & q",
+                "A. q = 3, p = -2",
+                "B. q = 2, p = -1",
+                "C. q = 2, p = 2",
+                "D. q = 1, p = -3",
+                "A. q = 3, p = -2"));
 
-        questionList.add(new Question( "15. The magnitude of electric field is 40kN/C. If an electron is placed in the same field, what force will be \n" +
-                "exerted on it?",
-                "A. 3.4 x 10^-15N",
-                "B. 4.4 x 10^-15N",
-                "C. 5.4 x 10^-15N",
-                "D. 6.4 x 10^-15N",
-                "D. 6.4 x 10^-15N"));
-
-        questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
-                "(B) clauses. ",
-                "(C) phrases. ",
-                "(D) morphemes",
-                "(C) phrases. "));
-
-        questionList.add(new Question( "17. An important feature of language4 is its \n" +
-                "___________ ",
-                "(A) structure",
-                "(B) texture.",
-                "(C) strength.",
-                "(D) stature.",
-                "(A) structure"));
-
-        questionList.add(new Question( "18. The English as a second \n" +
-                "language countries include all except ________.",
-                "(A) Ghana.",
-                "(B) India.",
-                "(C) Nigeria. ",
-                "(D) USA",
-                "(D) USA"));
-
-        questionList.add(new Question( "19. " +
-                "________ to come this weekend to listen to the broadcast of the football match?",
-                "(A) Do you like,",
-                "(B) " +
-                        "Would you like. ",
-                "(C) Are you like.",
-                "(D) Will you like.",
-                "(B) " +
-                        "Would you like. "));
-
-        questionList.add(new Question( " 20. Factors affecting study skills include all \n" +
-                "except_________.",
-                "(A) hybridizing.",
-                "(B) the study time.",
-                "(C) the study venue",
-                "(D) reading aloud to " +
-                        "oneself.",
-                "(A) hybridizing."));
-
-        questionList.add(new Question( "21. Computers are now cheap_______ for nearly everyone to afford it.",
-                "(A) enough.",
-                "(B) " +
-                        "so. ",
-                "(C) too.",
-                "(D) quite. ",
-                "(A) enough."));
-
-        questionList.add(new Question( "22. You’re looking __________ pretty today, Temy.",
-                "(A) very.",
-                "(B) " +
-                        "attractively. ",
-                "(C) beautifully.",
-                "(D) too. ",
-                "(A) very."));
-
-        questionList.add(new Question( "23. I promise to do my _________best.",
-                "(A) possible.",
-                "(B) " +
-                        "very.",
-                "(C) feasible.",
-                "(D) variable. ",
-                "(B) " +
-                        "very."));
-
-        questionList.add(new Question( "24. Water ________hydrogen and oxygen.",
-                "(A) Varies between.",
-                "(B) migrates.",
-                "(C) consists of.",
-                "(D) " +
-                        "corresponds to",
-                "(C) consists of."));
-
-        questionList.add(new Question( "25. Agnes left the school very late, _____________________ ",
-                "(A) didn’t she?",
-                "(B) isn’t it?",
-                "(C) " +
-                        "hasn’t she? ",
-                "(D) hadn’t she? ",
-                "(A) didn’t she?"));
-
-        questionList.add(new Question( "26. “Soyinka is good at play writing and Achebe is good at prose writing” Identify the sentence type.",
-                "(A) Complex.",
-                "(B) simple.",
-                "(C) compound.",
-                "(D) compound complex",
-                "(C) compound."));
-
-        questionList.add(new Question( "27. “ Mathematic _________compulsory for engineering students”.",
-                "(A) is",
-                "(B) as",
-                "(C) are",
-                "(D) " +
-                        "were",
-                "(A) is"));
-
-        questionList.add(new Question( "28. The boy and the girl _______gone home.",
-                "(A) has.",
-                "(B) have.",
-                "(C) had.",
-                "(D) is. ",
-                "(B) have."));
-
-        questionList.add(new Question( "29. Which of the following is not a quality of good English?",
-                "(A) coherence",
-                "(B) emphasis or " +
-                        "focus. ",
-                "(C) unity.",
-                "(D) none of the above. ",
-                "(D) none of the above. "));
-
-        questionList.add(new Question( "30. Inspite of the seemingly scarcity of marriageable men today many a girl __________ to get \n" +
-                "married at the age of twenty-one.",
-                "(A) Intend.",
-                "(B) intended",
-                "(C) plans",
-                "(D) plan. ",
-                "(C) plans"));
+        questionList.add(new Question( "15. Determine the domain D of the function h: x -> x² + 2, " +
+                "R{3} & h is defined on D.",
+                "A. √3",
+                "B. +/-√2",
+                "C. +/-1",
+                "D. No answer",
+                "C. +/-1"));
     }
+
+    private void getQuestionPhase1(List<Question> list) {
+
+        questionList.add(new Question("1. Convert -128°10¹ to degrees",
+                "A. -0.5",
+                "B. -0.31",
+                "C. 0.871",
+                "D. -0.7148",
+                "D. -0.7148"));
+
+        questionList.add(new Question("2. Solve 3°(4°5)",
+                "A. 3",
+                "B. 5",
+                "C. 4/5",
+                "D. -3",
+                "B. 5"));
+
+        questionList.add(new Question("3. 2▽(3▽4)",
+                "A. 21",
+                "B. 38",
+                "C. 7",
+                "D. 59",
+                "D. 59"));
+
+        questionList.add(new Question("4. A Surjective mapping is also called ______",
+                "A. One to One Mapping",
+                "B. Onto Mapping ",
+                "C. Bijective Mapping",
+                "D. Rotary Mapping",
+                "A. One to One Mapping"));
+
+        questionList.add(new Question("5. If a x e = e x a, 'e' is said to be ",
+                "A. Inverse element",
+                "B. Identity element",
+                "C. Inverse set",
+                "D. Binary element",
+                "B. Identity element"));
+
+        questionList.add(new Question("6. Express sin 2A",
+                "A. 2sinAcosA",
+                "B. sin2Acos2A",
+                "C. cosA²",
+                "D. sinA²",
+                "A. 2sinAcosA"));
+
+        questionList.add(new Question("7. a --->--- a \n b --->--- b \n c --->--- c \n This mapping is a kind of ",
+                "A. One to One Mapping",
+                "B. Onto Mapping",
+                "C. Identity Mapping",
+                "D. Surjective Mapping",
+                "C. Identity Mapping"));
+
+        questionList.add(new Question("8. Express tan 60 in surd form",
+                "A. √3",
+                "B. √3/2",
+                "C. 1/2",
+                "D. -√2",
+                "A. √3"));
+
+        questionList.add(new Question("9. a*(b▽c) = (a*b)▽(a*c). This represents ",
+                "A. Associativity",
+                "B. Identity",
+                "C. Distributivity",
+                "D. Inverse",
+                "C. Distributivity"));
+
+        questionList.add(new Question("10. For angles greater than 90° but less than 180° in trigonometry are found using",
+                "A. α + θ = 180",
+                "B. θ = α - 180",
+                "C. θ = 180 - α",
+                "D. θ = 360 - α",
+                "C. θ = 180 - α"));
+    }
+
+
 }

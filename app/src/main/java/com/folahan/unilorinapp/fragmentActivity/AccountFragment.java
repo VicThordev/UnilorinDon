@@ -1,7 +1,9 @@
 
 package com.folahan.unilorinapp.fragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.folahan.unilorinapp.Activity.IntoChatActivity;
 import com.folahan.unilorinapp.Activity.SignInActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
@@ -32,8 +35,10 @@ import java.util.HashMap;
  */
 public class AccountFragment extends Fragment {
     private TextView  txtUsername, txtEmail;
+    private SharedPreferences.Editor editor;
     private View view;
     private PreferenceManager preferenceManager;
+    private User user;
     private TextView txtName;
     public AccountFragment() {
         // Required empty public constructor
@@ -43,15 +48,23 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Intent intent = requireActivity().getIntent();
+
 
         view =  inflater.inflate(R.layout.profile_layout, container, false);
         txtName = view.findViewById(R.id.txtNameProfile);
         txtUsername = view.findViewById(R.id.txtUsernameProfile);
         txtEmail = view.findViewById(R.id.txtEmailProfile);
+        SharedPreferences preferences = requireActivity().getSharedPreferences(
+                "sharedPref", Context.MODE_PRIVATE
+        );
+        editor = preferences.edit();
 
-        preferenceManager =  new PreferenceManager(view.getContext().getApplicationContext());
 
-        //txtName.setText(preferenceManager.getString(Constants.KEY_SURNAME + "pPp" + Constants.KEY_LASTNAME) + "po");
+        preferenceManager =  new PreferenceManager(requireActivity().getApplicationContext());
+        user = (User) requireActivity().getIntent().getSerializableExtra(Constants.KEY_USER);
+
+        //txtName.setText(name);
 
         return view;
     }
@@ -69,20 +82,5 @@ public class AccountFragment extends Fragment {
         txtEmail.setText(email);
     }
 
-    public void signOut() {
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        DocumentReference documentReference =
-                database.collection(Constants.KEY_COLLECTION_USERS)
-                .document(preferenceManager.getString(Constants.KEY_USER_ID));
-        HashMap<String, Object> updates = new HashMap<>();
-        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-        documentReference.update(updates)
-                .addOnSuccessListener(unused -> {
-                    preferenceManager.clear();
-                    startActivity(new Intent(view.getContext().getApplicationContext(),
-                            SignInActivity.class));
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(view.getContext().getApplicationContext(), "Unable to sign out", Toast.LENGTH_SHORT).show());
-    }
+
 }

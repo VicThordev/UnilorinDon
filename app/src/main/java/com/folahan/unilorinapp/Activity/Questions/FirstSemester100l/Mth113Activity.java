@@ -32,7 +32,7 @@ public class Mth113Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
+    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     Button btnNext, btnPrev, btnEnd;
     private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
@@ -124,6 +124,7 @@ public class Mth113Activity extends AppCompatActivity {
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption2.setOnClickListener(view -> {
@@ -131,6 +132,7 @@ public class Mth113Activity extends AppCompatActivity {
                     .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption3.setOnClickListener(view -> {
@@ -138,6 +140,7 @@ public class Mth113Activity extends AppCompatActivity {
                     .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption4.setOnClickListener(view -> {
@@ -145,9 +148,13 @@ public class Mth113Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
-        btnEnd.setOnClickListener(view -> dialogAlert());
+        btnEnd.setOnClickListener(view -> {
+            setDataView(pos);
+            getQuestionPhase1(questionList);
+        });
     }
 
     private void setDataView(int position) {
@@ -157,6 +164,8 @@ public class Mth113Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
         if (questionAnswered == 30) {
@@ -168,7 +177,7 @@ public class Mth113Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
                 dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
