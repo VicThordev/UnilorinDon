@@ -7,6 +7,8 @@
 
     <string name="quiz_game_string">Quiz Game</string>
 
+    <string name="go_home">Go Home</string>
+
     <string name="unilorin_updates_string">Unilorin Updates</string>
 
     <string name="study_past_questions_string">Study Past Questions</string>
@@ -80,4 +82,9 @@
     <string name="time">Time</string>
     <string name="cbt">CBT</string>
     <string name="add">Add an image</string>
+    <string name="series_five">Series Five</string>
+    <string name="series_four">Series Four</string>
+    <string name="series_three">Series Three</string>
+    <string name="series_two">Series Two</string>
+    <string name="series_one">Series One</string>
 </resources>

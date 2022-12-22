@@ -1,5 +1,6 @@
 package com.folahan.unilorinapp.Activity.Questions.FirstSemester100l;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.folahan.unilorinapp.Activity.Questions.SecondSemester100l.SecondSemesterActivity;
 import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
@@ -54,6 +56,24 @@ public class Mth113Activity extends AppCompatActivity {
         random = new Random();
         setListeners();
 
+        if (SecondSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase1(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 3) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 4) {
+            getQuestionPhase3(questionList);
+
+            setDataView(pos);
+        }
+
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
             public void onTick(long l) {
@@ -72,9 +92,7 @@ public class Mth113Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        getQuestionPhase(questionList);
 
-        setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
@@ -151,10 +169,7 @@ public class Mth113Activity extends AppCompatActivity {
             clicked++;
         });
 
-        btnEnd.setOnClickListener(view -> {
-            setDataView(pos);
-            getQuestionPhase1(questionList);
-        });
+        btnEnd.setOnClickListener(view -> dialogAlert());
     }
 
     private void setDataView(int position) {
@@ -168,9 +183,6 @@ public class Mth113Activity extends AppCompatActivity {
         answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
 
     }
 

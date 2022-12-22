@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -16,25 +17,23 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.folahan.unilorinapp.Activity.Questions.SecondSemester100l.SecondSemesterActivity;
 import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 public class Chm101Activity extends AppCompatActivity {
 
     private List<Question> questionList;
-    private Random random;
     private RadioGroup mGroup;
     private TextView questionText, questionNo, countDown;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
-    private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, questionDone = 0;
+    private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     private Button btnNext, btnPrev, btnEnd;
     private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
@@ -53,7 +52,8 @@ public class Chm101Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
-        random = new Random();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         CountDownTimer timer = new CountDownTimer(mTimeLeft, 1000) {
             @Override
@@ -73,11 +73,26 @@ public class Chm101Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        getQuestionPhase(questionList);
+        if (SecondSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 3) {
+            getQuestionPhase3(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 4) {
+            getQuestionPhase4(questionList);
+
+            setDataView(pos);
+        }
 
         btnEnd.setOnClickListener(view -> dialogAlert());
 
-        setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
@@ -111,6 +126,7 @@ public class Chm101Activity extends AppCompatActivity {
                             .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
                     }
+                    clicked++;
                     break;
                     //
                 case R.id.radioB:
@@ -118,6 +134,7 @@ public class Chm101Activity extends AppCompatActivity {
                             .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
                     }
+                    clicked++;
                     break;
                     //
                 case R.id.radioC:
@@ -125,6 +142,7 @@ public class Chm101Activity extends AppCompatActivity {
                             .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
                     }
+                    clicked++;
                     break;
                     //
                 case R.id.radioD:
@@ -132,6 +150,7 @@ public class Chm101Activity extends AppCompatActivity {
                             .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
                     }
+                    clicked++;
                     break;
                     //
                 default:
@@ -171,7 +190,7 @@ public class Chm101Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -207,10 +226,8 @@ public class Chm101Activity extends AppCompatActivity {
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
 
+
         questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
 
     }
 
@@ -222,11 +239,12 @@ public class Chm101Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Amphoteric elements are the elements which",
-                "have similar physical properties with metals but similar chemical properties with non-metals",
-                "possess acidic properties only", "possess neither acidic nor basic properties",
-                "possess basic properties",
-                "have similar physical properties with metals but similar chemical properties with non-metals"));
+        questionList.add(new Question("1. A reaction is said to be of zero order if _____",
+                "the activation path is invisible",
+                "the rate of reaction does not depend on the reaction concentration",
+                "the catalyst involved is not effective",
+                "the activation energy is negative",
+                "the rate of reaction does not depend on the reaction concentration"));
 
         questionList.add(new Question("2. Sodium and Potassium belong to the same group of the periodic table. This is because",
                 "both are metals",
@@ -244,11 +262,12 @@ public class Chm101Activity extends AppCompatActivity {
                 "Increasing the temperature", "adding more of Q", "Decreasing the temperature",
                 "Decreasing the temperature "));
 
-        questionList.add(new Question("5. Which of the following can change the value of the equilibrium constant for a reaction?",
-                "Changing the concentration of the reactants",
-                "Adding a catalyst",
-                "Changing the solvent", "Removing the products as they are formed",
-                "Changing the solvent"));
+        questionList.add(new Question("5. The vapour pressure of ethanol is 115 torr at 34.9°C. If the heat of vapourization is " +
+                "40.5KJ/mol. Calculate the temperature when the vapour pressure is 760 torr. (R = 8.314 KJ/mol)",
+                "350.4K",
+                "200.3K",
+                "400K", "310.6K",
+                "350.4K"));
 
         questionList.add(new Question("6. In writing equilibrium constant expression, which of the following quantities can be used to \n" +
                 "represent the amount of reactants and products?",
@@ -264,7 +283,7 @@ public class Chm101Activity extends AppCompatActivity {
                 "sodium hydroxide solution on the above equilibrium?",
                 "Equilibrium shifts to the right.", "Equilibrium shifts to the right.",
                 "More Cu (OH)2 reacts.",
-                "Equilibrium shifts to the left.\n", "Equilibrium shifts to the right."));
+                "Equilibrium shifts to the left.", "Equilibrium shifts to the right."));
 
         questionList.add(new Question("9. Identify the reducing agent in the following reaction <br /> 2 Al (s) + 3 Cu2+ aq &rarr; \n" +
                 "2Al2+ aq + 3Cu aq",
@@ -724,11 +743,199 @@ public class Chm101Activity extends AppCompatActivity {
                 "law of multiple proportion"));
 
         questionList.add(new Question("9. How many moles of sulphur molecules are contained in 80.3g of sulphur if the molecular " +
-                "formula is S<sub>8</sub> ? (S = 32.06)",
+                "formula is S₈ ? (S = 32.06)",
                 "0.08 mole",
                 "0.16 mole",
                 "0.313 mole",
                 "0.260 mole",
                 "0.313 mole"));
+
+        questionList.add(new Question("10. Which of the following can change the value of the equilibrium constant for a reaction?",
+                "Changing the concentration of the reactants",
+                "Adding a catalyst",
+                "Adding a catalyst",
+                "Removing the products as they are formed",
+                "Adding a catalyst"));
+
+        questionList.add(new Question("11. In writing equilibrium constant expression, which of the following quantities can be used to " +
+                "represent the amount of reactants and products?",
+                "(a) Concentration",
+                "(b) Partial pressures",
+                "(c) Mole fractions",
+                "(d) (a) and (b) only",
+                "(d) (a) and (b) only"));
+
+        questionList.add(new Question("12. In cell convection, the slant lanes/ solid vertical lines represent _____",
+                "(a) products",
+                "(b) boundaries between the phases",
+                "(c) activation path",
+                "(d) cell design",
+                "(b) boundaries between the phases"));
+
+        questionList.add(new Question("13. The equilibrium expression, k = [Ag+] [Cl-] describe the reaction",
+                "(a) AgCl Ag+ + Cl-",
+                "(b) Ag+ + Cl- AgC",
+                "(c) Ag+ + Cl- Ag + Cl",
+                "(d) Ag + Cl Ag+ + Cl-",
+                "(d) Ag + Cl Ag+ + Cl-"));
+
+        questionList.add(new Question("14. Give the IUPAC name of the compound Fe₃P₂",
+                "(a) Ironphosphate",
+                "(b) Iron(ii)phosphate",
+                "(c) Iron(iii)phospate",
+                "(d) Phosphateianide",
+                "(b) Iron(ii)phosphate"));
+
+        questionList.add(new Question("15. Give the IUPAC name of the compound H₂CrO₄",
+                "(a) tetraoxodihydrogenchromate(vi)",
+                "(b) hydrogen tetraoxochromate(iv)",
+                "(c) hydrogen tetraoxochromate(vi)",
+                "(d) tetraoxochromate(v)",
+                "(c) hydrogen tetraoxochromate(vi)"));
+
+        questionList.add(new Question("16. Give the IUPAC name of the compound Ca₃N₂",
+                "(a) Calcium(ii)nitride",
+                "(b) Calcium nitride",
+                "(c) Calcium(iii)nitride",
+                "(d) None of the above",
+                "(b) Calcium nitride"));
+
+        questionList.add(new Question("17. Calculate the average bond energy of the C - H bond in methane molecule. ",
+                "(a) 1656 KJ/mol",
+                "(b) 414 KJ/mol",
+                "(c) 4140 KJ/mol",
+                "(d) 165 KJ/mol",
+                "(b) 414 KJ/mol"));
+
+        questionList.add(new Question("18. Cu(OH)₂(s) + 2H+(aq) &harr; Cu₂+(aq) + 2H₂O (l)What is the effect of addition of " +
+                "sodium hydroxide solution on the above equilibrium",
+                "(a) Equilibrium shifts to the right",
+                "(b) Equilibrium is not affected",
+                "(c) More Cu (OH)2 reacts",
+                "(d) Equilibrium shifts to the left",
+                "(a) Equilibrium shifts to the right"));
+
+        questionList.add(new Question("19. Identify the reducing agent in the following reaction <br /> 2 Al (s) + 3 Cu₂+ aq &rarr; " +
+                "2Al2+ aq + 3Cu aq",
+                "(a) Cu₂+ ion",
+                "(b) Cu atom",
+                "(c) Al atom",
+                "(d) Al₃+",
+                "(b) Cu atom"));
+
+        questionList.add(new Question("20. 0.82g of a hydrate Y₂CO₃.5H₂O was heated in an oven to remove all the " +
+                " water of crystallization. If the weight of the residue left is 0.37g. Identify Y",
+                "(a) 14",
+                "(b) 0.9",
+                "(c) 6.3",
+                "(d) 7",
+                "(d) 7"));
+
+        questionList.add(new Question("21. Reducing agent X react with oxidizing agent Y, The true statement is",
+                "(a) X is reduced",
+                "(b) Y is oxidized",
+                "(c) X gain electron",
+                "(d) Y gain electron",
+                "(d) Y gain electron"));
+
+        questionList.add(new Question("22. An oxide of an element x with the formula XO₂ occupies 0.14dm³ of volume " +
+                "at STP. Identify the Molar Mass of X",
+                "(a) 64 g/mol",
+                "(b) 32 g/mol",
+                "(c) 16 g/mol",
+                "(d) 8 g/mol",
+                "(b) 32 g/mol"));
+
+        questionList.add(new Question("23. If reducing potential of Na+ + e is - 2.71, the oxidizing potential will be",
+                "(a) 10 - (-.271)",
+                "(b) 1-(- 2.71)",
+                "(c) +2.71",
+                "(d) -0.51",
+                "(d) -0.51"));
+
+        questionList.add(new Question("24. 2.5 grams of N₂O was placed in the container at STP. Calculate the volume occupied " +
+                "by the gas.",
+                "(a) 1.27cm³",
+                "(b) 22.4cm³",
+                "(c) 0cm³",
+                "(d) 11.2cm³",
+                "(a) 1.27cm³"));
+
+        questionList.add(new Question("25. For the reaction 6H₂O + 4 NO₂(g) &harr; 4 NH3 g + 7O₂ g",
+                "(a) Kp = Kc/RT",
+                "(b) Kp = KcRT",
+                "(c) Kp = Kc(RT)₂",
+                "(d) Kc = KpRT₂",
+                "(c) Kp = Kc(RT)₂"));
+
+        questionList.add(new Question("26. Which of these pairs of metal has variable valencies? ",
+                "(a) Iron and copper",
+                "(b) Zinc and caesium",
+                "(c) Iron and strontium",
+                "(d) Barium and scandium",
+                "(a) Iron and copper"));
+
+        questionList.add(new Question("27. J.J. Thomson’s model of the atom fell into disrepute and was replaced by one of the followings ",
+                "(a) Dalton’s theory",
+                "(b) Rutherford Nuclear model ",
+                "(c) Bohr model",
+                "(d) Balmer series model",
+                "(b) Rutherford Nuclear model "));
+
+        questionList.add(new Question("28. Phosphorous burns in oxygen according to the equation " +
+                "P₄ + 5O₂ P₄O . How many litres of oxygen will be required at s.t.p. for complete oxidation " +
+                "of 12.4g of phosphorous? (P = 31, 0 = 16 and molar volume of a gas at s.t.p. = 22.4 litres) ",
+                "(a) Dalton’s theory",
+                "(b) Rutherford Nuclear model ",
+                "(c) Bohr model",
+                "(d) Balmer series model",
+                "(b) Rutherford Nuclear model "));
+
+        questionList.add(new Question("28. Which of these statements is not true when the cubes are added into the hot tea in a " +
+                " glass cup?",
+                "(a) Tea is surrounding the ice cubes",
+                "(b) The system is the ice cubes.",
+                "(c) Heat is transferred from the tea to the ice cubes and the ice melts.",
+                "(d) Heat is only transferred from the ice cubes to the tea and the ice melts",
+                "(d) Heat is only transferred from the ice cubes to the tea and the ice melts"));
+
+        questionList.add(new Question("29. The following thermodynamic properties: temperature, enthalpy, entropy and energy " +
+                "changes are called",
+                "(a) non-state functions",
+                "(b) state functions",
+                "(c) adiabatic functions",
+                "(d) repulsive forces",
+                "(b) state functions"));
+
+        questionList.add(new Question("30. Ionization energy",
+                "(a) increases across the period but decreases down the group of the periodic table ",
+                "(b) decreases across the period but increases down the group of the periodic table",
+                "(c) increases both across the period and down the group of the periodic table ",
+                "(d) decreases both across the period and down the group of the periodic table ",
+                "(a) increases across the period but decreases down the group of the periodic table "));
     }
+
+    private void getQuestionPhase4(List<Question> list) {
+
+        questionList.add(new Question("1. Amphoteric elements are the elements which",
+                "have similar physical properties with metals but similar chemical properties with non-metals",
+                "possess acidic properties only", "possess neither acidic nor basic properties",
+                "possess basic properties",
+                "have similar physical properties with metals but similar chemical properties with non-metals"));
+
+        questionList.add(new Question("2. Sodium and Potassium belong to the same group of the periodic table. This is because",
+                "both are metals",
+                "both are soft and lighter than water",
+                "both form cations by loosing electrons",
+                "both have identical electronic configuration",
+                "both have identical electronic configuration"));
+
+        questionList.add(new Question("5. Which of the following can change the value of the equilibrium constant for a reaction?",
+                "Changing the concentration of the reactants",
+                "Adding a catalyst",
+                "Changing the solvent", "Removing the products as they are formed",
+                "Changing the solvent"));
+    }
+
+
 }

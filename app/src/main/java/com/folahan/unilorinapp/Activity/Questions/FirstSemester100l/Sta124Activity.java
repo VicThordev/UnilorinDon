@@ -71,9 +71,20 @@ public class Sta124Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        getQuestionPhase(questionList);
+        if (FirstSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
 
-        setDataView(pos);
+            setDataView(pos);
+        } else if (FirstSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        } else if (FirstSemesterActivity.questionRequestCode == 3) {
+            getQuestionPhase3(questionList);
+
+            setDataView(pos);
+        }
+
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
@@ -133,7 +144,7 @@ public class Sta124Activity extends AppCompatActivity {
 
         btnEnd.setOnClickListener(view -> {
             //setDataView(pos);
-            getQuestionPhase2(questionList);
+            dialogAlert();
         });
     }
 
@@ -189,6 +200,7 @@ public class Sta124Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
         if (questionAnswered == 30) {

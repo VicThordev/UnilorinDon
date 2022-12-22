@@ -3,19 +3,17 @@ package com.folahan.unilorinapp.Activity.Questions.SecondSemester100l;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,18 +23,13 @@ import com.folahan.unilorinapp.Model.Question;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 public class Chm112Activity extends AppCompatActivity {
 
     private List<Question> questionList;
-    private Random random;
     private TextView questionText, questionNo, countDown, answerText;
     private ImageView mImageView;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
@@ -48,7 +41,7 @@ public class Chm112Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chm132);
+        setContentView(R.layout.activity_chm112);
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
@@ -61,7 +54,6 @@ public class Chm112Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
-        random = new Random();
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -83,9 +75,11 @@ public class Chm112Activity extends AppCompatActivity {
 
         setListeners();
 
-        getQuestionPhase(questionList);
+        if (SecondSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
 
-        setDataView(pos);
+            setDataView(pos);
+        }
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
@@ -191,17 +185,6 @@ public class Chm112Activity extends AppCompatActivity {
         dialog.show();
     }
 
-    private String encodeImage(Bitmap bitmap) {
-        int previewWidth = 150;
-        int previewHeight = bitmap.getHeight() * previewWidth/bitmap.getWidth();
-        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth,
-                previewHeight, false);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
-        byte [] bytes = stream.toByteArray();
-        return Base64.encodeToString(bytes, Base64.DEFAULT);
-    }
-
     private void setDataView(int position) {
         questionText.setText(questionList.get(position).getQuestion());
 
@@ -210,11 +193,10 @@ public class Chm112Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
+        mImageView.setImageResource(questionList.get(position).getImage());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
 
     }
 
@@ -226,243 +208,283 @@ public class Chm112Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
-                "A. 150.6cm",
-                "B. 138.9cm",
-                "C. 148.7cm",
-                "D. 165.3cm",
-                "B. 138.9cm"));
+        questionList.add(new Question("1. _____ is an example of a compound that exhibits the chain isomerism",
+                "A. Propyl Bromide",
+                "B. Isopropyl",
+                "C. Butane",
+                "D. Di ethyl ether",
+                "C. Butane"));
 
-        questionList.add(new Question("2. At what distance would the repulsive force between two electrons have a magnitude of one newton?",
-                "A. 0.0152pm",
-                "B. 0.0142pm",
-                "C. 0.0132pm",
-                "D. 0.0122pm",
-                "A. 0.0152pm"));
+        questionList.add(new Question("2. Another name for chirality centre is _____",
+                "A. Chiral Isomers",
+                "B. Meta Isomers",
+                "C. Asymmetric carbon",
+                "D. Chain isomer",
+                "C. Asymmetric carbon"));
 
-        questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
-                "A. 125 electrons ",
-                "B. 250 electrons",
-                "C. 625 electrons",
-                "D. 750 electrons",
-                "C. 625 electrons"));
+        questionList.add(new Question("3. Isomers that are unidentical are called _____",
+                "A. enantiomers",
+                "B. potentiomers",
+                "C. asymmetric isomers",
+                "D. chiral centres",
+                "A. enantiomers"));
 
-        questionList.add(new Question("4. What is the total positive charge in Coulombs, of all the protons in 1mol of Hydrogen atoms?",
-                "A. 96.35kC",
-                "B. 72.46kC",
-                "C. 83.48kC",
-                "D. 78.36kC",
-                "A. 96.35kC"));
+        questionList.add(new Question("4. What is the absolute configuration of the molecule shown.",
+                "A. This molecule is achiral",
+                "B. R",
+                "C. S",
+                "D. 1S, 2R",
+                "C. S",
+                R.drawable.chm112_snip));
 
-        questionList.add(new Question("5. An α-particle is a nucleus of doubly-ionised helium. It has a mass of 6.69 x 10^-27kg and a charge of -2e. " +
-                "Compute the ratio of the force of electrostatic repulsion between two α-particles to the force of " +
-                "gravitational attraction between them",
-                "A. 6.2 x 10^35",
-                "B. 4.2 x 10^35",
-                "C. 3.1 x 10^35",
-                "D. 2.1 x 10^35",
-                "C. 3.1 x 10^35"));
+        questionList.add(new Question("5. What is the IUPAC name of the molecule shown?",
+                "A. Z-5-Carboxy-2-pentene",
+                "B. E-Pent-3-enoic acid",
+                "C. E-5-Carboxy-2-pentene",
+                "D. Z-pent-3-enoic acid",
+                "D. Z-pent-3-enoic acid",
+                R.drawable.chm112snip1));
 
-        questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
-                "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
-                "(me = 9.1 x 10^-31kg, mp = 1.7 x 10^-27kg, e = 1.6 x 10^-19C)",
-                "A. 2.2 x 10^39",
-                "B. 1.1 x 10^39",
-                "C. 2.1 x 10^39" ,
-                "D. 1.2 x 10^39", "A. 2.2 x 10^39"));
+        questionList.add(new Question("6. Which of the following differences would never describe isomers?",
+                "A. Different molar masses",
+                "B. Different absolute configuration",
+                "C. Different rotation of plane-polarized light",
+                "D. Different boiling points",
+                "A. Different molar masses"));
 
-        questionList.add(new Question("7. What is the magnitude of electrostatic force of attraction between an α-particle and an electron 10^-" +
-                "13m apart?",
-                "A. 2.3 x 10^-2N", "B. 2.6 x 10^-2N",
-                "C. 4.3 x 10^-2N", "D. 4.6 x 10^-2N",
-                "D. 4.6 x 10^-2N"));
+        questionList.add(new Question("7. How many stereoisomers are possible for methylcyclopropane?",
+                "A. 3", "B. 2",
+                "C. 0", "D. 4",
+                "C. 0"));
 
-        questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
-                "A. ½", "B. 2",
-                "C. -log2",
-                "D. -2",
-                "A. ½"));
+        questionList.add(new Question("8. How many constitutional isomers exist for the general molecular formula C4H9OH",
+                "A. 3", "B. 2",
+                "C. 4",
+                "D. 5",
+                "C. 4"));
 
-        questionList.add(new Question("9. Two equal charges of equal magnitude exert an attractive force of 4.0 x 10^-4N on each other. If the " +
-                "magnitude of each charge is 2.0μC, how far apart are the charges?",
-                "A. 9.5m",
-                "B. 9.7m",
-                "C. 10.5m",
-                "D. 10.7m",
-                "A. 9.5m"));
+        questionList.add(new Question("9. How many stereoisomers exist for the given compound?",
+                "A. 4",
+                "B. 8",
+                "C. 16",
+                "D. 2",
+                "A. 4",
+                R.drawable.chm112snip2));
 
-        questionList.add(new Question("10. What is the magnitude of a point charge whose electric field 50cm away has magnitude 2.0N/C?",
-                "A. 4.56 x 10^-11C",
-                "B. 4.66 x 10^-11C",
-                "C. 5.56 x 10^-11C ",
-                "D. 5.66 x 10^-11C", "C. 5.56 x 10^-11C "));
+        questionList.add(new Question("10. ____ is an instrument that is used to measure the amount that an optically active compound " +
+                "rotates the plane of polarized light.",
+                "A. Analyzer",
+                "B. Polarimeter",
+                "C. Condenser",
+                "D. Chiralizer", "B. Polarimeter"));
 
-        questionList.add(new Question("11. What is the magnitude of an electric field in which the force on an electron is equal in magnitude to " +
-                "the weight of an electron?",
-                "A. 4.58 x 10^-11N/C",
-                "B. 5.58 x 10^-11N/C" ,
-                "C. 6.58 x 10^-11N/C",
-                "D. 7.58 x 10-^11N/C",
-                "B. 5.58 x 10^-11N/C"));
+        questionList.add(new Question("11. A phenomenon observed when a molecule rotates the plane of polarization.",
+                "A. Enantiomer",
+                "B. Optical rotation" ,
+                "C. Polarization",
+                "D. Chiral Analysis",
+                "B. Optical rotation"));
 
-        questionList.add(new Question( "12. A small object carrying a charge of 5 x 10^-9" +
-                "C experiences a downward force of 20 x 10^-9N when" +
-                "placed at a certain point in an electric field. What's the electric field at the point?",
-                "A. 100 N/C",
-                "B. 40 N/C",
-                "C. 10 N/C",
-                "D. 4 N/C",
-                "D. 4 N/C"));
+        questionList.add(new Question( "12. What is the orientation of the given molecule?",
+                "",
+                "B. R",
+                "C. E",
+                "D. Z",
+                "A. S",
+                R.drawable.chm112snip3));
 
-        questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
-                "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
-                "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
-                "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
-                "D. 8.4 x 10^6N/C, 7.5 x 10^5N/C",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
+        questionList.add(new Question( "13. What is the absolute configuration of the molecule shown?",
+                "A. 1S,3S",
+                "B. 1R,3R",
+                "C. 2R,1S",
+                "D. 1S,3R",
+                "A. 1S,3S",
+                R.drawable.chm112snip4));
 
-        questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
-                "B. 4.5 x 10^6N/C, 45N",
-                "C. 5.5 x 10^6N/C, 55N",
-                "D. 6.5 x 10^6N/C, 65N",
-                "B. 4.5 x 10^6N/C, 45N"));
+        questionList.add(new Question( "14. ____ is the component of a polarimeter that allows the angle of rotation of plane polarized " +
+                "light to be determined.",
+                "A. Condenser",
+                "B. Analyzer",
+                "C. Centroid",
+                "D. Chiral",
+                "B. Analyzer"));
 
-        questionList.add(new Question( "15. The magnitude of electric field is 40kN/C. If an electron is placed in the same field, what force will be \n" +
-                "exerted on it?",
-                "A. 3.4 x 10^-15N",
-                "B. 4.4 x 10^-15N",
-                "C. 5.4 x 10^-15N",
-                "D. 6.4 x 10^-15N",
-                "D. 6.4 x 10^-15N"));
-
-        questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
-                "(B) clauses. ",
-                "(C) phrases. ",
-                "(D) morphemes",
-                "(C) phrases. "));
-
-        questionList.add(new Question( "17. An important feature of language4 is its \n" +
-                "___________ ",
-                "(A) structure",
-                "(B) texture.",
-                "(C) strength.",
-                "(D) stature.",
-                "(A) structure"));
-
-        questionList.add(new Question( "18. The English as a second \n" +
-                "language countries include all except ________.",
-                "(A) Ghana.",
-                "(B) India.",
-                "(C) Nigeria. ",
-                "(D) USA",
-                "(D) USA"));
-
-        questionList.add(new Question( "19. " +
-                "________ to come this weekend to listen to the broadcast of the football match?",
-                "(A) Do you like,",
-                "(B) " +
-                        "Would you like. ",
-                "(C) Are you like.",
-                "(D) Will you like.",
-                "(B) " +
-                        "Would you like. "));
-
-        questionList.add(new Question( " 20. Factors affecting study skills include all \n" +
-                "except_________.",
-                "(A) hybridizing.",
-                "(B) the study time.",
-                "(C) the study venue",
-                "(D) reading aloud to " +
-                        "oneself.",
-                "(A) hybridizing."));
-
-        questionList.add(new Question( "21. Computers are now cheap_______ for nearly everyone to afford it.",
-                "(A) enough.",
-                "(B) " +
-                        "so. ",
-                "(C) too.",
-                "(D) quite. ",
-                "(A) enough."));
-
-        questionList.add(new Question( "22. You’re looking __________ pretty today, Temy.",
-                "(A) very.",
-                "(B) " +
-                        "attractively. ",
-                "(C) beautifully.",
-                "(D) too. ",
-                "(A) very."));
-
-        questionList.add(new Question( "23. I promise to do my _________best.",
-                "(A) possible.",
-                "(B) " +
-                        "very.",
-                "(C) feasible.",
-                "(D) variable. ",
-                "(B) " +
-                        "very."));
-
-        questionList.add(new Question( "24. Water ________hydrogen and oxygen.",
-                "(A) Varies between.",
-                "(B) migrates.",
-                "(C) consists of.",
-                "(D) " +
-                        "corresponds to",
-                "(C) consists of."));
-
-        questionList.add(new Question( "25. Agnes left the school very late, _____________________ ",
-                "(A) didn’t she?",
-                "(B) isn’t it?",
-                "(C) " +
-                        "hasn’t she? ",
-                "(D) hadn’t she? ",
-                "(A) didn’t she?"));
-
-        questionList.add(new Question( "26. “Soyinka is good at play writing and Achebe is good at prose writing” Identify the sentence type.",
-                "(A) Complex.",
-                "(B) simple.",
-                "(C) compound.",
-                "(D) compound complex",
-                "(C) compound."));
-
-        questionList.add(new Question( "27. “ Mathematic _________compulsory for engineering students”.",
-                "(A) is",
-                "(B) as",
-                "(C) are",
-                "(D) " +
-                        "were",
-                "(A) is"));
-
-        questionList.add(new Question( "28. The boy and the girl _______gone home.",
-                "(A) has.",
-                "(B) have.",
-                "(C) had.",
-                "(D) is. ",
-                "(B) have."));
-
-        questionList.add(new Question( "29. Which of the following is not a quality of good English?",
-                "(A) coherence",
-                "(B) emphasis or " +
-                        "focus. ",
-                "(C) unity.",
-                "(D) none of the above. ",
-                "(D) none of the above. "));
-
-        questionList.add(new Question( "30. Inspite of the seemingly scarcity of marriageable men today many a girl __________ to get \n" +
-                "married at the age of twenty-one.",
-                "(A) Intend.",
-                "(B) intended",
-                "(C) plans",
-                "(D) plan. ",
-                "(C) plans"));
+        questionList.add(new Question( "15. ______ are isomers in which the carbon chain remains but the functional groups " +
+                "are unchanged.",
+                "A. Position isomers",
+                "B. Meta isomer",
+                "C. Chain isomer",
+                "D. Tautomerism",
+                "A. Position isomers"));
     }
+
+    private void getQuestionPhase2(List<Question> list) {
+
+        questionList.add(new Question("1. The following are features of optical isomers except _____",
+                "A. Stereogenic centre",
+                "B. Asysmetric carbon",
+                "C. Stereocentre carbon",
+                "D. Enantiomer",
+                "D. Enantiomer"));
+
+        questionList.add(new Question("2. The following are examples of tautomerism except _____",
+                "A. Amine",
+                "B. Lactam-Lactim",
+                "C. Propanal",
+                "D. Enamine",
+                "C. Propanal"));
+
+        questionList.add(new Question("3. What is the absolute configuration of the molecule shown?",
+                "A. R",
+                "B. S",
+                "C. The molecule is achiral",
+                "D. None of the above",
+                "A. R",
+                R.drawable.chm112snip5));
+
+        questionList.add(new Question("4. Which of the following applies to the molecule shown?",
+                "A. 3R",
+                "B. 2R",
+                "C. 2S",
+                "D. 4R",
+                "B. 2R",
+                R.drawable.chm112snip6));
+
+        questionList.add(new Question("4. Which of the following applies to the molecule shown?",
+                "A. 3R",
+                "B. 2R",
+                "C. 2S",
+                "D. 4R",
+                "B. 2R"));
+
+        questionList.add(new Question("5. Which of the following is the correct IUPAC name for the given compound?",
+                "A. Z-5-methyl-2-octene",
+                "B. E-4-methyl-2-octene",
+                "C. E-5-methyl-2-octene",
+                "D. Z-4-methyl-2-octene",
+                "D. Z-4-methyl-2-octene",
+                R.drawable.chm112snip7));
+
+        questionList.add(new Question("6. The observed rotation of 2.0 g of a compound in 10mL of solution in a polarimeter tube 25cm long is +134. " +
+                "What is the specific rotation of the compound?",
+                "A. +134",
+                "B. +268",
+                "C. -175",
+                "D. -189",
+                "B. +268"));
+
+        questionList.add(new Question("7. A mixture of equal amount of a pair of enantiomers is called _____",
+                "A. polarized mixture",
+                "B. racemic mixture",
+                "C. chiral mixture",
+                "D. multi mixture",
+                "B. racemic mixture"));
+
+        questionList.add(new Question("8. Give the IUPAC name of this compound",
+                "A. Cis-1,2-dichloroethene",
+                "B. Dichloro ethene",
+                "C. trans-1,2-dichloroethene",
+                "D. trans-1,2-dichloroethane",
+                "C. trans-1,2-dichloroethene",
+                R.drawable.chm112snip8));
+
+        questionList.add(new Question("9. _____ is the existence of two or more compounds having the same " +
+                "molecular formula but different structural formula.",
+                "A. Isomerism",
+                "B. Allotropy",
+                "C. Chirality",
+                "D. Acidity",
+                "A. Isomerism"));
+
+        questionList.add(new Question("9. _____ is the existence of two or more compounds having the same " +
+                "molecular formula but different structural formula.",
+                "A. Isomerism",
+                "B. Allotropy",
+                "C. Chirality",
+                "D. Acidity",
+                "A. Isomerism"));
+
+        questionList.add(new Question("10. _____ is a plane that cuts a molecule into two halves.",
+                "A. plane of symmetry",
+                "B. angular plane",
+                "C. Chiral line",
+                "D. Identity line",
+                "A. plane of symmetry"));
+
+        questionList.add(new Question("11. Why does benzene resist addition reaction?",
+                "A. No loose end for molecule",
+                "B. strong sigma bond",
+                "C. due to the decolorization of pi electron charge",
+                "D. the structure do not allow for addition reaction",
+                "C. due to the decolorization of pi electron charge"));
+
+        questionList.add(new Question("12. Why do alynes not show geometric isomerism",
+                "A. presence of the linear bond",
+                "B. Highly unsaturated",
+                "C. Substitution reaction not allowed",
+                "D. None of the above",
+                "B. Highly unsaturated"));
+
+        questionList.add(new Question("13. What does LNG stands for?",
+                "A. Liquefied natural gas",
+                "B. Lake Nitrogen Gas",
+                "C. Lime Nitrozol Grain",
+                "D. None of the above",
+                "A. Liquefied natural gas"));
+
+        questionList.add(new Question("14. Which of the following equation correctly explains the chlorination of methane?",
+                "A. CH₄ + Cl₂ = CH₃Cl + HCl",
+                "B. CH₄ + 2O₂ = 2H₂O + CO₂",
+                "C. CH₄ + 2Cl₂ = CH₃Cl + HCl",
+                "D. CH₄ + 4O₂ = 2H₂O + CO₂",
+                "A. CH₄ + Cl₂ = CH₃Cl + HCl"));
+
+        questionList.add(new Question("15. Impure benzoic acid can be purified by ",
+                "A. chlorination of the solution",
+                "B. dissolving it in hot water and passing it over activated charcoal",
+                "C. Frasch Process",
+                "D. by the addition of sodium ethanote in presence of a strong catalyst",
+                "B. dissolving it in hot water and passing it over activated charcoal"));
+    }
+
+    private void getQuestionPhase3(List<Question> list) {
+
+        questionList.add(new Question("1. Nucleophile can also be classified as _____",
+                "A. Lewis Acid",
+                "B. Elctron acceptor",
+                "C. Electrophile",
+                "D. Lewis Base",
+                "D. Lewis Base"));
+
+        questionList.add(new Question("2. Mild oxidation of alkanol will result to",
+                "A. Alkanoic acid",
+                "B. Alkanone",
+                "C. Ester",
+                "D. Alkanes",
+                "A. Alkanoic acid"));
+
+        questionList.add(new Question("3. Electrophile can also be classified as _____",
+                "A. Lewis Acid",
+                "B. Lewis Base",
+                "C. Nucleophile",
+                "D. Electron donor",
+                "A. Lewis Acid"));
+
+        questionList.add(new Question("4. Decarboxylation of ethanoic acid gives",
+                "A. C₂H₅OH",
+                "B. CH₄ + CO₂",
+                "C. CH₃COOC₂H₅",
+                "D. CH₄ + H₂O",
+                "B. CH₄ + CO₂"));
+
+        questionList.add(new Question("%. ",
+                "A. C₂H₅OH",
+                "B. CH₄ + CO₂",
+                "C. CH₃COOC₂H₅",
+                "D. CH₄ + H₂O",
+                "B. CH₄ + CO₂"));
+    }
+
+
 }
+

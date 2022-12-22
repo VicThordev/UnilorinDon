@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -78,6 +79,8 @@ public class Mth114Activity extends AppCompatActivity {
         setDataView(pos);
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         btnNext.setOnClickListener(view -> {
             if (questionAnswered == 50) {
@@ -167,6 +170,8 @@ public class Mth114Activity extends AppCompatActivity {
             rbOption2.setVisibility(View.GONE);
             rbOption3.setVisibility(View.GONE);
             rbOption4.setVisibility(View.GONE);
+            btnEnd.setText("Go Home");
+            btnEnd.setOnClickListener(view1 -> startActivity(new Intent(this, MainActivity.class)));
             answerText.setText(R.string.log_out);
             answerText.setText(questionList.get(pos).getAnswer());
             rbOption1.setVisibility(View.GONE);
@@ -184,11 +189,9 @@ public class Mth114Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
 
     }
 
@@ -228,7 +231,7 @@ public class Mth114Activity extends AppCompatActivity {
                 "(d) 2x-7y=11",
                 "(d) 2x-7y=11"));
 
-        questionList.add(new Question("5. a*b=a+b-1=b+a-1",
+        questionList.add(new Question("5. a*b=a+b-1=b+a-1. This represents ",
                 "(a) associative",
                 "(b) distributive",
                 "(c) commutative",
@@ -319,7 +322,7 @@ public class Mth114Activity extends AppCompatActivity {
                 "D. -3",
                 "B. 5"));
 
-        questionList.add(new Question("3. 2▽(3▽4)",
+        questionList.add(new Question("3. Solve 2▽(3▽4)",
                 "A. 21",
                 "B. 38",
                 "C. 7",
@@ -374,6 +377,41 @@ public class Mth114Activity extends AppCompatActivity {
                 "C. θ = 180 - α",
                 "D. θ = 360 - α",
                 "C. θ = 180 - α"));
+
+        questionList.add(new Question("11. Express cos(A + B)",
+                "A. 12.1cm",
+                "B. 10.79cm",
+                "C. 11.09cm",
+                "D. cosAcosB - sinAsinB",
+                "D. cosAcosB - sinAsinB"));
+
+        questionList.add(new Question("12. Evaluate cos(−9π/4)",
+                "A. -√2/2",
+                "B. -½",
+                "C. √2/2",
+                "D. ½",
+                "C. √2/2"));
+
+        questionList.add(new Question("13. Simplify tan (A+B+C)",
+                "A. (tan 2A + tan 2B + tan 2C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
+                "B. (tan A + tan B + tan C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
+                "C. (tan A - tan B - tan C + tanAtanBtanC)/ 1 + tanAtanB + tanBtanC - tanAtanC",
+                "D. (tan² A + tan² B + tan² C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
+                "B. (tan A + tan B + tan C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC"));
+
+        questionList.add(new Question("14. Simplify sin 2A",
+                "A. sin²Acos²A",
+                "B. 2sin²Acos²A",
+                "C. 2sinAcosA",
+                "D. 2sec²A",
+                "C. 2sinAcosA"));
+
+        questionList.add(new Question("15. Simplify cos 2A",
+                "A. 1 - 2sin²A",
+                "B. 2 - 2sin²A",
+                "C. cosec²A",
+                "D. 2sec²A",
+                "A. 1 - 2sin²A"));
     }
 
 

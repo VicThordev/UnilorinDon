@@ -32,7 +32,7 @@ public class Chm115Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
+    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     Button btnNext, btnPrev, btnEnd;
     private boolean mTimerRunning;
     private AlertDialog.Builder dialog;
@@ -125,6 +125,7 @@ public class Chm115Activity extends AppCompatActivity {
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption2.setOnClickListener(view -> {
@@ -132,6 +133,7 @@ public class Chm115Activity extends AppCompatActivity {
                     .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption3.setOnClickListener(view -> {
@@ -139,6 +141,7 @@ public class Chm115Activity extends AppCompatActivity {
                     .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption4.setOnClickListener(view -> {
@@ -146,6 +149,7 @@ public class Chm115Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());
@@ -158,6 +162,7 @@ public class Chm115Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
         if (questionAnswered == 30) {
@@ -169,7 +174,7 @@ public class Chm115Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -186,163 +191,6 @@ public class Chm115Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("In the analysis of a 2.72g sample containing potassium iodide(KI) (FW=166), 0.0720g of \n" +
-                "barium iodate, Ba(IO<sub>3</sub> )<sub>2</sub> , (FW=487.1) was recovered. Express the results \n" +
-                "of this analysis as percent potassium iodide.(Ba-137, I-127, O-16, K-39)",
-                "" +
-                "1.2% ",
-                "2.8%", "1.8%",
-                "2.0%",
-                "1.8%"));
-
-        questionList.add(new Question("Manganese in a 1.52 g sample was precipitated as Mn<sub>3</sub>O<sub>4</sub> (FW \n" +
-                "= 228.8) weighing 0.126 g. Find percentage of Mn (FW = 54.94) in the sample. ",
-                "8.97%",
-                "6.97%", "5.97%",
-                "7.97%",
-                "5.97%"));
-
-        questionList.add(new Question("A 2.5g sample of limestone containing Ca<sup>2+</sup> (aq) is dissolved in HCl and \n" +
-                "reacted with excess ammonium oxalate solution, (NH4<sub>)</sub> 2C<sub>2</sub> \n" +
-                "O<sub>4</sub> (aq), to precipitate the calcium ions as calcium oxalate, \n" +
-                "CaC<sub>2</sub>O<sub>4</sub> (s) (FW = 128).The precipitate was filtered, dried and weighed \n" +
-                "to a constant mass of 3.23g. Determine the percentage by mass of calcium in the limestone \n" +
-                "sample. (Ca-40, C-12, O-16)",
-                "38.7%",
-                "28.2%",
-                "36.3%",
-                "40.3%",
-                "40.3%"));
-
-        questionList.add(new Question("What is the value of the gravimetric factor for the conversion of SO<sub>3</sub> to \n" +
-                "BaSO<sub>4</sub> (Ba-137, S-32, 0-16)?",
-                "0.3433",
-                "0.2516", "0.4321",
-                "0.2448",
-                "0.3433"));
-
-        questionList.add(new Question("The  following measurements were obtained for a metal bar: 4.012g, 4.022g, 4.019g," +
-                "4.011g, 4.017g, 4.018g and 4.024g. Calculate the mean.",
-                "4.0175g",
-                "4.018g", "4.01757g",
-                "4.017g",
-                "4.018g"));
-
-        questionList.add(new Question(" 3000ml of a 20ppm solution of ethanol contains how many mg of ethanol?",
-                "20mg", "40mg",
-                "60mg" ,"80mg",
-                "60mg"));
-
-        questionList.add(new Question("A method of analysis yields weights for gold that are low by 0.3mg. Calculate the percent \n" +
-                "relative error caused by this uncertainty if the weight of gold in the sample is 800mg./phases of conflict",
-                "0.04%", "0.0375%",
-                "0.038%", "-0.04%",
-                "-0.04%"));
-
-        questionList.add(new Question("A titre value of 38.8cm3 of a solution containing 0.4563g HCl in 250cm3 was obtained \n" +
-                "when the acid was titrated against 25.0cm3 of calcium hydroxide solution. What is the molarity and \n" +
-                "concentration in gdm-3 of the base? <br /> (Ca=40.0 Na=23, C=12, O=16, Cl=35.5, H=1.00) ",
-                "0.078 , 5.74", "0.039 , 2.21",
-                "0.039 , 2.87",
-                "2.87,0.039", "0.039 , 2.87"));
-
-        questionList.add(new Question("C is a solution of hydrochloric acid containing 3.65g of HCl per dm<sup>3 </sup> of \n" +
-                "solution and D is a solution of impure sodium carbonate. If 25cm<sup>3</sup> of D requires \n" +
-                "22.7cm<sup>3</sup> of C for complete reaction, what is the molarity and concentraion of sodium \n" +
-                "carbonate?",
-                "0.045M, 3.74 g/dm3", "0.091M, 9.65 g/dm3",
-                " 0.182M, 19.29 g/dm3",
-                "0.045M, 4.81 g/dm3", "0.045M, 4.81 g/dm3"));
-
-        questionList.add(new Question("The colour change of a chemical indicator requires an overtitration of 0.03ml. Calculate \n" +
-                "the percent relative error if the total volume of titrant is 50.00ml.",
-                "0.03%", "0.06%",
-                "6%", "-0.06%", "0.06%"));
-
-        questionList.add(new Question("The volume of methanol in a 2-litre water solution containing 80% methanol (assuming \n" +
-                "volumes are additive)",
-                "400ml", "800ml" , "1200ml",
-                "1860ml",
-                "1860ml"));
-
-        questionList.add(new Question("The number of significant figures in 0.0030900 and 0.002008 are?",
-                "5 and 6",
-                "4 and 5",
-                "7 and 7",
-                "6 and 4",
-                "5 and 6"));
-
-        questionList.add(new Question("A sample of water has a mass of 234.9g at 25<sup>o</sup> C what is the volume of the \n" +
-                "water in cubic meters, given that the density of water at 25<sup>o</sup> C is 0.99707g/ml? ",
-                "235.590ml",
-                "236.6m<sup>3</sup>",
-                "0.0002356m<sup>3</sup>",
-                "0.0002356m<sup>3</sup>",
-                "0.0002356m<sup>3</sup>"));
-
-        questionList.add(new Question("Round off 21.9994 and 27845 to four significant figures",
-                "21.99 and 2.784 x10<sup>4</sup>",
-                "22.00 and 2.784 x10-4",
-                "22.00 and 2.785 x10<sup>4 </sup>",
-                "22.00 and 2.784 x104",
-                "22.00 and 2.785 x10<sup>4 </sup>"));
-
-        questionList.add(new Question("38.80cm<sup>3</sup> of 0.05M H<sub>2</sub>SO<sub>4 </sub> was used for complete \n" +
-                "neutralization when it was titrated against 25.0cm<sup>3</sup> of sodium hydroxide. What is the \n" +
-                "concentration of sodium carbonate in gdm<sup>-3</sup> ?",
-                "6.4",
-                "3.2",
-                "1.6",
-                "64",
-                "6.4"));
-
-        questionList.add(new Question(" Solution X contains 2.100g H<sub>2</sub> SO<sub>4</sub> in 250cm<sup>3</sup> and \n" +
-                "Y is a solution of sodium hydrogen carbonate. If 25cm<sup>3</sup> of Y requires 26.8cm<sup>3 \n" +
-                "</sup> of X for complete neutralization, what is the general name for Y and its concentration? ",
-                " analyte , 0.184gdm<sup>-3</sup>",
-                " titrant , 0.184gdm<sup>-3</sup>",
-                " titrant , 18.400gdm<sup>-3</sup>",
-                " analyte , 15.434gdm<sup>-3</sup>",
-                " analyte , 15.434gdm<sup>-3</sup>"));
-
-        questionList.add(new Question("What is the normality in a redox reaction of 0.100molar solution of NaHC<sub>2</sub> \n" +
-                "O<sub>4</sub> ? ",
-                "0.200N",
-                "0.100N",
-                "0.050N",
-                "0.025N",
-                "0.100N"));
-
-        questionList.add(new Question("Solution A contains 2.5g H<sub>2</sub>SO<sub>4</sub> in 250cm<sup>3</sup> and B \n" +
-                "is solution of sodium hydrogen carbonate. If 25cm<sup>3</sup> of B requires " +
-                "" +
-                "19.50cm<sup>3</sup> of A for complete reaction, what is the concentration of B in gdm<sup>-\n" +
-                "3</sup> ? <br /> <br /> (H=1.00 Na=23, O=16.00, C= 12.0, S=23.0) ",
-                "3.9",
-                "13.44",
-                "0.16",
-                "0.08",
-                "13.44"));
-
-        questionList.add(new Question("In the analysis of chromium in three samples of stainless steel, the following results were \n" +
-                "obtained <br /> A 6.25% 6.24% 6.26% <br /> <br /> B 6.71% 6.72% 6.71% <br /> \n" +
-                "<br /> C 6.05% 6.57% 6.32% <br /> <br /> Suppose the true value is 6.25%,how precise \n" +
-                "and accurate are the result? ",
-                "A, B, C are accurate and precise",
-                "Only A is accurate and precise",
-                "A and B are accurate and precise",
-                "A and C are accurate and precise",
-                "Only A is accurate and precise"));
-
-        questionList.add(new Question("Solution A is 0.050M HNO<sub>3</sub> and B is a solution of sodium carbonate. If \n" +
-                "25.0cm<sup>3</sup> of B requires 19.70cm<sup>3</sup> of A in a titration to methyl orange end \n" +
-                "point, what is the concentration of B in mole per litre ? <br /> <br /> (Ca =40.0 Na=23, C=12, O=16, \n" +
-                "Cl=35.5, H=1.00 , N=14)",
-                "0.02mol/L",
-                "2.09g/dm<sup>3</sup>",
-                "0.04mol/L",
-                "4.18g/L",
-                "0.02mol/L"));
 
         questionList.add(new Question("Volumetric titration is best described as a class of experiment where <br /> <br /> I. A \n" +
                 "known property of one solution is used to infer an unknown property of another solution. <br /> <br \n" +
@@ -1174,15 +1022,163 @@ public class Chm115Activity extends AppCompatActivity {
                 "salty",
                 "acid"));
 
-        questionList.add(new Question("A solution of accurately known concentration is called ?",
+
+    }
+
+    private void getQuestionPhase2(List<Question> list) {
+
+        questionList.add(new Question("1. In the analysis of a 2.72g sample containing potassium iodide(KI) (FW=166), 0.0720g of " +
+                "barium iodate, Ba(IO<sub>3</sub> )<sub>2</sub> , (FW=487.1) was recovered. Express the results " +
+                "of this analysis as percent potassium iodide.(Ba-137, I-127, O-16, K-39)",
+                "" +
+                        "1.2% ",
+                "2.8%", "1.8%",
+                "2.0%",
+                "1.8%"));
+
+        questionList.add(new Question("2. Manganese in a 1.52 g sample was precipitated as Mn<sub>3</sub>O<sub>4</sub> (FW " +
+                "= 228.8) weighing 0.126 g. Find percentage of Mn (FW = 54.94) in the sample. ",
+                "8.97%",
+                "6.97%", "5.97%",
+                "7.97%",
+                "5.97%"));
+
+        questionList.add(new Question("3. A 2.5g sample of limestone containing Ca<sup>2+</sup> (aq) is dissolved in HCl and " +
+                "reacted with excess ammonium oxalate solution, (NH4<sub>)</sub> 2C<sub>2</sub> " +
+                "O<sub>4</sub> (aq), to precipitate the calcium ions as calcium oxalate, " +
+                "CaC<sub>2</sub>O<sub>4</sub> (s) (FW = 128).The precipitate was filtered, dried and weighed " +
+                "to a constant mass of 3.23g. Determine the percentage by mass of calcium in the limestone " +
+                "sample. (Ca-40, C-12, O-16)",
+                "38.7%",
+                "28.2%",
+                "36.3%",
+                "40.3%",
+                "40.3%"));
+
+        questionList.add(new Question("4. What is the value of the gravimetric factor for the conversion of SO<sub>3</sub> to " +
+                "BaSO<sub>4</sub> (Ba-137, S-32, 0-16)?",
+                "0.3433",
+                "0.2516", "0.4321",
+                "0.2448",
+                "0.3433"));
+
+        questionList.add(new Question("5. The following measurements were obtained for a metal bar: 4.012g, 4.022g, 4.019g," +
+                "4.011g, 4.017g, 4.018g and 4.024g. Calculate the mean.",
+                "4.0175g",
+                "4.018g", "4.01757g",
+                "4.017g",
+                "4.018g"));
+
+        questionList.add(new Question("6. 3000ml of a 20ppm solution of ethanol contains how many mg of ethanol?",
+                "20mg", "40mg",
+                "60mg" ,"80mg",
+                "60mg"));
+
+        questionList.add(new Question("7. A titre value of 38.8cm3 of a solution containing 0.4563g HCl in 250cm3 was obtained " +
+                "when the acid was titrated against 25.0cm3 of calcium hydroxide solution. What is the molarity and " +
+                "concentration in gdm-3 of the base? <br /> (Ca=40.0 Na=23, C=12, O=16, Cl=35.5, H=1.00) ",
+                "0.078 , 5.74", "0.039 , 2.21",
+                "0.039 , 2.87",
+                "2.87,0.039", "0.039 , 2.87"));
+
+        questionList.add(new Question("8. C is a solution of hydrochloric acid containing 3.65g of HCl per dm<sup>3 </sup> of " +
+                "solution and D is a solution of impure sodium carbonate. If 25cm<sup>3</sup> of D requires " +
+                "22.7cm<sup>3</sup> of C for complete reaction, what is the molarity and concentraion of sodium " +
+                "carbonate?",
+                "0.045M, 3.74 g/dm3", "0.091M, 9.65 g/dm3",
+                " 0.182M, 19.29 g/dm3",
+                "0.045M, 4.81 g/dm3", "0.045M, 4.81 g/dm3"));
+
+        questionList.add(new Question("9. The colour change of a chemical indicator requires an over titration of 0.03ml. Calculate " +
+                "the percent relative error if the total volume of titrant is 50.00ml.",
+                "0.03%", "0.06%",
+                "6%", "-0.06%", "0.06%"));
+
+        questionList.add(new Question("10. The volume of methanol in a 2-litre water solution containing 80% methanol (assuming " +
+                "volumes are additive)",
+                "400ml", "800ml" , "1200ml",
+                "1860ml",
+                "1860ml"));
+
+        questionList.add(new Question("11. The number of significant figures in 0.0030900 and 0.002008 are?",
+                "5 and 6",
+                "4 and 5",
+                "7 and 7",
+                "6 and 4",
+                "5 and 6"));
+
+        questionList.add(new Question("12. A sample of water has a mass of 234.9g at 25<sup>o</sup> C what is the volume of the \n" +
+                "water in cubic meters, given that the density of water at 25<sup>o</sup> C is 0.99707g/ml? ",
+                "235.590ml",
+                "236.6m<sup>3</sup>",
+                "0.0002356m<sup>3</sup>",
+                "0.0002356m<sup>3</sup>",
+                "0.0002356m<sup>3</sup>"));
+
+        questionList.add(new Question("13. Round off 21.9994 and 27845 to four significant figures",
+                "21.99 and 2.784 x10<sup>4</sup>",
+                "22.00 and 2.784 x10-4",
+                "22.00 and 2.785 x10<sup>4 </sup>",
+                "22.00 and 2.784 x104",
+                "22.00 and 2.785 x10<sup>4 </sup>"));
+
+        questionList.add(new Question("14. 38.80cm<sup>3</sup> of 0.05M H<sub>2</sub>SO<sub>4 </sub> was used for complete " +
+                "neutralization when it was titrated against 25.0cm<sup>3</sup> of sodium hydroxide. What is the " +
+                "concentration of sodium carbonate in gdm<sup>-3</sup> ?",
+                "6.4",
+                "3.2",
+                "1.6",
+                "64",
+                "6.4"));
+
+        questionList.add(new Question("15. Solution X contains 2.100g H<sub>2</sub> SO<sub>4</sub> in 250cm<sup>3</sup> and " +
+                "Y is a solution of sodium hydrogen carbonate. If 25cm<sup>3</sup> of Y requires 26.8cm<sup>3 " +
+                "</sup> of X for complete neutralization, what is the general name for Y and its concentration? ",
+                " analyte , 0.184gdm<sup>-3</sup>",
+                " titrant , 0.184gdm<sup>-3</sup>",
+                " titrant , 18.400gdm<sup>-3</sup>",
+                " analyte , 15.434gdm<sup>-3</sup>",
+                " analyte , 15.434gdm<sup>-3</sup>"));
+
+        questionList.add(new Question("16. What is the normality in a redox reaction of 0.100molar solution of NaHC<sub>2</sub> " +
+                "O<sub>4</sub> ? ",
+                "0.200N",
+                "0.100N",
+                "0.050N",
+                "0.025N",
+                "0.100N"));
+
+        questionList.add(new Question("17. Solution A contains 2.5g H<sub>2</sub>SO<sub>4</sub> in 250cm<sup>3</sup> and B " +
+                "is solution of sodium hydrogen carbonate. If 25cm<sup>3</sup> of B requires " +
+                "" +
+                "19.50cm<sup>3</sup> of A for complete reaction, what is the concentration of B in gdm<sup>-" +
+                "3</sup> ? <br /> <br /> (H=1.00 Na=23, O=16.00, C= 12.0, S=23.0) ",
+                "3.9",
+                "13.44",
+                "0.16",
+                "0.08",
+                "13.44"));
+
+        questionList.add(new Question("18. In the analysis of chromium in three samples of stainless steel, the following results were " +
+                "obtained <br /> A 6.25% 6.24% 6.26% <br /> <br /> B 6.71% 6.72% 6.71% <br /> " +
+                "<br /> C 6.05% 6.57% 6.32% <br /> <br /> Suppose the true value is 6.25%,how precise " +
+                "and accurate are the result? ",
+                "A, B, C are accurate and precise",
+                "Only A is accurate and precise",
+                "A and B are accurate and precise",
+                "A and C are accurate and precise",
+                "Only A is accurate and precise"));
+
+
+        questionList.add(new Question("19. A solution of accurately known concentration is called ?",
                 "Molar solution",
                 "Normal solution",
                 "Standard solution",
                 "Formal solution",
                 "Standard solution"));
 
-        questionList.add(new Question("Twenty (20) students are to be supplied each with 100ml of 0.05M NaOH solution in the \n" +
-                "laboratory.What quantity of NaOH is requred to be weighed for this for this purpose? [NaOH] = \n" +
+        questionList.add(new Question("20. Twenty (20) students are to be supplied each with 100ml of 0.05M NaOH solution in the " +
+                "laboratory.What quantity of NaOH is requred to be weighed for this for this purpose? [NaOH] = " +
                 "40gmol<sup>-1</sup>",
                 "4.5g",
                 "4.00g",
@@ -1190,15 +1186,15 @@ public class Chm115Activity extends AppCompatActivity {
                 "5.50g",
                 "4.00g"));
 
-        questionList.add(new Question(" In volumetric analysis,the symbol M is often used for?",
+        questionList.add(new Question("21. In volumetric analysis,the symbol M is often used for?",
                 "mol cm<sup>-3</sup>",
                 "mmol cm<sup>-3</sup>",
                 "mol dm<sup>-3</sup>",
                 "g cm<sup>-3</sup>",
                 "mol dm<sup>-3</sup>"));
 
-        questionList.add(new Question("A solid A of mass 5.00kg was gently dipped into a measuring cylinder containing water, \n" +
-                "the level of water increased from 60cm<sup>3</sup> to 100cm<sup>3</sup> . Calculate the density \n" +
+        questionList.add(new Question("22. A solid A of mass 5.00kg was gently dipped into a measuring cylinder containing water, " +
+                "the level of water increased from 60cm<sup>3</sup> to 100cm<sup>3</sup> . Calculate the density " +
                 "of solid A. ",
                 "0.125g/cm<sup>3</sup>",
                 "125g/cm<sup>3</sup>",
@@ -1206,14 +1202,14 @@ public class Chm115Activity extends AppCompatActivity {
                 "1.25g/cm<sup>3</sup>",
                 "125g/cm<sup>3</sup>"));
 
-        questionList.add(new Question("Iodimetry titration deals with......",
+        questionList.add(new Question("23. Iodimetry titration deals with......",
                 "Indirect method of iodine estimation",
                 "Direct method of iodine estimation",
                 "Addition of iodine",
                 "Removal of iodine",
                 "Indirect method of iodine estimation"));
 
-        questionList.add(new Question("What mass of the solute must be used in order to prepare 500 cm<sup>3</sup> of \n" +
+        questionList.add(new Question("24. What mass of the solute must be used in order to prepare 500 cm<sup>3</sup> of " +
                 "0.0100 mol/dm<sup>3</sup> NaOH(aq) from NaOH(s)?",
                 "2.0g",
                 "0.2g",
@@ -1221,14 +1217,14 @@ public class Chm115Activity extends AppCompatActivity {
                 "0.210g",
                 "0.2g"));
 
-        questionList.add(new Question("Which of these steps is not necessary in acid-base titration?",
+        questionList.add(new Question("25. Which of these steps is not necessary in acid-base titration?",
                 "To rinse the burette and the pipette with the solution to be used in them",
                 "To remove the funnel from the burette before titration",
                 "To rinse the titration flask with the solution it is to hold",
                 "All the above steps are not necessary",
                 "To rinse the titration flask with the solution it is to hold"));
 
-        questionList.add(new Question("250cm<sup>3</sup> of 0.8M NaOH was diluted to 1 litre. Calculate the amount of solute \n" +
+        questionList.add(new Question("26. 250cm<sup>3</sup> of 0.8M NaOH was diluted to 1 litre. Calculate the amount of solute " +
                 "in 200cm<sup>3</sup> of the dilute solution.",
                 "0.64 moles",
                 "1.00 moles",
@@ -1236,7 +1232,7 @@ public class Chm115Activity extends AppCompatActivity {
                 "0.04 moles",
                 "0.04 moles"));
 
-        questionList.add(new Question("A solution which normally resist changes in pH when a small quantity of either acid or \n" +
+        questionList.add(new Question("27. A solution which normally resist changes in pH when a small quantity of either acid or " +
                 "base is being added is known as?",
                 "Normal solution",
                 "Molar solution",
@@ -1244,28 +1240,28 @@ public class Chm115Activity extends AppCompatActivity {
                 "Concentrated solution",
                 "Buffer solution"));
 
-        questionList.add(new Question("Which of these is not true of K<sub>2</sub> Cr<sub>2</sub>O<sub>7</sub> titration?",
+        questionList.add(new Question("28. Which of these is not true of K<sub>2</sub> Cr<sub>2</sub>O<sub>7</sub> titration?",
                 "It cannot be used in the presence of HCl or its salts",
                 "colour change from deep green to blue",
                 "diphenylamine in concentrated H<sub>2</sub> SO<sub>4</sub> is reduced",
                 "K<sub>2</sub> Cr<sub>2</sub> O<sub>7</sub> is reduced",
                 "It cannot be used in the presence of HCl or its salts"));
 
-        questionList.add(new Question("Primary standards used in redox titrimetry include",
+        questionList.add(new Question("29. Primary standards used in redox titrimetry include",
                 "Ferrous ammonium sulphate",
                 "Potassium dichromate",
                 "Potassium iodate",
                 "any of the above",
                 "any of the above"));
 
-        questionList.add(new Question("Which of these acids is not suitable for potassium permanganate redox titration?",
+        questionList.add(new Question("30. Which of these acids is not suitable for potassium permanganate redox titration?",
                 "Both HCl and HNO<sub>3</sub>",
                 "HCl and H<sub>2</sub> SO<sub>4</sub>",
                 "HCl only",
                 "H<sub>2</sub>SO<sub>4</sub> only",
                 "Both HCl and HNO<sub>3</sub>"));
 
-        questionList.add(new Question("Calculate the amount in moles of solute in 250cm<sup>3</sup> of sodium hydroxide \n" +
+        questionList.add(new Question("31. Calculate the amount in moles of solute in 250cm<sup>3</sup> of sodium hydroxide " +
                 "solution containing 1.00moldm<sup>-3 </sup>",
                 "0.20moles",
                 "0.30moles",
@@ -1273,7 +1269,7 @@ public class Chm115Activity extends AppCompatActivity {
                 "0.03moles",
                 "0.25moles"));
 
-        questionList.add(new Question("The oxidation state of Chlorine in HOCl<sub>2</sub> , HClO<sub>3</sub> and \n" +
+        questionList.add(new Question("32. The oxidation state of Chlorine in HOCl<sub>2</sub> , HClO<sub>3</sub> and " +
                 "HClO<sub>4</sub> are respectively. ",
                 "+7 +5 and +1 ",
                 "+1 +5 and +7",
@@ -1281,14 +1277,14 @@ public class Chm115Activity extends AppCompatActivity {
                 "-1 -5 and +7",
                 "+1 +5 and +7"));
 
-        questionList.add(new Question("Reducing agent X reacts with oxidizing agent Y, the true statement is",
+        questionList.add(new Question("33. Reducing agent X reacts with oxidizing agent Y, the true statement is",
                 "X is reduces",
                 "Y is oxidises",
                 "X gains electron",
                 "Y gains election",
                 "Y gains election"));
 
-        questionList.add(new Question("Last drop at the pipette tip should not be blown to avoid <br /> <br /> I using more \n" +
+        questionList.add(new Question("34. Last drop at the pipette tip should not be blown to avoid <br /> <br /> I using more " +
                 "volume II breaking the glassware <br /> <br /> III adulterating the sample ",
                 "I only",
                 "I and II only",
@@ -1296,7 +1292,7 @@ public class Chm115Activity extends AppCompatActivity {
                 "I, II and III",
                 "I only"));
 
-        questionList.add(new Question("Arrange the following compounds of manganese in order of increasing oxidation state of \n" +
+        questionList.add(new Question("35. Arrange the following compounds of manganese in order of increasing oxidation state of " +
                 "manganese KMnO<sub>4</sub> , MnCl<sub>2</sub> & MnO<sub>2</sub>",
                 "MnCl<sub>2</sub> , MnO<sub>2</sub> and KMnO<sub>4</sub>",
                 "MnCl<sub>2</sub> , MnO<sub>2</sub> , KMnO<sub>4</sub>",
@@ -1304,7 +1300,7 @@ public class Chm115Activity extends AppCompatActivity {
                 "MnO<sub>2</sub> KMnO<sub>4</sub> MnCl<sub>2</sub> ",
                 "KMnO<sub>4</sub> , MnO<sub>2</sub> , MnCl<sub>2</sub>"));
 
-        questionList.add(new Question("Clamping the burette in vertical position is a precaution for which of the following \n" +
+        questionList.add(new Question("36. Clamping the burette in vertical position is a precaution for which of the following " +
                 "reasons? ",
                 "To avoid leakage",
                 "to allow proper flow of content",
@@ -1312,14 +1308,14 @@ public class Chm115Activity extends AppCompatActivity {
                 "To allow direct contact centrally in the conical flask content",
                 "To avoid error due to parallax"));
 
-        questionList.add(new Question("Which of the followings affects the determination of density of gases and liquid?",
+        questionList.add(new Question("37. Which of the followings affects the determination of density of gases and liquid?",
                 "concentration",
                 "temperature",
                 "solubility",
                 "pressure",
                 "temperature"));
 
-        questionList.add(new Question("What volume of 0.20M NaOH when diluted to 600cm<sup>3</sup> will produce a \n" +
+        questionList.add(new Question("38. What volume of 0.20M NaOH when diluted to 600cm<sup>3</sup> will produce a " +
                 "solution of concentration 0.05M?",
                 "2400cm<sup>3</sup>",
                 "150cm<sup>3</sup>",
@@ -1327,29 +1323,29 @@ public class Chm115Activity extends AppCompatActivity {
                 "200cm<sup>3</sup>",
                 "150cm<sup>3</sup>"));
 
-        questionList.add(new Question("Which of the following correctly describe the use of a crucible in the laboratory? ",
+        questionList.add(new Question("39. Which of the following correctly describe the use of a crucible in the laboratory? ",
                 "To dry the sample",
                 "To ash the sample",
                 "To evaporate the sample",
                 "all of the above",
                 "all of the above"));
 
-        questionList.add(new Question("The following are true of complexometric titration except?",
+        questionList.add(new Question("40. The following are true of complexometric titration except?",
                 "The technique is useful for the determination of a larger number of metals",
                 "Many metal ions form slightly soluble salts or slightly dissociated complexes",
                 "It offers ease of metal ions and anions at the millimole level",
                 "It is independent of pH",
                 "It is independent of pH"));
 
-        questionList.add(new Question("The number of molecules of the complexing agent is called?",
+        questionList.add(new Question("41. The number of molecules of the complexing agent is called?",
                 "Ligand",
                 "Stability constant",
                 "Formation constant",
                 "Lewis acid",
                 "Ligand"));
 
-        questionList.add(new Question("The ligand often depend on <br /> <br /> I. The co-ordination number of the metal \n" +
-                "<br /> <br /> II. The number of complexing groups on the ligand molecule <br /> <br /> III. \n" +
+        questionList.add(new Question("42. The ligand often depend on <br /> <br /> I. The co-ordination number of the metal " +
+                "<br /> <br /> II. The number of complexing groups on the ligand molecule <br /> <br /> III. " +
                 "The bonding site",
                 "I only",
                 "II only",
@@ -1357,7 +1353,7 @@ public class Chm115Activity extends AppCompatActivity {
                 "I and II only",
                 "I and II only"));
 
-        questionList.add(new Question("Ammonia is a simple complexing agent with one pair of unshared electrons that may \n" +
+        questionList.add(new Question("43. Ammonia is a simple complexing agent with one pair of unshared electrons that may " +
                 "complex with which of these ions ?",
                 "Silver",
                 "Calcium",
@@ -1365,14 +1361,14 @@ public class Chm115Activity extends AppCompatActivity {
                 "Nitrate",
                 "Silver"));
 
-        questionList.add(new Question("Simple complexing agent such as ammonia are rarely used as titrating agents, because",
+        questionList.add(new Question("44. Simple complexing agent such as ammonia are rarely used as titrating agents, because",
                 "a sharp endpoint corresponding to a stoichiometric complex is generally difficult to achieve",
                 "a sharp end point is obtained at equilibrum",
                 "the stepwise formation constant is large",
                 "all of the above",
                 "a sharp endpoint corresponding to a stoichiometric complex is generally difficult to achieve"));
 
-        questionList.add(new Question("An organic agent that has two or more groups capable of complexing with a metal ion is \n" +
+        questionList.add(new Question("45. An organic agent that has two or more groups capable of complexing with a metal ion is " +
                 "called?",
                 "a chelating agent",
                 "a chelate",
@@ -1380,21 +1376,21 @@ public class Chm115Activity extends AppCompatActivity {
                 "a ligand",
                 "a chelating agent"));
 
-        questionList.add(new Question("Which of the following is not true of ethylenediamine tetra acetic acid?",
+        questionList.add(new Question("46. Which of the following is not true of ethylenediamine tetra acetic acid?",
                 "it has six complexing groups",
                 "it is a tetraprotic acid",
                 "it has four ionizable hydrogen on the four carboxyl groups",
                 "it has four complexing groups ",
                 "it has four complexing groups "));
 
-        questionList.add(new Question("Which of these is a suitable indicator used in complexometric titration?",
+        questionList.add(new Question("47. Which of these is a suitable indicator used in complexometric titration?",
                 "methyl orange",
                 "Eriochrome Black T",
                 "methyl red",
                 "phenolphthalein",
                 "Eriochrome Black T"));
 
-        questionList.add(new Question(" Consider the reaction: Zn + CuSO<sub>4</sub> &rarr; ZnSO<sub>4</sub> + Cu. \n" +
+        questionList.add(new Question("48. Consider the reaction: Zn + CuSO<sub>4</sub> &rarr; ZnSO<sub>4</sub> + Cu. " +
                 "Name the reducing agent in the above reaction",
                 "Zn",
                 "CuSO<sub>4</sub>",
@@ -1402,6 +1398,20 @@ public class Chm115Activity extends AppCompatActivity {
                 "Cu",
                 "Zn"));
 
+        questionList.add(new Question("49. A method of analysis yields weights for gold that are low by 0.3mg. Calculate the percent " +
+                "relative error caused by this uncertainty if the weight of gold in the sample is 800mg./phases of conflict",
+                "0.04%", "0.0375%",
+                "0.038%", "-0.04%",
+                "-0.04%"));
 
+        questionList.add(new Question("50. Solution A is 0.050M HNO<sub>3</sub> and B is a solution of sodium carbonate. If " +
+                "25.0cm<sup>3</sup> of B requires 19.70cm<sup>3</sup> of A in a titration to methyl orange end " +
+                "point, what is the concentration of B in mole per litre ? <br /> <br /> (Ca =40.0 Na=23, C=12, O=16, " +
+                "Cl=35.5, H=1.00 , N=14)",
+                "0.02mol/L",
+                "2.09g/dm<sup>3</sup>",
+                "0.04mol/L",
+                "4.18g/L",
+                "0.02mol/L"));
     }
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -73,6 +74,8 @@ public class Mth112Activity extends AppCompatActivity {
         }.start();
 
         mTimerRunning = true;
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         getQuestionPhase(questionList);
 
@@ -201,60 +204,60 @@ public class Mth112Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("If y = (x-7)^6. Find the derivative of y",
+        questionList.add(new Question("1. If y = (x-7)^6. Find the derivative of y",
                 "A. 7x(x-7)^5",
                 "B. 6(x-7)^5",
                 "C. 6x(x-7)^6",
                 "D. 7x(x-7)^6",
                 "B. 6(x-7)^5"));
 
-        questionList.add(new Question("Given that y = (2x^2 + sin x - 3x)^5. Find dy/dx",
+        questionList.add(new Question("2. Given that y = (2x^2 + sin x - 3x)^5. Find dy/dx",
                 "A. 5(2x^2 + sin x - 3x).(4x)",
                 "B. 4(2x^2 + sin x - 3x)^-4.(4x^2 + sin x + 3)",
                 "C. 5(2x^2 + sin x - 3x)^4.(4x + cos x - 3)",
                 "D. 3(2x^2 + sin x - 3x)^5.(2x + cos x - 3)",
                 "C. 5(2x^2 + sin x - 3x).(4x + cos x - 3)"));
 
-        questionList.add(new Question("What is the derivative of y = tan³(4x - 6)",
+        questionList.add(new Question("3. What is the derivative of y = tan³(4x - 6)",
                 "A. sec^2 (4x - 6)",
                 "B. 4sec^2 (4x - 6)",
                 "C. 4tan^2 (4x - 6)",
                 "D. 4sec^6 (4x - 6)",
                 "D. 4sec^6 (4x - 6)"));
 
-        questionList.add(new Question("Find the derivative of the equation y = e^(2x-3)",
+        questionList.add(new Question("4. Find the derivative of the equation y = e^(2x-3)",
                 "A. 2e^(2x-3)",
                 "B. e^(2x-3)",
                 "C. 2e^(2x+3)",
                 "D. 2e^(2x^2-3)",
                 "A. 2e^(2x-3)"));
 
-        questionList.add(new Question("y = xe^(x²)sin x find dy/dx",
+        questionList.add(new Question("5. y = xe^(x²)sin x find dy/dx",
                 "A. 2x^2e^(x^2)cosx",
                 "B. 2xe^(x^2)cosx",
                 "C. 2x^2e^(x^2)sin x",
                 "D. 2x^2e^(x^2)(-cosx)",
                 "A. 2x^2e^(x^2)cosx"));
 
-        questionList.add(new Question("Find the equation of the tangent to the curve y = x² - x- 2" +
+        questionList.add(new Question("6. Find the equation of the tangent to the curve y = x² - x- 2" +
                 " at point (2,-2)",
                 "A. y = 2x + 6",
                 "B. y = 2x - 2",
                 "C. y = 3x - 8" ,
                 "D. y = 2x + 4", "C. y = 3x - 8"));
 
-        questionList.add(new Question("Determine the equation of the normal to the curve y=x³/5 at point x = 1",
+        questionList.add(new Question("7. Determine the equation of the normal to the curve y=x³/5 at point x = 1",
                 "A. (-25x + 28)/15", "B. (-2x - 14)/15",
                 "C. (5x + 28)/5", "D. (-25x + 14)/14",
                 "A. (-25x + 28)/15"));
 
-        questionList.add(new Question("Determine the stationery point of the curve y = x³/3 + x² - 3x + 4",
+        questionList.add(new Question("8. Determine the stationery point of the curve y = x³/3 + x² - 3x + 4",
                 "A. x = -1 or -3", "B. x = 3 or -4",
                 "C. x = 1 or -3",
                 "D. x = -3 or 4",
                 "C. x = 1 or -3"));
 
-        questionList.add(new Question("A tank with a square base of the side x has a total surface area of 600m². " +
+        questionList.add(new Question("9. A tank with a square base of the side x has a total surface area of 600m². " +
                 "Determine the maximum volume of the tank.",
                 "A. 950m³",
                 "B. 970m³",
@@ -262,41 +265,41 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. 1000m³",
                 "D. 1000m³"));
 
-        questionList.add(new Question("What is the integral of sec²x?",
+        questionList.add(new Question("10. What is the integral of sec²x?",
                 "A. tan x + c",
                 "B. cot x + c",
                 "C. sec x cot x + c",
                 "D. -sinxcosx + c", "A. tan x + c"));
 
-        questionList.add(new Question("Integrate ∫cos3xdx",
+        questionList.add(new Question("11. Integrate ∫cos3xdx",
                 "A. 1/3(sin3xcosx) + c",
                 "B. 1/3(-sin3x) + c" ,
                 "C. 1/3(sin3x) + c",
                 "D. 1/3(cos3x) + c",
                 "C. 1/3(sin3x) + c"));
 
-        questionList.add(new Question( "Solve ∫x√(x+3)dx",
+        questionList.add(new Question( "12. Solve ∫x√(x+3)dx",
                 "A. 3/5(x-2)(x-3)^3/2 + c",
                 "B. 5/2(x+2)(x+3)^3/2 + c",
                 "C. 2/5(x+2)(x-3)^3/2 + c",
                 "D. 2/5(x-2)(x+3)^3/2 + c",
                 "D. 2/5(x-2)(x+3)^3/2 + c"));
 
-        questionList.add(new Question( "Solve ∫(x²-2)/(x-1)dx",
+        questionList.add(new Question( "13. Solve ∫(x²-2)/(x-1)dx",
                 "A. x²/2 + x - ln(x-1) + c",
                 "B. x/2 + x² - ln(x-1) + c",
                 "C. x³/2 + x² - ln(x-1) + c",
                 "D. x³/2 + x - ln(x+1) + c",
                 "A. x²/2 + x - ln(x-1) + c"));
 
-        questionList.add(new Question( "Obtain the maclurin series of e^x",
+        questionList.add(new Question( "14. Obtain the maclurin series of e^x",
                 "A. 2.0001",
                 "B. 2.7182",
                 "C. 1.8789",
                 "D. 1.0911",
                 "B. 2.7182"));
 
-        questionList.add(new Question( "Obtain the maclurin of log(1+x)",
+        questionList.add(new Question( "15. Obtain the maclurin of log(1+x)",
                 "A. x - x²/2 + x^4/4 - x^6/6 + x^8/8",
                 "B. x - x²/2 + x³/3 - x^4/4 + x^5/5",
                 "C. x - x/2 + x³/3 + x^4/4 + x^5/5",
@@ -306,42 +309,42 @@ public class Mth112Activity extends AppCompatActivity {
 
     private void getQuestionPhase1(List<Question> list) {
 
-        questionList.add(new Question("Find the limit of x where x = cos (3x - π/2)",
+        questionList.add(new Question("1. Find the limit of x where x = cos (3x - π/2)",
                 "A. 1",
                 "B. -1",
                 "C. -½",
                 "D. √2/2",
                 "B. -1"));
 
-        questionList.add(new Question("Obtain the limit of x in the equation x =  (e^x - 1)/x; x-> 0",
+        questionList.add(new Question("2. Obtain the limit of x in the equation x =  (e^x - 1)/x; x-> 0",
                 "A. 1",
                 "B. -1",
                 "C. -½",
                 "D. 2",
                 "A. 1"));
 
-        questionList.add(new Question("Find the derivative of y = 5x/(2x²+4)",
+        questionList.add(new Question("3. Find the derivative of y = 5x/(2x²+4)",
                 "A. 5(2-x²)/2(x²+2)²",
                 "B. 2(2+x²)/2(x+2)²",
                 "C. 5(2-x²)/2(x+2)",
                 "D. 5(2+x)/2(x²+2)²",
                 "A. 5(2-x²)/2(x²+2)²"));
 
-        questionList.add(new Question("Find the derivative of y = (3x²+2)^9",
+        questionList.add(new Question("4. Find the derivative of y = (3x²+2)^9",
                 "A. 54x(3x²+2)^9.(9x²)",
                 "B. 9x(3x²+2)^8.(3x²)",
                 "C. 54x(3x²+2)^8.(9x²)",
                 "D. 54x(3x²+2)^8",
                 "D. 54x(3x²+2)^8"));
 
-        questionList.add(new Question("Find the derivative of y = √(1-2x³)",
+        questionList.add(new Question("5. Find the derivative of y = √(1-2x³)",
                 "A. -3x/√(1-2x²)",
                 "B. -3x/√(1+2x³)",
                 "C. -3x²/√(1-2x³)",
                 "D. -x²/√(1+2x²)",
                 "C. -3x²/√(1-2x³)"));
 
-        questionList.add(new Question("If the area of a circle is increasing at the rate of 4cm²/s. " +
+        questionList.add(new Question("6. If the area of a circle is increasing at the rate of 4cm²/s. " +
                 "Find the rate of the change of the circumference when the radius is 6cm",
                 "A. 4/6 cm/s",
                 "B. 6/4 cm/s",
@@ -349,7 +352,7 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. 4 cm/s",
                 "A. 4/6 cm/s"));
 
-        questionList.add(new Question("The distance x covered by a car with time t is given by x =" +
+        questionList.add(new Question("7. The distance x covered by a car with time t is given by x =" +
                 " 3t³-2t²+4t-1. Find the velocity of the car at time t = 1 & acceleration respectively",
                 "A. 6m/s, 9m²/s",
                 "B. 14m/s, 9m²/s",
@@ -357,61 +360,65 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. 9m/s, 6m²/s",
                 "A. 4/6 cm/s"));
 
-        questionList.add(new Question("Find the derivative of y = sin(3x²+5)",
+        questionList.add(new Question("8. Find the derivative of y = sin(3x²+5)",
                 "A. 9xcos(3x+5)",
                 "B. 3xsin(3x²+5)",
                 "C. 3xcos(3x²+5)",
                 "D. 6xcos(3x²+5)",
                 "D. 6xcos(3x²+5)"));
 
-        questionList.add(new Question("Find dy/dx of y = x^x",
+        questionList.add(new Question("9. Find dy/dx of y = x^x",
                 "A. x^x(1+Log x)",
                 "B. x(1+Log x^x)",
                 "C. x(1+Log e)",
                 "D. x^x(1+Log x^x)",
                 "A. x^x(1+Log x)"));
 
-        questionList.add(new Question("Obtain the taylor series of log(x+h)",
+        questionList.add(new Question("10. Obtain the taylor series of log(x+h)",
                 "A. log x + h/x - h²/2x² + h³/2x³ - h^4/4x^4",
                 "B. log x + h/x - h²/2x² + h³/2x³ - h^4/4x²",
                 "C. log x - h/x + h²/2x² + h³/2x³ - h^4/4x²",
                 "D. log x + h/x² + h²/2x² + h³/2x³ - h^4/4x²",
                 "A. log x + h/x - h²/2x² + h³/2x³ - h^4/4x^4"));
 
-        questionList.add(new Question("Determine I = ∫4x²dx; Given that I = 25 when x = 3",
+        questionList.add(new Question("11. Determine I = ∫4x²dx; Given that I = 25 when x = 3",
                 "A. -11",
                 "B. 11",
                 "C. -1",
                 "D. 1",
                 "B. 11"));
 
-        questionList.add(new Question("Determine I = ∫4x²dx; Given that I = 25 when x = 3",
+        questionList.add(new Question("12. Determine I = ∫4x²dx; Given that I = 25 when x = 3",
                 "A. -11",
                 "B. 11",
                 "C. -1",
                 "D. 1",
                 "B. 11"));
 
-        questionList.add(new Question("What is derivative of tan x?",
+        questionList.add(new Question("13. What is derivative of tan x?",
                 "A. sec² x",
                 "B. cot x sec x",
                 "C. cosec² x",
                 "D. -cos x",
                 "A. sec² x"));
 
-        questionList.add(new Question("What is derivative of y³ + 2y² + y² - x?",
+        questionList.add(new Question("14. What is derivative of y³ + 2y² + y² - x?",
                 "A. (3y³ + 2y²)/(1 - 2x²)",
                 "B. (3y³ + 2y²)/(1 + 4x²)",
                 "C. (3y + 2y²)/(1 + 4x)",
                 "D. (3y² + 2y)/(1 - 4x)",
                 "D. (3y² + 2y)/(1 - 4x)"));
 
-        questionList.add(new Question("Integrate ∫cos3xdx",
+        questionList.add(new Question("15. Integrate ∫cos3xdx",
                 "A. 1/3(-sin3x)+c",
                 "B. 1/3(sin3x)+c",
                 "C. 1/3(sin²3x)+c",
                 "D. 1/3(cos²3x)+c",
                 "B. 1/3(sin3x)+c"));
+
+    }
+
+    private void getQuestionPhase2(List<Question> list) {
 
         questionList.add(new Question("Find the maclurin series of f(x) = 1/(1-x)",
                 "A. 1+x+x²+x³+x^4+x^5",
@@ -419,88 +426,57 @@ public class Mth112Activity extends AppCompatActivity {
                 "C. 1+x+x²/2+x³/3+x^4/4+x^5/5",
                 "D. 1-x-x²-x³-x^4-x^5",
                 "A. 1+x+x²+x³+x^4+x^5"));
-    }
 
-    private void getQuestionPhase2(List<Question> list) {
-
-        questionList.add(new Question("If (1 - tan²67½)/(1 + tan²67½) = cos 135. Find tan 67½ in surd form.",
+        questionList.add(new Question("1. If (1 - tan²67½)/(1 + tan²67½) = cos 135. Find tan 67½ in surd form.",
                 "A. √2 + 1",
                 "B. √2 - 1",
                 "C. √2 - ½",
                 "D. √2/2 + 1",
                 "A. √2 + 1"));
 
-        questionList.add(new Question("What is the relevance of sin(A+B)?",
+        questionList.add(new Question("2. What is the relevance of sin(A+B)?",
                 "A. sin A cos B - cos A cos B",
                 "B. sin A cos B + cos A sin B",
                 "C.  cos A cos B − sin A sin B",
                 "D. sin A cos B − cos A sin B",
                 "B. sin A cos B + cos A sin B"));
 
-        questionList.add(new Question("Find the surd form of sin 75°",
+        questionList.add(new Question("3. Find the surd form of sin 75°",
                 "A. (√3 + 1)/2√2",
                 "B. (√4 + 2)/√2",
                 "C.  (1 - √3)/√2",
                 "D. (√3 - 6)/2√2",
                 "A. (√3 + 1)/2√2"));
 
-        questionList.add(new Question("Find the surd form of sin 15°",
+        questionList.add(new Question("4. Find the surd form of sin 15°",
                 "A. (√3 + 1)/2√2",
                 "B. (√4 + 2)/√2",
                 "C.  (1 - √3)/√2",
                 "D. (√3 - 1)/2√2",
                 "D. (√3 - 1)/2√2"));
 
-        questionList.add(new Question("Find the surd form of sin 105°",
+        questionList.add(new Question("5. Find the surd form of sin 105°",
                 "A. (√3 + 1)/2√2",
                 "B. (√4 + 2)/√2",
                 "C.  (1 - √3)/2√2",
                 "D. (√3 - 1)/2√2",
                 "C.  (1 - √3)/2√2"));
 
-        questionList.add(new Question("Simplify tan (A+B+C)",
-                "A. (tan 2A + tan 2B + tan 2C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
-                "B. (tan A + tan B + tan C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
-                "C. (tan A - tan B - tan C + tanAtanBtanC)/ 1 + tanAtanB + tanBtanC - tanAtanC",
-                "D. (tan² A + tan² B + tan² C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC",
-                "B. (tan A + tan B + tan C - tanAtanBtanC)/ 1 - tanAtanB - tanBtanC - tanAtanC"));
-
-        questionList.add(new Question("Simplify sin 2A",
-                "A. sin²Acos²A",
-                "B. 2sin²Acos²A",
-                "C. 2sinAcosA",
-                "D. 2sec²A",
-                "C. 2sinAcosA"));
-
-        questionList.add(new Question("Simplify cos 2A",
-                "A. 1 - 2sin²A",
-                "B. 2 - 2sin²A",
-                "C. cosec²A",
-                "D. 2sec²A",
-                "A. 1 - 2sin²A"));
-
-        questionList.add(new Question("Express tan 45° in surd form",
+        questionList.add(new Question("9. Express tan 45° in surd form",
                 "A. 2 −√3",
                 "B. 2 +4√3",
                 "C. 1 +√3",
                 "D. 2 +√3",
                 "A. 2 −√3"));
 
-        questionList.add(new Question("Evaluate sin(3π/2)",
+        questionList.add(new Question("10. Evaluate sin(3π/2)",
                 "A. 1",
                 "B. -½",
                 "C. √5",
                 "D. ½",
                 "B. -½"));
 
-        questionList.add(new Question("Evaluate cos(−9π/4)",
-                "A. -√2/2",
-                "B. -½",
-                "C. √2/2",
-                "D. ½",
-                "C. √2/2"));
-
-        questionList.add(new Question("In a triangle ABC, Line AC = 7.2cm, Line AB = 8.9cm and angle BCA = 55°." +
+        questionList.add(new Question("12. In a triangle ABC, Line AC = 7.2cm, Line AB = 8.9cm and angle BCA = 55°." +
                 "Find the distance between line BC",
                 "A. 12.1cm",
                 "B. 10.79cm",
@@ -508,12 +484,7 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. 8.2cm",
                 "B. 10.79cm"));
 
-        questionList.add(new Question("Express cos(A + B)",
-                "A. 12.1cm",
-                "B. 10.79cm",
-                "C. 11.09cm",
-                "D. cosAcosB - sinAsinB",
-                "D. cosAcosB - sinAsinB"));
+
     }
 }
 

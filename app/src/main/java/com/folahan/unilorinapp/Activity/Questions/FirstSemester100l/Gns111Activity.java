@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -32,7 +33,7 @@ public class Gns111Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 300000, questionAnswered = 1;
+    int pos, pos2=0, mTimeLeft = 300000, questionAnswered = 1, clicked = 0;
     Button btnNext, btnPrev, btnEnd;
     private boolean mTimerRunning;
     private AlertDialog.Builder dialog;
@@ -52,6 +53,8 @@ public class Gns111Activity extends AppCompatActivity {
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
         random = new Random();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -73,9 +76,26 @@ public class Gns111Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        getQuestionPhase(questionList);
+        if (FirstSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
 
-        setDataView(pos);
+            setDataView(pos);
+        }
+        else if (FirstSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        }
+        else if (FirstSemesterActivity.questionRequestCode == 3) {
+            getQuestionPhase3(questionList);
+
+            setDataView(pos);
+        }
+        else if (FirstSemesterActivity.questionRequestCode == 4) {
+            getQuestionPhase4(questionList);
+
+            setDataView(pos);
+        }
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
@@ -133,11 +153,9 @@ public class Gns111Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
 
     }
 
@@ -147,6 +165,7 @@ public class Gns111Activity extends AppCompatActivity {
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption2.setOnClickListener(view -> {
@@ -154,6 +173,7 @@ public class Gns111Activity extends AppCompatActivity {
                     .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption3.setOnClickListener(view -> {
@@ -161,6 +181,7 @@ public class Gns111Activity extends AppCompatActivity {
                     .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption4.setOnClickListener(view -> {
@@ -168,6 +189,7 @@ public class Gns111Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
 
@@ -177,7 +199,7 @@ public class Gns111Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -194,7 +216,7 @@ public class Gns111Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1.The top class Nigerian universities are determined to _________ the\n" +
+        questionList.add(new Question("1.The top class Nigerian universities are determined to _________ the " +
                 "quality of education",
                 "(A) keep up",
                 "(B) keep up with",
@@ -239,14 +261,13 @@ public class Gns111Activity extends AppCompatActivity {
                 "(D) " +
                         "the context. ", "(A) the mind."));
 
-        questionList.add(new Question("7. It is the _________of study skills that enables the learner to be in charge of his/her own \n" +
+        questionList.add(new Question("7. It is the _________of study skills that enables the learner to be in charge of his/her own " +
                 "learning.",
                 "(A) appreciation. ", "(B) memorization",
                 "(C) anticipation", "(D) application.",
                 "(D) application."));
 
-        questionList.add(new Question(" 8. Personal " +
-                "positive attitude helps. ",
+        questionList.add(new Question(" 8. Personal positive attitude helps. ",
                 "(A) contents", "(B) study habits.",
                 "(C) distractions.",
                 "(D) interrogations",
@@ -260,13 +281,13 @@ public class Gns111Activity extends AppCompatActivity {
                 "(D) comprehension.",
                 "(C) discipline"));
 
-        questionList.add(new Question("10. Which of the following is not a study skill strategy for the English as a second language \n" +
+        questionList.add(new Question("10. Which of the following is not a study skill strategy for the English as a second language " +
                 "learner___________?",
                 "(A) PQRST", "(B) time management",
                 "(C) Personal motivation",
                 "(D) Personal ", "(D) Personal "));
 
-        questionList.add(new Question("11. Learners frequent interactions with colleague, teachers and schooars online help to \n" +
+        questionList.add(new Question("11. Learners frequent interactions with colleague, teachers and schooars online help to " +
                 "ensure__________________.",
                 "(A) academic objectiveness.",
                 "(B) academic currency." ,
@@ -274,7 +295,7 @@ public class Gns111Activity extends AppCompatActivity {
                 "(D) academic competence.",
                 "(B) academic currency."));
 
-        questionList.add(new Question( "12. Which of the following is not a level of reading \n" +
+        questionList.add(new Question( "12. Which of the following is not a level of reading " +
                 "comprehension?________ ",
                 "(A) critical.",
                 "(B) inferential.",
@@ -308,8 +329,7 @@ public class Gns111Activity extends AppCompatActivity {
                 "(C) concentration. "));
 
         questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
+                "(A) sentences",
                 "(B) clauses. ",
                 "(C) phrases. ",
                 "(D) morphemes",

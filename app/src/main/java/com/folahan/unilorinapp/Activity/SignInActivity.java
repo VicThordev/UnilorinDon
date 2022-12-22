@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -93,14 +94,6 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
-
-        AccountFragment mFragment = new AccountFragment();
-        Bundle bundle = new Bundle();
-
-        String name = "Tobi";
-        bundle.putString("KEY_USERNAME", name);
-        bundle.putString(Constants.KEY_EMAIL, edtEmail.getText().toString());
-        mFragment.setArguments(bundle);
     }
 
 
@@ -123,8 +116,12 @@ public class SignInActivity extends AppCompatActivity {
                             true);
                     preferenceManager.putString(Constants.KEY_USER_ID,
                             documentReference.getId());
+                    preferenceManager.putString(Constants.KEY_USERNAME, edtUsername.getText().toString());
+                    preferenceManager.putString(Constants.KEY_SURNAME, edtSurname.getText().toString());
+                    preferenceManager.putString(Constants.KEY_LASTNAME, edtFirstName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 })
                 .addOnFailureListener(exception -> {

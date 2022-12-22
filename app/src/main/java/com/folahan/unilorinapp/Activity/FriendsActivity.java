@@ -24,6 +24,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FriendsActivity extends BaseActivity implements UserListener {
 
@@ -60,46 +61,47 @@ public class FriendsActivity extends BaseActivity implements UserListener {
     }
 
     private void searchUser() {
-        String userName = edtSearch.getText().toString();
+
+        String userName = edtSearch.getText().toString().toLowerCase(Locale.ROOT);
         loading(true);
+        mRecyclerView.setVisibility(View.INVISIBLE);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_USERNAME, userName)
                 .get()
-                .addOnCompleteListener(task -> {
-                    loading(false);
+                .addOnCompleteListener(view -> {
                     String currentUserId = preferenceManager.getString(
                             Constants.KEY_USER_ID
                     );
-                    if (task.isSuccessful() && task.getResult() != null) {
+                    if (view.isSuccessful() && view.getResult() != null) {
                         List<User> users = new ArrayList<>();
-
                         for (QueryDocumentSnapshot queryDocumentSnapshot :
-                                task.getResult()) {
+                                view.getResult()) {
                             if (currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue;
                             }
-                            User user1 = new User();
-                            for (int i = 0; i < users.size(); i++) {
-                                if (userName.equals(queryDocumentSnapshot.getString(Constants.KEY_USERNAME))) {
-                                    user1.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME + " " + Constants.KEY_LASTNAME);
-                                    user1.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
-                                    user1.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
-                                    user1.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
-                                    user1.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                                    user1.setId(queryDocumentSnapshot.getId());
-                                    users.add(user1);
-                                } else {
-                                    Toast.makeText(this, "No such user", Toast.LENGTH_SHORT).show();
-                                }
+                            User user = new User();
+                            user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME + " "+ Constants.KEY_LASTNAME);
+                            user.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
+                            user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+                            user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
+                            user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
+                            user.setId(queryDocumentSnapshot.getId());
+                            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+                            users.add(user);
+                            mRecyclerView.setVisibility(View.VISIBLE);
+                            if (users.size() > 0) {
+                                UsersAdapter usersAdapter = new UsersAdapter(users, this);
+                                mRecyclerView.setAdapter(usersAdapter);
+                                mRecyclerView.setVisibility(View.VISIBLE);
+                            } else {
+                                showErrorMessage();
                             }
-
-
-
-
-
                         }
                     }
-                });
+                })
+        .addOnFailureListener(view ->
+                Toast.makeText(this, "No User found", Toast.LENGTH_SHORT).show());
     }
 
     private void getUsers() {

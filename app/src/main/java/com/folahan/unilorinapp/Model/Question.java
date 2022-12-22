@@ -1,8 +1,11 @@
 package com.folahan.unilorinapp.Model;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 public class Question {
     private String Question;
-    private String image;
+    private int image;
     private String option1;
     private String option2;
     private String option3;
@@ -17,15 +20,15 @@ public class Question {
         this.answer = answer;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
-    public Question(String question, String option1, String option2, String option3, String option4, String answer, String image) {
+    public Question(String question, String option1, String option2, String option3, String option4, String answer, int image) {
         Question = question;
         this.option1 = option1;
         this.option2 = option2;
