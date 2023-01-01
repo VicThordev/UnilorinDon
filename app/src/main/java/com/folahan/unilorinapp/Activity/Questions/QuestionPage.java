@@ -96,9 +96,7 @@ public class QuestionPage extends BaseActivity implements QuestionListListener {
                                 mList.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
                                 mList.setImage(queryDocumentSnapshot.getString(Constants.KEY_IMAGE));
                                 mList.setQuestion(queryDocumentSnapshot.getString(Constants.KEY_QUESTION_POST));
-                                mList.setQuestion(queryDocumentSnapshot.getString(Constants.KEY_COLLECTION_COMMENT));
                                 mList.setLike(queryDocumentSnapshot.getString(Constants.KEY_LIKES_BOX));
-                                mList.setId(queryDocumentSnapshot.getId());
                                 list.add(mList);
                             }
                             if (list.size() > 0 ){

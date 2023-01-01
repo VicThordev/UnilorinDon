@@ -21,14 +21,15 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="70dp"
+                app:riv_corner_radius="50dp"
                 android:src="@drawable/ic_person_add_60" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgProfile"
-                android:text="Name"
                 android:id="@+id/txtNameProfile"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
@@ -39,7 +40,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtNameProfile"
-                android:text="Username"
                 android:id="@+id/txtUsernameProfile"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
@@ -66,12 +66,11 @@
                         android:textSize="18sp"
                         android:layout_marginTop="5dp"
                         android:layout_marginStart="10dp"
-                        android:text="Email"/>
+                        android:text="@string/faculty"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="IamFolahan@gmail.com"
                         android:id="@+id/txtEmailProfile"
                         android:layout_marginTop="35dp"
                         android:layout_marginBottom="10dp"
@@ -93,13 +92,13 @@
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
-                        android:text="Product Key"/>
+                        android:text="@string/department"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Key Generated"
                         android:layout_marginTop="35dp"
+                        android:id="@+id/txtDepartment"
                         android:layout_marginStart="10dp"
                         android:layout_marginBottom="10dp"/>
                 </androidx.cardview.widget.CardView>
@@ -119,13 +118,13 @@
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
-                        android:text="Contact Us"/>
+                        android:text="@string/e_mail_address"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Connect with us"
                         android:layout_marginTop="35dp"
+                        android:id="@+id/emailAddress"
                         android:layout_marginStart="10dp"
                         android:layout_marginBottom="10dp"/>
 

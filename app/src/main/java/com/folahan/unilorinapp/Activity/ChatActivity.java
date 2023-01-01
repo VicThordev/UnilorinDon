@@ -335,7 +335,7 @@ public class ChatActivity extends BaseActivity {
                     messages.add(chatMessage);
                 }
             }
-            Collections.sort(messages, Comparator.comparing(obj -> obj.dateObject));
+            messages.sort(Comparator.comparing(obj -> obj.dateObject));
             if (count == 0) {
                 adapter.notifyDataSetChanged();
             } else {

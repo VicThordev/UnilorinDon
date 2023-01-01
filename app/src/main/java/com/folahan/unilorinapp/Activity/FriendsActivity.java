@@ -19,8 +19,10 @@ import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.User;
 
 import com.folahan.unilorinapp.R;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +59,25 @@ public class FriendsActivity extends BaseActivity implements UserListener {
     private void setListeners() {
         imageView.setOnClickListener(v ->
                 onBackPressed());
-        mImage.setOnClickListener(view -> searchUser());
+        mImage.setOnClickListener(view -> getDetails());
     }
+
+    private void getDetails() {
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_USERNAME, "Tobi")
+                .whereEqualTo(Constants.KEY_USERNAME, "Tobi")
+                .addSnapshotListener(eventListener);
+    }
+
+    private final EventListener<QuerySnapshot> eventListener = ((value, error) -> {
+        if (error != null) {
+            return;
+        }
+        if (value != null) {
+            Toast.makeText(this, "You rock", Toast.LENGTH_SHORT).show();
+        }
+    });
 
     private void searchUser() {
 
@@ -122,7 +141,7 @@ public class FriendsActivity extends BaseActivity implements UserListener {
                                 continue;
                             }
                             User user = new User();
-                            user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME + " "+ Constants.KEY_LASTNAME);
+                            user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME);
                             user.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
                             user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
                             user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);

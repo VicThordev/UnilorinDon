@@ -184,6 +184,7 @@ public class Chm116Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
         if (questionAnswered == 30) {

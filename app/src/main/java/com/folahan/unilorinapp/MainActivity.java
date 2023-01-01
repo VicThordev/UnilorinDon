@@ -20,7 +20,6 @@ import com.folahan.unilorinapp.Activity.LoginActivity;
 import com.folahan.unilorinapp.Activity.QuestionTab;
 import com.folahan.unilorinapp.Activity.Questions.QuestionPage;
 import com.folahan.unilorinapp.Activity.RecentChatActivity;
-import com.folahan.unilorinapp.Activity.SignInActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.User;
@@ -30,10 +29,12 @@ import com.folahan.unilorinapp.fragmentActivity.HomeFragment;
 import com.folahan.unilorinapp.fragmentActivity.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView txtName, txtUsername, txtEmail;
+    private TextView txtName;
     private View view;
     private PreferenceManager preferenceManager;
     private SharedPreferences mPreferences;
@@ -52,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtName = findViewById(R.id.txtUnilorinUpdate);
-        Intent data = getIntent();
 
 
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.frameLayout, homeFragment).commit();
         navigationView = findViewById(R.id.bottom_nav);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         navigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {

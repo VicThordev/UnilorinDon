@@ -34,7 +34,7 @@ public class Mth112Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1;
+    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     Button btnNext, btnPrev, btnEnd;
     private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
@@ -77,14 +77,25 @@ public class Mth112Activity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        getQuestionPhase(questionList);
+        if (SecondSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
 
-        setDataView(pos);
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase1(questionList);
+
+            setDataView(pos);
+        }  else if (SecondSemesterActivity.questionRequestCode == 3) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        }
+
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
-            if (questionAnswered == 50) {
+            if (questionAnswered == 15) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
             } else {
                 questionAnswered++;
@@ -188,6 +199,7 @@ public class Mth112Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
 
         questionNo.setText("Question "+questionAnswered+" of 30");
         if (questionAnswered == 30) {

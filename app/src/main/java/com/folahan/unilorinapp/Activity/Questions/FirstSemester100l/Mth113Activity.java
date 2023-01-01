@@ -1,6 +1,5 @@
 package com.folahan.unilorinapp.Activity.Questions.FirstSemester100l;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -11,7 +10,6 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +23,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
+
 
 public class Mth113Activity extends AppCompatActivity {
 
     private List<Question> questionList;
-    private Random random;
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
@@ -53,7 +50,6 @@ public class Mth113Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
-        random = new Random();
         setListeners();
 
         if (SecondSemesterActivity.questionRequestCode == 1) {
@@ -97,8 +93,20 @@ public class Mth113Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
+            if (questionAnswered == 15) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            }
             questionAnswered++;
-            pos = random.nextInt(questionList.size());
+            pos++;
+            setDataView(pos);
+        });
+
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First QUestion", Toast.LENGTH_SHORT).show();
+            }
+            questionAnswered--;
+            pos--;
             setDataView(pos);
         });
     }

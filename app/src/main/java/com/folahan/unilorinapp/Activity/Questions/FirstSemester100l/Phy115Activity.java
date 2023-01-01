@@ -86,11 +86,25 @@ public class Phy115Activity extends AppCompatActivity {
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            }
+            questionAnswered--;
+            pos--;
             setDataView(pos);
         });
+
+        btnNext.setOnClickListener(view -> {
+            if (questionAnswered == 30) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            }
+            questionAnswered++;
+            pos++;
+            setDataView(pos);
+        });
+
+
     }
 
     protected void showButton() {

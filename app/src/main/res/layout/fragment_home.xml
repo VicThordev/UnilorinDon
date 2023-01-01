@@ -23,9 +23,11 @@
                     android:id="@+id/imgDashBoard"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="25dp"
-                    android:background="@drawable/backgroung_input" />
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/custom_shape"
+                    android:scaleType="centerCrop"
+                    app:riv_corner_radius="50dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"

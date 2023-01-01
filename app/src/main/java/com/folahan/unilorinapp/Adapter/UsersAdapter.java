@@ -72,11 +72,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             mInfo.setText(user.getUsername());
             mCategory.setText(user.getEmail());
             mImage.setImageBitmap(getUserImage(user.getImage()));
-            itemView.setOnClickListener(view -> {
-                userListener.onUserClicked(user);
-            });
+            itemView.setOnClickListener(view ->
+                    userListener.onUserClicked(user));
 
-            //listener.onUserClicked(user);
         }
     }
 

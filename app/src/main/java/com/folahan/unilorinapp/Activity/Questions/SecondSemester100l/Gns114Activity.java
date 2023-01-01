@@ -104,7 +104,7 @@ public class Gns114Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
-            if (questionAnswered == 60) {
+            if (questionAnswered == 50) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
             } else {
                 questionAnswered++;

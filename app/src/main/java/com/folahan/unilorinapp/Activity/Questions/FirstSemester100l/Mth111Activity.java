@@ -81,8 +81,20 @@ public class Mth111Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
+            if (questionAnswered == 15) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            }
             questionAnswered++;
-            pos = random.nextInt(questionList.size());
+            pos++;
+            setDataView(pos);
+        });
+
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            }
+            questionAnswered--;
+            pos--;
             setDataView(pos);
         });
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);

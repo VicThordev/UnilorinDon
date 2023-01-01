@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/_bg__iphone_13___13_pro___1_ek2_color"/>
+    <corners android:radius="50sp"/>
+
+</shape>

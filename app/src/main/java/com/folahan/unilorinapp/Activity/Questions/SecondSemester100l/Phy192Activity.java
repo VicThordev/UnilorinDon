@@ -39,7 +39,7 @@ public class Phy192Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chm132);
+        setContentView(R.layout.activity_phy192);
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
@@ -199,167 +199,171 @@ public class Phy192Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("1. Calculate the distance between point charges, 26.0μC and 47.0μC, if the magnitude of the " +
-                "electrostatic force between them is 5.70N",
-                "A. 150.6cm",
-                "B. 138.9cm",
-                "C. 148.7cm",
-                "D. 165.3cm",
-                "B. 138.9cm"));
+        questionList.add(new Question("1. The thickness of the contral position of a thin converging lens can " +
+                "be determined very accurately by using?",
+                "A. vernier caliper",
+                "B. micrometer screw gauge",
+                "C. telescope",
+                "D. microscope",
+                "B. micrometer screw gauge"));
 
-        questionList.add(new Question("2. At what distance would the repulsive force between two electrons have a magnitude of one newton?",
-                "A. 0.0152pm",
-                "B. 0.0142pm",
-                "C. 0.0132pm",
-                "D. 0.0122pm",
-                "A. 0.0152pm"));
+        questionList.add(new Question("2. The inner diameter of a small test tube can be measured " +
+                "accurately using?",
+                "A. micrometer screw gauge",
+                "B. pair of dividers",
+                "C. meter rule",
+                "D. pair of vernier caliper",
+                "D. pair of vernier caliper"));
 
-        questionList.add(new Question("3. How many excess elections must be placed on each of two small spheres spaced 3cm apart, if the " +
-                "force of repulsion between the spheres is to be 10-19N?",
-                "A. 125 electrons ",
-                "B. 250 electrons",
-                "C. 625 electrons",
-                "D. 750 electrons",
-                "C. 625 electrons"));
+        questionList.add(new Question("3. What is the least possible error in using a rule graduated?",
+                "A. 0.1cm",
+                "B. 0.5cm",
+                "C. 1.0cm",
+                "D. 2.0cm",
+                "A. 0.1cm"));
 
-        questionList.add(new Question("4. What is the total positive charge in Coulombs, of all the protons in 1mol of Hydrogen atoms?",
-                "A. 96.35kC",
-                "B. 72.46kC",
-                "C. 83.48kC",
-                "D. 78.36kC",
-                "A. 96.35kC"));
+        questionList.add(new Question("4. The error in the shape of a graph can be calculated using the " +
+                "relationship.",
+                "A. 4wn/R",
+                "B. 4w/nR",
+                "C. 4R/Wn",
+                "D. 4/wnR",
+                "B. 4w/nR"));
 
-        questionList.add(new Question("5. An α-particle is a nucleus of doubly-ionised helium. It has a mass of 6.69 x 10^-27kg and a charge of -2e. " +
-                "Compute the ratio of the force of electrostatic repulsion between two α-particles to the force of " +
-                "gravitational attraction between them",
-                "A. 6.2 x 10^35",
-                "B. 4.2 x 10^35",
-                "C. 3.1 x 10^35",
-                "D. 2.1 x 10^35",
-                "C. 3.1 x 10^35"));
+        questionList.add(new Question("5. Which of the following has a reading accuracy of 0.5mm?",
+                "A. vernier caliper",
+                "B. micrometer screw gauge",
+                "C. meter rule",
+                "D. protractor",
+                "C. meter rule"));
 
-        questionList.add(new Question("6. Compute the ratio of the electric force of attraction to the gravitational force of attraction between \n" +
-                "the electron and the proton in a hydrogen atom assuming that their distance of separation is 0.53pm \n" +
-                "(me = 9.1 x 10^-31kg, mp = 1.7 x 10^-27kg, e = 1.6 x 10^-19C)",
-                "A. 2.2 x 10^39",
-                "B. 1.1 x 10^39",
-                "C. 2.1 x 10^39" ,
-                "D. 1.2 x 10^39", "A. 2.2 x 10^39"));
+        questionList.add(new Question("6. What is the reading of the vernier scale?",
+                "A. 1.88cm",
+                "B. 1.80cm",
+                "C. 1.28cm" ,
+                "D. 1.97cm",
+                "B. 1.80cm",
+                R.drawable.phy192snip));
 
-        questionList.add(new Question("7. What is the magnitude of electrostatic force of attraction between an α-particle and an electron 10^-" +
-                "13m apart?",
-                "A. 2.3 x 10^-2N", "B. 2.6 x 10^-2N",
-                "C. 4.3 x 10^-2N", "D. 4.6 x 10^-2N",
-                "D. 4.6 x 10^-2N"));
+        questionList.add(new Question("7. Given that MgT²=4Mπ² + gk², the plot of T² against L in the equation above gives " +
+                "a straight line with:",
+                "A. slope = 4π²m, intercept = gk²",
+                "B. slope = 4π²m/g, intercept = gk²/m",
+                "C. slope = 4π²/g, intercept = gk²/m",
+                "D. slope = k²/g, intercept = 4π/g",
+                "C. slope = 4π²/g, intercept = gk²/m"));
 
-        questionList.add(new Question("8. From the Coulomb's Law, what will be the slope of the graph of Log F vs Log r? ",
-                "A. ½", "B. 2",
-                "C. -log2",
-                "D. -2",
-                "A. ½"));
+        questionList.add(new Question("8. An object is place 10cm in front of a concave mirror of focal length 15cm. " +
+                "What is the position and nature of the image formed?",
+                "A. 30cm and virtual ",
+                "B. 60cm and real",
+                "C. 60cm and virtual",
+                "D. 30cm and real",
+                "D. 30cm and real"));
 
-        questionList.add(new Question("9. Two equal charges of equal magnitude exert an attractive force of 4.0 x 10^-4N on each other. If the " +
-                "magnitude of each charge is 2.0μC, how far apart are the charges?",
-                "A. 9.5m",
-                "B. 9.7m",
-                "C. 10.5m",
-                "D. 10.7m",
-                "A. 9.5m"));
+        questionList.add(new Question("9. An object is placed 30cm from a concave mirror of focal length " +
+                "15cm. The linear magnification of the image produced is ",
+                "A. 0",
+                "B. 2/3",
+                "C. 1",
+                "D. 2",
+                "D. 2"));
 
-        questionList.add(new Question("10. What is the magnitude of a point charge whose electric field 50cm away has magnitude 2.0N/C?",
-                "A. 4.56 x 10^-11C",
-                "B. 4.66 x 10^-11C",
-                "C. 5.56 x 10^-11C ",
-                "D. 5.66 x 10^-11C", "C. 5.56 x 10^-11C "));
+        questionList.add(new Question("10. Which of the following is true for the image formed by a convex mirror \n" +
+                "(i) the image is always virtual \n" +
+                "(ii) the image lies between pole and focus \n" +
+                "(iii) the image is never magnified \n" +
+                "(iv) the focal length is negative",
+                "A. I only",
+                "B. I and II only",
+                "C. II and III ",
+                "D. I, II, III and IV", "D. I, II, III and IV"));
 
-        questionList.add(new Question("11. What is the magnitude of an electric field in which the force on an electron is equal in magnitude to " +
-                "the weight of an electron?",
-                "A. 4.58 x 10^-11N/C",
-                "B. 5.58 x 10^-11N/C" ,
-                "C. 6.58 x 10^-11N/C",
-                "D. 7.58 x 10-^11N/C",
-                "B. 5.58 x 10^-11N/C"));
+        questionList.add(new Question("11. If the refractive index of glass is 1.5, what is the critical angle at the air " +
+                "glass interface",
+                "A. arc sin(1/2)",
+                "B. arc sin(2/3)" ,
+                "C. arc sin(3/4)",
+                "D. arc sin(8/2)",
+                "B. arc sin(2/3)"));
 
-        questionList.add(new Question( "12. A small object carrying a charge of 5 x 10^-9" +
-                "C experiences a downward force of 20 x 10^-9N when" +
-                "placed at a certain point in an electric field. What's the electric field at the point?",
-                "A. 100 N/C",
-                "B. 40 N/C",
-                "C. 10 N/C",
-                "D. 4 N/C",
-                "D. 4 N/C"));
+        questionList.add(new Question( "12. The critical angle at an air-liquid interface is 45°. " +
+                "Calculate the refractive index of the liquid.",
+                "A. 2.4",
+                "B. 1.4",
+                "C. 3.5",
+                "D. 4.2",
+                "B. 1.4"));
 
-        questionList.add(new Question( "13. The distance between two positive charges 6μC & 8μC is 50cm. Calculate the electric field intensity, " +
-                "due to each charges, at a point p in between the two charges and 10cm from the 6μC charge" +
-                "respectively",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C",
-                "B. 6.4 x 10^6N/C, 5.5 x 10^5N/C",
-                "C. 7.4 x 10^6N/C, 6.5 x 10^5N/C",
-                "D. 8.4 x 10^6N/C, 7.5 x 10^5N/C",
-                "A. 5.4 x 10^6N/C, 4.5 x 10^5N/C"));
+        questionList.add(new Question( "13. An object is placed 5.6 * 10^-2m in front of a converging lens of " +
+                "focal length 1.0 * 10^-1m. ",
+                "A. real, erect and magnified",
+                "B. virtual, erect and magnified",
+                "C. real, inverted and magnified",
+                "D. virtual, erect and diminished",
+                "C. real, inverted and magnified"));
 
-        questionList.add(new Question( "14. Find the electric field at a point 0.2m from a charge of 20μC, what force will the electric field exert " +
-                "on a charge of 10μC, placed at that point?" +
-                "education. ",
-                "A. 3.5 x 10" +
-                        "^6N/C, 35N",
-                "B. 4.5 x 10^6N/C, 45N",
-                "C. 5.5 x 10^6N/C, 55N",
-                "D. 6.5 x 10^6N/C, 65N",
-                "B. 4.5 x 10^6N/C, 45N"));
+        questionList.add(new Question( "14. An object 3.0cm high is placed 60.0cm from a converging lens whose focal " +
+                "length is 20.0cm. Calculate the size of the image formed.",
+                "A. 0.5cm",
+                "B. 1.5cm",
+                "C. 2.0cm",
+                "D. 6.0cm",
+                "B. 1.5cm"));
 
-        questionList.add(new Question( "15. The magnitude of electric field is 40kN/C. If an electron is placed in the same field, what force will be \n" +
-                "exerted on it?",
-                "A. 3.4 x 10^-15N",
-                "B. 4.4 x 10^-15N",
-                "C. 5.4 x 10^-15N",
-                "D. 6.4 x 10^-15N",
-                "D. 6.4 x 10^-15N"));
+        questionList.add(new Question( "15. A graph of 1/u against 1/v was plotted for a convex lens, what is the focal " +
+                "length (f) deduced from the graph?",
+                "A. a reciprocal of the intercept on 1/v axis",
+                "B. addition of 1/u and 1/v",
+                "C. area under the graph",
+                "D. gradient of the graph",
+                "A. a reciprocal of the intercept on 1/v axis"));
 
-        questionList.add(new Question( "16. Words combine to form __________.",
-                "(A) " +
-                        "sentences",
-                "(B) clauses. ",
-                "(C) phrases. ",
-                "(D) morphemes",
-                "(C) phrases. "));
+    }
 
-        questionList.add(new Question( "17. An important feature of language4 is its \n" +
-                "___________ ",
-                "(A) structure",
-                "(B) texture.",
-                "(C) strength.",
-                "(D) stature.",
-                "(A) structure"));
+    private void getQuestionPhase2(List<Question> list) {
 
-        questionList.add(new Question( "18. The English as a second \n" +
-                "language countries include all except ________.",
-                "(A) Ghana.",
-                "(B) India.",
-                "(C) Nigeria. ",
-                "(D) USA",
-                "(D) USA"));
+        questionList.add(new Question( "1. An object is placed 25cm in front of a concave mirror whose focal length " +
+                "is 15cm. Which of the following statement is true of the image formed?",
+                "(A) inverted and 1.5 times the object size",
+                "(B) erect and 2.0 times the object size",
+                "(C) inverted and 3.5 times the object size",
+                "(D) erect and 0.6 times the object size",
+                "(A) inverted and 1.5 times the object size"));
 
-        questionList.add(new Question( "19. " +
-                "________ to come this weekend to listen to the broadcast of the football match?",
-                "(A) Do you like,",
-                "(B) " +
-                        "Would you like. ",
-                "(C) Are you like.",
-                "(D) Will you like.",
-                "(B) " +
-                        "Would you like. "));
+        questionList.add(new Question( "2. A concave mirror will produce a virtual, erect and magnified " +
+                "image when the object is placed _____",
+                "(A) the principal focus",
+                "(B) beyond the centre of curvature",
+                "(C) distance less than the focus length",
+                "(D) infinity",
+                "(C) distance less than the focus length"));
 
-        questionList.add(new Question( " 20. Factors affecting study skills include all \n" +
-                "except_________.",
-                "(A) hybridizing.",
-                "(B) the study time.",
-                "(C) the study venue",
-                "(D) reading aloud to " +
-                        "oneself.",
-                "(A) hybridizing."));
+        questionList.add(new Question( "3. The image of an object placed between placed between a concave " +
+                "lens and the focal point is \n (i) virtual \n(ii) real \n" +
+                "(iii) erect \n (iv) diminished",
+                "(A) i, ii and iii",
+                "(B) i, iii, iv",
+                "(C) ii and iv",
+                "(D) i and ii",
+                "(C) ii and iv"));
 
-        questionList.add(new Question( "21. Computers are now cheap_______ for nearly everyone to afford it.",
+        questionList.add(new Question( "4. If the object distance from a diverging lens is 25cm " +
+                "and focal length 15cm. Determine the image distance",
+                "(A) 9.35cm",
+                "(B) 37.5cm",
+                "(C) 20.5cm",
+                "(D) 26.4cm",
+                "(B) 37.5cm"));
+
+        questionList.add(new Question( "5. The optical instrument for viewing near objects is the _____",
+                "(A) telescope",
+                "(B) sextant",
+                "(C) microscope",
+                "(D) binoculars",
+                "(C) microscope"));
+
+        questionList.add(new Question( "6. ",
                 "(A) enough.",
                 "(B) " +
                         "so. ",

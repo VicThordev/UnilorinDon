@@ -86,54 +86,20 @@ public class Phy125Activity extends AppCompatActivity {
         btnNext.setOnClickListener(view -> {
             if (questionAnswered == 20) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
-            } else {
-                questionAnswered++;
-                pos++;
-                setDataView(pos);
             }
-            if (rbOption1.isChecked()) {
-                rbOption1.setChecked(false);
-            }
-            if (rbOption2.isChecked()) {
-                rbOption2.setChecked(false);
-            }
-            if (rbOption3.isChecked()) {
-                rbOption3.setChecked(false);
-            }
-            if (rbOption4.isChecked()) {
-                rbOption4.setChecked(false);
-            }
+            questionAnswered++;
+            pos++;
+            setDataView(pos);
 
         });
 
         btnPrev.setOnClickListener(view -> {
             if (questionAnswered == 1) {
                 Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
-            } else {
-                questionAnswered--;
-                pos--;
-                setDataView(pos);
             }
-            if (rbOption1.isChecked()) {
-                rbOption1.setChecked(true);
-            } else {
-                rbOption1.setChecked(false);
-            }
-            if (rbOption2.isChecked()) {
-                rbOption2.setChecked(true);
-            } else {
-                rbOption2.setChecked(false);
-            }
-            if (rbOption3.isChecked()) {
-                rbOption3.setChecked(true);
-            } else {
-                rbOption3.setChecked(false);
-            }
-            if (rbOption4.isChecked()) {
-                rbOption4.setChecked(true);
-            } else {
-                rbOption4.setChecked(false);
-            }
+            questionAnswered--;
+            pos--;
+            setDataView(pos);
         });
 
         setListeners();

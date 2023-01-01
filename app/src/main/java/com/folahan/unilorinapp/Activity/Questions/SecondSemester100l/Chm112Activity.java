@@ -79,6 +79,14 @@ public class Chm112Activity extends AppCompatActivity {
             getQuestionPhase(questionList);
 
             setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        } else if (SecondSemesterActivity.questionRequestCode == 3) {
+            getQuestionPhase3(questionList);
+
+            setDataView(pos);
         }
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);

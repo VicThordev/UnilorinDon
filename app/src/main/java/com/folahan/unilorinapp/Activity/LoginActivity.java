@@ -81,13 +81,17 @@ public class LoginActivity extends AppCompatActivity {
                         .KEY_USER_ID, documentSnapshot.getId());
                        preferenceManager.putString(Constants.KEY_SURNAME,
                                 documentSnapshot.getString(Constants.KEY_SURNAME));
+                       preferenceManager.putString(Constants.KEY_USERNAME,
+                               documentSnapshot.getString(Constants.KEY_USERNAME));
+                       preferenceManager.putString(Constants.KEY_IMAGE,
+                               documentSnapshot.getString(Constants.KEY_IMAGE));
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } else {
                         loading(false);
-                        Toast.makeText(this, "Unable to sign in", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Incorrect Login Details", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -39,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private SharedPreferences.Editor editor;
     private EditText edtSurname, edtFirstName, edtUsername, edtMobile, edtEmail, edtPassword,
-    edtConfirmPassword;
+    edtConfirmPassword, edtFaculty, edtDepartment;
     public static final String KEY_USERNAME = "username";
     public static final String KEY_SURNAME = "surname";
     private RelativeLayout layout;
@@ -47,9 +47,10 @@ public class SignInActivity extends AppCompatActivity {
     private Boolean checkTrue;
 
     private TextView signIn, mSignUp, txtSurname, txtFirstname, txtUsername, txtMobile, txtEmail, txtPassword,
-    txtConfirmPassword;
+    txtConfirmPassword, txtFaculty, txtDepartment;
 
-    private String message1, message2, message3, message4, encodedImage, message5, message6, message;
+    private String message1, message2, message3, message4, encodedImage, message5, message6, message,
+    messageG, messageD;
     private RoundedImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,11 +109,15 @@ public class SignInActivity extends AppCompatActivity {
         user.put(Constants.KEY_IMAGE, encodedImage);
         user.put(Constants.KEY_PASSWORD, edtPassword.getText().toString());
         user.put(Constants.KEY_MOBILE, edtMobile.getText().toString());
+        user.put(Constants.KEY_PAID, "unpaid");
+
 
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,
+                            true);
+                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_UP,
                             true);
                     preferenceManager.putString(Constants.KEY_USER_ID,
                             documentReference.getId());
@@ -170,8 +175,6 @@ public class SignInActivity extends AppCompatActivity {
                 txtUsername.setVisibility(View.GONE);
                 checkTrue=true;
             }
-            editor.putString("Username", message2);
-            intent.putExtra(KEY_USERNAME, message2);
 
             message3 = edtMobile.getText().toString();
             if (message3.trim().isEmpty()) {
@@ -181,7 +184,6 @@ public class SignInActivity extends AppCompatActivity {
                 txtMobile.setVisibility(View.GONE);
                 checkTrue=true;
             }
-            editor.putString("MobileNo", message3);
 
             message4 = edtEmail.getText().toString();
             if (message4.trim().isEmpty()) {
@@ -195,7 +197,6 @@ public class SignInActivity extends AppCompatActivity {
                 txtEmail.setVisibility(View.GONE);
                 checkTrue=true;
             }
-            editor.putString("Email", message4);
 
             message5 = edtPassword.getText().toString();
             if (message5.trim().isEmpty()) {
@@ -221,7 +222,8 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         if (message5.equals(message6)) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
+            Toast.makeText(this, "Account Created \n Now Login", Toast.LENGTH_SHORT).show();
             finish();
         } else {
             Toast.makeText(this, "Password do not match", Toast.LENGTH_SHORT).show();

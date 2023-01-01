@@ -10,6 +10,7 @@ public class Constants {
     public static final String KEY_MOBILE = "mobile";
     public static final String KEY_PREFERENCE_NAME = "unilorinDonPreference";
     public static final String KEY_IS_SIGNED_IN = "sign_in";
+    public static final String KEY_IS_SIGNED_UP = "sign_up";
     public static final String KEY_USER_ID = "userId";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_FCM_TOKEN = "fcmToken";
@@ -29,6 +30,7 @@ public class Constants {
     public static final String KEY_AVAILABILITY = "availability";
     public static final String KEY_COLLECTION_COMMENT = "com.folahan.unilorin_don.extra_comment";
     public static final String KEY_POSTER_NAME = "poster_name";
+    public static final String KEY_PAID = "unpaid";
     public static final String KEY_TIMESTAMP_POST = "timestamp";
     public static final String KEY_IMAGE_POST = "image_post";
     public static final String KEY_COMMENT_NO = "comments_no";
@@ -38,6 +40,8 @@ public class Constants {
     public static final String KEY_QUESTION_POST = "question";
     public static final String KEY_COLLECTION_POST = "question";
     public static final String KEY_QUESTION_BOX = "questionBox";
+    public static final String KEY_FACULTY = "faculty";
+    public static final String KEY_DEPARTMENT = "department";
 
     public static final String KEY_LIKES = "likes";
     public static final String KEY_COMMENTS = "comments";

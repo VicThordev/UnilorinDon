@@ -30,7 +30,7 @@ public class Phy152Activity extends AppCompatActivity {
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
-    int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
+    int pos, pos2=0, mTimeLeft = 900000, questionAnswered = 1, clicked = 0;
     Button btnNext, btnPrev, btnEnd;
     private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
@@ -95,7 +95,7 @@ public class Phy152Activity extends AppCompatActivity {
         setListeners();
 
         btnNext.setOnClickListener(view -> {
-            if (questionAnswered == 50) {
+            if (questionAnswered == 30) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
             } else {
                 questionAnswered++;
