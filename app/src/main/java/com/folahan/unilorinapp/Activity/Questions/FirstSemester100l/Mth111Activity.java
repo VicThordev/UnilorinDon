@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class Mth111Activity extends AppCompatActivity {
@@ -56,6 +56,8 @@ public class Mth111Activity extends AppCompatActivity {
 
         setListeners();
 
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
             public void onTick(long l) {
@@ -74,28 +76,38 @@ public class Mth111Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        getQuestionPhase(questionList);
+        if (FirstSemesterActivity.questionRequestCode == 1) {
+            getQuestionPhase(questionList);
 
-        setDataView(pos);
+            setDataView(pos);
+        } else if (FirstSemesterActivity.questionRequestCode == 2) {
+            getQuestionPhase2(questionList);
+
+            setDataView(pos);
+        }
+
+
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
             if (questionAnswered == 15) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
             }
-            questionAnswered++;
-            pos++;
-            setDataView(pos);
         });
 
         btnPrev.setOnClickListener(view -> {
             if (questionAnswered == 1) {
                 Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
             }
-            questionAnswered--;
-            pos--;
-            setDataView(pos);
         });
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
     }
@@ -190,11 +202,7 @@ public class Mth111Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
-
+        questionNo.setText("Question "+questionAnswered+" of 15");
     }
 
     @Override
@@ -205,74 +213,73 @@ public class Mth111Activity extends AppCompatActivity {
     private void getQuestionPhase(List<Question> list) {
 
 
-        questionList.add(new Question("Express the sin4x + sin2x as product of two trigonometrical ratio.", "" +
+        questionList.add(new Question("1. Express the sin4x + sin2x as product of two trigonometrical ratio.",
                 "(a) 2sin3xcos2x",
                 "(b) 2sin3xcosx", "(c) 2sin2xcos2x",
                 "(d) sin3xcosx",
                 "(b) 2sin3xcosx"));
 
-        questionList.add(new Question("Express cos4x – cos2x as product off two trigonometrical ratio.",
+        questionList.add(new Question("2. Express cos4x – cos2x as product off two trigonometrical ratio.",
                 "(a) -2sin3xsinx",
                 "(b) 2sin3xsin3x",
                 "(c) 2sinxsin3x",
                 "(d) none of the above",
                 "(a) -2sin3xsinx"));
 
-        questionList.add(new Question("Express 30° in radian", "(a) π/6",
+        questionList.add(new Question("3. Express 30° in radian", "(a) π/6",
                 "(b) 6/π", "(c) π",
                 "(d) none of the above",
                 "(a) π/6"));
 
-        questionList.add(new Question("Express π/2 in degree",
+        questionList.add(new Question("4. Express π/2 in degree",
                 "(a) 80°",
                 "(b) 90°",
                 "(c) 135°", "(d) 45°",
                 "(b) 90°"));
 
-        questionList.add(new Question("Express 3.5rad in degree",
+        questionList.add(new Question("5. Express 3.5rad in degree",
                 "(a) 200.5°",
                 "(b) 200°", "(c) 20°",
                 "(d) 150°",
                 "(a) 200.5°"));
 
-        questionList.add(new Question("The sun substend an angle at 35° from the center of the earth whose distant from the centre of " +
-                "the earth is 382,100km. find the diameter of the sun",
+        questionList.add(new Question("6. The sun subtend an angle at 35° from the center of the earth whose distant from the centre of " +
+                "the earth is 382,100km. Find the diameter of the sun",
                 "(a) 600km", "(b) 650km",
                 "(c) 648.6km" ,
-                "(d) " +
-                        "648km", "(c) 648.6km"));
+                "(d) 648km", "(c) 648.6km"));
 
-        questionList.add(new Question("An arc PQ of length 20cm is marked on a circle of radius 6cm, find the area of the sector binded " +
+        questionList.add(new Question("7. An arc PQ of length 20cm is marked on a circle of radius 6cm, find the area of the sector binded " +
                 "by this arc and the radius ",
-                "(a) 55cm^2", "(b) 60cm^2",
-                "(c) 58.6cm^2", "(d) none of the above",
-                "(b) 60cm^2"));
+                "(a) 55cm²", "(b) 60cm²",
+                "(c) 58.6cm²", "(d) none of the above",
+                "(b) 60cm²"));
 
-        questionList.add(new Question("Simplify sin75",
+        questionList.add(new Question("8. Simplify sin 75",
                 "(a) (√2 +√6)/ 4", "(b) √2 + √6 ",
                 "(c) √6/ 4",
                 "(d) √2", "(a) (√2 +√6)/ 4"));
 
-        questionList.add(new Question("Find the value of sin(α + β) without using table if sin α = 3/5 and tan β= 5/1 and α and β are " +
+        questionList.add(new Question("9. Find the value of sin(α + β) without using table if sin α = 3/5 and tan β= 5/1 and α and β are " +
                 "acutes",
                 "(a) 56/65", "(b) 50/65",
                 "(c) 55.5/65",
                 "(d) 55/6",
                 "(a) 56/65"));
 
-        questionList.add(new Question("Factorize 5x^2 + 9x + 4",
+        questionList.add(new Question("10. Factorize 5x^2 + 9x + 4",
                 "(a) x = -4/5 or x=-1",
                 "(b) x=4/5 or x=1",
                 "(c) x=4/5 or x = -1",
                 "(d) x= -4/5 or x = 1", "(a) x = -4/5 or x=-1"));
 
-        questionList.add(new Question("Find “a” if the equation has equal root (5a + 1)x^2 – 8ax +3a = 0",
+        questionList.add(new Question("11. Find “a” if the equation has equal root (5a + 1)x² – 8ax +3a = 0",
                 "(a) a = 0 or a = 3", "(b) a= 0 or a = 2",
                 "(c) a=0 or a = 1",
                 "(d) a= 0",
                 "(a) a = 0 or a = 3"));
 
-        questionList.add(new Question("Find the values of “p” for which the equation (4p + 1)x^2 + ( p + 3)x + 1 = 0",
+        questionList.add(new Question("12. Find the values of “p” for which the equation (4p + 1)x^2 + ( p + 3)x + 1 = 0",
                 "(a) p = 5 + 2√5 or p = " +
                         "5 - 2√5",
                 "b) p = 5 or p = 2",
@@ -281,41 +288,40 @@ public class Mth111Activity extends AppCompatActivity {
                 "(a) p = 5 + 2√5 or p = 5" +
                         "5 - 2√5"));
 
-        questionList.add(new Question("Find the value of K for which d roots of the equation is x^2 – (4 + k)x + 9 = 0",
+        questionList.add(new Question("13. Find the value of K for which d roots of the equation is x² – (4 + k)x + 9 = 0",
                 "(a) K ≤ −10 or K ≥ 2", "(b) K ≤ 10 or K ≥ 2",
                 "(c) K ≤ 10 or K ≥ −2",
                 "(d) K ≤ −10 or K ≥ −2",
                 "(a) K ≤ −10 or K ≥ 2"));
 
-        questionList.add(new Question("If α and β are roots of the equation 3x2" +
-                "-7x – 1 = 0 find the value of (α + β)" +
-                "2",
+        questionList.add(new Question("14. If α and β are roots of the equation 3x² -7x – 1 = 0 find the value of (α + β)²",
                 "(a) 61/9", "(b) -61/9",
                 "(c) 9/61",
                 "(d) -9/61",
                 "(a) 61/9"));
 
-        questionList.add(new Question("If α and β are roots of the equation 3x²" +
-                "-7x – 1 = 0 find the value of α²+ β²",
+        questionList.add(new Question("15. If α and β are roots of the equation 3x² -7x – 1 = 0 find the value of α²+ β²",
                 "(a) 61/9", "(b) -61/9",
-                "(c)55/9",
+                "(c) 55/9",
                 "(d) -55/9",
                 "(c)55/9"));
+    }
 
-        questionList.add(new Question("Find the value of (1.02)^8 correct to 5 decimal place using the first five terms of the expansion (1 " +
-                "+ 8)^8",
+    private void getQuestionPhase2(List<Question> list) {
+
+        questionList.add(new Question("1. Find the value of (1.02)^8 correct to 5 decimal place using the first five terms of the expansion (1 + 8)^8",
                 "(a) 1.02766", "(b) 1.0277",
                 "(c) 1.028",
                 "(d) 1.03",
                 "(a) 1.02766"));
 
-        questionList.add(new Question("Find the value of x for the expression (2x + 5)/(x² –x – 6) does not exist",
+        questionList.add(new Question("2. Find the value of x for the expression (2x + 5)/(x² –x – 6) does not exist",
                 "(a) x = -3 or x = -2", "(b) x = 3 or x = -2",
                 "(c) x = 3 or x = 2",
                 "(d) x = 2 or x = -3",
                 "(b) x = 3 or x = -2"));
 
-        questionList.add(new Question("Calculate “a” if the coefficient of x^3" +
+        questionList.add(new Question("3. Calculate “a” if the coefficient of x^3" +
                 "in ( a + 2x )^5" +
                 "is 320",
                 "(a) a = 2", "(b) a= 3",
@@ -323,8 +329,7 @@ public class Mth111Activity extends AppCompatActivity {
                 "(d) a = 1",
                 "(a) a = 2"));
 
-        questionList.add(new Question("Find the coefficient of x^8"+
-                "in the expansion of (2x – 5)^10",
+        questionList.add(new Question("Find the coefficient of x^8 in the expansion of (2x – 5)^10",
                 "(a) 288", "(b) 288000",
                 "(c) 28800",
                 "(d) 2880",
@@ -336,8 +341,7 @@ public class Mth111Activity extends AppCompatActivity {
                 "(d) 203",
                 "(b) 201"));
 
-        questionList.add(new Question("The 4" +
-                "th term of an AP is 15, the 9th term is 35. Find T15",
+        questionList.add(new Question("The 4th term of an AP is 15, the 9th term is 35. Find T15",
                 "(a) 56", "(b) 57",
                 "(c) 58",
                 "(d) 59",

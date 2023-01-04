@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class FriendsActivity extends BaseActivity implements UserListener {
 
@@ -45,6 +46,7 @@ public class FriendsActivity extends BaseActivity implements UserListener {
         setContentView(R.layout.activity_friends);
         preferenceManager = new PreferenceManager(getApplicationContext());
         mTxtError = findViewById(R.id.textErrorMessage);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         mImage = findViewById(R.id.image_search);
         edtSearch = findViewById(R.id.search_user);
         mRecyclerView = findViewById(R.id.usersRecyclerView);

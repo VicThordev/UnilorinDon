@@ -19,6 +19,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailText, passwordText;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
         btnClick = findViewById(R.id.btnLogin);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         signIn = findViewById(R.id.signIn);
         bar = findViewById(R.id.progressBar);

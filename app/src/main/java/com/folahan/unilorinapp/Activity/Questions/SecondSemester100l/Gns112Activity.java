@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
+import java.util.Objects;
 
 public class Gns112Activity extends AppCompatActivity {
 
@@ -54,6 +53,7 @@ public class Gns112Activity extends AppCompatActivity {
         countDown = findViewById(R.id.timeText);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         setListeners();
 
@@ -61,8 +61,8 @@ public class Gns112Activity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
-                int minutes = (int) (mTimeLeft/1000) / 60;
-                int secs = (int) (mTimeLeft/1000) % 60;
+                int minutes = mTimeLeft / 1000 / 60;
+                int secs = (mTimeLeft/1000) % 60;
                 String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, secs);
                 countDown.setText(timeLeftFormatted);
             }

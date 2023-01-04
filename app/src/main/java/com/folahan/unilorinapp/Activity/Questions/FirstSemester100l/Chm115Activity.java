@@ -111,10 +111,11 @@ public class Chm115Activity extends AppCompatActivity {
         btnPrev.setOnClickListener(view -> {
             if (questionAnswered == 1) {
                 Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos--;
+                setDataView(pos);
             }
-            questionAnswered++;
-            pos--;
-            setDataView(pos);
         });
     }
 
@@ -126,7 +127,7 @@ public class Chm115Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 50");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -196,7 +197,7 @@ public class Chm115Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
+        questionNo.setText("Question "+questionAnswered+" of 50");
         if (questionAnswered == 30) {
             showButton();
         }
@@ -206,7 +207,7 @@ public class Chm115Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 50 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })

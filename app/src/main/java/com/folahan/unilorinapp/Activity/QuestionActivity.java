@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class QuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);

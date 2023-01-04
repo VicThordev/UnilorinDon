@@ -21,6 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ActivateFragment#} factory method to
@@ -32,6 +34,7 @@ public class ActivateFragment extends Fragment {
     private ImageView mImageThumbUp, mImageThumbDown, mImageStar1, mImageStar2,
             mImageStar3, mImageStar4;
     private TextView mTextActivated, mTextNotActivated;
+    private PreferenceManager manager;
 
     View view;
 
@@ -45,6 +48,7 @@ public class ActivateFragment extends Fragment {
         PreferenceManager preferenceManager = new PreferenceManager(requireActivity().getApplicationContext());
         view =  inflater.inflate(R.layout.fragment_activate, container, false);
         mTextActivated = view.findViewById(R.id.txtActivated);
+        manager = new PreferenceManager(requireActivity().getApplicationContext());
         mTextNotActivated = view.findViewById(R.id.txtNotActivated);
         mImageThumbUp = view.findViewById(R.id.imgThumbUp);
         mImageThumbDown = view.findViewById(R.id.imgThumbDown);
@@ -53,7 +57,6 @@ public class ActivateFragment extends Fragment {
         mImageStar3 = view.findViewById(R.id.star3);
         mImageStar4 = view.findViewById(R.id.star4);
         CardView mcv2 = view.findViewById(R.id.mCardViewBank);
-        String name = "Tobi";
         FirebaseFirestore firebase = FirebaseFirestore.getInstance();
         firebase.collection(Constants.KEY_COLLECTION_USERS)
                 .get()
@@ -61,11 +64,9 @@ public class ActivateFragment extends Fragment {
                     if (task.isSuccessful() && task.getResult() != null) {
                         for (QueryDocumentSnapshot queryDocumentSnapshots :
                         task.getResult()) {
-                            if (queryDocumentSnapshots.getString(Constants.KEY_PAID)
-                                    .equals("unpaid")) {
-                                Toast.makeText(requireActivity(), "You grab", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(requireActivity(), "No way", Toast.LENGTH_SHORT).show();
+                            if (Objects.equals(queryDocumentSnapshots.getString(Constants.KEY_PAID), "unpaid")) {
+                                get();
+                                manager.putBoolean(Constants.KEY_TRUE_PAID, true);
                             }
                         }
                     }
@@ -82,6 +83,10 @@ public class ActivateFragment extends Fragment {
                 relative.setVisibility(View.VISIBLE);
             }
         });
+
+        if (manager.getBoolean(Constants.KEY_TRUE_PAID)) {
+            get();
+        }
 
         return view;
     }

@@ -17,12 +17,15 @@ import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.Objects;
+
 public class QuestionTab extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_tab);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
     }
 

@@ -9,8 +9,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +23,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 public class Phy115Activity extends AppCompatActivity {
 
     private List<Question> questionList;
-    private Random random;
     private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private CountDownTimer timer;
@@ -51,7 +49,8 @@ public class Phy115Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
-        random = new Random();
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         setListeners();
 
@@ -89,19 +88,21 @@ public class Phy115Activity extends AppCompatActivity {
         btnPrev.setOnClickListener(view -> {
             if (questionAnswered == 1) {
                 Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
             }
-            questionAnswered--;
-            pos--;
-            setDataView(pos);
         });
 
         btnNext.setOnClickListener(view -> {
             if (questionAnswered == 30) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
             }
-            questionAnswered++;
-            pos++;
-            setDataView(pos);
         });
 
 

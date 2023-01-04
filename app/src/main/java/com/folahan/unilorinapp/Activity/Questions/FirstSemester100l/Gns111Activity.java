@@ -24,6 +24,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class Gns111Activity extends AppCompatActivity {
@@ -55,6 +56,7 @@ public class Gns111Activity extends AppCompatActivity {
         random = new Random();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -104,15 +106,23 @@ public class Gns111Activity extends AppCompatActivity {
         btnPrev=findViewById(R.id.button_previous);
 
         btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+            if (questionAnswered == 50) {
+                Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
+            }
         });
 
-        btnNext.setOnClickListener(view -> {
-            questionAnswered++;
-            pos = random.nextInt(questionList.size());
-            setDataView(pos);
+        btnPrev.setOnClickListener(view -> {
+            if (questionAnswered == 1) {
+                Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
+            }
         });
 
     }
@@ -125,7 +135,7 @@ public class Gns111Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 50");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -159,7 +169,7 @@ public class Gns111Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
+        questionNo.setText("Question "+questionAnswered+" of 50");
 
     }
 
@@ -203,7 +213,7 @@ public class Gns111Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 50 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })

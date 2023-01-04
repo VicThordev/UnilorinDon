@@ -90,4 +90,15 @@
     <string name="e_mail_address">E mail Address</string>
     <string name="about_us">About us</string>
     <string name="get">Get to know more about the application</string>
+    <string name="pay_into_our_official_bank_account">Pay into our official bank account</string>
+    <string name="chm_112">CHM 112</string>
+    <string name="gns_112">GNS 112</string>
+    <string name="mth_111">MTH 111</string>
+    <string name="mth_112">MTH 112</string>
+    <string name="mth_113">MTH 113</string>
+    <string name="phy_125">PHY 125</string>
+    <string name="phy_142">PHY 142</string>
+    <string name="phy_152">PHY 152</string>
+    <string name="phy_191">PHY 191</string>
+    <string name="phy_192">PHY 192</string>
 </resources>

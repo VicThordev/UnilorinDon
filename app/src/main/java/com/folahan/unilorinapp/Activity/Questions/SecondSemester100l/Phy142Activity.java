@@ -24,6 +24,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class Phy142Activity extends AppCompatActivity {
@@ -42,6 +43,7 @@ public class Phy142Activity extends AppCompatActivity {
         setContentView(R.layout.activity_phy142);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
@@ -129,7 +131,7 @@ public class Phy142Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 50");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -196,7 +198,7 @@ public class Phy142Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 50 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -218,7 +220,7 @@ public class Phy142Activity extends AppCompatActivity {
         answerText.setVisibility(View.VISIBLE);
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
+        questionNo.setText("Question "+questionAnswered+" of 50");
 
 
     }

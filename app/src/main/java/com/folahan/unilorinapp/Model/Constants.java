@@ -1,5 +1,7 @@
 package com.folahan.unilorinapp.Model;
 
+import java.util.HashMap;
+
 public class Constants {
     public static final String KEY_COLLECTION_USERS = "users";
     public static final String KEY_SURNAME = "firstname";
@@ -31,9 +33,7 @@ public class Constants {
     public static final String KEY_COLLECTION_COMMENT = "com.folahan.unilorin_don.extra_comment";
     public static final String KEY_POSTER_NAME = "poster_name";
     public static final String KEY_PAID = "unpaid";
-    public static final String KEY_TIMESTAMP_POST = "timestamp";
-    public static final String KEY_IMAGE_POST = "image_post";
-    public static final String KEY_COMMENT_NO = "comments_no";
+    public static final String KEY_TRUE_PAID = "true_paid";
     public static final String KEY_LAST_COMMENT = "lastComment";
     public static final String KEY_COLLECTION_QUESTION = "questions";
     public static final String KEY_LAST_QUESTION = "lastQuestion";
@@ -42,11 +42,29 @@ public class Constants {
     public static final String KEY_QUESTION_BOX = "questionBox";
     public static final String KEY_FACULTY = "faculty";
     public static final String KEY_DEPARTMENT = "department";
-
-    public static final String KEY_LIKES = "likes";
-    public static final String KEY_COMMENTS = "comments";
     public static final String KEY_LIKES_BOX = "likesBox";
-    public static final String KEY_COMMENTS_BOX = "commentsBox";
     public static final String KEY_TYPE = "image";
+    public static final String REMOTE_MSG_AUTHORIZATION ="Authorization";
+    public static final String REMOTE_MSG_CONTENT_TYPE = "Content_Type";
+    public static final String REMOTE_MSG_DATA = "data";
+    public static final String REMOTE_MSG_REGISTRATION = "registration_ids";
+
+
+    public static HashMap<String, String> remoteMsgHeaders = null;
+
+    public static HashMap<String, String> getRemoteMsgHeaders() {
+        if (remoteMsgHeaders == null) {
+            remoteMsgHeaders = new HashMap<>();
+            remoteMsgHeaders.put(
+                    REMOTE_MSG_AUTHORIZATION,
+                    "key=AAAAAAAAAAA"
+            );
+            remoteMsgHeaders.put(
+                    REMOTE_MSG_CONTENT_TYPE,
+                    "application,json"
+            );
+        }
+        return remoteMsgHeaders;
+    }
 
 }

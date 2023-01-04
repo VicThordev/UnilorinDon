@@ -51,10 +51,10 @@ public class AccountFragment extends Fragment {
         txtDepartment = view.findViewById(R.id.txtDepartment);
         firebase = FirebaseFirestore.getInstance();
 
-        firebase.collection(Constants.KEY_COLLECTION_USERS)
-                .whereEqualTo(Constants.KEY_USERNAME, "Borja")
-                .whereEqualTo(Constants.KEY_USERNAME, "Borja")
-                .addSnapshotListener(eventListener);
+        //firebase.collection(Constants.KEY_COLLECTION_USERS)
+        //        .whereEqualTo(Constants.KEY_USERNAME, "Borja")
+        //        .whereEqualTo(Constants.KEY_USERNAME, "Borja")
+        //        .addSnapshotListener(eventListener);
         PreferenceManager preferenceManager = new PreferenceManager(requireActivity().getApplicationContext());
         String name1 = preferenceManager.getString(Constants.KEY_USERNAME);
 

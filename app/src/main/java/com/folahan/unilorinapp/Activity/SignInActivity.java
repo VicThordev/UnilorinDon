@@ -33,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -64,6 +65,8 @@ public class SignInActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.txtEmail);
         edtPassword = findViewById(R.id.txtPassword);
         edtConfirmPassword = findViewById(R.id.confirmPassword);
+        edtFaculty = findViewById(R.id.faculty);
+        edtDepartment = findViewById(R.id.department);
         intent = new Intent();
 
         layout = findViewById(R.id.rlProfile);
@@ -78,6 +81,8 @@ public class SignInActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmailText);
         txtPassword = findViewById(R.id.txtPasswordText);
         txtConfirmPassword = findViewById(R.id.txtConfirmPasswordText);
+        txtFaculty = findViewById(R.id.txtFacultyText);
+        txtDepartment = findViewById(R.id.txtDepartmentText);
 
         mSignUp = findViewById(R.id.txtSignUp);
         preferenceManager = new PreferenceManager(getApplicationContext());
@@ -95,6 +100,7 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
+        Objects.requireNonNull(getSupportActionBar()).hide();
     }
 
 
@@ -109,6 +115,8 @@ public class SignInActivity extends AppCompatActivity {
         user.put(Constants.KEY_IMAGE, encodedImage);
         user.put(Constants.KEY_PASSWORD, edtPassword.getText().toString());
         user.put(Constants.KEY_MOBILE, edtMobile.getText().toString());
+        user.put(Constants.KEY_FACULTY, edtFaculty.getText().toString());
+        user.put(Constants.KEY_DEPARTMENT, edtDepartment.getText().toString());
         user.put(Constants.KEY_PAID, "unpaid");
 
 
@@ -124,6 +132,8 @@ public class SignInActivity extends AppCompatActivity {
                     preferenceManager.putString(Constants.KEY_USERNAME, edtUsername.getText().toString());
                     preferenceManager.putString(Constants.KEY_SURNAME, edtSurname.getText().toString());
                     preferenceManager.putString(Constants.KEY_LASTNAME, edtFirstName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_FACULTY, edtFaculty.getText().toString());
+                    preferenceManager.putString(Constants.KEY_DEPARTMENT, edtDepartment.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -173,6 +183,24 @@ public class SignInActivity extends AppCompatActivity {
                 return true;
             } else {
                 txtUsername.setVisibility(View.GONE);
+                checkTrue=true;
+            }
+
+            messageG = edtFaculty.getText().toString();
+            if (messageG.trim().isEmpty()) {
+                txtFaculty.setVisibility(View.VISIBLE);
+                return true;
+            } else {
+                txtFaculty.setVisibility(View.GONE);
+                checkTrue=true;
+            }
+
+            messageD = edtDepartment.getText().toString();
+            if (messageD.trim().isEmpty()) {
+                txtDepartment.setVisibility(View.VISIBLE);
+                return true;
+            } else {
+                txtDepartment.setVisibility(View.GONE);
                 checkTrue=true;
             }
 

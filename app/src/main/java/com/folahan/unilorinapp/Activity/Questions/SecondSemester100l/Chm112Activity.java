@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -26,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Chm112Activity extends AppCompatActivity {
 
@@ -54,6 +56,8 @@ public class Chm112Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -151,7 +155,7 @@ public class Chm112Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+questionDone+" out of 15 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -168,7 +172,7 @@ public class Chm112Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 15");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -204,7 +208,7 @@ public class Chm112Activity extends AppCompatActivity {
         answerText.setText(questionList.get(position).getAnswer());
         mImageView.setImageResource(questionList.get(position).getImage());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
+        questionNo.setText("Question "+questionAnswered+" of 15");
 
     }
 

@@ -13,6 +13,8 @@ import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.databinding.ActivityIntoChatBinding;
 
+import java.util.Objects;
+
 public class IntoChatActivity extends AppCompatActivity {
 
     private ActivityIntoChatBinding chatBinding;
@@ -28,6 +30,7 @@ public class IntoChatActivity extends AppCompatActivity {
         chatBinding = ActivityIntoChatBinding.inflate(getLayoutInflater());
         setContentView(chatBinding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         onClick();
         chatBinding.buttonChat.setOnClickListener(view -> {
@@ -44,7 +47,7 @@ public class IntoChatActivity extends AppCompatActivity {
         String firstName = preferenceManager.getString(Constants.KEY_SURNAME);
         String lastName = preferenceManager.getString(Constants.KEY_LASTNAME);
         chatBinding.name.setText(user.getSurname());
-        byte [] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        byte [] bytes = Base64.decode(user.getImage(), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         chatBinding.imageProfile.setImageBitmap(bitmap);
         chatBinding.Username.setText(user.getUsername());

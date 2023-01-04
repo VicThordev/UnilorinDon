@@ -116,23 +116,13 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Intent intent = new Intent(MainActivity.this, QuestionTab.class);
                         startActivity(intent);
-                        noOfClicks++;
+                        noOfClicks--;
                     }
                 })
                 .setNegativeButton("Activate Account", (dialog, which) -> getSupportFragmentManager().beginTransaction().
                         replace(R.id.frameLayout, activateFragment).commit())
                 .setIcon(ContextCompat.getDrawable(getApplicationContext(),
                         R.drawable.ic_login)).show();
-        /*dialog = new AlertDialog.Builder(this, androidx.appcompat.R.style.ThemeOverlay_AppCompat_ActionBar)
-                .setTitle("")
-                .setMessage("You have 3 default chances \n You are left with "+noOfClicks+" chances to go")
-                .setPositiveButton("Proceed to Test", (dialog, which) -> {
-
-                })
-                .setNegativeButton("Activate Account", (dialog, which) -> getSupportFragmentManager().beginTransaction().
-                        replace(R.id.frameLayout, activateFragment).commit())
-                .setIcon(ContextCompat.getDrawable(getApplicationContext(),
-                        R.drawable.ic_login)).show();*/
     }
 
     @Override
@@ -144,7 +134,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openQuestionTab(View view) {
-        dialogAlert();
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        if (preferenceManager.getBoolean(Constants.KEY_TRUE_PAID)) {
+            Intent intent = new Intent(MainActivity.this, QuestionTab.class);
+            startActivity(intent);
+        } else {
+            dialogAlert();
+        }
     }
 
     public void openLevelActivity(View view) {
@@ -168,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gotoUrl() {
-        Uri uri = Uri.parse("https://www.uilugportal.unilorin.edu.ng");
+        Uri uri = Uri.parse("https://uilugportal.unilorin.edu.ng");
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 

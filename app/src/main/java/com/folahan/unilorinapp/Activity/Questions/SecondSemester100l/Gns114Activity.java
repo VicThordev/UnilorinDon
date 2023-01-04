@@ -1,6 +1,5 @@
 package com.folahan.unilorinapp.Activity.Questions.SecondSemester100l;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -10,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -23,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Gns114Activity extends AppCompatActivity {
 
@@ -53,6 +54,8 @@ public class Gns114Activity extends AppCompatActivity {
         countDown = findViewById(R.id.timeText);
 
         setListeners();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
@@ -74,7 +77,7 @@ public class Gns114Activity extends AppCompatActivity {
 
         if (SecondSemesterActivity.questionRequestCode == 1)
         {
-            getQuestionPhase(questionList);
+            getQuestionPhase4(questionList);
 
             setDataView(pos);
         }
@@ -94,7 +97,7 @@ public class Gns114Activity extends AppCompatActivity {
         }
         else if (SecondSemesterActivity.questionRequestCode == 4)
         {
-            getQuestionPhase4(questionList);
+            getQuestionPhase(questionList);
 
             setDataView(pos);
         }
@@ -163,7 +166,7 @@ public class Gns114Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 50 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -180,7 +183,7 @@ public class Gns114Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 50");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -214,7 +217,7 @@ public class Gns114Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
+        questionNo.setText("Question "+questionAnswered+" of 50");
         return false;
 
     }

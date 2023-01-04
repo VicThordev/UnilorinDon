@@ -153,11 +153,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="150dp"
             app:cardCornerRadius="5dp"
             android:elevation="10dp"
-            android:onClick="openLayout"
-            app:layout_constraintTop_toBottomOf="@id/imgThumbDown"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/mCardViewBank"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -167,7 +166,7 @@
                 android:layout_margin="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Pay into our bank account" />
+                android:text="@string/pay_into_our_official_bank_account" />
 
             <ImageView
                 android:layout_width="wrap_content"

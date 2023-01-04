@@ -181,6 +181,54 @@
                                 android:visibility="gone" />
 
                             <EditText
+                                android:id="@+id/faculty"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp"
+                                android:background="@drawable/custom_input"
+                                android:drawableStart="@drawable/ic_school"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/faculty"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp" />
+
+                            <TextView
+                                android:id="@+id/txtFacultyText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="21dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Faculty cannot be blank"
+                                android:textColor="#F80101"
+                                android:visibility="gone" />
+
+                            <EditText
+                                android:id="@+id/department"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="20dp"
+                                android:background="@drawable/custom_input"
+                                android:drawableStart="@drawable/ic_school"
+                                android:drawablePadding="10dp"
+                                android:hint="@string/department"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp" />
+
+                            <TextView
+                                android:id="@+id/txtDepartmentText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="21dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Department cannot be blank"
+                                android:textColor="#F80101"
+                                android:visibility="gone" />
+
+                            <EditText
                                 android:id="@+id/txtMobile"
                                 android:layout_width="match_parent"
                                 android:layout_height="60dp"

@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class RecentChatActivity extends BaseActivity implements ConversionsListener {
     private List<ChatMessage> conversations;
@@ -37,6 +38,7 @@ public class RecentChatActivity extends BaseActivity implements ConversionsListe
         mRecyclerView = findViewById(R.id.conversationRecyclerView);
         preferenceManager = new PreferenceManager(getApplicationContext());
         mBar = findViewById(R.id.progressBar);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         init();
         listenConversations();
     }

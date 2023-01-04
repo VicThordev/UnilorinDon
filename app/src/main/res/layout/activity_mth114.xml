@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="160dp"
-                    android:text="CHM 101"
+                    android:text="MTH 114"
                     android:id="@+id/txtSubject"
                     android:textColor="#ffff"
                     app:layout_constraintTop_toTopOf="parent"

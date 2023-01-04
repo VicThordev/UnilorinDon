@@ -23,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Phy152Activity extends AppCompatActivity {
 
@@ -51,6 +52,7 @@ public class Phy152Activity extends AppCompatActivity {
         countDown = findViewById(R.id.timeText);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         if (SecondSemesterActivity.questionRequestCode == 1) {
             getQuestionPhase(questionList);

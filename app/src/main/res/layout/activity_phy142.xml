@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="160dp"
-                    android:text="PHY 142"
+                    android:text="@string/phy_142"
                     android:id="@+id/txtSubject"
                     android:textColor="#ffff"
                     app:layout_constraintTop_toTopOf="parent"

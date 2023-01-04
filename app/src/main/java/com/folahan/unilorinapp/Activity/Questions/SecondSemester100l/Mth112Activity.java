@@ -25,6 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class Mth112Activity extends AppCompatActivity {
@@ -76,6 +77,7 @@ public class Mth112Activity extends AppCompatActivity {
         mTimerRunning = true;
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         if (SecondSemesterActivity.questionRequestCode == 1) {
             getQuestionPhase(questionList);
@@ -154,6 +156,7 @@ public class Mth112Activity extends AppCompatActivity {
                     .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption2.setOnClickListener(view -> {
@@ -161,6 +164,7 @@ public class Mth112Activity extends AppCompatActivity {
                     .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption3.setOnClickListener(view -> {
@@ -168,6 +172,7 @@ public class Mth112Activity extends AppCompatActivity {
                     .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         rbOption4.setOnClickListener(view -> {
@@ -175,6 +180,7 @@ public class Mth112Activity extends AppCompatActivity {
                     .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                 pos2++;
             }
+            clicked++;
         });
 
         btnEnd.setOnClickListener(view -> dialogAlert());
@@ -183,7 +189,7 @@ public class Mth112Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+questionAnswered+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -201,10 +207,7 @@ public class Mth112Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
+        questionNo.setText("Question "+questionAnswered+" of 15");
 
     }
 
@@ -488,7 +491,7 @@ public class Mth112Activity extends AppCompatActivity {
                 "D. ½",
                 "B. -½"));
 
-        questionList.add(new Question("12. In a triangle ABC, Line AC = 7.2cm, Line AB = 8.9cm and angle BCA = 55°." +
+        questionList.add(new Question("11. In a triangle ABC, Line AC = 7.2cm, Line AB = 8.9cm and angle BCA = 55°." +
                 "Find the distance between line BC",
                 "A. 12.1cm",
                 "B. 10.79cm",

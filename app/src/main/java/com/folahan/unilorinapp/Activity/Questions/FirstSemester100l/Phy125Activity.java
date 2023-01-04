@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -23,6 +24,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class Phy125Activity extends AppCompatActivity {
@@ -50,13 +52,15 @@ public class Phy125Activity extends AppCompatActivity {
         rbOption4 = findViewById(R.id.radioD);
         questionNo = findViewById(R.id.question1);
         countDown = findViewById(R.id.timeText);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         timer = new CountDownTimer(mTimeLeft,1000) {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
-                int minutes = (int) (mTimeLeft/1000) / 60;
-                int secs = (int) (mTimeLeft/1000) % 60;
+                int minutes = mTimeLeft / 1000 / 60;
+                int secs = (mTimeLeft/1000) % 60;
                 String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, secs);
                 countDown.setText(timeLeftFormatted);
             }
@@ -86,20 +90,21 @@ public class Phy125Activity extends AppCompatActivity {
         btnNext.setOnClickListener(view -> {
             if (questionAnswered == 20) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered++;
+                pos++;
+                setDataView(pos);
             }
-            questionAnswered++;
-            pos++;
-            setDataView(pos);
-
         });
 
         btnPrev.setOnClickListener(view -> {
             if (questionAnswered == 1) {
                 Toast.makeText(this, "First Question", Toast.LENGTH_SHORT).show();
+            } else {
+                questionAnswered--;
+                pos--;
+                setDataView(pos);
             }
-            questionAnswered--;
-            pos--;
-            setDataView(pos);
         });
 
         setListeners();
@@ -113,7 +118,7 @@ public class Phy125Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 20");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -181,7 +186,7 @@ public class Phy125Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 20 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -199,10 +204,7 @@ public class Phy125Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
+        questionNo.setText("Question "+questionAnswered+" of 20");
 
     }
 

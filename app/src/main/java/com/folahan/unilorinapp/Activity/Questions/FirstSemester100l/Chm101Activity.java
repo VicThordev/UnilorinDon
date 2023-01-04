@@ -26,12 +26,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Chm101Activity extends AppCompatActivity {
 
     private List<Question> questionList;
     private RadioGroup mGroup;
-    private TextView questionText, questionNo, countDown;
+    private TextView questionText, questionNo, countDown, answerText;
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     private Button btnNext, btnPrev, btnEnd;
@@ -45,6 +46,7 @@ public class Chm101Activity extends AppCompatActivity {
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
         mGroup = findViewById(R.id.rbGroup);
+        answerText = findViewById(R.id.txtAnswer);
         btnEnd = findViewById(R.id.buttonGoto);
         rbOption1 = findViewById(R.id.radioA);
         rbOption2 = findViewById(R.id.radioB);
@@ -54,6 +56,7 @@ public class Chm101Activity extends AppCompatActivity {
         countDown = findViewById(R.id.timeText);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         CountDownTimer timer = new CountDownTimer(mTimeLeft, 1000) {
             @Override
@@ -225,6 +228,8 @@ public class Chm101Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
+        answerText.setText(questionList.get(position).getAnswer());
+
 
 
         questionNo.setText("Question "+questionAnswered+" of 30");

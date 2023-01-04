@@ -25,6 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class Chm132Activity extends AppCompatActivity {
@@ -88,12 +89,13 @@ public class Chm132Activity extends AppCompatActivity {
         }
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         btnNext=findViewById(R.id.btnNext);
         btnPrev=findViewById(R.id.button_previous);
         setListeners();
 
         btnNext.setOnClickListener(view -> {
-            if (questionAnswered == 50) {
+            if (questionAnswered == 40) {
                 Toast.makeText(this, "Last Question", Toast.LENGTH_SHORT).show();
             } else {
                 questionAnswered++;
@@ -152,7 +154,7 @@ public class Chm132Activity extends AppCompatActivity {
     private void dialogAlert() {
         dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Confirm Submission")
-                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 30 questions")
+                .setMessage("Are you sure you want to submit? \n You answered "+clicked+" out of 40 questions")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     showButton();
                 })
@@ -169,7 +171,7 @@ public class Chm132Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 30");
+        scoreShow.setText("Your score is \n"+pos2+" out of 40");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -203,11 +205,7 @@ public class Chm132Activity extends AppCompatActivity {
         rbOption4.setText(questionList.get(position).getOption4());
         answerText.setText(questionList.get(position).getAnswer());
 
-        questionNo.setText("Question "+questionAnswered+" of 30");
-        if (questionAnswered == 30) {
-            showButton();
-        }
-
+        questionNo.setText("Question "+questionAnswered+" of 40");
     }
 
     @Override
@@ -526,11 +524,7 @@ public class Chm132Activity extends AppCompatActivity {
                 "(a) univalent"));
 
         questionList.add(new Question("3. I. both alkali and alkali earth metals forms ionic compound which are soluble in water\n" +
-                "II. both are characterized by ns\n" +
-                "1\n" +
-                "and ns\n" +
-                "2\n" +
-                "valence electronic configuration respectively\n" +
+                "II. both are characterized by ns1 and ns2 valence electronic configuration respectively\n" +
                 "III. both are from p-orbitals\n" +
                 "IV. both react with oxygen to form oxides\n" +
                 "Which of these is correct about alkali and alkali earth metals?",
