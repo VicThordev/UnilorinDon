@@ -184,10 +184,12 @@ public class Phy152Activity extends AppCompatActivity {
         showAnswer.setOnClickListener(view -> {
             timer.cancel();
             answerText.setVisibility(View.VISIBLE);
-            rbOption1.setVisibility(View.GONE);
-            rbOption2.setVisibility(View.GONE);
-            rbOption3.setVisibility(View.GONE);
-            rbOption4.setVisibility(View.GONE);
+            rbOption1.setClickable(false);
+            rbOption2.setClickable(false);
+            rbOption3.setClickable(false);
+            rbOption4.setClickable(false);
+            btnEnd.setText(R.string.go_home);
+            btnEnd.setOnClickListener(view1 -> startActivity(new Intent(this, MainActivity.class)));
             answerText.setText(R.string.log_out);
             answerText.setText(questionList.get(pos).getAnswer());
             rbOption1.setVisibility(View.GONE);
@@ -205,7 +207,7 @@ public class Phy152Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
-        answerText.setText(questionList.get(position).getAnswer());
+        answerText.setText(String.format("Answer: %s", questionList.get(position).getAnswer()));
 
         questionNo.setText("Question "+questionAnswered+" of 30");
 

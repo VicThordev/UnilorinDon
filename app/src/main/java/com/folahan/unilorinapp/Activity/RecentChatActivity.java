@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.folahan.unilorinapp.Adapter.RecentConversationAdapter;
 import com.folahan.unilorinapp.Listeners.ConversionsListener;
@@ -30,16 +32,19 @@ public class RecentChatActivity extends BaseActivity implements ConversionsListe
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private RecyclerView mRecyclerView;
+    private TextView mTxtError;
     private ProgressBar mBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_chat);
+        mTxtError = findViewById(R.id.textErrorMessage);
         mRecyclerView = findViewById(R.id.conversationRecyclerView);
         preferenceManager = new PreferenceManager(getApplicationContext());
         mBar = findViewById(R.id.progressBar);
         Objects.requireNonNull(getSupportActionBar()).hide();
         init();
+        loading(true);
         listenConversations();
     }
 
@@ -108,15 +113,30 @@ public class RecentChatActivity extends BaseActivity implements ConversionsListe
             conversationAdapter.notifyDataSetChanged();
             mRecyclerView.smoothScrollToPosition(0);
             mRecyclerView.setVisibility(View.VISIBLE);
-            mBar.setVisibility(View.GONE);
+            loading(false);
                 }
             };
 
     private void init() {
         conversations = new ArrayList<>();
         conversationAdapter = new RecentConversationAdapter(conversations, this);
+        if (conversations.size() < 1) {
+            mTxtError.setText(String.format("%n No Recent Messages"));
+        }
         mRecyclerView.setAdapter(conversationAdapter);
         database = FirebaseFirestore.getInstance();
+    }
+
+    private void loading(Boolean isLoading) {
+        if (isLoading) {
+            mBar.setVisibility(View.VISIBLE);
+        } else {
+            mBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void errorMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

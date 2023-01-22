@@ -22,9 +22,9 @@ public class PreferenceManager {
         return sharedPreferences.getBoolean(key, false);
     }
 
-    public void putString(String key, String value) {
+    public void putString(String key, Object value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
+        editor.putString(key, (String) value);
         editor.apply();
     }
 

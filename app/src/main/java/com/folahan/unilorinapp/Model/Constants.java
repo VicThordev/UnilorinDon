@@ -20,6 +20,7 @@ public class Constants {
     public static final String KEY_COLLECTION_CHAT = "chat";
     public static final String KEY_SENDER_ID = "senderId";
     public static final String KEY_POSTER_ID = "posterId";
+    public static final String KEY_OPTIONS = "options";
     public static final String KEY_RECEIVER_ID = "receiverId";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_TIMESTAMP = "timestamp";
@@ -57,11 +58,11 @@ public class Constants {
             remoteMsgHeaders = new HashMap<>();
             remoteMsgHeaders.put(
                     REMOTE_MSG_AUTHORIZATION,
-                    "key=AAAAAAAAAAA"
+                    "key=AAAAzZiHzBw:APA91bG3hOzI5BeEEFLoSlKxQkfvd4cEkmnGcetTtd0_oh0rlPmVn0gaiqSjFH7aIOfTvogT0kLIg3hQr_1kBQpp0gz1qqW6m0i43JQCRfWSAd2B29eGzBF3p8lM3e_S8Rb69Bw1ZafF"
             );
             remoteMsgHeaders.put(
                     REMOTE_MSG_CONTENT_TYPE,
-                    "application,json"
+                    "application/json"
             );
         }
         return remoteMsgHeaders;

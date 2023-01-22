@@ -44,13 +44,13 @@ public class IntoChatActivity extends AppCompatActivity {
     private void onClick() {
         Intent data = new Intent();
         user = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
-        String firstName = preferenceManager.getString(Constants.KEY_SURNAME);
-        String lastName = preferenceManager.getString(Constants.KEY_LASTNAME);
         chatBinding.name.setText(user.getSurname());
         byte [] bytes = Base64.decode(user.getImage(), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         chatBinding.imageProfile.setImageBitmap(bitmap);
         chatBinding.Username.setText(user.getUsername());
+        chatBinding.faculty.setText(user.getFaculty());
+        chatBinding.department.setText(user.getDepartment());
         data.putExtra(EXTRA_NAME, user.getSurname());
         data.putExtra(EXTRA_USERNAME, user.getUsername());
         data.putExtra(EXTRA_EMAIL, user.getEmail());

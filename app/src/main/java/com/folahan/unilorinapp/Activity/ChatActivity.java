@@ -1,10 +1,6 @@
 package com.folahan.unilorinapp.Activity;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.folahan.unilorinapp.Adapter.ChatAdapter;
 import com.folahan.unilorinapp.Model.ChatMessage;
 import com.folahan.unilorinapp.Model.Constants;
@@ -26,17 +26,12 @@ import com.folahan.unilorinapp.Network.ApiClient;
 import com.folahan.unilorinapp.Network.ApiService;
 import com.folahan.unilorinapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +65,6 @@ public class ChatActivity extends BaseActivity {
     private FirebaseFirestore database;
     private String conversionId = null, encodedImage;
     private Boolean isReceiverAvailable = false;
-    private RoundedImageView imageView;
 
     String [] cameraPermissions;
     String [] storagePermissions;
@@ -85,7 +79,6 @@ public class ChatActivity extends BaseActivity {
         mBar = findViewById(R.id.progressBar);
         mRecyclerView = findViewById(R.id.chatRecyclerView);
         mImageView = findViewById(R.id.imageBack);
-        imageView = findViewById(R.id.insertImage);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};

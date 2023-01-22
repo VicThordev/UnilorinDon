@@ -1,9 +1,5 @@
 package com.folahan.unilorinapp.Activity;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,20 +16,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.folahan.unilorinapp.Adapter.UsersAdapter;
 import com.folahan.unilorinapp.MainActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
+import com.folahan.unilorinapp.Model.User;
 import com.folahan.unilorinapp.R;
-import com.folahan.unilorinapp.fragmentActivity.AccountFragment;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -107,6 +111,8 @@ public class SignInActivity extends AppCompatActivity {
     private void addDataToFirestore() {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         HashMap<String, Object> user = new HashMap<>();
+        Random random = new Random();
+        int number = random.nextInt(1000000000);
 
         user.put(Constants.KEY_SURNAME, edtSurname.getText().toString());
         user.put(Constants.KEY_LASTNAME, edtFirstName.getText().toString());
@@ -117,9 +123,9 @@ public class SignInActivity extends AppCompatActivity {
         user.put(Constants.KEY_MOBILE, edtMobile.getText().toString());
         user.put(Constants.KEY_FACULTY, edtFaculty.getText().toString());
         user.put(Constants.KEY_DEPARTMENT, edtDepartment.getText().toString());
-        user.put(Constants.KEY_PAID, "unpaid");
+        user.put(Constants.KEY_PAID, number);
 
-
+        String realNumber = String.format("%s", number);
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
@@ -133,7 +139,9 @@ public class SignInActivity extends AppCompatActivity {
                     preferenceManager.putString(Constants.KEY_SURNAME, edtSurname.getText().toString());
                     preferenceManager.putString(Constants.KEY_LASTNAME, edtFirstName.getText().toString());
                     preferenceManager.putString(Constants.KEY_FACULTY, edtFaculty.getText().toString());
+                    preferenceManager.putString(Constants.KEY_EMAIL, edtEmail.getText().toString());
                     preferenceManager.putString(Constants.KEY_DEPARTMENT, edtDepartment.getText().toString());
+                    preferenceManager.putString(Constants.KEY_PAID, realNumber);
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -147,6 +155,7 @@ public class SignInActivity extends AppCompatActivity {
     public Boolean register(View view) {
         checkTrue = false;
         Intent intent = new Intent();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
         SharedPreferences mPreferences = getSharedPreferences(
                 "sharedPref", Context.MODE_PRIVATE);
         editor
@@ -178,6 +187,7 @@ public class SignInActivity extends AppCompatActivity {
             editor.putString("Firstname", message1);
 
             message2 = edtUsername.getText().toString();
+
             if (message2.trim().isEmpty()) {
                 txtUsername.setVisibility(View.VISIBLE);
                 return true;
@@ -190,6 +200,9 @@ public class SignInActivity extends AppCompatActivity {
             if (messageG.trim().isEmpty()) {
                 txtFaculty.setVisibility(View.VISIBLE);
                 return true;
+            } else if (messageG.contains("@gmail.com") || messageG.contains("@yahoo.com")) {
+                Toast.makeText(this, "Invalid Faculty", Toast.LENGTH_SHORT).show();
+                return true;
             } else {
                 txtFaculty.setVisibility(View.GONE);
                 checkTrue=true;
@@ -199,7 +212,11 @@ public class SignInActivity extends AppCompatActivity {
             if (messageD.trim().isEmpty()) {
                 txtDepartment.setVisibility(View.VISIBLE);
                 return true;
-            } else {
+            } else if (messageD.contains("@gmail.com") || messageD.contains("@yahoo.com")) {
+                Toast.makeText(this, "Invalid Department", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            else {
                 txtDepartment.setVisibility(View.GONE);
                 checkTrue=true;
             }

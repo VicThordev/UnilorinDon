@@ -36,6 +36,7 @@ public class Chm101Activity extends AppCompatActivity {
     private RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private int pos, pos2=0, mTimeLeft = 600000, questionAnswered = 1, clicked = 0;
     private Button btnNext, btnPrev, btnEnd;
+    private CountDownTimer timer;
     private AlertDialog.Builder dialog;
     private boolean mTimerRunning;
     @Override
@@ -58,7 +59,7 @@ public class Chm101Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        CountDownTimer timer = new CountDownTimer(mTimeLeft, 1000) {
+        timer = new CountDownTimer(mTimeLeft, 1000) {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
@@ -76,19 +77,19 @@ public class Chm101Activity extends AppCompatActivity {
 
         mTimerRunning = true;
 
-        if (SecondSemesterActivity.questionRequestCode == 1) {
+        if (FirstSemesterActivity.questionRequestCode == 1) {
             getQuestionPhase(questionList);
 
             setDataView(pos);
-        } else if (SecondSemesterActivity.questionRequestCode == 2) {
+        } else if (FirstSemesterActivity.questionRequestCode == 2) {
             getQuestionPhase2(questionList);
 
             setDataView(pos);
-        } else if (SecondSemesterActivity.questionRequestCode == 3) {
+        } else if (FirstSemesterActivity.questionRequestCode == 3) {
             getQuestionPhase3(questionList);
 
             setDataView(pos);
-        } else if (SecondSemesterActivity.questionRequestCode == 4) {
+        } else if (FirstSemesterActivity.questionRequestCode == 4) {
             getQuestionPhase4(questionList);
 
             setDataView(pos);
@@ -125,6 +126,7 @@ public class Chm101Activity extends AppCompatActivity {
         mGroup.setOnCheckedChangeListener((radioGroup, i) -> {
             switch (i) {
                 case R.id.radioA:
+                    rbOption1.setChecked(true);
                     if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                             .equals(rbOption1.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
@@ -133,6 +135,7 @@ public class Chm101Activity extends AppCompatActivity {
                     break;
                     //
                 case R.id.radioB:
+                    rbOption2.setChecked(true);
                     if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                             .equals(rbOption2.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
@@ -141,6 +144,7 @@ public class Chm101Activity extends AppCompatActivity {
                     break;
                     //
                 case R.id.radioC:
+                    rbOption3.setChecked(true);
                     if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                             .equals(rbOption3.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
@@ -149,6 +153,7 @@ public class Chm101Activity extends AppCompatActivity {
                     break;
                     //
                 case R.id.radioD:
+                    rbOption4.setChecked(true);
                     if (questionList.get(pos).getAnswer().trim().toLowerCase(Locale.ROOT)
                             .equals(rbOption4.getText().toString().trim().toLowerCase(Locale.ROOT))) {
                         pos2++;
@@ -205,9 +210,10 @@ public class Chm101Activity extends AppCompatActivity {
     protected void showButton() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
-                (LinearLayout) findViewById(R.id.design_bottom_sheet));
+                findViewById(R.id.design_bottom_sheet));
         TextView scoreShow = bottomSheet.findViewById(R.id.score);
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
+        Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
         scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
@@ -215,6 +221,21 @@ public class Chm101Activity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             dialog.dismiss();
             finish();
+        });
+
+        showAnswer.setOnClickListener(view -> {
+            timer.cancel();
+            answerText.setVisibility(View.VISIBLE);
+            rbOption1.setClickable(false);
+            rbOption2.setClickable(false);
+            rbOption3.setClickable(false);
+            rbOption4.setClickable(false);
+            btnEnd.setText(R.string.go_home);
+            btnEnd.setOnClickListener(view1 -> startActivity(new Intent(this, MainActivity.class)));
+            answerText.setText(R.string.log_out);
+            answerText.setText(questionList.get(pos).getAnswer());
+            rbOption1.setVisibility(View.GONE);
+            dialog.cancel();
         });
         dialog.setCancelable(false);
         dialog.setContentView(bottomSheet);
@@ -228,8 +249,7 @@ public class Chm101Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
-        answerText.setText(questionList.get(position).getAnswer());
-
+        answerText.setText(String.format("Answer: %s", questionList.get(position).getAnswer()));
 
 
         questionNo.setText("Question "+questionAnswered+" of 30");

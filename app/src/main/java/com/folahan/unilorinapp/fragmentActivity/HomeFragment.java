@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.method.LinkMovementMethod;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
@@ -23,6 +25,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 public class HomeFragment extends Fragment {
 
     private RoundedImageView mView;
+    private CardView mCardView;
     private PreferenceManager preferenceManager;
 
     @Override
@@ -33,6 +36,9 @@ public class HomeFragment extends Fragment {
         View view =
                 inflater.inflate(R.layout.fragment_home, container, false);
         mView = view.findViewById(R.id.imgDashBoard);
+        mCardView = view.findViewById(R.id.refer);
+        mCardView.setOnClickListener(task ->
+                Toast.makeText(requireActivity(), "Pls meet the developer for more info", Toast.LENGTH_SHORT).show());
         preferenceManager =  new PreferenceManager(requireActivity().getApplicationContext());
 
         byte [] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,13 +33,13 @@ import java.util.Objects;
 public class FriendsActivity extends BaseActivity implements UserListener {
 
     private TextView mTxtError;
-    private EditText edtSearch;
-    private ImageView mImage;
     private ProgressBar mBar;
     private PreferenceManager preferenceManager;
     private RecyclerView mRecyclerView;
     private List<User> userT;
     private UsersAdapter usersAdapter;
+    private ImageView mImage;
+    private EditText edtSearch;
     private AppCompatImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,8 @@ public class FriendsActivity extends BaseActivity implements UserListener {
         preferenceManager = new PreferenceManager(getApplicationContext());
         mTxtError = findViewById(R.id.textErrorMessage);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        mImage = findViewById(R.id.image_search);
-        edtSearch = findViewById(R.id.search_user);
+        //mImage = findViewById(R.id.imgSearch);
+        //edtSearch = findViewById(R.id.edtText);
         mRecyclerView = findViewById(R.id.usersRecyclerView);
         mBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageBack);
@@ -61,7 +62,7 @@ public class FriendsActivity extends BaseActivity implements UserListener {
     private void setListeners() {
         imageView.setOnClickListener(v ->
                 onBackPressed());
-        mImage.setOnClickListener(view -> getDetails());
+        //mImage.setOnClickListener(view -> searchUser());
     }
 
     private void getDetails() {
@@ -88,7 +89,6 @@ public class FriendsActivity extends BaseActivity implements UserListener {
         mRecyclerView.setVisibility(View.INVISIBLE);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS)
-                .whereEqualTo(Constants.KEY_USERNAME, userName)
                 .get()
                 .addOnCompleteListener(view -> {
                     String currentUserId = preferenceManager.getString(
@@ -101,16 +101,19 @@ public class FriendsActivity extends BaseActivity implements UserListener {
                             if (currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue;
                             }
-                            User user = new User();
-                            user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME + " "+ Constants.KEY_LASTNAME);
-                            user.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
-                            user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
-                            user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
-                            user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                            user.setId(queryDocumentSnapshot.getId());
-                            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
-                            users.add(user);
-                            mRecyclerView.setVisibility(View.VISIBLE);
+                            if (Objects.equals(queryDocumentSnapshot.getString(Constants.KEY_USERNAME),
+                                    userName)) {
+                                User user = new User();
+                                user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME + " "+ Constants.KEY_LASTNAME);
+                                user.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
+                                user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+                                user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
+                                user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
+                                user.setId(queryDocumentSnapshot.getId());
+                                Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+                                users.add(user);
+                                mRecyclerView.setVisibility(View.VISIBLE);
+                            }
                             if (users.size() > 0) {
                                 UsersAdapter usersAdapter = new UsersAdapter(users, this);
                                 mRecyclerView.setAdapter(usersAdapter);
@@ -145,6 +148,8 @@ public class FriendsActivity extends BaseActivity implements UserListener {
                             User user = new User();
                             user.surname = queryDocumentSnapshot.getString(Constants.KEY_SURNAME);
                             user.setUsername(queryDocumentSnapshot.getString(Constants.KEY_USERNAME));
+                            user.setFaculty(queryDocumentSnapshot.getString(Constants.KEY_FACULTY));
+                            user.setDepartment(queryDocumentSnapshot.getString(Constants.KEY_DEPARTMENT));
                             user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
                             user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
                             user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);

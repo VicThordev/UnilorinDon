@@ -67,11 +67,7 @@ public class FirstSemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            series5.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Chm101Activity.class);
-                questionRequestCode = 5;
-                startActivity(intent);
-            });
+            series5.setVisibility(View.GONE);
 
             dialog.setCancelable(true);
             dialog.setContentView(bottomSheet);
@@ -147,6 +143,10 @@ public class FirstSemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
+            series3.setVisibility(View.GONE);
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
+
             series3.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Mth111Activity.class);
                 questionRequestCode = 3;
@@ -204,6 +204,7 @@ public class FirstSemesterActivity extends AppCompatActivity {
                 questionRequestCode = 4;
                 startActivity(intent);
             });
+            series5.setVisibility(View.GONE);
 
             series5.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Mth113Activity.class);
@@ -285,6 +286,10 @@ public class FirstSemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
+            series3.setVisibility(View.GONE);
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
+
             series3.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Phy115Activity.class);
                 questionRequestCode = 3;
@@ -330,6 +335,10 @@ public class FirstSemesterActivity extends AppCompatActivity {
                 questionRequestCode = 2;
                 startActivity(intent);
             });
+
+            series3.setVisibility(View.GONE);
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
 
             series3.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Phy125Activity.class);
@@ -382,6 +391,9 @@ public class FirstSemesterActivity extends AppCompatActivity {
                 questionRequestCode = 3;
                 startActivity(intent);
             });
+
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
 
             series4.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Sta124Activity.class);

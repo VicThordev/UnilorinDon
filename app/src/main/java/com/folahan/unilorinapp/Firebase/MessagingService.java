@@ -18,6 +18,7 @@ import com.folahan.unilorinapp.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+
 import java.util.Random;
 
 public class MessagingService extends FirebaseMessagingService {
@@ -25,14 +26,11 @@ public class MessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-        Log.d("FCM", "Token "
-        +s);
     }
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Log.d("FCM", "Message" + remoteMessage.getNotification().getBody());
         User user = new User();
         user.setId(remoteMessage.getData().get(Constants.KEY_USER_ID));
         user.setUsername(remoteMessage.getData().get(Constants.KEY_USERNAME));
@@ -59,7 +57,7 @@ public class MessagingService extends FirebaseMessagingService {
         builder.setAutoCancel(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence channelName = "Chat Message";
+            CharSequence channelName = "Unilorin Don";
             String channelDescription = "This notifs";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(channelId,

@@ -78,12 +78,30 @@
                 android:text="@string/check"
                 android:id="@+id/check"
                 android:padding="10dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtAnswer"
+                android:visibility="gone"
+                android:paddingBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@id/rbGroup"
+                android:layout_margin="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/question_phase"
+                android:id="@+id/question1"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:id="@+id/questionText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

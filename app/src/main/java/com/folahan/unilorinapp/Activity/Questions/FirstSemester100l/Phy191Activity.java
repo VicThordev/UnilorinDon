@@ -176,12 +176,10 @@ public class Phy191Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
-        answerText.setText(questionList.get(position).getAnswer());
+        answerText.setText(String.format("Answer: %s", questionList.get(position).getAnswer()));
 
         questionNo.setText("Question "+questionAnswered+" of 5");
-        if (questionAnswered == 5) {
-            showButton();
-        }
+
 
     }
 

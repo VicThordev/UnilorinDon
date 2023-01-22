@@ -1,5 +1,7 @@
 package com.folahan.unilorinapp.fragmentActivity;
 
+import static androidx.appcompat.app.AlertDialog.*;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,18 +23,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.folahan.unilorinapp.Activity.LoginActivity;
-import com.folahan.unilorinapp.Activity.SignInActivity;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.R;
-import com.folahan.unilorinapp.databinding.FragmentSettingsBinding;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 
 /**
@@ -47,7 +46,7 @@ public class SettingsFragment extends Fragment {
     private PreferenceManager preferenceManager;
     private AlertDialog.Builder builder;
     private boolean isDarkModeOn;
-    private MaterialCardView mcv, mcv2;
+    private MaterialCardView mcv, mcv2, mcv3, mcv4;
     private View view;
 
     @Override
@@ -56,7 +55,28 @@ public class SettingsFragment extends Fragment {
         // Inflate_the_layout_for_this_fragment
         view =  inflater.inflate(R.layout.fragment_settings, container, false);
         mcv = view.findViewById(R.id.material_dark_mode);
-        mcv2 = view.findViewById(R.id.material_log_out);
+        //mcv2 = view.findViewById(R.id.material_log_out);
+        mcv3 = view.findViewById(R.id.materialShare);
+        mcv4 = view.findViewById(R.id.material_about);
+        builder = new Builder(requireActivity());
+        //mcv2.setOnClickListener(task -> signOut());
+        mcv4.setOnClickListener(view1 -> {
+            builder.setTitle("Unilorin Scholar")
+                    .setMessage(R.string.about_the_app)
+                    .setPositiveButton("OK", ((dialogInterface, i) -> dialogInterface.cancel()));
+            builder.show()
+                    .setCancelable(true);
+        });
+
+        mcv3.setOnClickListener(view1 -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            String shareBody = "Download the Unilorin Scholar App using the link below";
+            String shareSubject = "https://drive.google.com/folderview?id=16tUbVbBZVGnyZn1GCyizAFNnjWKeGEM4";
+            intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
+            intent.putExtra(Intent.EXTRA_TEXT, shareSubject);
+            intent.setType("text/plain");
+            startActivity(Intent.createChooser(intent, "Share using"));
+        });
 
         preferenceManager = new PreferenceManager(requireActivity().getApplicationContext());
 
@@ -131,23 +151,16 @@ public class SettingsFragment extends Fragment {
             
         });
 
-        mcv2.setOnClickListener(view -> {
-            builder = new AlertDialog.Builder(requireActivity());
+        /*mcv2.setOnClickListener(view -> {
+            builder = new Builder(requireActivity());
             builder.setTitle("Log Out")
                     .setMessage("Are you sure you want to log out?")
                     .setPositiveButton("Yes", (dialog, which) -> signOut())
                     .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                     .setIcon(ContextCompat.getDrawable(requireActivity().getApplicationContext(),
                             R.drawable.ic_cancel)).show();
-        });
+        });*/
         return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
     }
 
     public void signOut() {

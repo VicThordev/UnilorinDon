@@ -67,6 +67,8 @@ public class AccountFragment extends Fragment {
         String username = preferenceManager.getString(Constants.KEY_USERNAME);
         txtName.setText(String.format("%s", name+" "+lastName));
         txtUsername.setText(username);
+        txtEmail.setText(preferenceManager.getString(Constants.KEY_FACULTY));
+        txtDepartment.setText(preferenceManager.getString(Constants.KEY_DEPARTMENT));
         txtEmailAddress.setText(preferenceManager.getString(Constants.KEY_EMAIL));
 
         return view;

@@ -119,10 +119,12 @@ public class Chm116Activity extends AppCompatActivity {
         showAnswer.setOnClickListener(view -> {
             timer.cancel();
             answerText.setVisibility(View.VISIBLE);
-            rbOption1.setVisibility(View.GONE);
-            rbOption2.setVisibility(View.GONE);
-            rbOption3.setVisibility(View.GONE);
-            rbOption4.setVisibility(View.GONE);
+            rbOption1.setClickable(false);
+            rbOption2.setClickable(false);
+            rbOption3.setClickable(false);
+            rbOption4.setClickable(false);
+            btnEnd.setText(R.string.go_home);
+            btnEnd.setOnClickListener(view1 -> startActivity(new Intent(this, MainActivity.class)));
             answerText.setText(R.string.log_out);
             answerText.setText(questionList.get(pos).getAnswer());
             rbOption1.setVisibility(View.GONE);

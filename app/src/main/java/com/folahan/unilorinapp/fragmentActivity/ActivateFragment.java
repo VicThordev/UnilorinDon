@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.folahan.unilorinapp.Model.Constants;
 import com.folahan.unilorinapp.Model.PreferenceManager;
 import com.folahan.unilorinapp.R;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -33,9 +36,10 @@ public class ActivateFragment extends Fragment {
     RelativeLayout rl, relative;
     private ImageView mImageThumbUp, mImageThumbDown, mImageStar1, mImageStar2,
             mImageStar3, mImageStar4;
+    private EditText edtPay;
+    private Button mImagePay;
     private TextView mTextActivated, mTextNotActivated;
     private PreferenceManager manager;
-
     View view;
 
     public ActivateFragment() {
@@ -48,6 +52,8 @@ public class ActivateFragment extends Fragment {
         PreferenceManager preferenceManager = new PreferenceManager(requireActivity().getApplicationContext());
         view =  inflater.inflate(R.layout.fragment_activate, container, false);
         mTextActivated = view.findViewById(R.id.txtActivated);
+        mImagePay = view.findViewById(R.id.search_payment);
+        edtPay = view.findViewById(R.id.edtPayment);
         manager = new PreferenceManager(requireActivity().getApplicationContext());
         mTextNotActivated = view.findViewById(R.id.txtNotActivated);
         mImageThumbUp = view.findViewById(R.id.imgThumbUp);
@@ -56,21 +62,17 @@ public class ActivateFragment extends Fragment {
         mImageStar2 = view.findViewById(R.id.star2);
         mImageStar3 = view.findViewById(R.id.star3);
         mImageStar4 = view.findViewById(R.id.star4);
+        mImagePay.setOnClickListener(view1 -> {
+            String message = edtPay.getText().toString();
+            if (message.equals(preferenceManager.getString(Constants.KEY_PAID))) {
+                Toast.makeText(requireActivity(), "Payment Done", Toast.LENGTH_SHORT).show();
+                get();
+                manager.putBoolean(Constants.KEY_TRUE_PAID, true);
+            } else {
+                Toast.makeText(requireActivity(), "Pls meet with the developer and get your pin", Toast.LENGTH_LONG).show();
+            }
+        });
         CardView mcv2 = view.findViewById(R.id.mCardViewBank);
-        FirebaseFirestore firebase = FirebaseFirestore.getInstance();
-        firebase.collection(Constants.KEY_COLLECTION_USERS)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        for (QueryDocumentSnapshot queryDocumentSnapshots :
-                        task.getResult()) {
-                            if (Objects.equals(queryDocumentSnapshots.getString(Constants.KEY_PAID), "unpaid")) {
-                                get();
-                                manager.putBoolean(Constants.KEY_TRUE_PAID, true);
-                            }
-                        }
-                    }
-                });
 
 
         relative = view.findViewById(R.id.rlTransfer);
@@ -96,10 +98,13 @@ public class ActivateFragment extends Fragment {
             mTextNotActivated.setVisibility(View.GONE);
             mTextActivated.setVisibility(View.VISIBLE);
             mImageThumbUp.setVisibility(View.VISIBLE);
-            mImageThumbDown.setVisibility(View.GONE);
+            mImageThumbDown.setVisibility(View.INVISIBLE);
             mImageStar1.setVisibility(View.VISIBLE);
             mImageStar2.setVisibility(View.VISIBLE);
             mImageStar3.setVisibility(View.VISIBLE);
             mImageStar4.setVisibility(View.VISIBLE);
+            edtPay.setVisibility(View.INVISIBLE);
+            mImagePay.setText("ACTIVATED");
+            mImagePay.setClickable(false);
         }
 }

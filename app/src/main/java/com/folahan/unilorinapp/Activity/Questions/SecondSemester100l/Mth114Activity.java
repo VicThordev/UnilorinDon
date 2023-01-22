@@ -38,7 +38,7 @@ public class Mth114Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chm132);
+        setContentView(R.layout.activity_mth114);
 
         questionList = new ArrayList<>();
         questionText = findViewById(R.id.questionText);
@@ -164,7 +164,7 @@ public class Mth114Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 15");
+        scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -175,11 +175,11 @@ public class Mth114Activity extends AppCompatActivity {
         showAnswer.setOnClickListener(view -> {
             timer.cancel();
             answerText.setVisibility(View.VISIBLE);
-            rbOption1.setVisibility(View.GONE);
-            rbOption2.setVisibility(View.GONE);
-            rbOption3.setVisibility(View.GONE);
-            rbOption4.setVisibility(View.GONE);
-            btnEnd.setText("Go Home");
+            rbOption1.setClickable(false);
+            rbOption2.setClickable(false);
+            rbOption3.setClickable(false);
+            rbOption4.setClickable(false);
+            btnEnd.setText(R.string.go_home);
             btnEnd.setOnClickListener(view1 -> startActivity(new Intent(this, MainActivity.class)));
             answerText.setText(R.string.log_out);
             answerText.setText(questionList.get(pos).getAnswer());
@@ -198,7 +198,7 @@ public class Mth114Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
-        answerText.setText(questionList.get(position).getAnswer());
+        answerText.setText(String.format("Answer: %s", questionList.get(position).getAnswer()));
 
         questionNo.setText("Question "+questionAnswered+" of 15");
 

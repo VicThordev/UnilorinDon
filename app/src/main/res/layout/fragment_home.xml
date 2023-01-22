@@ -213,6 +213,7 @@
             android:layout_width="wrap_content"
             app:cardCornerRadius="20dp"
             android:layout_margin="10dp"
+            android:id="@+id/refer"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             app:cardElevation="10dp"
@@ -223,6 +224,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="15dp"
+                android:onClick="share"
                 android:layout_height="match_parent">
 
                 <ImageView

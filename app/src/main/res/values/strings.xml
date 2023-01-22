@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Unilorin Don</string>
+    <string name="app_name">Unilorin Scholar</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="ek_img_content">ExportKit Image</string>
+    <string name="ek_img_content">Export Kit Image</string>
 
     <string name="cbt_practice_string">CBT Practice</string>
 
@@ -15,7 +15,7 @@
 
     <string name="frequently_asked_questions_string">FrequentlyAsked Questions</string>
 
-    <string name="see_answers_to_questions_other_users_have_asked_string">See answers to questions otherusers have asked</string>
+    <string name="see_answers_to_questions_other_users_have_asked_string">See answers to questions other users have asked</string>
     <string name="checking_in">Checking in</string>
     <string name="log_out">Log out</string>
     <string name="view">View your profile</string>
@@ -40,14 +40,18 @@
     <string name="activate">Activate</string>
     <string name="activation_pin">Don\'t have an activation pin? Get one payment</string>
     <string name="choose">CHOOSE A PAYMENT METHOD</string>
-    <string name="pay">Pay #500</string>
+    <string name="pay">Pay #800</string>
+    <string name="about_the_app">Unilorin Scholar is an app developed to help the Students(Freshers) of the great Institution of the University of
+        Ilorin. The questions here have been tested by not just one man but passed through tables of scholars of faculties involved.
+    If by any means, you have any untrue solution to any of the questions here, pls contact the developer immediately.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_pay_online">Pay Online</string>
     <string name="paystack">Pay using PayStack</string>
     <string name="bank">Bank Deposit or Transfer</string>
     <string name="bank_deposit">Go down to the nearest banking site around you either a real bank or POS operator and make a deposit of #1000 into any of the account below</string>
-    <string name="after_payment">***After payment, send a whatsapp message(SCREENSHOT) containing PAYMENT details to: +2349039412648 </string>
+    <string name="after_payment">***After payment, send a whatsapp message(SCREENSHOT) containing PAYMENT details to: +2348112568014 and your details in this format
+    \n Surname: \n Firstname: \n Username</string>
     <string name="account_name">1. Account name :</string>
     <string name="email">Your Email Address:</string>
     <string name="bank_paid_to">3. Bank paid to and a screenshot of the payment</string>
@@ -90,7 +94,7 @@
     <string name="e_mail_address">E mail Address</string>
     <string name="about_us">About us</string>
     <string name="get">Get to know more about the application</string>
-    <string name="pay_into_our_official_bank_account">Pay into our official bank account</string>
+    <string name="pay_into_our_official_bank_account">Pay a sum of #500 into our official bank account</string>
     <string name="chm_112">CHM 112</string>
     <string name="gns_112">GNS 112</string>
     <string name="mth_111">MTH 111</string>
@@ -101,4 +105,10 @@
     <string name="phy_152">PHY 152</string>
     <string name="phy_191">PHY 191</string>
     <string name="phy_192">PHY 192</string>
+    <string name="select_user">Select User</string>
+    <string name="search_user">Search user by username</string>
+    <string name="unilorin_n_scholar">UNILORIN \nSCHOLAR</string>
+    <string name="one_step_ahead">One Step Ahead</string>
+    <string name="enter_pin_here">Enter Activation pin here</string>
+
 </resources>

@@ -64,17 +64,8 @@ public class SecondSemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            series4.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Chm112Activity.class);
-                questionRequestCode = 4;
-                startActivity(intent);
-            });
-
-            series5.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Chm112Activity.class);
-                questionRequestCode = 5;
-                startActivity(intent);
-            });
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
 
             dialog.setCancelable(true);
             dialog.setContentView(bottomSheet);
@@ -277,34 +268,25 @@ public class SecondSemesterActivity extends AppCompatActivity {
             Button series5 = bottomSheet.findViewById(R.id.series5);
 
             series1.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Phy142Activity.class);
+                Intent intent = new Intent(this, Gns112Activity.class);
                 questionRequestCode = 1;
                 startActivity(intent);
             });
 
             series2.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Phy142Activity.class);
+                Intent intent = new Intent(this, Gns112Activity.class);
                 questionRequestCode = 2;
                 startActivity(intent);
             });
 
             series3.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Phy142Activity.class);
+                Intent intent = new Intent(this, Gns112Activity.class);
                 questionRequestCode = 3;
                 startActivity(intent);
             });
 
-            series4.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Phy142Activity.class);
-                questionRequestCode = 4;
-                startActivity(intent);
-            });
-
-            series5.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Phy142Activity.class);
-                questionRequestCode = 5;
-                startActivity(intent);
-            });
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
 
             dialog.setCancelable(true);
             dialog.setContentView(bottomSheet);
@@ -346,11 +328,7 @@ public class SecondSemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            series5.setOnClickListener(view1 -> {
-                Intent intent = new Intent(this, Phy152Activity.class);
-                questionRequestCode = 5;
-                startActivity(intent);
-            });
+            series5.setVisibility(View.GONE);
 
             dialog.setCancelable(true);
             dialog.setContentView(bottomSheet);
@@ -365,6 +343,8 @@ public class SecondSemesterActivity extends AppCompatActivity {
             Button series1 = bottomSheet.findViewById(R.id.series1);
             Button series2 = bottomSheet.findViewById(R.id.series2);
             Button series3 = bottomSheet.findViewById(R.id.series3);
+            Button series4 = bottomSheet.findViewById(R.id.series4);
+            Button series5 = bottomSheet.findViewById(R.id.series5);
 
             series1.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Phy142Activity.class);
@@ -384,13 +364,13 @@ public class SecondSemesterActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            series3.setOnClickListener(view1 -> {
+            series4.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Phy142Activity.class);
                 questionRequestCode = 4;
                 startActivity(intent);
             });
 
-            series3.setOnClickListener(view1 -> {
+            series5.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Phy142Activity.class);
                 questionRequestCode = 5;
                 startActivity(intent);
@@ -533,6 +513,8 @@ public class SecondSemesterActivity extends AppCompatActivity {
             Button series1 = bottomSheet.findViewById(R.id.series1);
             Button series2 = bottomSheet.findViewById(R.id.series2);
             Button series3 = bottomSheet.findViewById(R.id.series3);
+            Button series4 = bottomSheet.findViewById(R.id.series4);
+            Button series5 = bottomSheet.findViewById(R.id.series5);
 
             series1.setOnClickListener(view1 -> {
                 Intent intent = new Intent(this, Chm132Activity.class);
@@ -551,6 +533,11 @@ public class SecondSemesterActivity extends AppCompatActivity {
                 questionRequestCode = 3;
                 startActivity(intent);
             });
+
+            series4.setVisibility(View.GONE);
+            series5.setVisibility(View.GONE);
+
+
 
             dialog.setCancelable(true);
             dialog.setContentView(bottomSheet);

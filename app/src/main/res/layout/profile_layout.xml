@@ -11,12 +11,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/imgProfile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -30,6 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgProfile"
+                app:layout_constraintTop_toBottomOf="@id/imgProfile"
+                app:layout_constraintStart_toStartOf="@id/imgProfile"
+                app:layout_constraintEnd_toEndOf="@id/imgProfile"
                 android:id="@+id/txtNameProfile"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
@@ -39,7 +45,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtNameProfile"
+                app:layout_constraintTop_toBottomOf="@id/txtNameProfile"
+                app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+                app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
                 android:id="@+id/txtUsernameProfile"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
@@ -49,7 +57,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="270dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUsernameProfile"
+                android:layout_marginTop="70dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -131,7 +142,7 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

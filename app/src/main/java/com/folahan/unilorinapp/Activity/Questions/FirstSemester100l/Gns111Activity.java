@@ -62,8 +62,8 @@ public class Gns111Activity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 mTimeLeft = (int) l;
-                int minutes = (int) (mTimeLeft/1000) / 60;
-                int secs = (int) (mTimeLeft/1000) % 60;
+                int minutes = mTimeLeft / 1000 / 60;
+                int secs = (mTimeLeft/1000) % 60;
                 String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, secs);
                 countDown.setText(timeLeftFormatted);
             }
@@ -135,7 +135,7 @@ public class Gns111Activity extends AppCompatActivity {
         Button goHome = bottomSheet.findViewById(R.id.btnScore);
         Button showAnswer = bottomSheet.findViewById(R.id.btnAnswer);
 
-        scoreShow.setText("Your score is \n"+pos2+" out of 50");
+        scoreShow.setText("Your score is \n"+pos2+" out of 30");
 
         goHome.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
@@ -146,10 +146,12 @@ public class Gns111Activity extends AppCompatActivity {
         showAnswer.setOnClickListener(view -> {
             timer.cancel();
             answerText.setVisibility(View.VISIBLE);
-            rbOption1.setVisibility(View.GONE);
-            rbOption2.setVisibility(View.GONE);
-            rbOption3.setVisibility(View.GONE);
-            rbOption4.setVisibility(View.GONE);
+            rbOption1.setClickable(false);
+            rbOption2.setClickable(false);
+            rbOption3.setClickable(false);
+            rbOption4.setClickable(false);
+            btnEnd.setText(R.string.go_home);
+            btnEnd.setOnClickListener(view1 -> startActivity(new Intent(this, MainActivity.class)));
             answerText.setText(R.string.log_out);
             answerText.setText(questionList.get(pos).getAnswer());
             rbOption1.setVisibility(View.GONE);
@@ -167,7 +169,7 @@ public class Gns111Activity extends AppCompatActivity {
         rbOption2.setText(questionList.get(position).getOption2());
         rbOption3.setText(questionList.get(position).getOption3());
         rbOption4.setText(questionList.get(position).getOption4());
-        answerText.setText(questionList.get(position).getAnswer());
+        answerText.setText(String.format("Answer: %s", questionList.get(position).getAnswer()));
 
         questionNo.setText("Question "+questionAnswered+" of 50");
 

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtName = findViewById(R.id.txtUnilorinUpdate);
-
+        setTitle("Unilorin Scholar");
 
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.frameLayout, homeFragment).commit();
@@ -144,15 +144,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLevelActivity(View view) {
-        startActivity(new Intent(this, CheckLevelActivity.class));
+        //startActivity(new Intent(this, CheckLevelActivity.class));
+        Uri uri = Uri.parse("https://drive.google.com/folderview?id=1-0qtHWaFHZj94gureZRyaQk00dKdeHje");
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
+
+
 
     public void login(View view) {
         startActivity(new Intent(this, LoginActivity.class));
     }
 
     public void openQuestionPage(View view) {
-        startActivity(new Intent(this, QuestionPage.class));
+        //startActivity(new Intent(this, QuestionPage.class));
+        Toast.makeText(this, "Feature will be available soon", Toast.LENGTH_LONG).show();
     }
 
     public void openFriendActivity(View view) {
@@ -170,5 +175,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void openRecentActivity(View view) {
         startActivity(new Intent(this, RecentChatActivity.class));
+    }
+
+    public void share(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        String shareBody = "Download the Unilorin Scholar App using the link below";
+        String shareSubject = "https://drive.google.com/folderview?id=16tUbVbBZVGnyZn1GCyizAFNnjWKeGEM4";
+        intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
+        intent.putExtra(Intent.EXTRA_TEXT, shareSubject);
+        intent.setType("text/plain");
+        startActivity(Intent.createChooser(intent, "Share using"));
     }
 }
